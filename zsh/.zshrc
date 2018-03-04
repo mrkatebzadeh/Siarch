@@ -1,7 +1,7 @@
 # files to source in priority
 if [ -z "$TMUX" ]
 then
-    tmux attach -t TMUX || tmux new -s TMUX
+    exec tmux 
 fi
 source ~/.oh_my.zsh
 
