@@ -18,7 +18,7 @@ where() {
 }
 
 ssh() {
-	/usr/bin/ssh -t "$@" tmux new-session -A -s fabrice-session
+	/usr/bin/ssh -t "$@" #tmux new-session -A -s siavash-session
 }
 
 psql_history() {
