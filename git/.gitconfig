@@ -3,10 +3,11 @@
     path = ~/.config/.gitconfig.sec
 
 [user]
-    name = Fabrice Laporte
+    name = Siavash Katebzadeh
+    email = mr.katebzadeh@gmail.com
 
 [core]
-    editor = nano
+    editor = email
     excludesfile = ~/.gitignore
 
 # From there, sections are in alphabetic order
@@ -15,6 +16,7 @@
     last = log -1 HEAD
     co = checkout
     st = status
+    cm = commit
     uncommit = reset --soft HEAD~
     unstage = reset HEAD --
     lg = log --graph --abbrev-commit --decorate --date=relative --all
