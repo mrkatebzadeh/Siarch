@@ -6,6 +6,7 @@ alias top=htop
 alias emacs=emacs -nw
 alias ll='ls -al'
 alias vi='vim'
+alias mux='tmuxinator'
 
 # suffix aliases http://zshwiki.org/home/examples/aliassuffix
 alias -s log=nano
