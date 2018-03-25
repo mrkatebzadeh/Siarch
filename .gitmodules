@@ -1,6 +1,6 @@
 [submodule "_archi3"]
 	path = _archi3
 	url = https://github.com/mrkatebzadeh/archi3
-[submodule "scripts"]
-	path = scripts
+[submodule "scripts/.scripts"]
+	path = scripts/.scripts
 	url = git@github.com:mrkatebzadeh/Scripts.git
