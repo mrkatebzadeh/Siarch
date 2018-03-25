@@ -1,0 +1,30 @@
+# ~/.tmuxinator/monitor.yml
+
+
+name: monitor
+root: ~/
+
+windows:
+  - status_things:
+      layout: main-horizontal
+      panes:
+        - top
+        - uptime
+        - whoami
+  - io_things:
+      layout: tiled
+      panes:
+        - lsof
+        - iostat -w 10
+        - netstat
+        - vim
+  - more_things:
+      layout: main-vertical
+      panes:
+        - is_my_machine_alive:
+          - ping localhost
+        - run_several_commands:
+          - cd /
+          - cd var
+          - cd log
+          - ls
