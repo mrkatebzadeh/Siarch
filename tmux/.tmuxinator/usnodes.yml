@@ -8,15 +8,10 @@ windows:
   - 1to4:
       layout: tiled
       panes:
-        - ssh atlanta
         - ssh austin
+        - ssh philly
         - ssh baltimore
         - ssh chicago
-  - 5to9:
-      layout: tiled
-      panes:
-        - ssh philly
+        - ssh indianapolis
+        - ssh houston
         - ssh sanantonio
-	- ssh houston
-	- ssh indianopolis
-	- ssh detroit
