@@ -1,6 +1,7 @@
 # Local/private config goes in the include
 [include]
     path = ~/.config/.gitconfig.sec
+    path = ~/.gitaliases
 
 [user]
     name = Siavash Katebzadeh
@@ -14,9 +15,6 @@
 
 [alias]
     last = log -1 HEAD
-    co = checkout
-    st = status
-    cm = commit
     uncommit = reset --soft HEAD~
     unstage = reset HEAD --
     lg = log --graph --abbrev-commit --decorate --date=relative --all
