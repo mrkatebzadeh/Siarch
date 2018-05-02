@@ -138,7 +138,7 @@ let mapleader = ' '         " changes leader key
 set noswapfile              " no swap files
 set hidden                  " hide buffer without notice
 set hlsearch                " highlight the last searched term
-" "set virtualedit=all         " let us walk in limbo
+"set virtualedit=all         " let us walk in limbo
 set cpoptions+=$            " dollar sign while changing
 set foldmethod=marker       " folds on marks
 set nowrap                  " don't wrap lines
@@ -255,7 +255,13 @@ function! CheckIfMain()
     endif
 endfunction
 
-  
+augroup line_return
+    au!
+    au BufReadPost *
+                \ if line("'\"") > 0 && line("'\"") <= line("$") |
+                \ execute 'normal! g`"zvzz' |
+                \ endif
+augroup END
 " }}}
 
 " Colorscheme {{{
