@@ -119,6 +119,7 @@ Plug 'oblitum/frawor'
 Plug 'nicwest/QQ.vim'
 Plug 'wincent/ferret'
 Plug 'suy/vim-qmake'
+Plug 'fholgado/minibufexpl.vim'
 Plug 'elzr/vim-json'
 Plug 'lervag/vimtex'
 Plug 'fatih/vim-go', { 'tag': '*' }
@@ -278,7 +279,12 @@ if !has('gui_running')
 endif
 " }}}
 
-" Airline Setup {{{
+" Buffer switching {{{
+nmap <Tab> :bn<CR>
+nmap <S-Tab> :bp<CR>
+"}}}
+
+"Airline Setup {{{
 let g:airline_theme = 'deep_space'
 "let g:airline_theme = 'hybrid'
 let g:airline_powerline_fonts = 1
