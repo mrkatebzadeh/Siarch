@@ -15,6 +15,7 @@ Plug 'davidhalter/jedi-vim' | Plug 'lambdalisue/vim-pyenv'
 Plug 'purescript-contrib/purescript-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'kshenoy/vim-signature'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'pbrisbin/vim-syntax-shakespeare'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -180,6 +181,28 @@ nnoremap <silent> <leader>, :tabprevious<cr>
 nnoremap <silent> <leader>. :tabnext<cr>
 " }}}
 
+" NerdTree config {{{
+noremap <leader>m :NERDTreeToggle<cr>
+let NERDTreeIgnore=['\.vim$', '\~$', '\.pyc$']
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+set autochdir
+let NERDTreeChDirMode=2
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+let g:NERDTreeShowIgnoredStatus = 1
+" }}}
+
 " GUI Settings {{{
 if has('gui_running')
     " Set default GUI font
@@ -197,6 +220,42 @@ if has('gui_running')
     " Initial window dimensions
     set lines=47 columns=80
 endif
+" }}}
+
+" Startup commands {{{
+
+autocmd VimEnter * SignatureToggleSigns
+if &diff 
+    "autocmd VimEnter * NERDTree .
+else
+    autocmd VimEnter * NERDTree .
+    autocmd VimEnter * TagbarOpen
+    autocmd VimEnter * helptags ~/.vim/doc
+    autocmd VimEnter * exe 2 . "wincmd w"
+    autocmd VimEnter * call CheckIfMain()
+    autocmd VimEnter * call LoadCScopeDatabases()
+    autocmd VimEnter * call DetectFileType()
+
+    autocmd BufWritePost ~/.vimrc source ~/.vimrc
+    "au BufNewFile,BufRead * :set relativenumber " relative line numbers
+
+endif
+
+function! CheckIfMain()
+    if !IsFileAlreadyExists(expand("%:t")) && expand("%:t:r") == "main" 
+          \ && expand("%:e") == "cpp"
+        execute 'normal! 1G 1000dd'
+        execute ':Template maincpp'
+        execute ':w'
+    elseif !IsFileAlreadyExists(expand("%:t")) && expand("%:t:r") == "main"
+          \ && expand("%:e") == "c"
+        execute 'normal! 1G 1000dd' 
+        execute ':Template mainc'
+        execute ':w'
+    endif
+endfunction
+
+  
 " }}}
 
 " Colorscheme {{{
