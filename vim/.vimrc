@@ -13,6 +13,8 @@ call plug#begin('~/.vim/plugged')
 " Plugins {{{
 Plug 'davidhalter/jedi-vim' | Plug 'lambdalisue/vim-pyenv'
 Plug 'purescript-contrib/purescript-vim'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'pbrisbin/vim-syntax-shakespeare'
 Plug 'nathanaelkane/vim-indent-guides'
