@@ -265,9 +265,77 @@ augroup line_return
                 \ execute 'normal! g`"zvzz' |
                 \ endif
 augroup END
-" }}}
 
-" Colorscheme {{{
+function! IsFileAlreadyExists(filename)
+   if filereadable(a:filename)
+        return 1
+    else 
+        return 0
+    endif
+endfunction
+" }}}
+" CScopeDatabase {{{
+function! LoadCScopeDatabases()
+    let databaseDir = $HOME."/.vim/cscope_databases"
+    if IsFileAlreadyExists ( databaseDir."/last_project_cscope")
+        execute ":silent cs add ".databaseDir."/last_project_cscope"  
+    endif
+    if IsFileAlreadyExists ( databaseDir."/gstreamer_cscope")
+        execute ":silent cs add ".databaseDir."/gstreamer_cscope"  
+    endif
+    if IsFileAlreadyExists ( databaseDir."/mythtv_cscope")
+        execute ":silent cs add ".databaseDir."/mythtv_cscope"  
+    endif
+    if IsFileAlreadyExists ( databaseDir."/cpp_scope")
+        execute ":silent cs add ".databaseDir."/cpp_scope"
+    endif
+    "load dtv_project only when we are working on docker 
+    let userDef = substitute(system("echo $USER"), "\n", '', '')
+    if userDef == "docker" && IsFileAlreadyExists( databaseDir."/dtv_project_cscope")
+        execute ":silent cs add ".databaseDir."/dtv_project_cscope"  
+    endif
+    echohl StatusLine | echo "CScope databases loaded successfully..." | echohl None 
+endfunction
+
+
+function! UpdateCscopeDatabase(basedir)
+    let databaseDir = $HOME."/.vim/cscope_databases"
+    let findCommand = "find `pwd` -name '*.c' -o -name '*.h' -o -name '*.java' -o -name '*.py' -o -name '*.js' -o -name '*.hpp' -o -name '*.hh' -o -name '*.cpp' -o -name '*.cc' > cscope.files"
+
+    execute ":silent !cd ".a:basedir." && ".findCommand." && cscope -b && cp cscope.out ".databaseDir."/last_project_cscope && rm cscope.files cscope.out"
+    execute ":silent cs reset"
+
+    call UpdateTags(a:basedir)
+    execute ":redraw!"
+
+endfunction
+
+function! UpdateAllCscopeDatabases()
+    let databaseDir = $HOME."/.vim/cscope_databases"
+    let tagsDir = $HOME."/.vim/tags"
+
+    call UpdateCscopeDatabase("/usr/src/gstreamerInstall")
+    execute ":silent !cp ".databaseDir."/last_project_cscope ".databaseDir."/gstreamer_cscope"
+    execute ":silent !cp ".tagsDir."/last_project_tags ".tagsDir."/gstreamer_tags"
+
+    call UpdateCscopeDatabase($HOME."/projects/xmementoit/digitalTVOpenSource/mythtv")
+    execute ":silent !cp ".databaseDir."/last_project_cscope ".databaseDir."/mythtv_cscope"
+    execute ":silent !cp ".tagsDir."/last_project_tags ".tagsDir."/mythtv_tags"
+
+    call UpdateCscopeDatabase($HOME."/.vim/tags/cpp_src")
+    execute ":silent !cp ".databaseDir."/last_project_cscope ".databaseDir."/cpp_scope"
+    execute ":silent !cp ".tagsDir."/last_project_tags ".tagsDir."/cpp_tags"
+
+    call UpdateCscopeDatabase("/usr/local/include")
+    execute ":silent !cp ".databaseDir."/last_project_cscope ".databaseDir."/usr_local_include_cscope"
+    execute ":silent !cp ".tagsDir."/last_project_tags ".tagsDir."/usr_local_include_tags"
+
+    call UpdateCscopeDatabase(".")
+    execute ":redraw!"
+endfunction
+"}}}
+
+"Colorscheme {{{
 set background=dark
 colors deep-space
 "colors seoul256-light
