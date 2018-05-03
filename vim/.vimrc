@@ -217,7 +217,6 @@ let NERDTreeRespectWildIgnore = 1
 let NERDTreeShowHidden = 1
 let g:RootIgnoreAgignore = 1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-set guifont=DroidSansMono\ Nerd\ Font\ 15
 " }}}
 
 " GUI Settings {{{
@@ -243,7 +242,10 @@ set relativenumber
 set number
 
 set list lcs=tab:\|\ 
-
+set guifont=DroidSansMono\ Nerd\ Font\ 12
+let &t_ZH="\e[3m"
+let &t_ZR="\e[23m"
+highlight Comment gui=italic
 function! NumberToggle()
   if(&relativenumber == 1)
     set norelativenumber
