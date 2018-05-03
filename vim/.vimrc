@@ -128,6 +128,7 @@ Plug 'ryanoasis/vim-webdevicons'
 Plug 'AndrewRadev/switch.vim'
 Plug 'luochen1990/rainbow'
 Plug 'airblade/vim-gitgutter'
+Plug 'NLKNguyen/papercolor-theme'
 " }}}
 
 call plug#end()
@@ -386,9 +387,11 @@ endfunction
 "}}}
 
 "Colorscheme {{{
+set t_Co=256
 set background=dark
-colors deep-space
+"colors deep-space
 "colors seoul256-light
+colorscheme PaperColor
 hi! link Conceal Normal
 hi! link EndOfBuffer NonText
 hi! SignColumn ctermfg=NONE guifg=NONE ctermbg=236 guibg=#31415d
