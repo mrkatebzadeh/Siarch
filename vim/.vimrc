@@ -225,6 +225,17 @@ if has('gui_running')
 endif
 
 set fillchars+=vert:\ 
+set relativenumber
+set number
+
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set norelativenumber
+  else
+    set relativenumber
+  endif
+endfunction
+nnoremap <leader>tn :call NumberToggle()<cr>
 " }}}
 
 " Startup commands {{{
