@@ -131,6 +131,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'octref/RootIgnore'
 Plug 'vim-scripts/gitignore'
+Plug 'HendrikPetertje/vimify'
 " }}}
 
 call plug#end()
@@ -997,3 +998,8 @@ endfunction
 
 command! -range=% Blocks <line1>,<line2>call Blocks()
 " }}}
+
+" Spotify {{{
+
+let g:spotify_token = 'Yzc1MDRmNmViNDZjNGQyZjg3MjA0MTBjZmUxNTFlNmY6ZjlkNDZjOWFlOTczNDE0YWJiZWU1YmZjODJhNDRjMjM='
+"}}}
