@@ -238,7 +238,15 @@ endfunction
 nnoremap <leader>tn :call NumberToggle()<cr>
 " }}}
 
-" Startup commands {{{
+" minBufExpl Config {{{
+
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1
+"}}}
+
+"Startup commands {{{
 
 autocmd VimEnter * SignatureToggleSigns
 if &diff 
