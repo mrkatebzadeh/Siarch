@@ -160,6 +160,9 @@ set updatetime=300          " set updatetime to shorter value
 set mouse=a                 " enable mouse
 set guicursor=              " disable cursor shape
 set synmaxcol=250           " set max syntax highlighting column to sane level
+set backspace=indent,eol,start
+nnoremap ; :
+vmap ; :
 if has("termguicolors")     " set true colors
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -241,6 +244,12 @@ endfunction
 nnoremap <leader>tn :call NumberToggle()<cr>
 
 let g:rainbow_active = 1
+
+nnoremap <C-Left> <C-w><Left>
+nnoremap <C-Right> <C-w><Right>
+nnoremap <C-Up> <C-w><Up>
+nnoremap <C-Down> <C-w><Down>
+
 " }}}
 
 " minBufExpl Config {{{
