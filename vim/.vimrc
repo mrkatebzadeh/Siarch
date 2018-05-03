@@ -132,6 +132,7 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'octref/RootIgnore'
 Plug 'vim-scripts/gitignore'
 Plug 'HendrikPetertje/vimify'
+Plug 'chriskempson/base16-vim'
 " }}}
 
 call plug#end()
@@ -195,6 +196,7 @@ nnoremap <silent> <leader>. :tabnext<cr>
 
 " NerdTree config {{{
 noremap <leader>m :NERDTreeToggle<cr>
+noremap <leader>mm :NERDTreeToggle<cr>:TagbarToggle<CR>
 let NERDTreeIgnore=['\.vim$', '\~$', '\.pyc$']
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
@@ -399,7 +401,7 @@ endfunction
 "}}}
 
 "Colorscheme {{{
-set t_Co=256
+"set t_Co=256
 set background=dark
 "colors deep-space
 "colors seoul256-light
@@ -866,7 +868,7 @@ let g:obsession_no_bufenter = 1
 "}}}
 
 " TagBar Setup {{{
-nnoremap <silent> <leader>t :TagbarToggle<cr>
+nnoremap <leader>t :TagbarToggle<cr>
 
 let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',
