@@ -127,6 +127,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'ryanoasis/vim-webdevicons'
 Plug 'AndrewRadev/switch.vim'
 Plug 'luochen1990/rainbow'
+Plug 'airblade/vim-gitgutter'
 " }}}
 
 call plug#end()
