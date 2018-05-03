@@ -223,6 +223,8 @@ if has('gui_running')
     " Initial window dimensions
     set lines=47 columns=80
 endif
+
+set fillchars+=vert:\ 
 " }}}
 
 " Startup commands {{{
@@ -273,7 +275,17 @@ function! IsFileAlreadyExists(filename)
         return 0
     endif
 endfunction
+
+function! DetectFileType() 
+    "if did_filetype() 
+      "finish
+    "endif 
+    if getline(1) =~ '^#!.*/bin/echo.*'
+      setfiletype sh
+    endif
+endfunction
 " }}}
+
 " CScopeDatabase {{{
 function! LoadCScopeDatabases()
     let databaseDir = $HOME."/.vim/cscope_databases"
