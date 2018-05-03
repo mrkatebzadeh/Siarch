@@ -398,6 +398,33 @@ function! UpdateAllCscopeDatabases()
     call UpdateCscopeDatabase(".")
     execute ":redraw!"
 endfunction
+
+function! UpdateTags(basedir)
+    execute ":silent !cd ".a:basedir." && ctags -R --sort=yes --fields=+iaSnkt --extra=+q+f --exclude=build -f ~/.vim/tags/last_project_tags `pwd`"
+    execute ":redraw!"
+endfunction
+
+function! IsFileAlreadyExists(filename)
+   if filereadable(a:filename)
+        return 1
+    else
+        return 0
+    endif
+  endfunction
+
+set tags+=~/.vim/tags/last_project_tags
+set tags+=~/.vim/tags/dtv_project_tags
+set tags+=~/.vim/tags/gstreamer_tags
+set tags+=~/.vim/tags/mythtv_tags
+set tags+=~/.vim/tags/cpp_tags
+set tags+=~/.vim/tags/usr_local_include_tags
+
+nmap <leader>ud :silent call UpdateCscopeDatabase(".")<cr>:w<cr>
+imap <leader>ud <ESC>l:silent call UpdateCscopeDatabase(".")<cr>:w<cr>i
+
+nmap <leader>uad :call UpdateAllCscopeDatabases()<cr>:w<cr>
+imap <leader>uad <ESC>l:call UpdateAllCscopeDatabases()<cr>:w<cr>i
+
 "}}}
 
 "Colorscheme {{{
