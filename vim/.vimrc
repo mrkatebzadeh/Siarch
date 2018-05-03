@@ -235,6 +235,8 @@ set fillchars+=vert:\
 set relativenumber
 set number
 
+set list lcs=tab:\|\ 
+
 function! NumberToggle()
   if(&relativenumber == 1)
     set norelativenumber
