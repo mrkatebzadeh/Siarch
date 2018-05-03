@@ -126,6 +126,7 @@ Plug 'fatih/vim-go', { 'tag': '*' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'ryanoasis/vim-webdevicons'
 Plug 'AndrewRadev/switch.vim'
+Plug 'luochen1990/rainbow'
 " }}}
 
 call plug#end()
@@ -237,6 +238,8 @@ function! NumberToggle()
   endif
 endfunction
 nnoremap <leader>tn :call NumberToggle()<cr>
+
+let g:rainbow_active = 1
 " }}}
 
 " minBufExpl Config {{{
