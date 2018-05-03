@@ -124,6 +124,7 @@ Plug 'elzr/vim-json'
 Plug 'lervag/vimtex'
 Plug 'fatih/vim-go', { 'tag': '*' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'ryanoasis/vim-webdevicons'
 " }}}
 
 call plug#end()
@@ -202,6 +203,7 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 let g:NERDTreeShowIgnoredStatus = 1
+set guifont=DroidSansMono\ Nerd\ Font\ 15
 " }}}
 
 " GUI Settings {{{
