@@ -129,6 +129,8 @@ Plug 'AndrewRadev/switch.vim'
 Plug 'luochen1990/rainbow'
 Plug 'airblade/vim-gitgutter'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'octref/RootIgnore'
+Plug 'vim-scripts/gitignore'
 " }}}
 
 call plug#end()
@@ -210,6 +212,11 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 let g:NERDTreeShowIgnoredStatus = 1
+let loaded_netrwPlugin = 1
+let NERDTreeRespectWildIgnore = 1
+let NERDTreeShowHidden = 1
+let g:RootIgnoreAgignore = 1
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 set guifont=DroidSansMono\ Nerd\ Font\ 15
 " }}}
 
