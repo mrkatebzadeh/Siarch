@@ -125,6 +125,7 @@ Plug 'lervag/vimtex'
 Plug 'fatih/vim-go', { 'tag': '*' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'ryanoasis/vim-webdevicons'
+Plug 'AndrewRadev/switch.vim'
 " }}}
 
 call plug#end()
@@ -246,7 +247,12 @@ let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
 "}}}
 
-"Startup commands {{{
+" Switch Plugin {{{
+nmap <leader>- :Switch <cr>
+nmap <leader>= :call switch#Switch(g:variable_style_switch_definitions) <cr>
+"}}}
+
+" Startup commands {{{
 
 autocmd VimEnter * SignatureToggleSigns
 if &diff 
