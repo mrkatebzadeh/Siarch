@@ -133,6 +133,8 @@ Plug 'octref/RootIgnore'
 Plug 'vim-scripts/gitignore'
 Plug 'HendrikPetertje/vimify'
 Plug 'chriskempson/base16-vim'
+Plug 'lifepillar/vim-solarized8'
+Plug 'KeitaNakamura/neodark.vim'
 " }}}
 
 call plug#end()
@@ -200,6 +202,8 @@ noremap <leader>mm :NERDTreeToggle<cr>:TagbarToggle<CR>
 let NERDTreeIgnore=['\.vim$', '\~$', '\.pyc$']
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+let g:NERDTreeWinSize = 30
+let g:tagbar_width = 30
 set autochdir
 let NERDTreeChDirMode=2
 let g:NERDTreeIndicatorMapCustom = {
@@ -240,7 +244,8 @@ if has('gui_running')
     set lines=47 columns=80
 endif
 
-set fillchars+=vert:\ 
+"set fillchars+=vert:\ 
+set fillchars+=vert:│
 set relativenumber
 set number
 
@@ -432,7 +437,9 @@ imap <leader>uad <ESC>l:call UpdateAllCscopeDatabases()<cr>:w<cr>i
 set background=dark
 "colors deep-space
 "colors seoul256-light
-colorscheme PaperColor
+"colorscheme PaperColor
+colorscheme neodark 
+"colorscheme solarized8_high
 hi! link Conceal Normal
 hi! link EndOfBuffer NonText
 hi! SignColumn ctermfg=NONE guifg=NONE ctermbg=236 guibg=#31415d
