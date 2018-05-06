@@ -7,6 +7,7 @@ alias emacs=emacs -nw
 alias ll='ls -al'
 alias vi='vim'
 alias mux='tmuxinator'
+alias st='st -f "DroidSansMono Nerd Font:size=11"'
 
 # suffix aliases http://zshwiki.org/home/examples/aliassuffix
 alias -s log=nano
