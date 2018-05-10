@@ -1,0 +1,13 @@
+plugged/
+swap/
+undo-dir/
+cscope_databases/cpp_scope
+cscope_databases/usr_local_include_cscope
+tags/usr_local_include_tags
+tags/cpp_tags
+cscope_databases/gstreamer_cscope
+cscope_databases/last_project_cscope
+cscope_databases/mythtv_cscope
+tags/gstreamer_tags
+tags/last_project_tags
+tags/mythtv_tags
