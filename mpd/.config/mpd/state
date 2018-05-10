@@ -1,0 +1,108 @@
+sw_volume: 100
+audio_device_state:1:mpd alsamixer-output
+audio_device_state:1:toggle_visualizer
+state: play
+current: 51
+time: 3.993000
+random: 0
+repeat: 0
+single: 0
+consume: 0
+crossfade: 0
+mixrampdb: 0.000000
+mixrampdelay: -1.000000
+playlist_begin
+0:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/01 - Main Theme ~The Fullmetal Alchemist~.mp3
+1:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/02 - Laws of Alchemy.mp3
+2:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/03 - again (TV Size).mp3
+3:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/04 - Nightfall in Central City.mp3
+4:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/05 - Fire in the Sky.mp3
+5:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/06 - Clash of the Alchemists.mp3
+6:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/07 - Lurking.mp3
+7:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/08 - Mist.mp3
+8:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/09 - Spiral of Truth.mp3
+9:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/10 - Mortal Sin.mp3
+10:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/11 - One is All, All is One.mp3
+11:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/12 - Requiem for the Brigadier General.mp3
+12:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/13 - Uso.mp3
+13:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/14 - Lullaby of Resembool.mp3
+14:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/15 - Interlude.mp3
+15:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/16 - Hologram.mp3
+16:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/17 - Far East Suite.mp3
+17:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/18 - Beneath the City.mp3
+18:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/19 - Fifth Laboratory.mp3
+19:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/20 - Fanfare for the Brave.mp3
+20:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/21 - Trisha's Lullaby.mp3
+21:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/22 - Concerto ~Brotherhood~.mp3
+22:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/23 - Hum of the Streets.mp3
+23:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/24 - Beyond the Walls.mp3
+24:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/25 - Next Chapter.mp3
+25:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/26 - Home ~en route to Resembool~.mp3
+26:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/27 - Lapis Philosophorum.mp3
+27:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/28 - Happiness ~Requiem from ''The Blind Alchemist''~.mp3
+28:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/29 - Home ~a house on the hill~.mp3
+29:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/30 - Overture ~Brotherhood~.mp3
+30:Fullmetal Alchemist Brotherhood/Original Soundtrack 1/31 - LET IT OUT (TV Size).mp3
+31:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/01 - Rain (TV size).mp3
+32:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/02 - Knives and Shadows.mp3
+33:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/03 - March of the Moving Dolls.mp3
+34:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/04 - Crime and Punishment.mp3
+35:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/05 - Ante Meridiem.mp3
+36:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/06 - Consonance.mp3
+37:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/07 - The Intrepid.mp3
+38:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/08 - Tribute to W.C. I.mp3
+39:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/09 - The Forbearer.mp3
+40:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/10 - Envy Revealed ~Adagio~.mp3
+41:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/11 - Laws of Alchemy ~Instrumental~.mp3
+42:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/12 - Heroic Bolero.mp3
+43:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/13 - A Soldier's Honor.mp3
+44:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/14 - Amestris Military March.mp3
+45:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/15 - Tribute to W.C. II.mp3
+46:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/16 - The Pendulum.mp3
+47:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/17 - The Day the Sun Disappeared.mp3
+48:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/18 - Dissident's Creed.mp3
+49:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/19 - In the Fray.mp3
+50:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/20 - Lapis Philosophorum ~Chant~.mp3
+51:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/21 - Violoncello's Lament.mp3
+52:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/22 - Sorrowful Stone.mp3
+53:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/23 - Main Theme ~The Alchemist~.mp3
+54:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/24 - The Awakening.mp3
+55:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/25 - Philosophorum Omega.mp3
+56:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/26 - Nightfall in Central City ~Fin~.mp3
+57:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/27 - Epilogue ~A New Journey~.mp3
+58:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/28 - Main Theme ~Homage to Alchemy~.mp3
+59:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/29 - Trisha's Lullaby ~A Reminiscenc~.mp3
+60:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/30 - RAY OF LIGHT (TV Size).mp3
+61:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/31 - Resembool's Lullaby.mp3
+62:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/01 - Rain (TV size).mp3
+63:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/02 - Knives and Shadows.mp3
+64:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/03 - March of the Moving Dolls.mp3
+65:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/04 - Crime and Punishment.mp3
+66:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/05 - Ante Meridiem.mp3
+67:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/06 - Consonance.mp3
+68:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/07 - The Intrepid.mp3
+69:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/08 - Tribute to W.C. I.mp3
+70:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/09 - The Forbearer.mp3
+71:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/10 - Envy Revealed ~Adagio~.mp3
+72:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/11 - Laws of Alchemy ~Instrumental~.mp3
+73:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/12 - Heroic Bolero.mp3
+74:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/13 - A Soldier's Honor.mp3
+75:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/14 - Amestris Military March.mp3
+76:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/15 - Tribute to W.C. II.mp3
+77:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/16 - The Pendulum.mp3
+78:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/17 - The Day the Sun Disappeared.mp3
+79:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/18 - Dissident's Creed.mp3
+80:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/19 - In the Fray.mp3
+81:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/20 - Lapis Philosophorum ~Chant~.mp3
+82:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/21 - Violoncello's Lament.mp3
+83:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/22 - Sorrowful Stone.mp3
+84:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/23 - Main Theme ~The Alchemist~.mp3
+85:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/24 - The Awakening.mp3
+86:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/25 - Philosophorum Omega.mp3
+87:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/26 - Nightfall in Central City ~Fin~.mp3
+88:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/27 - Epilogue ~A New Journey~.mp3
+89:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/28 - Main Theme ~Homage to Alchemy~.mp3
+90:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/29 - Trisha's Lullaby ~A Reminiscenc~.mp3
+91:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/30 - RAY OF LIGHT (TV Size).mp3
+92:Fullmetal Alchemist Brotherhood/Original Soundtrack 3/31 - Resembool's Lullaby.mp3
+playlist_end
