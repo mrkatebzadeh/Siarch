@@ -11,4 +11,3 @@ for file in ${config_files}
 do
   source $file
 done
-
