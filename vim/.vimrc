@@ -16,6 +16,7 @@ Plug 'purescript-contrib/purescript-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'kshenoy/vim-signature'
+Plug 'dylanaraps/wal.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'pbrisbin/vim-syntax-shakespeare'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -143,6 +144,18 @@ call plug#end()
 runtime! plugin/sensible.vim
 " }}}
 
+" }}}
+
+" Undo file {{{
+" Let's save undo info!
+if !isdirectory($HOME."/.vim")
+    call mkdir($HOME."/.vim", "", 0770)
+endif
+if !isdirectory($HOME."/.vim/undo-dir")
+    call mkdir($HOME."/.vim/undo-dir", "", 0700)
+endif
+set undodir=~/.vim/undo-dir
+set undofile
 " }}}
 
 " General Settings {{{
@@ -438,7 +451,8 @@ set background=dark
 "colors deep-space
 "colors seoul256-light
 "colorscheme PaperColor
-colorscheme neodark 
+colorscheme neodark
+" colorscheme wal
 "colorscheme solarized8_high
 hi! link Conceal Normal
 hi! link EndOfBuffer NonText
@@ -631,6 +645,7 @@ let delimitMate_quotes = "\" '"
 " }}}
 
 " YouCompleteMe Setup {{{
+set encoding=utf-8
 set completeopt-=preview
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_seed_identifiers_with_syntax = 1
@@ -639,7 +654,7 @@ let g:ycm_key_list_previous_completion = ['<Up>']
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-let g:ycm_semantic_triggers = { 'haskell' : ['.'], 'elm' : ['.'] }
+let g:ycm_semantic_triggers = { 'cpp' : ['!re.'],  'haskell' : ['.'], 'elm' : ['.'] }
 let g:ycm_rust_src_path = '/opt/src/rust/src'
 let g:ycm_filetype_specific_completion_to_disable = {
     \ 'gitcommit': 1,
