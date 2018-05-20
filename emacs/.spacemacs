@@ -34,6 +34,7 @@ values."
      dash
      emacs-lisp
      git
+     evil-commentary
      graphviz
      imenu-list
      haskell
@@ -113,7 +114,8 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
+   dotspacemacs-themes '(ir-black-theme
+                         spacemacs-dark
                          spacemacs-light
                          solarized-light
                          solarized-dark
@@ -259,10 +261,11 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
+  (add-to-list 'custom-theme-load-path "~/.emacs.d/private/themes/")
   ;; show line numbers by default
   (setq-default dotspacemacs-line-numbers 'relative)
   ;; set default theme
-  (setq-default dotspacemacs-themes '(solarized-dark))
+  (setq-default dotspacemacs-themes '(dracula))
   ;; set default font
   (setq-default dotspacemacs-default-font '("Source Code Pro"
                                             :size 13
@@ -296,8 +299,11 @@ you should place your code here."
               (add-to-list 'company-c-headers-path-system
                           "/Library/Developer/CommandLineTools/usr/include/c++/v1")
               ))
-
-  ;; encoding
+  (font-lock-add-keywords
+   'c-mode
+   '(("\\<\\(\\sw+\\) ?(" 1 'font-lock-function-name-face)))
+  (setq-default helm-make-build-dir "build")
+  ;; ;; encoding
   (prefer-coding-system 'utf-8)
 
   ;; show white spaces
@@ -333,9 +339,11 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
  '(package-selected-packages
    (quote
-    (imenu-list zeal-at-point web-mode unfill tagedit sql-indent slim-mode scss-mode sass-mode reveal-in-osx-finder rainbow-mode rainbow-identifiers pug-mode pbcopy osx-trash osx-dictionary org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim less-css-mode launchctl intero insert-shebang htmlize hlint-refactor hindent helm-pydoc helm-hoogle helm-gitignore helm-dash helm-css-scss helm-company helm-c-yasnippet haskell-snippets haml-mode graphviz-dot-mode gnuplot git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter geiser flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck-haskell flycheck fish-mode emmet-mode diff-hl company-web web-completion-data company-shell company-ghci company-ghc ghc haskell-mode company-cabal company-auctex color-identifiers-mode cmm-mode auto-dictionary auctex ggtags vimrc-mode dactyl-mode disaster company-c-headers cmake-mode clang-format xterm-color smeargle shell-pop orgit multi-term mmm-mode markdown-toc markdown-mode magit-gitflow gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy evil-magit magit magit-popup git-commit ghub let-alist with-editor eshell-z eshell-prompt-extras esh-help company-statistics company-anaconda company auto-yasnippet yasnippet ac-ispell auto-complete helm-themes helm-swoop helm-projectile helm-mode-manager helm-flx helm-descbinds helm-ag ace-jump-helm-line yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional cython-mode anaconda-mode pythonic ws-butler winum which-key wgrep volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smex restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint ivy-hydra indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-make helm helm-core google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump popup f dash s diminish define-word counsel-projectile projectile pkg-info epl counsel swiper ivy column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed async aggressive-indent adaptive-wrap ace-window ace-link avy)))
+    (evil-commentary ir-black-theme-theme phoenix-dark-pink-theme-theme dracula-theme dracula-theme-theme spacemacs-theme-theme imenu-list zeal-at-point web-mode unfill tagedit sql-indent slim-mode scss-mode sass-mode reveal-in-osx-finder rainbow-mode rainbow-identifiers pug-mode pbcopy osx-trash osx-dictionary org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim less-css-mode launchctl intero insert-shebang htmlize hlint-refactor hindent helm-pydoc helm-hoogle helm-gitignore helm-dash helm-css-scss helm-company helm-c-yasnippet haskell-snippets haml-mode graphviz-dot-mode gnuplot git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter geiser flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck-haskell flycheck fish-mode emmet-mode diff-hl company-web web-completion-data company-shell company-ghci company-ghc ghc haskell-mode company-cabal company-auctex color-identifiers-mode cmm-mode auto-dictionary auctex ggtags vimrc-mode dactyl-mode disaster company-c-headers cmake-mode clang-format xterm-color smeargle shell-pop orgit multi-term mmm-mode markdown-toc markdown-mode magit-gitflow gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy evil-magit magit magit-popup git-commit ghub let-alist with-editor eshell-z eshell-prompt-extras esh-help company-statistics company-anaconda company auto-yasnippet yasnippet ac-ispell auto-complete helm-themes helm-swoop helm-projectile helm-mode-manager helm-flx helm-descbinds helm-ag ace-jump-helm-line yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional cython-mode anaconda-mode pythonic ws-butler winum which-key wgrep volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smex restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint ivy-hydra indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-make helm helm-core google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump popup f dash s diminish define-word counsel-projectile projectile pkg-info epl counsel swiper ivy column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed async aggressive-indent adaptive-wrap ace-window ace-link avy)))
  '(paradox-github-token t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
