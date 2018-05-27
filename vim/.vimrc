@@ -15,6 +15,7 @@ Plug 'davidhalter/jedi-vim' | Plug 'lambdalisue/vim-pyenv'
 Plug 'purescript-contrib/purescript-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'scrooloose/nerdcommenter'
 Plug 'kshenoy/vim-signature'
 Plug 'dylanaraps/wal.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -90,7 +91,7 @@ Plug 'peterhoeg/vim-qml'
 "Plug 'gilligan/vim-lldb'
 "Plug 'jeaye/color_coded', { 'do': 'cmake . && make -j4 && make install' }
 Plug 'oblitum/formatvim'
-Plug 'ogier/guessindent'
+"Plug 'ogier/guessindent'
 Plug 'basyura/bitly.vim'
 Plug 'rhysd/wandbox-vim'
 Plug 'eagletmt/neco-ghc'
@@ -159,6 +160,8 @@ set undofile
 " }}}
 
 " General Settings {{{
+"nnoremap : ;
+"nnoremap ; :
 let mapleader = ' '         " changes leader key
 set noswapfile              " no swap files
 set hidden                  " hide buffer without notice
@@ -173,7 +176,7 @@ set noshowcmd               " disable blinking command feedback in bottom-right 
 set vb t_vb=                " no visual bell
 set pumheight=30            " limit popup menu height
 set conceallevel=2          " hides concealed text
-set expandtab tabstop=4 shiftwidth=4 softtabstop=4 " space for tabs by default
+set expandtab tabstop=4 shiftwidth=4 softtabstop=4 smarttab" space for tabs by default
 set t_ut=                   " fix 256 colors in tmux http://sunaku.github.io/vim-256color-bce.html
 set spelllang=en,pt_br      " set default spelling languages
 set updatetime=300          " set updatetime to shorter value
@@ -283,6 +286,15 @@ nnoremap <C-Right> <C-w><Right>
 nnoremap <C-Up> <C-w><Up>
 nnoremap <C-Down> <C-w><Down>
 
+nnoremap <leader><Left> <C-w><Left>
+nnoremap <leader><Right> <C-w><Right>
+nnoremap <leader><Up> <C-w><Up>
+nnoremap <leader><Down> <C-w><Down>
+
+map <leader>h :wincmd h<CR>
+map <leader>j :wincmd j<CR>
+map <leader>k :wincmd k<CR>
+map <leader>l :wincmd l<CR>
 " }}}
 
 " minBufExpl Config {{{
@@ -301,7 +313,7 @@ nmap <leader>= :call switch#Switch(g:variable_style_switch_definitions) <cr>
 " Startup commands {{{
 
 autocmd VimEnter * SignatureToggleSigns
-if &diff 
+if &diff
     "autocmd VimEnter * NERDTree .
 else
     autocmd VimEnter * NERDTree .
@@ -314,6 +326,9 @@ else
 
     autocmd BufWritePost ~/.vimrc source ~/.vimrc
     "au BufNewFile,BufRead * :set relativenumber " relative line numbers
+
+    autocmd VimEnter * NERDTreeToggle
+    autocmd VimEnter * TagbarToggle
 
 endif
 
@@ -649,8 +664,8 @@ set encoding=utf-8
 set completeopt-=preview
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_key_list_select_completion = ['<Down>']
-let g:ycm_key_list_previous_completion = ['<Up>']
+let g:ycm_key_list_select_completion = ['<Tab>']
+let g:ycm_key_list_previous_completion = ['<S-Tab>']
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
@@ -1054,3 +1069,26 @@ command! -range=% Blocks <line1>,<line2>call Blocks()
 
 let g:spotify_token = 'Yzc1MDRmNmViNDZjNGQyZjg3MjA0MTBjZmUxNTFlNmY6ZjlkNDZjOWFlOTczNDE0YWJiZWU1YmZjODJhNDRjMjM='
 "}}}
+
+" NerdCommentor {{{
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+" }}}
