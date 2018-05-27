@@ -37,7 +37,6 @@ values."
             c-c++-enable-clang-support t)
      (colors :variables
              colors-enable-nyan-cat-progress-bar t)
-     dash
      (syntax-checking :variables
                       syntax-checking-enable-by-default nil)
      emacs-lisp
@@ -52,7 +51,14 @@ values."
      imenu-list
      haskell
      html
+     emoji
+     games
+     xkcd
+     slack
+     dash
+     spotify
      markdown
+     bibtex
      org
      (latex :variables
         latex-enable-auto-fill t
@@ -73,7 +79,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(org-trello)
+   dotspacemacs-additional-packages '(org-trello google-this)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -312,6 +318,7 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;; change powerline-default-separator to nil
+  (google-this-mode 1)
   (setq powerline-default-separator 'nil)
   (spaceline-compile)
   ;; map escape key to "jk" press the sequence quickly
@@ -437,16 +444,16 @@ you should place your code here."
             (setq message-sendmail-extra-arguments (list '"-a" account))))))
   (setq message-sendmail-envelope-from 'header)
   (add-hook 'message-send-mail-hook 'choose-msmtp-account)
-  (add-hook 'mu4e-compose-pre-hook
-            (defun my-set-from-address ()
-              "Set the From address based on the To address of the original."
-              (setq user-mail-address
-                    (cond
-                     ((mu4e-message-contact-field-matches msg :to "@gmail")
-                      "mr.katebzadeh@gmail.com")
-                     ((mu4e-message-contact-field-matches msg :to "@ed.ac.uk")
-                      "m.r.katebzadeh@ed.ac.uk")
-                     (t "mr.katebzadeh@gmail.com")))))
+  ;; (add-hook 'mu4e-compose-pre-hook
+  ;;           (defun my-set-from-address ()
+  ;;             "Set the From address based on the To address of the original."
+  ;;             (setq user-mail-address
+  ;;                   (cond
+  ;;                    ((mu4e-message-contact-field-matches msg :to "@gmail")
+  ;;                     "mr.katebzadeh@gmail.com")
+  ;;                    ((mu4e-message-contact-field-matches msg :to "@ed.ac.uk")
+  ;;                     "m.r.katebzadeh@ed.ac.uk")
+  ;;                    (t "mr.katebzadeh@gmail.com")))))
   (setq mu4e-update-interval 60)
   (setq
    mu4e-view-show-images t
@@ -474,6 +481,10 @@ you should place your code here."
 
   (setq gnus-dired-mail-mode 'mu4e-user-agent)
   (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)
+
+  (setq org-ref-default-bibliography '("~/Papers/references.bib")
+        org-ref-pdf-directory "~/Papers/pdfs/"
+        org-ref-bibliography-notes "~/Papers/notes.org")
   ;;end
 
   )
@@ -488,7 +499,7 @@ you should place your code here."
  '(org-trello-current-prefix-keybinding "C-c o")
  '(package-selected-packages
    (quote
-    (org-trello request-deferred deferred evil-nerd-commenter zeal-at-point yapfify xterm-color ws-butler winum which-key web-mode volatile-highlights vimrc-mode vi-tilde-fringe uuidgen use-package unfill twittering-mode toc-org tagedit sql-indent spaceline smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pdf-tools pcre2el paradox orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file neotree mwim multi-term mu4e-maildirs-extension mu4e-alert move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint less-css-mode intero insert-shebang indent-guide imenu-list hy-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-dash helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets graphviz-dot-mode google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md geiser fuzzy flyspell-correct-helm flycheck-pos-tip flycheck-haskell flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-commentary evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump disaster diminish diff-hl define-word dactyl-mode cython-mode company-web company-statistics company-shell company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda column-enforce-mode color-identifiers-mode cmm-mode cmake-mode clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+    (google-this spotify helm-spotify-plus multi xkcd typit mmt sudoku slack emojify circe oauth2 websocket pacmacs emoji-cheat-sheet-plus company-emoji 2048-game org-ref key-chord ivy helm-bibtex parsebib biblio biblio-core org-trello request-deferred deferred evil-nerd-commenter zeal-at-point yapfify xterm-color ws-butler winum which-key web-mode volatile-highlights vimrc-mode vi-tilde-fringe uuidgen use-package unfill twittering-mode toc-org tagedit sql-indent spaceline smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pdf-tools pcre2el paradox orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file neotree mwim multi-term mu4e-maildirs-extension mu4e-alert move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint less-css-mode intero insert-shebang indent-guide imenu-list hy-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-dash helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets graphviz-dot-mode google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md geiser fuzzy flyspell-correct-helm flycheck-pos-tip flycheck-haskell flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-commentary evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump disaster diminish diff-hl define-word dactyl-mode cython-mode company-web company-statistics company-shell company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda column-enforce-mode color-identifiers-mode cmm-mode cmake-mode clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
  '(send-mail-function (quote smtpmail-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
