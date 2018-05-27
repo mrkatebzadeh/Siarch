@@ -1247,7 +1247,7 @@ c.url.incdec_segments = ['path', 'query']
 ## `:open google qutebrowser`.
 ## Type: Dict
 c.url.searchengines = {
-        'DEFAULT': 'https://duckduckgo.com/?q={}',
+        'DEFAULT': 'http://www.google.com/search?q={}',
         'i': 'https://duckduckgo.com/?q={}&iar=images&iax=images&ia=images',
         'vic': 'https://la.wikipedia.org/w/index.php?search={}&title=Specialis%3AQuaerere',
         'red': 'https://reddit.com/r/{}',
@@ -1278,7 +1278,7 @@ c.url.searchengines = {
         'vw': 'http://vim.wikia.com/wiki/Special:Search?fulltext=Search&query={}',
         'bc': 'https://www.bitchute.com/search?q={}&sort=date_created%20desc',
         'mdbg': 'https://mdbg.net/chinese/dictionary?page=worddict&wdrst=0&wdqb={}',
-        'g': 'http://www.google.com/search?q={}',
+        'd': 'https://duckduckgo.com/?q={}',
         }
 
 
