@@ -24,7 +24,13 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     auto-completion
+      (auto-completion :variables
+                   auto-completion-return-key-behavior 'complete
+                   auto-completion-enable-snippets-in-popup t
+                   auto-completion-tab-key-behavior 'cycle
+                   auto-completion-complete-with-key-sequence nil
+                   auto-completion-complete-with-key-sequence-delay 0.1
+                   auto-completion-private-snippets-directory nil)
      better-defaults
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
@@ -32,17 +38,26 @@ values."
      (colors :variables
              colors-enable-nyan-cat-progress-bar t)
      dash
+     (syntax-checking :variables
+                      syntax-checking-enable-by-default nil)
      emacs-lisp
+     (mu4e :variables
+           mu4e-enable-notifications t
+           mu4e-enable-mode-line t)
      git
+     pdf-tools
+     twitter
      evil-commentary
      graphviz
      imenu-list
      haskell
      html
-     (latex :variables latex-build-command "LaTeX")
      markdown
      org
-     osx
+     (latex :variables
+        latex-enable-auto-fill t
+        latex-enable-folding t
+        latex-build-command "LaTeX")
      python
      scheme
      (shell :variables
@@ -51,7 +66,6 @@ values."
      shell-scripts
      spell-checking
      sql
-     syntax-checking
      (version-control :variables
                       version-control-diff-tool 'diff-hl)
      )
@@ -59,7 +73,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(org-trello)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -101,7 +115,7 @@ values."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner 'official
+   dotspacemacs-startup-banner nil
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects'.
    ;; (default '(recents projects))
@@ -252,6 +266,19 @@ values."
    ;; (default nil)
    dotspacemacs-whitespace-cleanup nil
    ))
+(defun my-setup-indent (n)
+   ;; java/c/c++
+   (setq c-basic-offset n)
+   ;; web development
+   (setq coffee-tab-width n) ; coffeescript
+   (setq javascript-indent-level n) ; javascript-mode
+   (setq js-indent-level n) ; js-mode
+   (setq js2-basic-offset n) ; js2-mode, in latest js2-mode, it's alias of js-indent-level
+   (setq web-mode-markup-indent-offset n) ; web-mode, html tag in html file
+   (setq web-mode-css-indent-offset n) ; web-mode, css in html file
+   (setq web-mode-code-indent-offset n) ; web-mode, js code in html file
+   (setq css-indent-offset n) ; css-mode
+ )
 
 (defun dotspacemacs/user-init ()
   "Initialization function for user code.
@@ -272,6 +299,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
                                             :weight normal
                                             :width normal
                                             :powerline-scale 1.0))
+  (my-setup-indent 4) ; indent 4 spaces width
+  (setq exec-path-from-shell-arguments '("-l"))
   ;; end
   )
 
@@ -287,17 +316,20 @@ you should place your code here."
   (spaceline-compile)
   ;; map escape key to "jk" press the sequence quickly
   (setq-default evil-escape-key-sequence "jk")
+  (with-eval-after-load 'evil-maps
+    (define-key evil-motion-state-map (kbd ":") 'evil-repeat-find-char)
+    (define-key evil-motion-state-map (kbd ";") 'evil-ex))
   ;; c++
   (add-hook 'c++-mode-hook
             (lambda ()
               ;; quick compilation
               (set (make-local-variable 'compile-command)
-                   (concat "g++ -std=c++11 -Wall " buffer-file-name " && ./a.out"))
+                   (concat "g++ -Wall " buffer-file-name " && ./a.out"))
               ;; (push 'company-semantic company-backends)
-              (setq company-clang-arguments '("-std=c++11"))
-              (setq flycheck-clang-language-standard "c++11")
+              ;;(setq company-clang-arguments '("-std=c++11"))
+              ;;(setq flycheck-clang-language-standard "c++11")
               (add-to-list 'company-c-headers-path-system
-                          "/Library/Developer/CommandLineTools/usr/include/c++/v1")
+                           "/Library/Developer/CommandLineTools/usr/include/c++/v1")
               ))
   (font-lock-add-keywords
    'c-mode
@@ -328,8 +360,122 @@ you should place your code here."
               (imenu-add-menubar-index)
               (define-key LaTeX-mode-map (kbd "TAB") 'TeX-complete-symbol)))
 
+  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+  (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu/mu4e")
+  (setq mu4e-get-mail-command "offlineimap")
+  
+  ;; I have my "default" parameters from Gmail
+  (setq mu4e-sent-folder "/sent"
+        ;; mu4e-sent-messages-behavior 'delete ;; Unsure how this should be configured
+        mu4e-drafts-folder "/drafts"
+        user-mail-address "mr.katebzadeh@gmail.com"
+        smtpmail-default-smtp-server "smtp.gmail.com"
+        smtpmail-smtp-server "smtp.gmail.com"
+        smtpmail-smtp-service 587)
 
+  ;; Now I set a list of 
+  (defvar my-mu4e-account-alist
+    '(("Gmail"
+       (mu4e-sent-folder "/Gmail/sent")
+       (user-mail-address "mr.katebzadeh@gmail.com")
+       (smtpmail-smtp-user "mr.katebzadeh")
+       (smtpmail-local-domain "gmail.com")
+       (smtpmail-default-smtp-server "smtp.gmail.com")
+       (smtpmail-smtp-server "smtp.gmail.com")
+       (user-full-name "Siavash Katebzadeh")
+       (smtpmail-smtp-service 587)
+       )
+      ("Staff"
+       (mu4e-sent-folder "/Staff/sent")
+       (user-mail-address "m.r.katebzadeh@ed.ac.uk")
+       (smtpmail-smtp-user "s1691546")
+       (smtpmail-local-domain "ed.ac.uk")
+       (smtpmail-default-smtp-server "smtp.staffmail.ed.ac.uk ")
+       (smtpmail-smtp-server "smtp.staffmail.ed.ac.uk ")
+       (user-full-name "Katebzadeh Siavash")
+
+       (smtpmail-smtp-service 587)
+       )
+      ;; Include any other accounts here ...
+      ))
+
+  (defun my-mu4e-set-account ()
+    (let* ((account
+            (if mu4e-compose-parent-message
+                (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
+                  (string-match "/\\(.*?\\)/" maildir)
+                  (match-string 1 maildir))
+              (completing-read (format "Compose with account: (%s) "
+                                       (mapconcat #'(lambda (var) (car var))
+                                                  my-mu4e-account-alist "/"))
+                               (mapcar #'(lambda (var) (car var)) my-mu4e-account-alist)
+                               nil t nil nil (caar my-mu4e-account-alist))))
+           (account-vars (cdr (assoc account my-mu4e-account-alist))))
+      (if account-vars
+          (mapc #'(lambda (var)
+                    (set (car var) (cadr var)))
+                account-vars)
+        (error "No email account found"))))
+  (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
+  (setq message-send-mail-function 'message-send-mail-with-sendmail
+        sendmail-program "/usr/bin/msmtp"
+        user-full-name "Siavash Katebzadeh")
+  (defun choose-msmtp-account ()
+    (if (message-mail-p)
+        (save-excursion
+          (let*
+              ((from (save-restriction
+                       (message-narrow-to-headers)
+                       (message-fetch-field "from")))
+               (account
+                (cond
+                 ((string-match "mr.katebzadeh@gmail.com" from) "Gmail")
+                 ((string-match "mrkatebzadeh.com" from) "Gmail")
+                 ((string-match "m.r.katebzadeh@ed.ac.uk" from) "Staff")
+                 ((string-match "s1691546@ed.ac.uk" from) "Staff")
+                 ((string-match "s1691546@staffmail.ed.ac.uk" from) "Staff"))))
+            (setq message-sendmail-extra-arguments (list '"-a" account))))))
+  (setq message-sendmail-envelope-from 'header)
+  (add-hook 'message-send-mail-hook 'choose-msmtp-account)
+  (add-hook 'mu4e-compose-pre-hook
+            (defun my-set-from-address ()
+              "Set the From address based on the To address of the original."
+              (setq user-mail-address
+                    (cond
+                     ((mu4e-message-contact-field-matches msg :to "@gmail")
+                      "mr.katebzadeh@gmail.com")
+                     ((mu4e-message-contact-field-matches msg :to "@ed.ac.uk")
+                      "m.r.katebzadeh@ed.ac.uk")
+                     (t "mr.katebzadeh@gmail.com")))))
+  (setq mu4e-update-interval 60)
+  (setq
+   mu4e-view-show-images t
+   mu4e-view-image-max-width 800)
+  (setq mu4e-maildir-shortcuts
+        '(("/Gmail/inbox" . ?g)
+          ("/Staff/inbox" . ?s)
+          ))
+  (with-eval-after-load 'mu4e-alert
+    ;; Enable Desktop notifications
+    (mu4e-alert-set-default-style 'notifications))  
+  (require 'gnus-dired)
+  ;; make the `gnus-dired-mail-buffers' function also work on
+  ;; message-mode derived modes, such as mu4e-compose-mode
+  (defun gnus-dired-mail-buffers ()
+    "Return a list of active message buffers."
+    (let (buffers)
+      (save-current-buffer
+        (dolist (buffer (buffer-list t))
+          (set-buffer buffer)
+          (when (and (derived-mode-p 'message-mode)
+                     (null message-sent-message-via))
+            (push (buffer-name buffer) buffers))))
+      (nreverse buffers)))
+
+  (setq gnus-dired-mail-mode 'mu4e-user-agent)
+  (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)
   ;;end
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -339,16 +485,14 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector
-   ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
+ '(org-trello-current-prefix-keybinding "C-c o")
  '(package-selected-packages
    (quote
-    (evil-commentary ir-black-theme-theme phoenix-dark-pink-theme-theme dracula-theme dracula-theme-theme spacemacs-theme-theme imenu-list zeal-at-point web-mode unfill tagedit sql-indent slim-mode scss-mode sass-mode reveal-in-osx-finder rainbow-mode rainbow-identifiers pug-mode pbcopy osx-trash osx-dictionary org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mwim less-css-mode launchctl intero insert-shebang htmlize hlint-refactor hindent helm-pydoc helm-hoogle helm-gitignore helm-dash helm-css-scss helm-company helm-c-yasnippet haskell-snippets haml-mode graphviz-dot-mode gnuplot git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter geiser flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck-haskell flycheck fish-mode emmet-mode diff-hl company-web web-completion-data company-shell company-ghci company-ghc ghc haskell-mode company-cabal company-auctex color-identifiers-mode cmm-mode auto-dictionary auctex ggtags vimrc-mode dactyl-mode disaster company-c-headers cmake-mode clang-format xterm-color smeargle shell-pop orgit multi-term mmm-mode markdown-toc markdown-mode magit-gitflow gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy evil-magit magit magit-popup git-commit ghub let-alist with-editor eshell-z eshell-prompt-extras esh-help company-statistics company-anaconda company auto-yasnippet yasnippet ac-ispell auto-complete helm-themes helm-swoop helm-projectile helm-mode-manager helm-flx helm-descbinds helm-ag ace-jump-helm-line yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional cython-mode anaconda-mode pythonic ws-butler winum which-key wgrep volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smex restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint ivy-hydra indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-make helm helm-core google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump popup f dash s diminish define-word counsel-projectile projectile pkg-info epl counsel swiper ivy column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed async aggressive-indent adaptive-wrap ace-window ace-link avy)))
- '(paradox-github-token t))
+    (org-trello request-deferred deferred evil-nerd-commenter zeal-at-point yapfify xterm-color ws-butler winum which-key web-mode volatile-highlights vimrc-mode vi-tilde-fringe uuidgen use-package unfill twittering-mode toc-org tagedit sql-indent spaceline smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pdf-tools pcre2el paradox orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file neotree mwim multi-term mu4e-maildirs-extension mu4e-alert move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint less-css-mode intero insert-shebang indent-guide imenu-list hy-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-dash helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets graphviz-dot-mode google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md geiser fuzzy flyspell-correct-helm flycheck-pos-tip flycheck-haskell flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-commentary evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump disaster diminish diff-hl define-word dactyl-mode cython-mode company-web company-statistics company-shell company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda column-enforce-mode color-identifiers-mode cmm-mode cmake-mode clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+ '(send-mail-function (quote smtpmail-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+ )
