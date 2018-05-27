@@ -8,7 +8,7 @@
     email = mr.katebzadeh@gmail.com
 
 [core]
-    editor = email
+    editor = vim
     excludesfile = ~/.gitignore
 
 # From there, sections are in alphabetic order
