@@ -5,7 +5,10 @@ alias nano='nano -c'
 alias top=htop
 alias emacs=emacs -nw
 alias ll='ls -al'
+alias lr='ls -ltrah'
 alias vi='vim'
+alias vin='vim -u NONE'
+alias eim='eim'
 alias mux='tmuxinator'
 alias st='st -f "DroidSansMono Nerd Font:size=11"'
 
@@ -28,6 +31,7 @@ alias edinburgh="weather edinburgh"
 alias shiraz="weather shiraz"
 alias audio="ncpamixer"
 alias calender="calcurse"
+alias :q="exit"
 
 # Audio and Music
 alias mute="pamixer -m"
