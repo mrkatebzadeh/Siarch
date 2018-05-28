@@ -1099,7 +1099,7 @@ c.tabs.favicons.scale = 1.0
 
 ## Show favicons in the tab bar.
 ## Type: Bool
-c.tabs.favicons.show = True
+c.tabs.favicons.show = 'always'
 
 ## Padding for tab indicators
 ## Type: Padding
@@ -1292,7 +1292,7 @@ c.url.yank_ignored_parameters = ['ref', 'utm_source', 'utm_medium', 'utm_campaig
 
 ## Hide the window decoration when using wayland (requires restart)
 ## Type: Bool
-c.window.hide_wayland_decoration = False
+c.window.hide_decoration = False
 
 ## The format to use for the window title. The following placeholders are
 ## defined:  * `{perc}`: The percentage as a string like `[10%]`. *
