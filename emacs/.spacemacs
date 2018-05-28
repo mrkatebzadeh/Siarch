@@ -79,7 +79,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(org-trello google-this)
+   dotspacemacs-additional-packages '(org-trello google-this )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -318,6 +318,7 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;; change powerline-default-separator to nil
+  (fancy-battery-mode t)
   (google-this-mode 1)
   (setq powerline-default-separator 'nil)
   (spaceline-compile)
