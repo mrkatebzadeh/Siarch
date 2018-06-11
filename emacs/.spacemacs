@@ -18,6 +18,7 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     javascript
      vimscript
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -28,17 +29,20 @@ values."
                    auto-completion-return-key-behavior 'complete
                    auto-completion-enable-snippets-in-popup t
                    auto-completion-tab-key-behavior 'cycle
+                   auto-completion-enable-help-tooltip t
+                   auto-completion-enable-sort-by-usage t
                    auto-completion-complete-with-key-sequence nil
                    auto-completion-complete-with-key-sequence-delay 0.1
                    auto-completion-private-snippets-directory nil)
      better-defaults
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
-            c-c++-enable-clang-support t)
+            c-c++-enable-clang-support t
+            )
      (colors :variables
-             colors-enable-nyan-cat-progress-bar t)
+             colors-enable-nyan-cat-progress-bar nil)
      (syntax-checking :variables
-                      syntax-checking-enable-by-default nil)
+                      syntax-checking-enable-by-default t)
      emacs-lisp
      (mu4e :variables
            mu4e-enable-notifications t
@@ -55,11 +59,16 @@ values."
      games
      xkcd
      slack
+     ycmd
      dash
      spotify
-     markdown
+     semantic
+     (markdown :variables markdown-live-preview-engine 'vmd)
      bibtex
-     org
+     (org :variables
+          org-projectile-file "TODOs.org"
+          org-enable-reveal-js-support t
+          org-enable-github-support t)
      (latex :variables
         latex-enable-auto-fill t
         latex-enable-folding t
@@ -79,7 +88,12 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(org-trello google-this )
+   dotspacemacs-additional-packages '(
+                                      org-trello
+                                      google-this
+                                      yasnippet-snippets
+                                      highlight-operators
+                                      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -293,7 +307,7 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-
+  (setq yas-snippet-dirs '("~/.emacs.d/private/snippets"))
   (add-to-list 'custom-theme-load-path "~/.emacs.d/private/themes/")
   ;; show line numbers by default
   (setq-default dotspacemacs-line-numbers 'relative)
@@ -301,15 +315,14 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq-default dotspacemacs-themes '(dracula))
   ;; set default font
   (setq-default dotspacemacs-default-font '("Source Code Pro"
-                                            :size 13
+                                            :size 14
                                             :weight normal
                                             :width normal
-                                            :powerline-scale 1.0))
-  (my-setup-indent 4) ; indent 4 spaces width
+                                            :powerline-scale 0.9))
+  (my-setup-indent 2) ; indent 4 spaces width
   (setq exec-path-from-shell-arguments '("-l"))
   ;; end
   )
-
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
@@ -318,7 +331,11 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;; change powerline-default-separator to nil
+  (setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
+  (add-hook 'find-file-hook 'auto-insert)
+  (setq auto-insert-mode t)
   (fancy-battery-mode t)
+  ;; (global-company-mode t)
   (google-this-mode 1)
   (setq powerline-default-separator 'nil)
   (spaceline-compile)
@@ -328,17 +345,22 @@ you should place your code here."
     (define-key evil-motion-state-map (kbd ":") 'evil-repeat-find-char)
     (define-key evil-motion-state-map (kbd ";") 'evil-ex))
   ;; c++
-  (add-hook 'c++-mode-hook
-            (lambda ()
-              ;; quick compilation
-              (set (make-local-variable 'compile-command)
-                   (concat "g++ -Wall " buffer-file-name " && ./a.out"))
-              ;; (push 'company-semantic company-backends)
-              ;;(setq company-clang-arguments '("-std=c++11"))
-              ;;(setq flycheck-clang-language-standard "c++11")
-              (add-to-list 'company-c-headers-path-system
-                           "/Library/Developer/CommandLineTools/usr/include/c++/v1")
-              ))
+  ;; (add-hook 'c++-mode-hook
+  ;;           (lambda ()
+  ;;             ;; quick compilation
+  ;;             (set (make-local-variable 'compile-command)
+  ;;                  (concat "g++ -Wall " buffer-file-name " && ./a.out"))
+  ;;             ;; (push 'company-semantic company-backends)
+  ;;             ;;(setq company-clang-arguments '("-std=c++11"))
+  ;;             ;;(setq flycheck-clang-language-standard "c++11")
+  ;;             (add-to-list 'company-c-headers-path-system
+  ;;                          "/Library/Developer/CommandLineTools/usr/include/c++/v1")
+  ;;             ))
+  (set-variable 'ycmd-server-command '("python2" "/usr/share/vim/vimfiles/third_party/ycmd/ycmd"))
+  (setq ycmd-force-semantic-completion t)
+
+  (add-hook 'c++-mode-hook 'ycmd-mode)
+  (add-hook 'c-mode-hook 'ycmd-mode)
   (font-lock-add-keywords
    'c-mode
    '(("\\<\\(\\sw+\\) ?(" 1 'font-lock-function-name-face)))
@@ -486,6 +508,45 @@ you should place your code here."
   (setq org-ref-default-bibliography '("~/Papers/references.bib")
         org-ref-pdf-directory "~/Papers/pdfs/"
         org-ref-bibliography-notes "~/Papers/notes.org")
+
+    ;; autoinsert C/C++ header
+    (define-auto-insert
+      (cons "\\.\\([Hh]\\|hh\\|hpp\\)\\'" "My C / C++ header")
+      '(nil
+    	"/*"  (make-string 70 ?*) "\n"
+    	"* File       : <" (file-name-nondirectory buffer-file-name) ">\n"
+    	"*\n"
+    	"* Author     : <Siavash Katebzadeh>\n"
+    	"*\n"
+    	"* Description:\n"
+    	"*\n"
+    	(make-string 71 ?*) "/\n\n"
+    	(let* ((noext (substring buffer-file-name 0 (match-beginning 0)))
+    		   (nopath (file-name-nondirectory noext))
+    		   (ident (concat (upcase nopath) "_H")))
+    	  (concat "#ifndef " ident "\n"
+    			  "#define " ident  " 1\n\n\n"
+    			  "\n\n#endif // " ident "\n"))
+    	))
+    
+    ;; auto insert C/C++
+    (define-auto-insert
+      (cons "\\.\\([Cc]\\|cc\\|cpp\\)\\'" "My C++ implementation")
+      '(nil
+    	"/*"  (make-string 70 ?*) "\n"
+    	"* File       : <" (file-name-nondirectory buffer-file-name) ">\n"
+    	"*\n"
+    	"* Author     : <Siavash Katebzadeh>\n"
+    	"*\n"
+    	"* Description:\n"
+    	"*\n"
+    	(make-string 71 ?*) "/\n\n"
+    	(let* ((noext (substring buffer-file-name 0 (match-beginning 0)))
+    		   (nopath (file-name-nondirectory noext))
+    		   (ident (concat nopath ".h")))
+    	  (if (file-exists-p ident)
+    		  (concat "#include \"" ident "\"\n")))
+    	))
   ;;end
 
   )
@@ -500,11 +561,12 @@ you should place your code here."
  '(org-trello-current-prefix-keybinding "C-c o")
  '(package-selected-packages
    (quote
-    (google-this spotify helm-spotify-plus multi xkcd typit mmt sudoku slack emojify circe oauth2 websocket pacmacs emoji-cheat-sheet-plus company-emoji 2048-game org-ref key-chord ivy helm-bibtex parsebib biblio biblio-core org-trello request-deferred deferred evil-nerd-commenter zeal-at-point yapfify xterm-color ws-butler winum which-key web-mode volatile-highlights vimrc-mode vi-tilde-fringe uuidgen use-package unfill twittering-mode toc-org tagedit sql-indent spaceline smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pdf-tools pcre2el paradox orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file neotree mwim multi-term mu4e-maildirs-extension mu4e-alert move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint less-css-mode intero insert-shebang indent-guide imenu-list hy-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-dash helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets graphviz-dot-mode google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md geiser fuzzy flyspell-correct-helm flycheck-pos-tip flycheck-haskell flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-commentary evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump disaster diminish diff-hl define-word dactyl-mode cython-mode company-web company-statistics company-shell company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda column-enforce-mode color-identifiers-mode cmm-mode cmake-mode clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+    (highlight-indent-guides tablist org-category-capture ht markdown-mode highlight-operators haml-mode gitignore-mode fringe-helper git-gutter+ git-gutter flyspell-correct flycheck magit magit-popup git-commit ghub async with-editor dash-functional pos-tip ghc haskell-mode company yasnippet auctex anaconda-mode pythonic alert log4e gntp livid-mode json-mode js2-refactor company-tern web-beautify skewer-mode simple-httpd json-snatcher json-reformat multiple-cursors js2-mode js-doc tern coffee-mode wgrep smex ivy-hydra flyspell-correct-ivy counsel-projectile counsel-dash counsel swiper ox-reveal ox-gfm company-ycmd auto-complete flycheck-ycmd ycmd vmd-mode stickyfunc-enhance srefactor web-completion-data yasnippet-snippets company-quickhelp google-this spotify helm-spotify-plus multi xkcd typit mmt sudoku slack emojify circe oauth2 websocket pacmacs emoji-cheat-sheet-plus company-emoji 2048-game org-ref key-chord ivy helm-bibtex parsebib biblio biblio-core org-trello request-deferred deferred evil-nerd-commenter zeal-at-point yapfify xterm-color ws-butler winum which-key web-mode volatile-highlights vimrc-mode vi-tilde-fringe uuidgen use-package unfill twittering-mode toc-org tagedit sql-indent spaceline smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pdf-tools pcre2el paradox orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file neotree mwim multi-term mu4e-maildirs-extension mu4e-alert move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint less-css-mode intero insert-shebang indent-guide imenu-list hy-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-dash helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets graphviz-dot-mode google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md geiser fuzzy flyspell-correct-helm flycheck-pos-tip flycheck-haskell flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-commentary evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump disaster diminish diff-hl define-word dactyl-mode cython-mode company-web company-statistics company-shell company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda column-enforce-mode color-identifiers-mode cmm-mode cmake-mode clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
  '(send-mail-function (quote smtpmail-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
