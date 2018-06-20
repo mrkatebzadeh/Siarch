@@ -331,7 +331,9 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;; change powerline-default-separator to nil
+  (require 'ox-beamer)
   (setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
+  (spacemacs/set-leader-keys "mo" 'org-beamer-export-to-pdf)
   (add-hook 'find-file-hook 'auto-insert)
   (setq auto-insert-mode t)
   (fancy-battery-mode t)
@@ -393,7 +395,6 @@ you should place your code here."
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
   (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu/mu4e")
   (setq mu4e-get-mail-command "offlineimap")
-  
   ;; I have my "default" parameters from Gmail
   (setq mu4e-sent-folder "/sent"
         ;; mu4e-sent-messages-behavior 'delete ;; Unsure how this should be configured
@@ -504,6 +505,10 @@ you should place your code here."
 
   (setq gnus-dired-mail-mode 'mu4e-user-agent)
   (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)
+
+  (setq mail-user-agent 'mu4e-user-agent)
+
+
 
   (setq org-ref-default-bibliography '("~/Papers/references.bib")
         org-ref-pdf-directory "~/Papers/pdfs/"
