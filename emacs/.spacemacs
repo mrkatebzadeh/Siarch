@@ -18,6 +18,7 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     ivy
      javascript
      vimscript
      ;; ----------------------------------------------------------------
@@ -35,6 +36,7 @@ values."
                    auto-completion-complete-with-key-sequence-delay 0.1
                    auto-completion-private-snippets-directory nil)
      better-defaults
+     (spacemacs-spaceline :location local)
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t
@@ -57,6 +59,7 @@ values."
      html
      emoji
      games
+     (gtags :variables gtags-enable-by-default t)
      xkcd
      slack
      ycmd
@@ -77,6 +80,7 @@ values."
      scheme
      (shell :variables
             shell-default-height 30
+            shell-default-shell 'eshell
             shell-default-position 'bottom)
      shell-scripts
      spell-checking
@@ -89,6 +93,20 @@ values."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
+                                      ;; company
+                                      ;; flycheck
+                                      ;; irony
+                                      ;; company-irony
+                                      ;; flycheck-irony
+                                      ;; irony-eldoc
+                                      ;; rtags
+                                      ;; helm-rtags
+                                      ;; company-rtags
+                                      ;; flycheck-rtags
+                                      ;; req-package
+                                      speed-type
+                                      all-the-icons
+                                      neato-graph-bar
                                       org-trello
                                       google-this
                                       yasnippet-snippets
@@ -340,7 +358,7 @@ you should place your code here."
   ;; (global-company-mode t)
   (google-this-mode 1)
   (setq powerline-default-separator 'nil)
-  (spaceline-compile)
+  ;; (spaceline-compile)
   ;; map escape key to "jk" press the sequence quickly
   (setq-default evil-escape-key-sequence "jk")
   (with-eval-after-load 'evil-maps
@@ -553,7 +571,7 @@ you should place your code here."
     		  (concat "#include \"" ident "\"\n")))
     	))
   ;;end
-
+    ;; (load-file "~/.emacs.d/init_cc.el")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -566,7 +584,7 @@ you should place your code here."
  '(org-trello-current-prefix-keybinding "C-c o")
  '(package-selected-packages
    (quote
-    (highlight-indent-guides tablist org-category-capture ht markdown-mode highlight-operators haml-mode gitignore-mode fringe-helper git-gutter+ git-gutter flyspell-correct flycheck magit magit-popup git-commit ghub async with-editor dash-functional pos-tip ghc haskell-mode company yasnippet auctex anaconda-mode pythonic alert log4e gntp livid-mode json-mode js2-refactor company-tern web-beautify skewer-mode simple-httpd json-snatcher json-reformat multiple-cursors js2-mode js-doc tern coffee-mode wgrep smex ivy-hydra flyspell-correct-ivy counsel-projectile counsel-dash counsel swiper ox-reveal ox-gfm company-ycmd auto-complete flycheck-ycmd ycmd vmd-mode stickyfunc-enhance srefactor web-completion-data yasnippet-snippets company-quickhelp google-this spotify helm-spotify-plus multi xkcd typit mmt sudoku slack emojify circe oauth2 websocket pacmacs emoji-cheat-sheet-plus company-emoji 2048-game org-ref key-chord ivy helm-bibtex parsebib biblio biblio-core org-trello request-deferred deferred evil-nerd-commenter zeal-at-point yapfify xterm-color ws-butler winum which-key web-mode volatile-highlights vimrc-mode vi-tilde-fringe uuidgen use-package unfill twittering-mode toc-org tagedit sql-indent spaceline smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pdf-tools pcre2el paradox orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file neotree mwim multi-term mu4e-maildirs-extension mu4e-alert move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint less-css-mode intero insert-shebang indent-guide imenu-list hy-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-dash helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets graphviz-dot-mode google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md geiser fuzzy flyspell-correct-helm flycheck-pos-tip flycheck-haskell flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-commentary evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump disaster diminish diff-hl define-word dactyl-mode cython-mode company-web company-statistics company-shell company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda column-enforce-mode color-identifiers-mode cmm-mode cmake-mode clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+    (irony-eldoc helm-rtags flycheck-rtags flycheck-irony company-rtags company-irony rtags irony req-package speed-type helm-gtags neato-graph-bar counsel-gtags ggtags spaceline-all-the-icons memoize all-the-icons all-the-icons-dired mu4e-conversation highlight-indent-guides tablist org-category-capture ht markdown-mode highlight-operators haml-mode gitignore-mode fringe-helper git-gutter+ git-gutter flyspell-correct flycheck magit magit-popup git-commit ghub async with-editor dash-functional pos-tip ghc haskell-mode company yasnippet auctex anaconda-mode pythonic alert log4e gntp livid-mode json-mode js2-refactor company-tern web-beautify skewer-mode simple-httpd json-snatcher json-reformat multiple-cursors js2-mode js-doc tern coffee-mode wgrep smex ivy-hydra flyspell-correct-ivy counsel-projectile counsel-dash counsel swiper ox-reveal ox-gfm company-ycmd auto-complete flycheck-ycmd ycmd vmd-mode stickyfunc-enhance srefactor web-completion-data yasnippet-snippets company-quickhelp google-this spotify helm-spotify-plus multi xkcd typit mmt sudoku slack emojify circe oauth2 websocket pacmacs emoji-cheat-sheet-plus company-emoji 2048-game org-ref key-chord ivy helm-bibtex parsebib biblio biblio-core org-trello request-deferred deferred evil-nerd-commenter zeal-at-point yapfify xterm-color ws-butler winum which-key web-mode volatile-highlights vimrc-mode vi-tilde-fringe uuidgen use-package unfill twittering-mode toc-org tagedit sql-indent spaceline smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pdf-tools pcre2el paradox orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file neotree mwim multi-term mu4e-maildirs-extension mu4e-alert move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint less-css-mode intero insert-shebang indent-guide imenu-list hy-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-dash helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets graphviz-dot-mode google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md geiser fuzzy flyspell-correct-helm flycheck-pos-tip flycheck-haskell flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-commentary evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump disaster diminish diff-hl define-word dactyl-mode cython-mode company-web company-statistics company-shell company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda column-enforce-mode color-identifiers-mode cmm-mode cmake-mode clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
  '(send-mail-function (quote smtpmail-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
