@@ -51,4 +51,4 @@ alias bigfor="mpc seek +120"
 alias talkingthrones="ytvideo 'talking thrones'"
 alias lukesmith="ytvideo 'luke smith'"
 
-
+alias youtube-dl="youtube-dl --external-downloader axel --external-downloader-args '-n 20'  "

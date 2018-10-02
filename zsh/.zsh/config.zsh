@@ -24,7 +24,7 @@ setopt APPEND_HISTORY   # adds history
 
 # ssh-agent
 # eval "$(ssh-agent -s)"
-#ssh-add &>/dev/null || eval `ssh-agent` &>/dev/null
+ssh-add &>/dev/null || eval `ssh-agent` &>/dev/null
 # set various options
 setopt AUTO_CD
 setopt EXTENDED_GLOB
