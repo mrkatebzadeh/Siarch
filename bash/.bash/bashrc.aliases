@@ -1,0 +1,80 @@
+#
+# ~/.bashrc.aliases
+#
+
+alias ls='ls --color=auto'
+
+
+# System Maintainence
+alias mw="~/.config/mutt/mutt-wizard.sh"
+alias muttwizard="~/.config/mutt/mutt-wizard.sh"
+alias progs="(pacman -Qet && pacman -Qm) | sort -u" # List programs I've installed
+alias orphans="pacman -Qdt" # List orphan programs
+alias sdn="sudo shutdown now"
+alias psref="gpg-connect-agent RELOADAGENT /bye" # Refresh gpg
+alias pacrepo='sudo reflector -l 20 -f 10 --save /etc/pacman.d/mirrorlist'
+#alias pacman='sudo pacman'
+alias journalctl='sudo journalctl'
+alias pacu='sudo pacman -Syu --noconfirm'
+#alias auru='yaourt -Syua --noconfirm'
+alias aur='yay -S --noconfirm'
+alias systemctl='sudo systemctl'
+alias se='ls /usr/bin | grep'
+
+
+# Some aliases
+alias p="sudo pacman"
+alias SS="sudo systemctl"
+alias vi='nvim'
+alias sv="sudo nvim"
+alias r="ranger"
+alias sr="sudo ranger"
+alias ka="killall"
+alias g="git"
+alias trem="transmission-remote"
+alias mkd="mkdir -pv"
+alias ref="shortcuts.sh && source ~/.bashrc" # Refresh shortcuts manually and reload bashrc
+alias bw="wal -i ~/.config/wall.png" # Rerun pywal
+alias pi="bash ~/.larbs/wizard/wizard.sh"
+
+# Adding color
+alias ls='ls -hN --color=auto --group-directories-first'
+alias ll='ls -hNal --color=auto --group-directories-first'
+alias grep="grep --color=auto" # Color grep - highlight desired sequence.
+alias ccat="highlight --out-format=ansi" # Color cat - print file with syntax highlighting.
+
+# Internet
+alias yt="youtube-dl --add-metadata -ic" # Download video link
+alias yta="youtube-dl --add-metadata -xic" # Download only audio
+alias YT="youtube-viewer"
+alias ethspeed="speedometer -r enp0s25"
+alias wifispeed="speedometer -r wlp2s0"
+alias starwars="telnet towel.blinkenlights.nl"
+
+# TeX
+alias Txa="cp ~/Documents/LaTeX/article.tex"
+alias Txs="cp ~/Documents/LaTeX/beamer.tex"
+alias Txh="cp ~/Documents/LaTeX/handout.tex"
+
+# Edinburgh
+
+alias check_nc="ssh s1691546@ssh.inf.ed.ac.uk -t ssh student.login -t \"./cluster_status.sh -t 5\""
+alias check_n="ssh s1691546@ssh.inf.ed.ac.uk -t ssh student.login -t \"./cluster_status.sh -n -t 5\""
+alias check_c="ssh s1691546@ssh.inf.ed.ac.uk -t ssh student.login -t \"./cluster_status.sh -c -t 5\""
+
+
+
+alias vi='nvim'
+alias aur='yay -S --noconfirm'
+alias rm='rm -ri'
+alias :q='exit'
+
+export QT_STYLE_OVERRIDE=gtk
+export QT_SELECT=qt5
+
+if [[ $LANG = '' ]]; then
+	export LANG=en_US.UTF-8
+fi
+
+
+
