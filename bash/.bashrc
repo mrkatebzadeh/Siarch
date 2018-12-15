@@ -15,4 +15,4 @@ source ~/.bash/bashrc.aliases
 
 shdl() { curl -O $(curl -s http://sci-hub.tw/"$@" | grep location.href | grep -o http.*pdf) ;}
 
-export PATH="$(du $HOME/.scripts/ | cut -f2 | tr '\n' ':')$PATH"
+export PATH="$(du $HOME/.scripts/ | cut -f2 | tr '\n' ':')$PATH":".emacs.d/bin"
