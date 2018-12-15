@@ -1,5 +1,5 @@
 #+TITLE: i3 config
-#+PROPERTY: header-args  :results silent :tangle yes
+#+PROPERTY: header-args  :results silent :tangle ../../dots/i3/.config/config :mkdirp yes
 * Introduction
 #+BEGIN_SRC i3
 # This config file will use environmental variables such as $BROWSER and $TERMINAL.
