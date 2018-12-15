@@ -1,2 +1,0 @@
-# Compress GIF image
-gifsicle -O3 < input.gif > compressed.gif
