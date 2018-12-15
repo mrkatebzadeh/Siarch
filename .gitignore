@@ -7,4 +7,5 @@
 !*example
 
 # packages that should not be pushed on github (local backup only)
-dots
+tmp/*
+dots/*
