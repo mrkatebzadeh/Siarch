@@ -1,0 +1,20 @@
+#+TITLE: newsboat urls
+#+PROPERTY: header-args  :results silent :tangle ../../dots/newsboat/.config/newsboat/urls :mkdirp yes
+* IT
+** linux
+#+BEGIN_SRC newsboat
+http://lukesmith.xyz/rss.xml
+https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA "~Luke Smith (YouTube)"
+https://www.archlinux.org/feeds/news/ "tech"
+#+END_SRC
+** Hack
+#+BEGIN_SRC newsboat
+https://news.ycombinator.com/rss "Hacker News"
+#+END_SRC
+* Research
+#+BEGIN_SRC newsboat
+#+END_SRC
+* Life
+#+BEGIN_SRC newsboat
+http://nycskeptics.org/storage/feeds/rs.xml "Rationally Speaking"
+#+END_SRC
