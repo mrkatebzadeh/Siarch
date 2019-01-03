@@ -1,0 +1,11 @@
+#+TITLE: compton config
+#+PROPERTY: header-args  :results silent :tangle ../../dots/compton/.config/compton.conf :mkdirp yes
+* Introduction
+#+BEGIN_SRC compton
+backend = "glx"
+paint-on-overlay = true;
+glx-no-stencil = true;
+glx-no-rebind-pixmap = true;
+vsync = "opengl-swc";
+unredir-if-possible = false;
+#+END_SRC
