@@ -1,7 +1,7 @@
 #+TITLE: ranger shortcuts
 #+PROPERTY: header-args  :results silent :tangle ../../dots/ranger/.config/ranger/shortcuts.conf :mkdirp yes
 * Shortcuts
-#+BEGIN_SRC rs
+#+BEGIN_SRC conf
 map gh cd ~/
 map th tab_new ~/
 map mh shell mv -v %s ~/

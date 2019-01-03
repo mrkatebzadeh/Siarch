@@ -1,7 +1,7 @@
 #+TITLE: ranger refle
 #+PROPERTY: header-args  :results silent :tangle ../../dots/ranger/.config/ranger/rifle.conf :mkdirp yes
 * Introduction
-#+BEGIN_SRC rc
+#+BEGIN_SRC conf
 # This is the configuration file of "rifle", ranger's file executor/opener.
 # Each line consists of conditions and a command.  For each line the conditions
 # are checked and if they are met, the respective command is run.
@@ -53,7 +53,7 @@
 #+END_SRC
 
 * Websites
-#+BEGIN_SRC rifle
+#+BEGIN_SRC conf
 #-------------------------------------------
 # Websites
 #-------------------------------------------
@@ -89,12 +89,12 @@ ext x?html?, has lynx,            terminal = lynx -- "$@"
 ext x?html?, has w3m,             terminal = w3m "$@"
 #+END_SRC
 * Spreadsheets
-#+BEGIN_SRC rifle
+#+BEGIN_SRC conf
 #Spreadsheets for scim
 ext sc|csv|sxc|xlsx?|xlt|xlw|gnm|gnumeric, = sc-im -- "$@"
 #+END_SRC
 * Misc
-#+BEGIN_SRC rifle
+#+BEGIN_SRC conf
 #-------------------------------------------
 # Misc
 #-------------------------------------------
@@ -124,7 +124,7 @@ label pager,  !mime ^text, !ext xml|json|csv|tex|py|pl|rb|js|sh|php  = "$PAGER" 
 ext blend, has blender, X, flag f =  blender -- "$@"
 #+END_SRC
 * Code
-#+BEGIN_SRC rifle
+#+BEGIN_SRC conf
 #--------------------------------------------
 # Code
 #-------------------------------------------
@@ -136,7 +136,7 @@ ext sh  = sh -- "$1"
 ext php = php -- "$1"
 #+END_SRC
 * Video/Audio w/ GUI
-#+BEGIN_SRC rifle
+#+BEGIN_SRC conf
 #--------------------------------------------
 # Video/Audio with a GUI
 #-------------------------------------------
@@ -154,7 +154,7 @@ mime ^video|audio, has totem,    X, flag f = totem -- "$@"
 mime ^video|audio, has totem,    X, flag f = totem --fullscreen -- "$@"
 #+END_SRC
 * Audio w/o X
-#+BEGIN_SRC rifle
+#+BEGIN_SRC conf
 #--------------------------------------------
 # Audio without X
 #-------------------------------------------
@@ -166,7 +166,7 @@ mime ^audio|ogg$, terminal, has mpv      = mpv -- "$@"
 ext midi?,        terminal, has wildmidi = wildmidi -- "$@"
 #+END_SRC
 * Video w/o X
-#+BEGIN_SRC rifle
+#+BEGIN_SRC conf
 #--------------------------------------------
 # Video without X:
 #-------------------------------------------
@@ -175,7 +175,7 @@ mime ^video, terminal, !X, has mplayer2  = mplayer2 -- "$@"
 mime ^video, terminal, !X, has mplayer   = mplayer -- "$@"
 #+END_SRC
 * Documents
-#+BEGIN_SRC rifle
+#+BEGIN_SRC conf
 #-------------------------------------------
 # Documents
 #-------------------------------------------
@@ -211,7 +211,7 @@ ext djvu, has evince, X, flag f = evince -- "$@"
 ext djvu, has atril,  X, flag f = atril -- "$@"
 #+END_SRC
 * Images
-#+BEGIN_SRC rifle
+#+BEGIN_SRC conf
 #-------------------------------------------
 # Image Viewing:
 #-------------------------------------------
@@ -235,7 +235,7 @@ mime ^image, has mypaint,	    X, flag f = mypaint -- "$@"
 mime ^image, has kolourpaint,	    X, flag f = kolourpaint -- "$@"
 #+END_SRC
 * Archives
-#+BEGIN_SRC rifle
+#+BEGIN_SRC conf
 #-------------------------------------------
 # Archives
 #-------------------------------------------

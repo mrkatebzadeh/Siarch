@@ -1,7 +1,7 @@
 #+TITLE: compton config
 #+PROPERTY: header-args  :results silent :tangle ../../dots/compton/.config/compton.conf :mkdirp yes
-* Introduction
-#+BEGIN_SRC compton
+* Settings
+#+BEGIN_SRC conf
 backend = "glx"
 paint-on-overlay = true;
 glx-no-stencil = true;

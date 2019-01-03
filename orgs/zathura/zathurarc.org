@@ -1,13 +1,13 @@
 #+TITLE: zathura config
 #+PROPERTY: header-args  :results silent :tangle ../../dots/zathura/.config/zathura/zathurarc :mkdirp yes
 * Settings
-#+BEGIN_SRC zathura
+#+BEGIN_SRC conf
 set statusbar-h-padding 0
 set statusbar-v-padding 0
 set page-padding 1
 #+END_SRC
 * Keys
-#+BEGIN_SRC zathura
+#+BEGIN_SRC conf
 map u scroll half-up
 map d scroll half-down
 map D toggle_page_mode
