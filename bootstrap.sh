@@ -43,6 +43,7 @@ install_all() {
     for package in "${packages[@]}" ; do
         install_by_pacman ${package}
     done
+    run_cmd "stow stow" "Stowing stow"
 }
 
 tangle_all() {
@@ -53,7 +54,7 @@ tangle_all() {
     for dir in $( ls -d orgs/* ); do
         cd ${dir}
         for org in $( ls *.org ); do
-            run_cmd "${BABELCMD/\%s/${org}}" "Tangling ${org}"
+            run_cmd "${BABELCMD/\%s/${org}}" "Tangling ${dir}/${org}"
         done
         cd ${DIRECTORY}
     done
@@ -61,7 +62,6 @@ tangle_all() {
 
 stow_all() {
     cd ${DIRECTORY}
-    stow stow
     cd dots
 
     for dir in $( ls  ); do
