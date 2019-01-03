@@ -1,5 +1,5 @@
 #+TITLE: htop config
-#+PROPERTY: header-args  :results silent :tangle ../../dots/i3/.config/htop/htoprc :mkdirp yes
+#+PROPERTY: header-args  :results silent :tangle ../../dots/htop/.config/htop/htoprc :mkdirp yes
 * Settings
 #+BEGIN_SRC htop
 # Beware! This file is rewritten by htop when settings are changed in the interface.
