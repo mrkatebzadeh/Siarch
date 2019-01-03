@@ -1,0 +1,6 @@
+#+TITLE: rofi config
+#+PROPERTY: header-args  :results silent :tangle ../../dots/rofi/.config/rofi/config :mkdirp yes
+* Introduction
+#+BEGIN_SRC conf
+rofi.theme: ~/.cache/wal/colors-rofi-dark.rasi
+#+END_SRC
