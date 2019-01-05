@@ -123,7 +123,8 @@ client.background       $black
 ** bar
 #+BEGIN_SRC i3
 bar {
-    font pango:Liberation Mono 12
+    #font pango:Liberation Mono 12
+    font pango:FontAwesome 10
     colors {
             background $darkred
             statusline $darkwhite
