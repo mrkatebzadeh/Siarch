@@ -109,16 +109,20 @@ set_from_resource $darkcyan color6  #000000
 set_from_resource $cyan     color14 #000000
 set_from_resource $darkwhite    color7  #000000
 set_from_resource $white    color15 #000000
+set_from_resource $fg color7 #f0f0f0
+set_from_resource $bg color2 #f0f0f0
 set $transparent        #00000000
 #+END_SRC
 ** Colors
 #+BEGIN_SRC i3
 #                       BORDER      BACKGROUND      TEXT        INDICATOR       CHILD_BORDER
+
 client.focused          $red            $red        $magenta    $darkmagenta    $darkblue
 client.unfocused        $transparent    $blue       $white      $darkblue       $darkblack
 client.focused_inactive $transparent    $blue       $white      $darkblue       $darkblack
 client.urgent           $darkred        $darkred    $black      $darkred        $darkred
 client.background       $black
+
 #+END_SRC
 ** bar
 #+BEGIN_SRC i3
@@ -126,7 +130,7 @@ bar {
     #font pango:Liberation Mono 12
     font pango:FontAwesome 10
     colors {
-            background $darkred
+            background $black
             statusline $darkwhite
             separator $cyan
             focused_workspace  $blue $darkblue $darkblack
