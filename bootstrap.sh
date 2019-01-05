@@ -82,16 +82,22 @@ postscript_all() {
     done
 }
 
+update() {
+    git pull origin master
+}
+
 display_usage() {
     echo -e "\nUsage:\n$0 [arguments] \n"
     echo -e "\t-i\tInstall all required packages."
     echo -e "\t-t\tTangle all org files."
     echo -e "\t-s\tStow all dotfiles."
     echo -e "\t-r\tTangle and stow all config files."
+    echo -e "\t-p\tRun postscripts for each package, if it exists."
     echo -e "\t-a\tInstall all packages, tangle and stow all config files."
+    echo -e "\t-u\tUpdate DotOrg."
 }
 
-while getopts ":irsthap" opt; do
+while getopts ":irsthapu" opt; do
   case $opt in
     h) display_usage; exit 1 ;;
     i) install_all ;;
@@ -99,6 +105,7 @@ while getopts ":irsthap" opt; do
     s) stow_all ;;
     t) tangle_all ;;
     p) postscript_all ;;
+    u) update ;;
     a) install_all; tangle_all; postscript_all; stow_all ;;
     *) display_usage; exit 1 ;;
   esac
