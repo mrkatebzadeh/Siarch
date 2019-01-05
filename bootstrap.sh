@@ -70,9 +70,16 @@ stow_all() {
 
 }
 
-refresh() {
-    tangle_all
-    stow_all
+postscript_all() {
+
+    run_cmd "cd ${DIRECTORY}/orgs" "Going to ${DIRECTORY}/orgs"
+    for dir in $( ls -d * ); do
+        cd ${dir}
+        for script in $( ls *.sh 2> /dev/null ); do
+            run_cmd "bash ${script} ${DIRECTORY} ${dir}" "Postscripting ${dir}"
+        done
+        cd ${DIRECTORY}/orgs
+    done
 }
 
 display_usage() {
@@ -84,14 +91,15 @@ display_usage() {
     echo -e "\t-a\tInstall all packages, tangle and stow all config files."
 }
 
-while getopts ":irstha" opt; do
+while getopts ":irsthap" opt; do
   case $opt in
     h) display_usage; exit 1 ;;
     i) install_all ;;
     r) tangle_all; stow_all ;;
     s) stow_all ;;
     t) tangle_all ;;
-    a) install_all; tangle_all; stow_all ;;
+    p) postscript_all ;;
+    a) install_all; tangle_all; postscript_all; stow_all ;;
     *) display_usage; exit 1 ;;
   esac
 done
