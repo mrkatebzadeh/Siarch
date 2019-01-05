@@ -12,8 +12,8 @@
 ** Needed for i3-gaps
 #+BEGIN_SRC i3
 for_window [class="^.*"] border pixel 2
-gaps inner 30
-gaps outer 20
+gaps inner 20
+gaps outer 10
 #+END_SRC
 ** General
 #+BEGIN_SRC i3
