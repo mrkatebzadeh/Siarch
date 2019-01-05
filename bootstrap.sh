@@ -101,7 +101,7 @@ while getopts ":irsthapu" opt; do
   case $opt in
     h) display_usage; exit 1 ;;
     i) install_all ;;
-    r) tangle_all; stow_all ;;
+    r) tangle_all; postscript_all; stow_all ;;
     s) stow_all ;;
     t) tangle_all ;;
     p) postscript_all ;;
