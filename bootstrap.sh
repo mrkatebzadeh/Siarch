@@ -12,9 +12,9 @@ CHECK_MARK="✓"
 CROSS_MARK="✗"
 
 BABELCMD="emacs --batch -l org %s -f org-babel-tangle"
-PACMANCMD="sudo pacman -S %s --noconfirm"
+PACMANCMD="sudo pacman -S %s --noconfirm --needed"
 GITHUBPATH="https://github.com/mrkatebzadeh/Dotfiles.git"
-PROGSFILE="https://raw.githubusercontent.com/mrkatebzadeh/Dotfiles/master/progs.csv"
+PROGSFILE="progs.csv"
 AURHELPER="yay"
 
 DIRECTORY=~/.dotorg
@@ -37,51 +37,6 @@ run_cmd() {
 install_by_pacman() {
     package=$1
     run_cmd "${PACMANCMD/\%s/${package}}" "Pacman: Installing ${package}"
-}
-
-install_all() {
-    run_cmd "sudo pacman -Sy --noconfirm" "Updating pacman"
-
-    initialcheck
-
-    welcomemsg || { clear; exit; }
-
-    preinstallmsg || { clear; exit; }
-
-    packages=( git emacs stow base-devel )
-    for package in "${packages[@]}" ; do
-        install_by_pacman ${package}
-    done
-    run_cmd "stow stow" "Stowing stow"
-
-    adduserandpass
-
-    refreshkeyring
-
-    newperms "%wheel ALL=(ALL) NOPASSWD: ALL"
-
-    manualinstall $AURHELPER
-
-    putgitrepo "$GITHUBPATH" "/home/$name"
-
-    putgitrepo "https://github.com/LukeSmithxyz/mozillarbs.git" "/home/$name/.mozilla/firefox"
-
-
-    [ -f /usr/bin/pulseaudio ] && resetpulse
-
-    dialog --infobox "Installing vim plugins..." 4 50
-    (sleep 30 && killall vim) &
-    sudo -u "$name" vim -E -c "PlugUpdate|visual|q|q" >/dev/null
-
-    serviceinit NetworkManager cronie
-
-    newperms "%wheel ALL=(ALL) ALL\\n%wheel ALL=(ALL) NOPASSWD: /usr/bin/shutdown,/usr/bin/reboot,/usr/bin/systemctl suspend,/usr/bin/wifi-menu,/usr/bin/mount,/usr/bin/umount,/usr/bin/pacman -Syu,/usr/bin/pacman -Syyu,/usr/bin/packer -Syu,/usr/bin/packer -Syyu,/usr/bin/systemctl restart NetworkManager,/usr/bin/rc-service NetworkManager restart,/usr/bin/pacman -Syyu --noconfirm,/usr/bin/loadkeys,/usr/bin/yay,/usr/bin/pacman -Syyuw --noconfirm"
-
-    sed -i "s/^#Color/Color/g" /etc/pacman.conf
-
-    finalize
-
-    clear
 }
 
 tangle_all() {
@@ -153,7 +108,7 @@ welcomemsg() {
 refreshkeys() {
 	dialog --infobox "Refreshing Arch Keyring..." 4 40
 	run_cmd \
-        "pacman --noconfirm -Sy archlinux-keyring >/dev/null 2>&1" \
+        "pacman --noconfirm -Sy archlinux-keyring" \
         "Refreshing Arch Keyring"
 }
 
@@ -281,6 +236,55 @@ finalize(){
 	dialog --infobox "Preparing welcome message..." 4 50
 	echo "exec_always --no-startup-id notify-send -i ~/.scripts/pix/siarch.png '<b>Welcome to Siarch:</b> Press Super+F1 for the manual.' -t 10000"  >> "/home/$name/.config/i3/config"
 	dialog --title "All done!" --msgbox "Congrats! Provided there were no hidden errors, the script completed successfully and all the programs and configuration files should be in place.\\n\\nTo run the new graphical environment, log out and log back in as your new user, then run the command \"startx\" to start the graphical environment (it will start automatically in tty1).\\n\\n.t Luke" 12 80
+}
+
+install_all() {
+    run_cmd "sudo pacman -Sy --noconfirm" "Updating pacman"
+
+    initialcheck
+
+    welcomemsg || { clear; exit; }
+
+    preinstallmsg || { clear; exit; }
+
+    packages=( git emacs stow base-devel )
+    for package in "${packages[@]}" ; do
+        install_by_pacman ${package}
+    done
+#    run_cmd "stow stow" "Stowing stow"
+
+    getuserandpass
+
+    adduserandpass
+
+    refreshkeys
+
+    newperms "%wheel ALL=(ALL) NOPASSWD: ALL"
+
+    manualinstall $AURHELPER
+
+    installationloop
+
+#    putgitrepo "$GITHUBPATH" "/home/$name/.siarch"
+
+#    putgitrepo "https://github.com/LukeSmithxyz/mozillarbs.git" "/home/$name/.mozilla/firefox"
+
+
+    [ -f /usr/bin/pulseaudio ] && resetpulse
+
+#    dialog --infobox "Installing vim plugins..." 4 50
+#    (sleep 30 && killall vim) &
+#    sudo -u "$name" vim -E -c "PlugUpdate|visual|q|q" >/dev/null
+
+    serviceinit NetworkManager cronie
+
+    newperms "%wheel ALL=(ALL) ALL\\n%wheel ALL=(ALL) NOPASSWD: /usr/bin/shutdown,/usr/bin/reboot,/usr/bin/systemctl suspend,/usr/bin/wifi-menu,/usr/bin/mount,/usr/bin/umount,/usr/bin/pacman -Syu,/usr/bin/pacman -Syyu,/usr/bin/packer -Syu,/usr/bin/packer -Syyu,/usr/bin/systemctl restart NetworkManager,/usr/bin/rc-service NetworkManager restart,/usr/bin/pacman -Syyu --noconfirm,/usr/bin/loadkeys,/usr/bin/yay,/usr/bin/pacman -Syyuw --noconfirm"
+
+    sed -i "s/^#Color/Color/g" /etc/pacman.conf
+
+    finalize
+
+    clear
 }
 
 while getopts ":irsthapug" opt; do
