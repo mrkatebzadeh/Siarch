@@ -25,7 +25,7 @@
 * Transparency
 #+BEGIN_SRC conf
 !! Transparency (0-255):
-*.alpha: 230
+!!*.alpha: 230
 #+END_SRC
 * Font
 #+BEGIN_SRC conf
