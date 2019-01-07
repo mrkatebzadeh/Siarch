@@ -205,7 +205,7 @@ bindsym $mod+Shift+u        exec --no-startup-id i3resize down
 bindsym $mod+Shift+i        exec --no-startup-id i3resize up
 bindsym $mod+Shift+o        exec --no-startup-id i3resize right
 bindsym $mod+o              sticky toggle
-bindsym $mod+Shift+d        gaps inner current set 0; gaps outer current set 0
+# bindsym $mod+Shift+d        gaps inner current set 0; gaps outer current set 0
 bindsym $mod+f              fullscreen toggle
 bindsym $mod+h              focus left
 bindsym $mod+Shift+h        move left 30
