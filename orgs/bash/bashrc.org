@@ -568,10 +568,4 @@ fuzzy_replace_filedir_xspec()
     fuzzy_setup_replace_compspec_function _filedir_xspec
 }
 
-# Local variables:
-# mode: shell-script
-# sh-basic-offset: 4
-# indent-tabs-mode: nil
-# End:
-# ex: ts=4 sw=4 et filetype=sh
 #+END_SRC
