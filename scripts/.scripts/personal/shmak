@@ -1,0 +1,77 @@
+#!/bin/sh
+####################################################
+#
+#  FileName:    shmak
+#  FileType:    SH
+#  Date:        Big Bang
+#  Author:      Siavash Katebzadeh
+#  Email:       mr.katebzadeh@gmail.com
+#  Project:     Scripts
+#  Copy Right:  :)
+#
+####################################################
+
+FILE_NAME=''
+FILE_TYPE='SH'
+AUTHOR='Siavash Katebzadeh'
+EMAIL='mr.katebzadeh@gmail.com'
+ARGS='NO'
+
+usage() {
+    echo "Usage: $0 -n <File Name> [-t <File Type>] [-a <Author>] [-e <Email> ] [-c]" 1>&2
+    exit 1
+}
+
+while getopts ":ce:a:t:n:" o; do
+    case "${o}" in
+        n)
+            FILE_NAME=${OPTARG}
+            ;;
+        t)
+            FILE_TYPE=${OPTARG}
+            ;;
+        a)
+            AUTHOR=${OPTARG}
+            ;;
+        e)
+            EMAIL=${OPTARG}
+            ;;
+        c)
+            ARGS='YES'
+            ;;
+        *)
+            usage
+            ;;
+    esac
+done
+shift $((OPTIND-1))
+
+if [ "${FILE_NAME}" = "" ]; then
+    echo "You need to specify a name for the file."
+    usage
+fi
+
+
+if [ "${FILE_TYPE}" = "SH" ]; then
+    
+    if [ "${ARGS}" = "YES" ]; then
+        cp ~/.scripts/shmak "${FILE_NAME}"
+    else
+        rm -rf "${FILE_NAME}"
+        echo "#!/bin/sh" >> "${FILE_NAME}"
+        echo "####################################################" >> "${FILE_NAME}"
+        echo "#" >> "${FILE_NAME}"
+        echo "#  FileName:    ${FILE_NAME}" >> "${FILE_NAME}"
+        echo "#  FileType:    SH" >> "${FILE_NAME}"
+        echo "#  Date:        " >> "${FILE_NAME}"
+        echo "#  Author:      ${AUTHOR}" >> "${FILE_NAME}"
+        echo "#  Email:       ${EMAIL}" >> "${FILE_NAME}"
+        echo "#  Project:     " >> "${FILE_NAME}"
+        echo "#  Copy Right:  :)" >> "${FILE_NAME}"
+        echo "#" >> "${FILE_NAME}"
+        echo "####################################################" >> "${FILE_NAME}"
+    fi
+    chmod +x "${FILE_NAME}"
+fi
+
+

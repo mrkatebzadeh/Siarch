@@ -1,0 +1,21 @@
+#!/bin/bash
+# args are percentiles, stdin - integers one per line
+set -o errexit
+set -o nounset
+set -o pipefail
+
+tmp=.tempfile
+trap "rm -f \"$tmp\"" EXIT
+total=$(sort -n | tee "$tmp" | wc -l)
+for percentile in "$@"; do
+  # (n + 99) / 100 with integers is effectively ceil(n/100) with floats
+  if [ $percentile == -1 ]; then
+      awk '{ total += $1 ; count++ } END { print total/count }' "$tmp"
+  else
+
+  count=$(((total * percentile + 9999) / 10000))
+  res=`head -n $count "$tmp" | tail -n 1`
+  printf "%0.2f\n" $res
+  fi
+done
+rm -rf $tmp
