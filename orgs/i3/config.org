@@ -17,7 +17,9 @@ gaps outer 10
 #+END_SRC
 ** General
 #+BEGIN_SRC i3
-set $term --no-startup-id $TERMINAL
+set $TERMINAL st
+set $BROWSER firefox
+set $term $TERMINAL
 set $mod Mod4
 set $stoprec --no-startup-id dmenurecord kill
 set $shutdown sudo -A shutdown -h now
@@ -180,11 +182,11 @@ bindsym $mod+u          exec --no-startup-id ddspawn tmuxdd
 
 *** dmenu
 #+BEGIN_SRC i3
-# bindsym $mod+d            exec --no-startup-id dmenu_run
+bindsym $mod+d            exec --no-startup-id dmenu_run
 #+END_SRC
 *** rofi
 #+BEGIN_SRC i3
-bindsym $mod+d          exec --no-startup-id rofi -show run
+# bindsym $mod+d          exec --no-startup-id rofi -show run
 #+END_SRC
 ** tiling
 #+BEGIN_SRC i3
