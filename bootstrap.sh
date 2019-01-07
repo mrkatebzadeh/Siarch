@@ -17,8 +17,8 @@ GITHUBPATH="https://github.com/mrkatebzadeh/Dotfiles.git"
 PROGSFILE="progs.csv"
 AURHELPER="yay"
 
-DIRECTORY=~/.dotorg
-
+DIRECTORY=.dotorg
+USERNAME=`whoami`
 run_cmd() {
     cmd=$1
     msg=$2
@@ -40,21 +40,21 @@ install_by_pacman() {
 }
 
 tangle_all() {
-    if [ ! -d "$DIRECTORY" ]; then
-        run_cmd "git clone ${GITHUBPATH} ${DIRECTORY}" "Cloning Dotfiles"
+    if [ ! -d "/home/$USERNAME/$DIRECTORY" ]; then
+        run_cmd "git clone ${GITHUBPATH} /home/$USERNAME/${DIRECTORY}" "Cloning Dotfiles"
     fi
-    run_cmd "cd ${DIRECTORY}" "Going to ${DIRECTORY}"
+    run_cmd "cd /home/$USERNAME/${DIRECTORY}" "Going to ${DIRECTORY}"
     for dir in $( ls -d orgs/* ); do
         cd ${dir}
         for org in $( ls *.org ); do
             run_cmd "${BABELCMD/\%s/${org}}" "Tangling ${dir}/${org}"
         done
-        cd ${DIRECTORY}
+        cd /home/$USERNAME/${DIRECTORY}
     done
 }
 
 stow_all() {
-    cd ${DIRECTORY}
+    cd /home/$USERNAME/${DIRECTORY}
     cd dots
 
     for dir in $( ls  ); do
@@ -65,13 +65,13 @@ stow_all() {
 
 postscript_all() {
 
-    run_cmd "cd ${DIRECTORY}/orgs" "Going to ${DIRECTORY}/orgs"
+    run_cmd "cd /home/$USERNAME/${DIRECTORY}/orgs" "Going to ${DIRECTORY}/orgs"
     for dir in $( ls -d * ); do
         cd ${dir}
         for script in $( ls *.sh 2> /dev/null ); do
-            run_cmd "bash ${script} ${DIRECTORY} ${dir}" "Postscripting ${dir}"
+            run_cmd "bash ${script} /home/$USERNAME/${DIRECTORY} ${dir}" "Postscripting ${dir}"
         done
-        cd ${DIRECTORY}/orgs
+        cd /home/$USERNAME/${DIRECTORY}/orgs
     done
 }
 
@@ -121,6 +121,7 @@ getuserandpass() {
 		name=$(dialog --no-cancel --inputbox \
             "Username isn't not valid. Give a username beginning with a letter, with only lowercase letters, - or _." 10 60 3>&1 1>&2 2>&3 3>&1)
 	done
+    USERNAME=$name
 	pass1=$(dialog --no-cancel --passwordbox \
         "Enter a password." 10 60 3>&1 1>&2 2>&3 3>&1)
 	pass2=$(dialog --no-cancel --passwordbox \
@@ -287,8 +288,9 @@ install_all() {
     clear
 }
 
-while getopts ":irsthapug" opt; do
-  case $opt in
+while getopts ":irsthapugIU" opt; do
+    case $opt in
+    I) cd arch || exit ; ./fifo ;;
     h) display_usage; exit 1 ;;
     i) install_all ;;
     r) tangle_all; postscript_all; stow_all ;;
@@ -300,6 +302,7 @@ while getopts ":irsthapug" opt; do
 	g) GITHUBPATH=${OPTARG} && git ls-remote "${GITHUBPATH}" || exit ;;
 	P) PROGSFILE=${OPTARG} ;;
 	A) AURHELPER=${OPTARG} ;;
+	U) USERNAME=${OPTARG} ;;
     *) display_usage; exit 1 ;;
   esac
 done
