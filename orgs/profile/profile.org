@@ -1,5 +1,5 @@
 #+TITLE: profile config
-#+PROPERTY: header-args  :results silent :tangle ../../dots/profile/.profile :mkdirp yes
+#+PROPERTY: header-args  :results silent :tangle ../../dots/profile/.bash_profile :mkdirp yes
 * Profile
 #+BEGIN_SRC conf
 #!/bin/sh
