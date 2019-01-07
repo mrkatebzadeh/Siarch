@@ -59,9 +59,9 @@ stow_all() {
     echo "--target=/home/$USERNAME" > .stowrc
     cd /home/$USERNAME/${DIRECTORY}
 
-    stow script
+    stow scripts
     stow wall
-    wal -c -i wall/.config/wall.jpg
+    wal -i wall/.config/wall.jpg
     cd dots
 
 
