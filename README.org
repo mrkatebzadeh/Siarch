@@ -1,6 +1,6 @@
 #+TITLE: Siarch
-* Siarch
-My personal Arch installer/manager: Installing Arch using AUI script and
+* What is Siarch?
+It's my personal Arch installer/manager: Installing Arch using AUI script and
 managing dotfiles using org-based config files.
 * Prerequisites
 - Arch ISO
@@ -38,3 +38,7 @@ cd Dotfiles
  #+BEGIN_SRC sh
  startx
  #+END_SRC
+* TODOs
+- Add mutt
+- Merge AUI into Siarch
+- Add greeting page
