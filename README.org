@@ -1,0 +1,40 @@
+#+TITLE: Siarch
+* Siarch
+My personal Arch installer/manager: Installing Arch using AUI script and
+managing dotfiles using org-based config files.
+* Prerequisites
+- Arch ISO
+- Internet connection
+* Download
+Install git:
+#+BEGIN_SRC sh
+pacman -Sy git
+#+END_SRC
+Clone the script:
+#+BEGIN_SRC sh
+git clone https://github.com/mrkatebzadeh/Dotfiles.git
+#+END_SRC
+* Usage
+** Installing Arch
+#+BEGIN_SRC sh
+cd Dotfiles
+./bootstrap.sh -I
+#+END_SRC
+and follow the instructions.
+Reboot after finishing the installation.
+** Adding User and Installing Packages
+After reboot login to root and download the script again.
+#+BEGIN_SRC sh
+cd Dotfiles
+./bootstrap.sh -i
+#+END_SRC
+** Installing Dot organizer
+ Use the added username in the following instrcutions:
+ #+BEGIN_SRC sh
+ ./bootstrap.sh -U {username} -r
+ #+END_SRC
+
+ Reboot and login to the new user and enter following command:
+ #+BEGIN_SRC sh
+ startx
+ #+END_SRC
