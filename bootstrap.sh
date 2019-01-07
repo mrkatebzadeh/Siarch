@@ -54,10 +54,16 @@ tangle_all() {
 }
 
 stow_all() {
+    echo "--target=/home/$USERNAME" > ~/.stowrc
     cd /home/$USERNAME
     echo "--target=/home/$USERNAME" > .stowrc
     cd /home/$USERNAME/${DIRECTORY}
+
+    stow script
+    stow wall
+    wal -c -i wall/.config/wall.jpg
     cd dots
+
 
     for dir in $( ls  ); do
         run_cmd "stow ${dir}" "Stowing ${dir}"
