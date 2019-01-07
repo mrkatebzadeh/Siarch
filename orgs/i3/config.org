@@ -182,11 +182,11 @@ bindsym $mod+u          exec --no-startup-id ddspawn tmuxdd
 
 *** dmenu
 #+BEGIN_SRC i3
-bindsym $mod+d            exec --no-startup-id dmenu_run
+# bindsym $mod+d            exec --no-startup-id dmenu_run
 #+END_SRC
 *** rofi
 #+BEGIN_SRC i3
-# bindsym $mod+d          exec --no-startup-id rofi -show run
+bindsym $mod+d          exec --no-startup-id rofi -show run
 #+END_SRC
 ** tiling
 #+BEGIN_SRC i3
