@@ -290,7 +290,7 @@ install_all() {
     clear
 }
 
-while getopts ":irsthapugIU" opt; do
+while getopts ":irsthapugIU:" opt; do
     case $opt in
     I) cd arch || exit ; ./fifo ;;
     h) display_usage; exit 1 ;;
