@@ -54,6 +54,8 @@ tangle_all() {
 }
 
 stow_all() {
+    cd /home/$USERNAME
+    echo "--target=/home/$USERNAME" > .stowrc
     cd /home/$USERNAME/${DIRECTORY}
     cd dots
 
