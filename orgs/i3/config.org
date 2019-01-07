@@ -149,6 +149,10 @@ bar {
 #+BEGIN_SRC i3
 exec_always --no-startup-id notify-send -i ~/.scripts/pix/larbs.png "<b>True</b> happiness can be found when two contrary powers cooperate together." -t 10000
 #+END_SRC
+** wal theme
+#+BEGIN_SRC i3
+exec_always $term -e wal -f base16-dracula
+#+END_SRC
 ** keyboard layout
 #+BEGIN_SRC i3
 exec_always "setxkbmap -model pc104 -layout us,ir -variant ,, -option grp:alt_shift_toggle"
