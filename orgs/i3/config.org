@@ -151,7 +151,7 @@ exec_always --no-startup-id notify-send -i ~/.scripts/pix/larbs.png "<b>True</b>
 #+END_SRC
 ** wal theme
 #+BEGIN_SRC i3
-exec_always $term -e wal -f base16-dracula
+exec_always $term -e wal -i ~/.config/wall.jpg && wal -f base16-dracula
 #+END_SRC
 ** keyboard layout
 #+BEGIN_SRC i3
