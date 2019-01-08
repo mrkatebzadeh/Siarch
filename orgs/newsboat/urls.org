@@ -12,7 +12,17 @@ https://www.archlinux.org/feeds/news/ "tech"
 https://news.ycombinator.com/rss "Hacker News"
 #+END_SRC
 * Research
+** Next Platform
 #+BEGIN_SRC newsboat
+https://www.nextplatform.com/feed/ "NextPlatform"
+#+END_SRC
+** Network Computing Datacenters
+#+BEGIN_SRC newsboat
+https://www.networkcomputing.com/rss/data-centers "NetworkComputing - Datacenters"
+#+END_SRC
+** Network Computing Networking
+#+BEGIN_SRC newsboat
+https://www.networkcomputing.com/rss/networking "NetworkComputing - Networking"
 #+END_SRC
 * Life
 #+BEGIN_SRC newsboat
