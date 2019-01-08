@@ -128,16 +128,15 @@ client.background       $black
 ** bar
 #+BEGIN_SRC i3
 bar {
-    #font pango:Liberation Mono 12
     font pango:FontAwesome 10
     colors {
             background $black
             statusline $darkwhite
             separator $cyan
-            focused_workspace  $blue $darkblue $darkblack
-                active_workspace   $blue $blue $darkwhite
-                inactive_workspace $darkblack $darkblack $white
-                urgent_workspace   $darkblack $darkblack $white
+            focused_workspace  $darkblack $darkblack $darkwhite
+                active_workspace   $darkblack $darkblack $darkwhite
+                inactive_workspace $black $black $white
+                urgent_workspace   $black $black $white
         }
     status_command i3blocks
     position top
