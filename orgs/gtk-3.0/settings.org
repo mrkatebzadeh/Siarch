@@ -1,9 +1,9 @@
 #+TITLE: gtk config
-#+PROPERTY: header-args  :results silent :tangle ../../dots/gtk-3.0/.config/gtk-30/settings.ini :mkdirp yes
+#+PROPERTY: header-args  :results silent :tangle ../../dots/gtk-3.0/.config/gtk-3.0/settings.ini :mkdirp yes
 * Settings
 #+BEGIN_SRC gtk
 [Settings]
-gtk-theme-name=Numix-Frost
+gtk-theme-name=Arc-Flatabulous-Dark
 gtk-icon-theme-name=Numix
 gtk-font-name=Sans 10
 gtk-cursor-theme-size=0
