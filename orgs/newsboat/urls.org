@@ -24,6 +24,10 @@ https://www.networkcomputing.com/rss/data-centers "NetworkComputing - Datacenter
 #+BEGIN_SRC newsboat
 https://www.networkcomputing.com/rss/networking "NetworkComputing - Networking"
 #+END_SRC
+** Morning Paper
+#+BEGIN_SRC newsboat
+https://blog.acolyer.org/feed/ "Morning Paper"
+#+END_SRC
 * Life
 #+BEGIN_SRC newsboat
 http://nycskeptics.org/storage/feeds/rs.xml "Rationally Speaking"
