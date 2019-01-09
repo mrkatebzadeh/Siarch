@@ -8,4 +8,4 @@ if [ ! -d ~/.emacs.d ]; then
 fi
 mkdir -p ~/.config/doom/lisp
 cp -r ./lisp/* ~/.config/doom/lisp
-~/.emacs.d/bin/doom refresh -y
+~/.emacs.d/bin/doom -y refresh
