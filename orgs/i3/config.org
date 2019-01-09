@@ -118,7 +118,7 @@ set $transparent        #00000000
 #+BEGIN_SRC i3
 #                       BORDER      BACKGROUND      TEXT        INDICATOR       CHILD_BORDER
 
-client.focused          $red            $red        $magenta    $darkmagenta    $darkblue
+client.focused          $red            $red        $magenta    $darkmagenta    $darkwhite
 client.unfocused        $transparent    $blue       $white      $darkblue       $darkblack
 client.focused_inactive $transparent    $blue       $white      $darkblue       $darkblack
 client.urgent           $darkred        $darkred    $black      $darkred        $darkred
