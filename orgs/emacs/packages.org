@@ -1,5 +1,5 @@
 #+TITLE: emacs doom config
-#+PROPERTY: header-args  :results silent :tangle ../../dots/emacs/.doom.d/packages.el :mkdirp yes
+#+PROPERTY: header-args  :results silent :tangle ../../dots/emacs/.config/doom/packages.el :mkdirp yes
 * Packages
 #+BEGIN_SRC emacs-lisp
 (package! gnuplot)

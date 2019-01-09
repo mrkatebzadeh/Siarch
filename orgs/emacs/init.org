@@ -1,5 +1,5 @@
 #+TITLE: emacs doom config
-#+PROPERTY: header-args  :results silent :tangle ../../dots/emacs/.doom.d/init.el :mkdirp yes
+#+PROPERTY: header-args  :results silent :tangle ../../dots/emacs/.config/doom/init.el :mkdirp yes
 * Layers
 #+BEGIN_SRC emacs-lisp
 (doom! :feature
