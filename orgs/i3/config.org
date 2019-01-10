@@ -398,9 +398,10 @@ bindsym $mod+Shift+Delete   exec --no-startup-id lmc truemute ; exec $truepause 
 bindsym $mod+Insert     exec --no-startup-id showclip
 bindsym $mod+Pause      exec --no-startup-id xcqr
 bindsym $mod+e          exec $term -e neomutt && pkill -RTMIN+12 i3blocks
-bindsym $mod+Shift+e        exec --no-startup-id tutorialvids
+bindsym $mod+Shift+e        exec $term -e pipes.sh
 bindsym $mod+y          exec $term -e calcurse
 bindsym $mod+i          exec $term -e htop
+bindsym $mod+Shift+v          exec $term -e vtop
 bindsym $mod+a          exec --no-startup-id ddspawn dropdowncalc
 bindsym $mod+Shift+a        exec $term -e pulsemixer
 
