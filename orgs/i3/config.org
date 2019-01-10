@@ -368,6 +368,10 @@ bindsym XF86Explorer        exec $term -e ranger
 bindsym XF86MyComputer      exec $term -e ranger
 bindsym XF86Documents       exec $term -e ranger ~/Documents
 #+END_SRC
+*** neofetch
+#+BEGIN_SRC i3
+bindsym $mod+Shift+n          exec $term -e neofetchp
+#+END_SRC
 *** browser
 #+BEGIN_SRC i3
 bindsym $mod+w          exec --no-startup-id $BROWSER
