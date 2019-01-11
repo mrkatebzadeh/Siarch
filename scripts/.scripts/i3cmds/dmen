@@ -2,4 +2,4 @@
 
 . "${HOME}/.cache/wal/colors.sh"
 
-rofi -dmenu -i -l 20 -fn Monospace-18 -nb "$color0" -nf "$color15" -sb "$color1" -sf "$color15" -p "$1 " 
+rofi -dmenu -i -l 5 -fn Monospace-18 -nb "$color0" -nf "$color15" -sb "$color1" -sf "$color15" -p "$1 "
