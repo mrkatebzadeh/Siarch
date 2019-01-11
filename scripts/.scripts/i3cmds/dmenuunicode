@@ -6,8 +6,8 @@
 xclip -h >/dev/null || exit
 
 categories=( "emoji" "fontawesome" )
-category=$(printf '%s\n' "${categories[@]}" | dmenu -i -l 20 -fn Monospace-18)
-chosen=$(cat ~/.${category} | dmenu -i -l 20 -fn Monospace-18)
+category=$(printf '%s\n' "${categories[@]}" | dmen)
+chosen=$(cat ~/.${category} | dmen)
 
 [ "$chosen" != "" ] || exit
 

@@ -4,9 +4,9 @@
 # Without input, will open DuckDuckGo.com.
 # Anything else, it search it.
 
-pgrep -x dmenu && exit
+pgrep -x dmen && exit
 
-choice=$(echo "🦆" | dmenu -i -p "Search DuckDuckGo:") || exit 1
+choice=$(echo "🦆" | dmen "Search DuckDuckGo:") || exit 1
 
 if [ "$choice" = "🦆"  ]; then
 	$BROWSER "https://duckduckgo.com"

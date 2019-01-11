@@ -9,5 +9,6 @@
 
 xset r rate 200 50
 
+. "${HOME}/.cache/wal/colors.sh"
 exec i3
 #+END_SRC

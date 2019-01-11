@@ -37,6 +37,10 @@ export PATH="$(du $HOME/.scripts/ | cut -f2 | tr '\n' ':')$PATH":"~/.emacs.d/bin
 #+BEGIN_SRC sh
 source $(dirname $(gem which colorls))/tab_complete.sh
 #+END_SRC
+** Pywal Colors
+#+BEGIN_SRC sh
+. "${HOME}/.cache/wal/colors.sh"
+#+END_SRC
 * Shortcuts
 #+BEGIN_SRC sh
 alias \

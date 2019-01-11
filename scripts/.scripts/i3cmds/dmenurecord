@@ -82,7 +82,7 @@ audioalsa() { \
 	}
 
 askrecording() { \
-	choice=$(printf "screencast\\nvideo\\naudio" | dmenu -i -p "Select recording style:")
+	choice=$(printf "screencast\\nvideo\\naudio" | dmen "Select recording style:")
 	case "$choice" in
 		screencast) screencastpulse;;
 		audio) audiopulse;;
@@ -91,7 +91,7 @@ askrecording() { \
 	}
 
 asktoend() { \
-	response=$(printf "No\\nYes" | dmenu -i -p "Recording still active. End recording?") &&
+	response=$(printf "No\\nYes" | dmen "Recording still active. End recording?") &&
 	[ "$response" = "Yes" ] &&  killrecording
 	}
 
