@@ -61,7 +61,7 @@ stow_all() {
 
     stow scripts
     stow wall
-    wal -i wall/.config/wall.jpg
+    feh --bg-scale wall/.config/wall.jpg
     wal -f base16-dracula
     cd dots
 
