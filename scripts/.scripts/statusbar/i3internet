@@ -1,7 +1,7 @@
 #!/bin/sh
-
+IP=`curl https://ipinfo.io/ip`
 case $BLOCK_BUTTON in
-	1) $TERMINAL -e nmtui ;;
+	1) $TERMINAL -e nmtui & pgrep -x dunst > /dev/null && notify-send "<b>Global IP:</b><br>${IP}";;
 	3) pgrep -x dunst >/dev/null && notify-send "<b>Internet module:</b>
 - Left click for \`nmtui\` for wifi access
 📡: no wifi connection
@@ -13,5 +13,5 @@ esac
 
 [ "$(cat /sys/class/net/w*/operstate)" = 'down' ] && wifiicon="📡"
 
-[ ! -n "${wifiicon+var}" ] && wifiicon=$({ grep "^\s*w" /proc/net/wireless | awk '{ print "📶", int($3 * 100 / 70) "%"}'; echo "(`curl https://ipinfo.io/ip`)" ; } | tr "\n" " ")
+[ ! -n "${wifiicon+var}" ] && wifiicon=$({ grep "^\s*w" /proc/net/wireless | awk '{print "📶", int($3 * 100 / 70) "%"}'; } | tr "\n" " ")
 printf "%s %s" "$wifiicon" "$(cat /sys/class/net/e*/operstate | sed "s/down/❎/;s/up/🌐/")"
