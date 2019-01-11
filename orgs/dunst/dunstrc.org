@@ -8,13 +8,13 @@
     geometry = "350x5-0+24"
     indicate_hidden = yes
     shrink = yes
-    transparency = 20
+    transparency = 10
     notification_height = 0
     separator_height = 2
     padding = 0
     horizontal_padding = 8
-    frame_width = 3
-    frame_color = "#333300"
+    frame_width = 1
+    frame_color = "#6272a4"
 
     # Define a color for the separator.
     # possible values are:
@@ -89,7 +89,7 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#222222"
+    background = "#44475a"
     foreground = "#888888"
     timeout = 5
     # Icon for notifications with low urgency, uncomment to enable
@@ -99,7 +99,7 @@
 * Urgency Normal
 #+BEGIN_SRC dunst
 [urgency_normal]
-    background = "#285577"
+    background = "#44475a"
     foreground = "#ffffff"
     timeout = 5
     # Icon for notifications with normal urgency, uncomment to enable
@@ -109,7 +109,7 @@
 * Urgency Critical
 #+BEGIN_SRC dunst
 [urgency_critical]
-    background = "#900000"
+    background = "#f1fa8c"
     foreground = "#ffffff"
     frame_color = "#ff0000"
     timeout = 0
