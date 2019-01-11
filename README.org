@@ -12,7 +12,7 @@ pacman -Sy git
 #+END_SRC
 Clone the script:
 #+BEGIN_SRC sh
-git clone https://github.com/mrkatebzadeh/Dotfiles.git
+git clone https://github.com/mrkatebzadeh/Siarch.git
 #+END_SRC
 * Usage
 ** Installing Arch
