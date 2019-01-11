@@ -129,7 +129,7 @@ client.background       $black
 ** bar
 #+BEGIN_SRC i3
 bar {
-	font pango: SauceCodePro Nerd Font Black 10
+	font pango: SauceCodePro Nerd Font Black 11
     i3bar_command i3bar -t
     colors {
             background $elegant
