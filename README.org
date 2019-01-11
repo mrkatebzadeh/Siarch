@@ -39,6 +39,6 @@ cd Dotfiles
  startx
  #+END_SRC
 * TODOs
-- Add mutt
-- Merge AUI into Siarch
-- Add greeting page
+- [] Add mutt
+- [ ] Merge AUI into Siarch
+- [ ] Add greeting page

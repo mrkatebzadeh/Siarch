@@ -60,6 +60,7 @@ stow_all() {
     cd /home/$USERNAME/${DIRECTORY}
 
     stow scripts
+    stow mutt
     stow wall
     feh --bg-scale wall/.config/wall.jpg
     wal -f base16-dracula
