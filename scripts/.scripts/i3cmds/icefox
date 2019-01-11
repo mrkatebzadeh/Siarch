@@ -9,11 +9,6 @@ pgrep -x dmen && exit
 
 choice=$(cat ~/.scripts/i3cmds/sites.csv | dmen " Open Site:" | awk '{print $1}') || exit 1
 lines=$( grep $choice ~/.scripts/i3cmds/sites.csv )
-if [ "$choice" = "🦆"  ]; then
-	$BROWSER "https://duckduckgo.com"
-elif [ "$lines" = "" ]; then
-	$BROWSER "https://duckduckgo.com/?q=$choice&t=ffab&atb=v1-1"
-
-else
+if [ "$lines" != ""  ]; then
      $BROWSER $( echo "$lines" | awk '{print $2}' )
 fi
