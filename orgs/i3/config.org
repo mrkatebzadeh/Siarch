@@ -232,7 +232,7 @@ bindsym $mod+Shift+q        [con_id="__focused__" instance="^(?!dropdowncalc|tmu
 #+END_SRC
 ** workspace
 #+BEGIN_SRC i3
-bindsym $mod+g              workspace prev
+# bindsym $mod+g              workspace prev
 bindsym $mod+Home           workspace $ws1
 bindsym $mod+Shift+Home     move container to workspace $ws1
 bindsym $mod+End            workspace $ws10
@@ -241,7 +241,7 @@ bindsym $mod+Shift+Prior    move container to workspace prev
 bindsym $mod+Shift+Next     move container to workspace next
 bindsym $mod+Tab            workspace back_and_forth
 bindsym $mod+XF86Back       workspace prev
-bindsym $mod+semicolon      workspace next
+# bindsym $mod+semicolon      workspace next
 bindsym $mod+backslash      workspace back_and_forth
 
 # bindsym $mod+Escape           workspace prev
@@ -411,6 +411,7 @@ bindsym $mod+Shift+v          exec $term -e vtop
 bindsym $mod+a          exec --no-startup-id ddspawn dropdowncalc
 bindsym $mod+Shift+a        exec $term -e pulsemixer
 
+bindsym $mod+g              exec --no-startup-id icefox
 set $freeze Distraction-free mode (super+shift+f to reactivate bindings)
 mode "$freeze" { bindsym $mod+Shift+f mode "default"
 }

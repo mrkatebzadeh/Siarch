@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Gives a dmenu prompt to open websites.
+# Without input, will open DuckDuckGo.com.
+# If the site exists in sites.csv, will open the site.
+# Anything else, it search it.
+
+pgrep -x dmen && exit
+
+choice=$(cat sites.csv | dmen " Open Site:" | awk '{print $1}') || exit 1
+lines=$( grep $choice sites.csv )
+if [ "$choice" = "🦆"  ]; then
+	$BROWSER "https://duckduckgo.com"
+elif [ "$lines" = "" ]; then
+	$BROWSER "https://duckduckgo.com/?q=$choice&t=ffab&atb=v1-1"
+
+else
+     $BROWSER $( echo "$lines" | awk '{print $2}' )
+fi
