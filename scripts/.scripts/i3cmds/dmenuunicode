@@ -1,11 +1,13 @@
-#!/bin/sh
+#!/bin/bash
 # Give dmenu list of all unicode characters to copy.
 # Shows the selected character in dunst if running.
 
 # Must have xclip installed to even show menu.
 xclip -h >/dev/null || exit
 
-chosen=$(grep -v "#" ~/.emoji | dmenu -i -l 20 -fn Monospace-18)
+categories=( "emoji" "fontawesome" )
+category=$(printf '%s\n' "${categories[@]}" | dmenu -i -l 20 -fn Monospace-18)
+chosen=$(cat ~/.${category} | dmenu -i -l 20 -fn Monospace-18)
 
 [ "$chosen" != "" ] || exit
 
