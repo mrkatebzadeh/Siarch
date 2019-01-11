@@ -3,10 +3,12 @@
 * Command
 #+BEGIN_SRC i3blocks
 command=/usr/lib/i3blocks/$BLOCK_NAME
+align=center
+separator=false
 #+END_SRC
 * Separator
 #+BEGIN_SRC i3blocks
-separator_block_width=15
+separator_block_width=25
 #+END_SRC
 * Markup
 #+BEGIN_SRC i3blocks

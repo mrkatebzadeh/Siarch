@@ -12,7 +12,7 @@
 ** Needed for i3-gaps
 #+BEGIN_SRC i3
 for_window [class="^.*"] border pixel 2
-gaps inner 20
+gaps inner 15
 gaps outer 10
 #+END_SRC
 ** General
@@ -113,12 +113,13 @@ set_from_resource $white    color15 #000000
 set_from_resource $fg color7 #f0f0f0
 set_from_resource $bg color2 #f0f0f0
 set $transparent        #00000000
+set $elegant #44475a25
 #+END_SRC
 ** Colors
 #+BEGIN_SRC i3
 #                       BORDER      BACKGROUND      TEXT        INDICATOR       CHILD_BORDER
 
-client.focused          $red            $red        $magenta    $darkmagenta    $darkwhite
+client.focused          $red            $red        $magenta    $darkmagenta    $black
 client.unfocused        $transparent    $blue       $white      $darkblue       $darkblack
 client.focused_inactive $transparent    $blue       $white      $darkblue       $darkblack
 client.urgent           $darkred        $darkred    $black      $darkred        $darkred
@@ -128,14 +129,15 @@ client.background       $black
 ** bar
 #+BEGIN_SRC i3
 bar {
-    font pango:FontAwesome 10
+	font pango: SauceCodePro Nerd Font Black 10
+    i3bar_command i3bar -t
     colors {
-            background $black
+            background $elegant
             statusline $darkwhite
             separator $cyan
-            focused_workspace  $darkblack $darkblack $darkwhite
-                active_workspace   $darkblack $darkblack $darkwhite
-                inactive_workspace $black $black $white
+            focused_workspace  $darkwhite $darkwhite $darkblack
+                active_workspace   $darkwhite $darkwhite $darkblack
+                inactive_workspace $elegant $elegant $white
                 urgent_workspace   $black $black $white
         }
     status_command i3blocks
@@ -249,16 +251,16 @@ bindsym $mod+backslash      workspace back_and_forth
 # bindsym $mod+Shift+XF86Forward    move container to workspace next
 # bindsym $mod+Next             workspace next
 
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+set $ws1 "1  "
+set $ws2 "2  "
+set $ws3 "3  "
+set $ws4 "4  "
+set $ws5 "5  "
+set $ws6 "6  "
+set $ws7 "7  "
+set $ws8 "8 ♫ "
+set $ws9 "9  "
+set $ws10 "10  "
 
 # switch to workspace
 bindsym $mod+1      workspace $ws1
@@ -455,7 +457,7 @@ for_window [title="mpvfloat"] floating enable
 for_window [title="mpvfloat"] sticky enable
 for_window [title="mpvfloat"] border pixel 0
 no_focus [title="mpvfloat"]
-assign [class="Slack|slack"]               → 10
-assign [class="Firefox|firefox"]           → 7
-assign [class="Skype|skype|skypeforlinux"] → 9
+for_window [class="Slack|slack"]    move workspace             $ws10
+for_window [class="Firefox|firefox"]   move workspace          $ws7
+for_window [class="Skype|skype|skypeforlinux"]  move workspace $ws9
 #+END_SRC
