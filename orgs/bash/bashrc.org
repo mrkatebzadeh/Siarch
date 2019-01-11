@@ -31,7 +31,11 @@ set -o vi
 #+END_SRC
 ** PATH
 #+BEGIN_SRC sh
-export PATH="$(du $HOME/.scripts/ | cut -f2 | tr '\n' ':')$PATH":"~/.emacs.d/bin"
+export PATH="$(du $HOME/.scripts/ | cut -f2 | tr '\n' ':')$PATH":"~/.emacs.d/bin":"~/.gem/ruby/2.5.0/bin"
+#+END_SRC
+** Colorls
+#+BEGIN_SRC sh
+source $(dirname $(gem which colorls))/tab_complete.sh
 #+END_SRC
 * Shortcuts
 #+BEGIN_SRC sh
@@ -110,6 +114,11 @@ alias bw="wal -i ~/.config/wall.png" # Rerun pywal
 ** Colors
 #+BEGIN_SRC sh
 # Adding color
+alias lc='colorls -A --sd'
+alias llc='colorls -lA --sd'
+alias lgt='colorls --git-status --tree --sd'
+alias lg='colorls --git-status --sd'
+alias lt='colorls --tree --sd'
 alias ls='ls -hN --color=auto --group-directories-first'
 alias ll='ls -hNal --color=auto --group-directories-first'
 alias grep="grep --color=auto" # Color grep - highlight desired sequence.
