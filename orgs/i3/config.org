@@ -345,7 +345,7 @@ bindsym XF86AudioForward    exec --no-startup-id lmc forward 10
 
 bindsym $mod+p          exec --no-startup-id lmc toggle
 bindsym $mod+Shift+p        exec --no-startup-id lmc pause
-bindsym $mod+Shift+m        exec --no-startup-id lmc mute
+bindsym $mod+Shift+m        exec --no-startup-id dmenumpdyt
 
 #+END_SRC
 ** backlight
