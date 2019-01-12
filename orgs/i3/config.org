@@ -198,8 +198,8 @@ bindsym $mod+space          focus mode_toggle
 bindsym $mod+s              gaps inner current plus 5
 bindsym $mod+Shift+s        gaps inner current minus 5
 bindsym $mod+Shift+r        exec --no-startup-id winresize
-bindsym $mod+t              split toggle
-bindsym $mod+Shift+t        gaps inner current set 15; gaps outer current set 15
+bindsym $mod+y              split toggle
+# bindsym $mod+Shift+y        gaps inner current set 15; gaps outer current set 15
 bindsym $mod+Shift+y        exec --no-startup-id i3resize left
 bindsym $mod+Shift+u        exec --no-startup-id i3resize down
 bindsym $mod+Shift+i        exec --no-startup-id i3resize up
@@ -405,7 +405,8 @@ bindsym $mod+Insert     exec --no-startup-id showclip
 bindsym $mod+Pause      exec --no-startup-id xcqr
 bindsym $mod+e          exec $term -e neomutt && pkill -RTMIN+12 i3blocks
 bindsym $mod+Shift+e        exec $term -e pipes.sh
-bindsym $mod+y          exec $term -e calcurse
+bindsym $mod+t          exec $term -e calcurse
+bindsym $mod+Shift+t          exec --no-startup-id dmenucalcurse
 bindsym $mod+i          exec $term -e htop
 bindsym $mod+Shift+v          exec $term -e vtop
 bindsym $mod+a          exec --no-startup-id ddspawn dropdowncalc

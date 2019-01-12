@@ -1,0 +1,111 @@
+#!/bin/bash
+#
+# Must have xclip installed to even show menu.
+xclip -h >/dev/null || exit
+
+APTS=~/.calcurse/apts
+TODOS=~/.calcurse/todo
+split() {
+   # Usage: split "string" "delimiter"
+   IFS=$'\n' read -d "" -ra arr <<< "${1//$2/$'\n'}"
+   printf '%s\n' "${arr[@]}"
+}
+
+show_apts() {
+    action=$(cat $APTS | sed -e 's/ @ /#/g; s/ -> /#/g; s/|/#/g' | { awk -F# '{print "(" $1 ")" $2 "-" $4 "  : " $5}'; echo "Back"; echo "Exit"; } | dmen "Calcurse: Appointments > ")
+    if [ "$action" = "Exit" ]; then
+        exit
+    elif [ "$action" = "Back" ]; then
+        start
+    else
+        echo "$action" | tr -d '\n' | xclip
+        pgrep -x dunst >/dev/null && notify-send "Apointment is copied to primary."
+    fi
+    shows
+}
+
+show_todo() {
+
+    action=$({ cat $TODOS; echo "Back"; echo "Exit"; } | dmen "Calcurse: TODO > ")
+    if [ "$action" = "Exit" ]; then
+        exit
+    elif [ "$action" = "Back" ]; then
+        start
+    else
+        echo "$action" | tr -d '\n' | xclip
+        pgrep -x dunst >/dev/null && notify-send "TODO is copied to primary."
+    fi
+    shows
+}
+
+shows() {
+    categories=( "Appointments" "TODO" "Back" "Exit")
+    action=$(printf '%s\n' "${categories[@]}" | dmen "Calcourse: Show > ")
+    if [ "$action" = "Appointments" ]; then
+        show_apts
+    elif [ "$action" = "Exit" ]; then
+        exit
+    elif [ "$action" = "Back" ]; then
+        start
+    else
+        show_todo
+    fi
+}
+
+add_apt() {
+    day=$(dmen "Enter appointment day (dd/mm/yyyy): ")
+    start=$(dmen "Enter start time (hh:mm) or leave black for all-day event: ")
+    if [ "$start" = "" ]; then
+        start="00:00"
+    fi
+    end=$(dmen "Enter end time (hh:mm) or leave blank for all-day event: ")
+    if [ "$end" = "" ]; then
+        end="23:59"
+    fi
+    desc=$(dmen "Enter description: ")
+
+    printf "${day} @ ${start} -> ${day} @ ${end}|${desc}\n" >> $APTS
+
+    pgrep -x dunst >/dev/null && notify-send "Appointment is added."
+    show_apts
+}
+
+add_todo() {
+    desc=$(dmen "Enter new TODO item: ")
+    priority=$(dmen "Enter the TODO priority [0 (none), 1 (highest) - 9 (lowest)]: ")
+    priority="["${priority}"]"
+    printf "${priority} ${desc}\n" >> $TODOS
+
+    pgrep -x dunst >/dev/null && notify-send "TODO is added."
+    show_todo
+}
+
+adds () {
+
+    categories=( "Appointment" "TODO" "Back" "Exit")
+    action=$(printf '%s\n' "${categories[@]}" | dmen "Calcourse: Add > ")
+    if [ "$action" = "Appointment" ]; then
+        add_apt
+    elif [ "$action" = "Exit" ]; then
+        exit
+    elif [ "$action" = "Back" ]; then
+        start
+    else
+        add_todo
+    fi
+}
+
+start () {
+    categories=( "Show" "Add" "Exit" )
+    action=$(printf '%s\n' "${categories[@]}" | dmen "Calcourse > ")
+
+    if [ "$action" = "Show" ]; then
+        shows
+    elif [ "$action" = "Add" ]; then
+        adds
+    else
+        exit
+    fi
+}
+
+start
