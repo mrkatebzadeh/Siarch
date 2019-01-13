@@ -420,7 +420,8 @@ mode "$freeze" { bindsym $mod+Shift+f mode "default"
 bindsym $mod+Shift+f        mode "$freeze" ;; exec --no-startup-id notify-send "<b>Distraction-free mode activated.</b> Press Super+Shift+f to return."
 bindsym $mod+Shift+g        exec --no-startup-id gimp
 bindsym $mod+Shift+c        exec --no-startup-id camtoggle
-bindsym $mod+v          exec $term -e ncmpcpp -s visualizer
+#bindsym $mod+v          exec $term -e ncmpcpp -s visualizer
+bindsym $mod+v          exec $term -e cava
 bindsym $mod+n          exec $term -e newspod && pkill -RTMIN+6 i3blocks
 bindsym $mod+m          exec --no-startup-id $term -e ncmpcpp
 
