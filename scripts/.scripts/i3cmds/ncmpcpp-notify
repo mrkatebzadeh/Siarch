@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+
+filter() {
+	sed "/^volume:/d" | tac | sed -e "s/\\&/&amp;/g;s/\\[paused\\].*/<span color=\"gray\" font_style=\"italic\">/g;s/\\[playing\\].*/<span>/g" | tr -d '\n' | sed -e "s/$/<\\/span>/g"
+}
+message=$( mpc status | filter | sed 's/youtube\///g')
+
+pgrep -x dunst >/dev/null && notify-send "🎵 ${message}"
