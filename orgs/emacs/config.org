@@ -1,5 +1,10 @@
 #+TITLE: emacs doom config
 #+PROPERTY: header-args  :results silent :tangle ../../dots/emacs/.config/doom/config.el :mkdirp yes
+* Theme
+#+BEGIN_SRC emacs-lisp
+(setq doom-theme 'doom-dracula)
+(message "Dracula is Doomed!")
+#+END_SRC
 * org
 ** ox-kama
 #+BEGIN_SRC emacs-lisp
