@@ -66,10 +66,10 @@ Starts dunst for notifications:
 #+BEGIN_SRC i3
 exec --no-startup-id dunst
 #+END_SRC
-** xcompmgr
+** compton
 Composite manager:
 #+BEGIN_SRC i3
-exec --no-startup-id xcompmgr
+exec_always --no-startup-id pkill compton; compton -b
 #+END_SRC
 ** remap
 Runs the key remapping scripts
