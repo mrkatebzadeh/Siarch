@@ -39,7 +39,7 @@
      background-color: @normal-background;
  }
  #window {
-     border:           3;
+     border:           1;
      padding:          9;
  }
  #mainbox {
