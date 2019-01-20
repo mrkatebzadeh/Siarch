@@ -1,16 +1,23 @@
 #!/bin/bash
 
-# A general audio interface for LARBS.
+# A general audio interface for Siarch.
 
-newvol="pkill -RTMIN+10 i3blocks"
-
+newvol () {
+    pkill -RTMIN+10 i3blocks
+    vol=`pulsemixer --get-volume | awk '{print $1}'`%
+    mute=`pulsemixer --get-mute`
+    if [ ${mute} = "1" ]; then
+        vol="muted"
+    fi
+    pgrep -x dunst >/dev/null && notify-send "Volume is ${vol}" --icon=volume-control-1
+}
 [ -z "$2" ] && num="2" || num="$2"
 
 case "$1" in
-	u*) pulsemixer --change-volume +"$num" ; $newvol ;;
-	d*) pulsemixer --change-volume -"$num" ; $newvol ;;
-	m*) pulsemixer --toggle-mute ; $newvol ;;
-	truemute) pulsemixer --mute ; $newvol ;;
+	u*) pulsemixer --change-volume +"$num" ; newvol ;;
+	d*) pulsemixer --change-volume -"$num" ; newvol ;;
+	m*) pulsemixer --toggle-mute ; newvol ;;
+	truemute) pulsemixer --mute ; newvol ;;
 	play) mpc play ;;
 	n*) mpc next ;;
 	prev) mpc prev ;;
