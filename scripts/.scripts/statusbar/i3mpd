@@ -2,10 +2,20 @@
 
 filter() {
 	sed "/^volume:/d" | tac | sed -e "s/\\&/&amp;/g;s/\\[paused\\].*/<span color=\"gray\" font_style=\"italic\">/g;s/\\[playing\\].*/<span>/g" | tr -d '\n' | sed -e "s/$/<\\/span>/g"
-	}
+}
 
+change() {
+    playlist=`mpc playlist`
+    choice=$(echo "$playlist" | awk -F "/" '{print $2}' | nl -b a |dmen "Select the song: ")
+    if [ ${choice} == "Exit" ]; then
+        exit
+    fi
+    song=$(echo ${choice} | awk '{print $1}')
+    mpc play ${song}
+
+}
 case $BLOCK_BUTTON in
-    1) mpc status | filter && setsid "$TERMINAL" -e ncmpcpp & ;;  # right click, pause/unpause
+    1) mpc status | filter && change ;;  # right click, pause/unpause
     2) mpc toggle | filter ;;  # right click, pause/unpause
     3) mpc status | filter && pgrep -x dunst >/dev/null && notify-send "<b>🎵 Music module:</b>
 - Shows mpd song playing.
