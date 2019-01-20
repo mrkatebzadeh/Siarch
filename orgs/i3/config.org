@@ -18,7 +18,8 @@ gaps outer 10
 ** General
 #+BEGIN_SRC i3
 set $BROWSER firefox
-set $term --no-startup-id st fish
+set $terminal --no-startup-id st fish
+set $term --no-startup-id st
 set $mod Mod4
 set $stoprec --no-startup-id dmenurecord kill
 set $shutdown sudo -A shutdown -h now
@@ -169,7 +170,7 @@ bindsym XF86Reload      restart
 ** terminal
 *** New
 #+BEGIN_SRC i3
-bindsym $mod+Return         exec $term
+bindsym $mod+Return         exec $terminal
 #+END_SRC
 *** Same Dir
 #+BEGIN_SRC i3
