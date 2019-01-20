@@ -1,0 +1,10 @@
+#+TITLE: fish config
+#+PROPERTY: header-args  :results silent :tangle ../../dots/fish/.config/fish/config.fish :mkdirp yes
+* Plugins
+#+BEGIN_SRC conf
+fundle plugin 'edc/bass'
+fundle plugin 'danhper/fish-fastdir'
+fundle plugin 'nesl247/fish-theme-dracula'
+
+fundle init
+#+END_SRC

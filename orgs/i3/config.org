@@ -18,7 +18,7 @@ gaps outer 10
 ** General
 #+BEGIN_SRC i3
 set $BROWSER firefox
-set $term --no-startup-id st
+set $term --no-startup-id st fish
 set $mod Mod4
 set $stoprec --no-startup-id dmenurecord kill
 set $shutdown sudo -A shutdown -h now
