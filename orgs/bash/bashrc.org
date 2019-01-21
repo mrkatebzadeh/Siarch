@@ -43,39 +43,38 @@ source $(dirname $(gem which colorls))/tab_complete.sh
 #+END_SRC
 * Shortcuts
 #+BEGIN_SRC sh
-alias \
-h="cd ~/ && ls -a" \
-d="cd ~/Documents && ls -a" \
-D="cd ~/Downloads && ls -a" \
-m="cd ~/Music && ls -a" \
-pp="cd ~/Pictures && ls -a" \
-vv="cd ~/Videos && ls -a" \
-cf="cd ~/.config && ls -a" \
-sc="cd ~/.scripts && ls -a" \
-mn="cd /mnt && ls -a" \
-e="cd /etc && ls -a" \
-bf="$EDITOR ~/.key_files" \
-bd="$EDITOR ~/.key_directories" \
-cfb="$EDITOR ~/.bashrc" \
-cfz="$EDITOR ~/.zshrc" \
-cfv="$EDITOR ~/.vimrc" \
-cfr="$EDITOR ~/.config/ranger/rc.conf" \
-cfi="$EDITOR ~/.config/i3/config" \
-cfq="$EDITOR ~/.config/qutebrowser/config.py" \
-cfm="$EDITOR ~/.config/mutt/muttrc" \
-cft="$EDITOR ~/.config/termite/config" \
-eb="$EDITOR ~/Documents/LaTeX/uni.bib" \
-cv="$EDITOR ~/Documents/LaTeX/cv.tex" \
-cfp="$EDITOR ~/.config/polybar/config" \
-cfd="$EDITOR ~/.Xdefaults" \
-cfu="$EDITOR ~/.config/newsboat/urls" \
-cfn="$EDITOR ~/.config/newsboat/config" \
-cfA="$EDITOR ~/.asoundrc" \
-cfmb="$EDITOR ~/.config/ncmpcpp/bindings" \
-cfmc="$EDITOR ~/.config/ncmpcpp/config" \
-cfmpd="$EDITOR ~/.config/mpd/mpd.conf" \
-cfM="$EDITOR ~/.config/mpd/mpd.conf" \
-er="$EDITOR ~/.referbib" \
+alias h="cd ~/ && ls -a"
+alias d="cd ~/Documents && ls -a"
+alias D="cd ~/Downloads && ls -a"
+alias m="cd ~/Music && ls -a"
+alias pp="cd ~/Pictures && ls -a"
+alias vv="cd ~/Videos && ls -a"
+alias cf="cd ~/.config && ls -a"
+alias sc="cd ~/.scripts && ls -a"
+alias mn="cd /mnt && ls -a"
+alias e="cd /etc && ls -a"
+alias bf="$EDITOR ~/.key_files"
+alias bd="$EDITOR ~/.key_directories"
+alias cfb="$EDITOR ~/.bashrc"
+alias cfz="$EDITOR ~/.zshrc"
+alias cfv="$EDITOR ~/.vimrc"
+alias cfr="$EDITOR ~/.config/ranger/rc.conf"
+alias cfi="$EDITOR ~/.config/i3/config"
+alias cfq="$EDITOR ~/.config/qutebrowser/config.py"
+alias cfm="$EDITOR ~/.config/mutt/muttrc"
+alias cft="$EDITOR ~/.config/termite/config"
+alias eb="$EDITOR ~/Documents/LaTeX/uni.bib"
+alias cv="$EDITOR ~/Documents/LaTeX/cv.tex"
+alias cfp="$EDITOR ~/.config/polybar/config"
+alias cfd="$EDITOR ~/.Xdefaults"
+alias cfu="$EDITOR ~/.config/newsboat/urls"
+alias cfn="$EDITOR ~/.config/newsboat/config"
+alias cfA="$EDITOR ~/.asoundrc"
+alias cfmb="$EDITOR ~/.config/ncmpcpp/bindings"
+alias cfmc="$EDITOR ~/.config/ncmpcpp/config"
+alias cfmpd="$EDITOR ~/.config/mpd/mpd.conf"
+alias cfM="$EDITOR ~/.config/mpd/mpd.conf"
+alias er="$EDITOR ~/.referbib"
 #+END_SRC
 * Aliases
 ** System Maintainence
@@ -151,34 +150,34 @@ alias Txh="cp ~/Documents/LaTeX/handout.tex"
 alias check_nc="ssh s1691546@ssh.inf.ed.ac.uk -t ssh student.login -t \"./cluster_status.sh -t 5\""
 alias check_n="ssh s1691546@ssh.inf.ed.ac.uk -t ssh student.login -t \"./cluster_status.sh -n -t 5\""
 alias check_c="ssh s1691546@ssh.inf.ed.ac.uk -t ssh student.login -t \"./cluster_status.sh -c -t 5\""
-alias 'atlanta'="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh atlanta"
-alias 'indianapolis'="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh indianapolis"
-alias 'philly'="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh philly"
-alias 'houston'="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh houston"
-alias 'sanantonio'="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh sanantonio"
-alias 'austin'="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh austin"
-alias 'baltimore'="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh baltimore"
-alias 'chicago'="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh chicago"
-alias 'detroit'="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh detroit"
-alias 'ottawa'="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh ottawa"
-alias 'toronto'="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh toronto"
-alias 'quebec'="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh quebec"
+alias atlanta="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh atlanta"
+alias indianapolis="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh indianapolis"
+alias philly="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh philly"
+alias houston="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh houston"
+alias sanantonio="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh sanantonio"
+alias austin="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh austin"
+alias baltimore="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh baltimore"
+alias chicago="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh chicago"
+alias detroit="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh detroit"
+alias ottawa="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh ottawa"
+alias toronto="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh toronto"
+alias quebec="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh quebec"
 
-alias 'uatlanta'="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh user@atlanta"
-alias 'uindianapolis'="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh user@indianapolis"
-alias 'uphilly'="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh user@philly"
-alias 'uhouston'="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh user@houston"
-alias 'usanantonio'="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh user@sanantonio"
-alias 'uaustin'="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh user@austin"
-alias 'ubaltimore'="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh user@baltimore"
-alias 'uchicago'="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh user@chicago"
-alias 'udetroit'="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh user@detroit"
-alias 'uottawa'="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh user@ottawa"
-alias 'utoronto'="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh user@toronto"
-alias 'uquebec'="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh user@quebec"
+alias uatlanta="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh user@atlanta"
+alias uindianapolis="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh user@indianapolis"
+alias uphilly="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh user@philly"
+alias uhouston="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh user@houston"
+alias usanantonio="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh user@sanantonio"
+alias uaustin="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh user@austin"
+alias ubaltimore="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh user@baltimore"
+alias uchicago="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh user@chicago"
+alias udetroit="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh user@detroit"
+alias uottawa="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh user@ottawa"
+alias utoronto="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh user@toronto"
+alias uquebec="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh user@quebec"
 
-alias 'mellanox1'="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh admin@mellanox.inf.ed.ac.uk"
-alias 'mellanox2'="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh admin@mellanox2.inf.ed.ac.uk"
+alias mellanox1="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh admin@mellanox.inf.ed.ac.uk"
+alias mellanox2="ssh -A s1691546@ssh.inf.ed.ac.uk -t -A ssh admin@mellanox2.inf.ed.ac.uk"
 #+END_SRC
 ** QT
 #+BEGIN_SRC sh
