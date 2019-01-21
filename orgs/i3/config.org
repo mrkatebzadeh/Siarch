@@ -227,7 +227,8 @@ bindsym $mod+Shift+Down     move down
 bindsym $mod+Shift+Up       move up
 bindsym $mod+Shift+Right    move right
 bindsym $mod+b          bar mode toggle
-bindsym $mod+Shift+b        floating toggle; sticky toggle; exec --no-startup-id bottomleft
+# bindsym $mod+Shift+b        floating toggle; sticky toggle; exec --no-startup-id bottomleft
+bindsym $mod+Shift+b        exec --no-startup-id dmenubluetooth
 bindsym $mod+q          [con_id="__focused__" instance="^(?!dropdowncalc|tmuxdd).*$"] kill
 bindsym $mod+Shift+q        [con_id="__focused__" instance="^(?!dropdowncalc|tmuxdd).*$"] kill
 #+END_SRC
