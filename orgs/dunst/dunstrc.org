@@ -91,7 +91,7 @@
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#44475a"
-    foreground = "#888888"
+    foreground = "FFFFFF"
     timeout = 5
     # Icon for notifications with low urgency, uncomment to enable
     #icon = /path/to/icon
@@ -101,7 +101,7 @@
 #+BEGIN_SRC dunst
 [urgency_normal]
     background = "#44475a"
-    foreground = "#ffffff"
+    foreground = "#FFFFFF"
     timeout = 5
     # Icon for notifications with normal urgency, uncomment to enable
     #icon = /path/to/icon
