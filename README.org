@@ -41,6 +41,6 @@ cd Dotfiles
 * TODOs
 - ✅ Add mutt
 - ⭕ Merge AUI into Siarch
-- ⭕ Add greeting page
+- ✅ Add greeting page
 - ⭕ Remove unnecessary clone
 - ⭕ Add option to refresh specific package
