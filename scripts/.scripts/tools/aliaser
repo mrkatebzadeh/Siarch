@@ -63,8 +63,8 @@ function _is_recursive_alias () {
     local alias_command="$2"
     local alias_command_first_word=$(echo "$alias_command" | sed -e 's/^[ \t]*['\''\"]\?//' -e 's/[ \t].*//')
     test "$alias_command_first_word" = "$alias_name"
-    #return $?
-    return 1
+    return $?
+    #return 1
 }
 
 for source_file in $SOURCE_FILES
