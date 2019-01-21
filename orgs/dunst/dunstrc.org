@@ -118,6 +118,15 @@
     #icon = /path/to/icon
 
 #+END_SRC
+* rules
+** slack
+#+BEGIN_SRC conf
+
+[slack]
+    appname = Slack
+    new_icon = slack
+
+#+END_SRC
 * Comments
 #+BEGIN_SRC dunst
 # Every section that isn't one of the above is interpreted as a rules to
