@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Must have bluez installed.
+bluetoothctl -h >/dev/null || exit
+
+# Must have xclip installed to even show menu.
+xclip -h >/dev/null || exit
+
+disconnect() {
+    chosen=$({ echo "Yes"; echo "No"; } | dmen "Do you want to disconnect from your headset? ")
+    [ "$chosen" != "No" ] || exit
+    bluetoothctl disconnect `bluetoothctl devices | grep Bluedio | awk '{print $2}'`
+    echo -e "power off\nagent off\n" | bluetoothctl
+    if [ "$?" != "0" ]; then
+        pgrep -x dunst >/dev/null && notify-send "<b>Bluetooth</b> Disconnection is failed." --icon=error
+        exit
+    fi
+    pgrep -x dunst >/dev/null && notify-send "<b>Bluetooth</b>" "Disonnected from the headset." --icon=bluetooth-1
+}
+
+connect() {
+    echo -e "power on\nagent on\ndefault-agent\n" | bluetoothctl
+    chosen=$({ echo "Yes"; echo "No"; } | dmen "Do you want to connect to your headset? ")
+    [ "$chosen" != "No" ] || exit
+    bluetoothctl connect `bluetoothctl devices | grep Bluedio | awk '{print $2}'`
+    if [ "$?" != "0" ]; then
+       pgrep -x dunst >/dev/null && notify-send "<b>Bluetooth</b> Connection is lost." --icon=error
+       exit
+    fi
+    pgrep -x dunst >/dev/null && notify-send "<b>Bluetooth</b>" "Connected to the headset." --icon=bluetooth
+}
+
+connected=$(bluetoothctl info `bluetoothctl devices | grep Bluedio | awk '{print $2}'` | grep Connected | awk '{print $2}')
+if [ "$connected" = "yes" ]; then
+    disconnect
+elif [ "$connected" = "no" ]; then
+    connect
+fi
