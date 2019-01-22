@@ -298,11 +298,12 @@ install_all() {
     clear
 }
 
-while getopts ":irsthapugIU:" opt; do
+while getopts ":ilrsthapugIU:P:A:" opt; do
     case $opt in
     I) cd arch || exit ; ./fifo ;;
     h) display_usage; exit 1 ;;
     i) install_all ;;
+    l) installationloop ;;
     r) tangle_all; postscript_all; stow_all ;;
     s) stow_all ;;
     t) tangle_all ;;
