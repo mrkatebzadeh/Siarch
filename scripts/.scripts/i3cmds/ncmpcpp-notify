@@ -5,4 +5,4 @@ filter() {
 }
 message=$( mpc status | filter | sed 's/youtube\///g')
 
-pgrep -x dunst >/dev/null && notify-send "${message}" --icon=music-player-1
+pgrep -x dunst >/dev/null && dunstify -r $(echo $0 | cksum | cut -b 1,2,3,4,5) "${message}" --icon=music-player-1

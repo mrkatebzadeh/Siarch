@@ -12,10 +12,10 @@ disconnect() {
     bluetoothctl disconnect `bluetoothctl devices | grep Bluedio | awk '{print $2}'`
     echo -e "power off\nagent off\n" | bluetoothctl
     if [ "$?" != "0" ]; then
-        pgrep -x dunst >/dev/null && notify-send "<b>Bluetooth</b> Disconnection is failed." --icon=error
+        pgrep -x dunst >/dev/null && dunstify -r $(echo $0 | cksum | cut -b 1,2,3,4,5) "<b>Bluetooth</b> Disconnection is failed." --icon=error
         exit
     fi
-    pgrep -x dunst >/dev/null && notify-send "<b>Bluetooth</b>" "Disonnected from the headset." --icon=bluetooth-1
+    pgrep -x dunst >/dev/null && dunstify -r $(echo $0 | cksum | cut -b 1,2,3,4,5) "<b>Bluetooth</b>" "Disonnected from the headset." --icon=bluetooth-1
 }
 
 connect() {
@@ -24,10 +24,10 @@ connect() {
     [ "$chosen" != "No" ] || exit
     bluetoothctl connect `bluetoothctl devices | grep Bluedio | awk '{print $2}'`
     if [ "$?" != "0" ]; then
-       pgrep -x dunst >/dev/null && notify-send "<b>Bluetooth</b> Connection is lost." --icon=error
+       pgrep -x dunst >/dev/null && dunstify -r $(echo $0 | cksum | cut -b 1,2,3,4,5) "<b>Bluetooth</b> Connection is lost." --icon=error
        exit
     fi
-    pgrep -x dunst >/dev/null && notify-send "<b>Bluetooth</b>" "Connected to the headset." --icon=bluetooth
+    pgrep -x dunst >/dev/null && dunstify -r $(echo $0 | cksum | cut -b 1,2,3,4,5) "<b>Bluetooth</b>" "Connected to the headset." --icon=bluetooth
 }
 
 connected=$(bluetoothctl info `bluetoothctl devices | grep Bluedio | awk '{print $2}'` | grep Connected | awk '{print $2}')

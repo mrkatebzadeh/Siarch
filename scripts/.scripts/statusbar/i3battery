@@ -2,7 +2,7 @@
 # Give a battery name (e.g. BAT0) as an argument.
 
 case $BLOCK_BUTTON in
-    3) pgrep -x dunst >/dev/null && notify-send "<b>🔋 Battery module:</b>
+    3) pgrep -x dunst >/dev/null && dunstify -r $(echo $0 | cksum | cut -b 1,2,3,4,5) "<b>🔋 Battery module:</b>
 🔋: discharging
 ♻: stagnant charge
 🔌: charging

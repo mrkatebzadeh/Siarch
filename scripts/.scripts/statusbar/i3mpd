@@ -17,7 +17,7 @@ change() {
 case $BLOCK_BUTTON in
     1) mpc status | filter && change ;;  # right click, pause/unpause
     2) mpc toggle | filter ;;  # right click, pause/unpause
-    3) mpc status | filter && pgrep -x dunst >/dev/null && notify-send "<b>🎵 Music module:</b>
+    3) mpc status | filter && pgrep -x dunst >/dev/null && dunstify -r $(echo $0 | cksum | cut -b 1,2,3,4,5) "<b>🎵 Music module:</b>
 - Shows mpd song playing.
 - Italic when paused.
 - Left click opens ncmpcpp.

@@ -15,4 +15,4 @@ chosen=$({ echo "Exit"; youtube-dl -F ${url} | grep "audio only" | awk '{print $
 
 youtube-dl -f${chosen} -o '~/Music/youtube/%(title)s.%(ext)s' ${url}
 
-pgrep -x dunst >/dev/null && notify-send "'${title}' added to Music." --icon=starred
+pgrep -x dunst >/dev/null && dunstify -r $(echo $0 | cksum | cut -b 1,2,3,4,5) "'${title}' added to Music." --icon=starred

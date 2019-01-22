@@ -9,7 +9,7 @@ newvol () {
     if [ ${mute} = "1" ]; then
         vol="muted"
     fi
-    pgrep -x dunst >/dev/null && notify-send "Volume is ${vol}" --icon=volume-control-1
+    pgrep -x dunst >/dev/null && dunstify -r $(echo $0 | cksum | cut -b 1,2,3,4,5) "Volume is ${vol}" --icon=volume-control-1
 }
 [ -z "$2" ] && num="2" || num="$2"
 

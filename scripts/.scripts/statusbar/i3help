@@ -2,7 +2,7 @@
 
 case $BLOCK_BUTTON in
     1) groff -mom ~/.readme.mom -Tpdf | zathura - ;;
-    3) pgrep -x dunst >/dev/null && notify-send "<b>❓ Help module:</b>
+    3) pgrep -x dunst >/dev/null && dunstify -r $(echo $0 | cksum | cut -b 1,2,3,4,5) "<b>❓ Help module:</b>
 - Left click to open LARBS guide.";;
 esac
 

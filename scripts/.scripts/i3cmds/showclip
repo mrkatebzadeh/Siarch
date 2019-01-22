@@ -10,7 +10,7 @@ clip=$(xclip -o -selection clipboard)
 
 prim=$(xclip -o -selection primary)
 
-[ "$prim" != "" ] && notify-send "<b>Clipboard:</b>
+[ "$prim" != "" ] && dunstify -r $(echo $0 | cksum | cut -b 1,2,3,4,5) "<b>Clipboard:</b>
 $prim"
-[ "$clip" != "" ] && notify-send "<b>Primary:</b>
+[ "$clip" != "" ] && dunstify -r $(echo $0 | cksum | cut -b 1,2,3,4,5) "<b>Primary:</b>
 $clip"

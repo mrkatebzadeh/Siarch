@@ -1,8 +1,8 @@
 #!/bin/sh
 IP=`curl https://ipinfo.io/ip`
 case $BLOCK_BUTTON in
-	1) $TERMINAL -e nmtui & pgrep -x dunst > /dev/null && notify-send "<b>Global IP:</b><br>${IP}";;
-	3) pgrep -x dunst >/dev/null && notify-send "<b>Internet module:</b>
+	1) $TERMINAL -e nmtui & pgrep -x dunst > /dev/null && dunstify -r $(echo $0 | cksum | cut -b 1,2,3,4,5) "<b>Global IP:</b><br>${IP}";;
+	3) pgrep -x dunst >/dev/null && dunstify -r $(echo $0 | cksum | cut -b 1,2,3,4,5) "<b>Internet module:</b>
 - Left click for \`nmtui\` for wifi access
 📡: no wifi connection
 📶: wifi connection with quality

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 
-pgrep -x dunst && notify-send --icon=lock "Locking desktop ..."
+pgrep -x dunst && dunstify -r $(echo $0 | cksum | cut -b 1,2,3,4,5) --icon=lock "Locking desktop ..."
 
 # Pause music (mocp, mpd and send the pause key to all mpv videos):
 mocp -P >/dev/null 2>&1

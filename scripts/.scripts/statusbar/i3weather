@@ -4,7 +4,7 @@ location=""
 
 case $BLOCK_BUTTON in
     1) $TERMINAL -e popweather ;;
-    3) pgrep -x dunst >/dev/null && notify-send "<b>🌈 Weather module:</b>
+    3) pgrep -x dunst >/dev/null && dunstify -r $(echo $0 | cksum | cut -b 1,2,3,4,5) "<b>🌈 Weather module:</b>
 - Click for wttr.in forecast.
 ☔: Chance of rain/snow
 ❄: Daily low
