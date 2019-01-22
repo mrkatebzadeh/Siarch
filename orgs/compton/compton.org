@@ -80,6 +80,7 @@ blur-background-exclude = [
 opacity-rule = [
     "80:class_g = 'rofi'",
     "100:class_g = 'Firefox'",
+    "70:class_g = 'St'",
 #    "80:class_g = 'polybar bar'",
 #    "80:class_g = 'test2'",
 ];
