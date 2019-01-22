@@ -15,7 +15,7 @@ BABELCMD="emacs --batch -l org %s -f org-babel-tangle"
 PACMANCMD="sudo pacman -S %s --noconfirm --needed"
 GITHUBPATH="https://github.com/mrkatebzadeh/Siarch.git"
 PROGSFILE="progs.csv"
-AURHELPER="yay"
+AURHELPER="yay --needed"
 
 DIRECTORY=.dotorg
 USERNAME=`whoami`
