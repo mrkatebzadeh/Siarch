@@ -163,7 +163,7 @@ adduserandpass() {
 
 gitmakeinstall() {
 	dir=$(mktemp -d)
-	dialog --title "Siarch Installation" --infobox "Installing \`$(basename "$1")\` ($n of $total) via \`git\` and \`make\`. $(basename "$1") $2" 5 70
+	echo "Siarch Installation: git \`$(basename "$1")\` ($n of $total) via \`git\` and \`make\`. $(basename "$1") $2"
 	git clone --depth 1 "$1" "$dir" >/dev/null 2>&1
 	cd "$dir" || exit
 	make >/dev/null 2>&1
@@ -172,14 +172,14 @@ gitmakeinstall() {
 }
 
 maininstall() {
-	dialog --title "Siarch Installation" --infobox "Installing \`$1\` ($n of $total). $1 $2" 5 70
+	echo "Siarch Installation: pacman \`$1\` ($n of $total). $1 $2"
 	pacman --noconfirm --needed -S "$1" >/dev/null 2>&1
 }
 
 aurinstall() {
-	dialog --title "Siarch Installation" --infobox "Installing \`$1\` ($n of $total) from the AUR. $1 $2" 5 70
+	echo "Siarch Installation: AUR \`$1\` ($n of $total) from the AUR. $1 $2"
 	grep "^$1$" <<< "$aurinstalled" && return
-	sudo -u "$name" $AURHELPER -S --noconfirm "$1" >/dev/null 2>&1
+	$AURHELPER -S --noconfirm "$1">/dev/null 2>&1
 }
 
 installationloop() {
