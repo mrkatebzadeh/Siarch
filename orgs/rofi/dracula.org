@@ -1,12 +1,13 @@
 #+TITLE: rofi config
 #+PROPERTY: header-args  :results silent :tangle ../../dots/rofi/.config/rofi/dracula.rasi :mkdirp yes
-* Settings
+* Theme
 #+BEGIN_SRC conf
 // Dracula colors
  * {
-     background: 	rgba ( 40, 42, 54, 100 % );
+     background-sol: 	rgba ( 40, 42, 54, 100% );
+     background: 	rgba ( 40, 42, 54, 0% );
      current-line: 	rgba ( 68, 71, 90, 100 % );
-     selection: 	rgba ( 68, 71, 90, 100 % );
+     selection: 	rgba ( 68, 71, 90, 50 % );
      foreground: 	rgba ( 248, 248, 242, 100 % );
      comment: 	rgba ( 98, 114, 164, 100 % );
      cyan: 	rgba ( 139, 233, 253, 100 % );
@@ -23,7 +24,7 @@
      normal-foreground:              @foreground;
      alternate-normal-background:    @normal-background;
      alternate-normal-foreground:    @foreground;
-     selected-normal-foreground:     @normal-background;
+     selected-normal-foreground:     @background-sol;
      urgent-foreground:              @red;
      urgent-background:              @normal-background;
      alternate-urgent-background:    @urgent-background;
@@ -33,13 +34,15 @@
      alternate-active-background:    @normal-background;
      alternate-active-foreground:    @selected-active-foreground;
      alternate-active-background:    @selected-active-background;
-     border-color:                   @selected-normal-background;
+     border-color:                   @green;
      separatorcolor:                 @border-color;
      spacing: 2;
      background-color: @normal-background;
+     text-color: @purple;
  }
  #window {
      border:           1;
+     border-radius: 15px;
      padding:          9;
  }
  #mainbox {
@@ -48,7 +51,7 @@
      padding: 0;
  }
  #textbox {
-     text-color: @foreground;
+     text-color: @pink;
  }
  #element {
      border:  0;
@@ -101,18 +104,19 @@
      spacing:    0;
      text-color: @normal-foreground;
      background-color: inherit;
-     padding:    1px ;
+     padding:    10px ;
  }
  #case-indicator {
-     spacing:    0;
+     spacing:    10;
      text-color: @normal-background;
  }
  #entry {
      spacing:    0;
+     padding: 0 10px;
      text-color: @normal-foreground;
  }
  #prompt {
-     spacing:    0;
-     text-color: @normal-foreground;
+     spacing:    20;
+     text-color: @pink;
  }
 #+END_SRC
