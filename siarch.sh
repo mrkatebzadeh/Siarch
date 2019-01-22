@@ -83,6 +83,14 @@ postscript_all() {
         done
         cd /home/$USERNAME/${DIRECTORY}/orgs
     done
+    run_cmd "cd /home/$USERNAME/${DIRECTORY}/configs" "Going to ${DIRECTORY}/configs"
+    for dir in $( ls -d * ); do
+        cd ${dir}
+        for script in $( ls *.sh 2> /dev/null ); do
+            run_cmd "bash ${script} /home/$USERNAME/${DIRECTORY} ${dir}" "Postscripting ${dir}"
+        done
+        cd /home/$USERNAME/${DIRECTORY}/configs
+    done
 }
 
 update() {
