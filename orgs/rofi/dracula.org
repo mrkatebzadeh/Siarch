@@ -21,15 +21,15 @@
  * {
      selected-normal-background:     @cyan;
      normal-background:              @background;
-     normal-foreground:              @foreground;
+     normal-foreground:              @cyan;
      alternate-normal-background:    @normal-background;
      alternate-normal-foreground:    @foreground;
      selected-normal-foreground:     @background-sol;
-     urgent-foreground:              @red;
+     urgent-foreground:              @cyan;
      urgent-background:              @normal-background;
      alternate-urgent-background:    @urgent-background;
      alternate-urgent-foreground:    @urgent-foreground;
-     selected-active-foreground:     @foreground;
+     selected-active-foreground:     @cyan;
      selected-urgent-background:     @normal-background;
      alternate-active-background:    @normal-background;
      alternate-active-foreground:    @selected-active-foreground;
@@ -42,7 +42,7 @@
  }
  #window {
      border:           1;
-     border-radius: 15px;
+ //    border-radius: 15px;
      padding:          9;
  }
  #mainbox {
@@ -55,7 +55,7 @@
  }
  #element {
      border:  0;
-     padding: 1px ;
+     padding: 10px ;
  }
  #element.normal.normal {
      background-color: @normal-background;
