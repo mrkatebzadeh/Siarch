@@ -2,7 +2,7 @@
 #+PROPERTY: header-args  :results silent :tangle ../../dots/rofi/.config/rofi/config :mkdirp yes
 * Introduction
 #+BEGIN_SRC conf
-rofi.modi: drun,window
+rofi.modi: drun,window,ssh
 rofi.lines: 6
 rofi.columns: 3
 rofi.width: 50
