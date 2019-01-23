@@ -431,7 +431,7 @@ bindsym $mod+F1     exec --no-startup-id groff -kejpt -mom ~/.readme.mom -Tpdf |
 bindsym $mod+F3     exec --no-startup-id displayselect
 bindsym $mod+F6     exec --no-startup-id $term -e transmission-remote-cli
 bindsym $mod+F7     exec --no-startup-id td-toggle
-bindsym $mod+F8     exec --no-startup-id ~/.config/mutt/etc/mailsync.sh
+bindsym $mod+F8     exec --no-startup-id dmenudracula
 
 bindsym XF86Calculator      exec $term -e R -q --no-save
 bindsym XF86Eject       exec --no-startup-id dmenuumount
