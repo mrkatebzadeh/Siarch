@@ -17,30 +17,30 @@ git clone https://github.com/mrkatebzadeh/Siarch.git
 * Usage
 ** Installing Arch
 #+BEGIN_SRC sh
-cd Dotfiles
-./siarch.sh -I
+cd Siarch
+./siarch.sh -i
 #+END_SRC
 and follow the instructions.
 Reboot after finishing the installation.
 ** Adding User and Installing Packages
 After reboot login to root and download the script again.
 #+BEGIN_SRC sh
-cd Dotfiles
+cd ~/.dotfiles
 ./siarch.sh -i
 #+END_SRC
 ** Installing Dot organizer
  Use the added username in the following instrcutions:
  #+BEGIN_SRC sh
- ./siarch.sh -U {username} -r
+ ./siarch.sh -U {username} -R -C
  #+END_SRC
 
  Reboot and login to the new user and enter following command:
  #+BEGIN_SRC sh
  startx
  #+END_SRC
-* TODOs
+** TODOs
 - ✅ Add mutt
 - ⭕ Merge AUI into Siarch
 - ✅ Add greeting page
 - ⭕ Remove unnecessary clone
-- ⭕ Add option to refresh specific package
+- ✅ Add option to refresh specific package
