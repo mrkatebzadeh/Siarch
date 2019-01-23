@@ -124,16 +124,6 @@ update() {
     git pull origin master
 }
 
-display_usage() {
-    echo -e "\nUsage:\n$0 [arguments] \n"
-    echo -e "\t-i\tInstall all required packages."
-    echo -e "\t-t\tTangle all org files."
-    echo -e "\t-s\tStow all dotfiles."
-    echo -e "\t-r\tTangle and stow all config files."
-    echo -e "\t-p\tRun postscripts for each package, if it exists."
-    echo -e "\t-a\tInstall all packages, tangle and stow all config files."
-    echo -e "\t-u\tUpdate Siarch."
-}
 
 initialcheck() {
     pacman -Syyu --noconfirm --needed dialog || { echo \
@@ -331,6 +321,32 @@ install_all() {
     finalize
 
     clear
+}
+
+display_usage() {
+    echo -e "\nUsage:\n$0 [arguments] \n"
+    echo -e "\t-a\t\tInstall Arch linux."
+    echo -e "\n"
+    echo -e "\t-c {config}\tAdd system config file {config}."
+    echo -e "\t-C\t\tAdd all system config files."
+    echo -e "\n"
+    echo -e "\t-s {package}\tStow dotfiles in {package}."
+    echo -e "\t-S\t\tStow all dotfiles."
+    echo -e "\n"
+    echo -e "\t-t {package}\tTangle org files in {package}."
+    echo -e "\t-T\t\tTangle all org files."
+    echo -e "\n"
+    echo -e "\t-i\t\tInstall all required packages."
+    echo -e "\t-I\t\tInstall all packages, tangle and stow all config files."
+    echo -e "\n"
+    echo -e "\t-r {package}\tTangle, stow and postscript config files of {package}."
+    echo -e "\t-R\t\tTangle, stow and postscript all config files."
+    echo -e "\n"
+    echo -e "\t-p {package}\tRun postscripts for package {package}, if it exists."
+    echo -e "\t-P\t\tRun postscripts for each package, if it exists."
+    echo -e "\n"
+    echo -e "\t-u\t\tUpdate Siarch."
+    echo -e "\t-U {user}\tApply changes for username {user}."
 }
 
 while getopts ":ac:Cr:Rs:St:Tp:PiIhuG:F:H:U:" opt; do
