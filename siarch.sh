@@ -24,7 +24,7 @@ run_cmd() {
     msg=$2
 
     echo -e "${msg}: Started.."
-    ${cmd}
+    ${cmd} > /dev/null 2>&1
     rc=$?
     if [[ $rc != 0 ]]; then
         echo -e "${RED}${CROSS_MARK} ${msg}: Failed. ERR: ${rc}"
@@ -39,18 +39,29 @@ install_by_pacman() {
     run_cmd "${PACMANCMD/\%s/${package}}" "Pacman: Installing ${package}"
 }
 
+tangle_pkg() {
+   dir=$1
+   cd "/home/$USERNAME/${DIRECTORY}/orgs/$dir"
+   for org in $( ls *.org 2> /dev/null); do
+       run_cmd "${BABELCMD/\%s/${org}}" "Tangling ${dir}/${org}"
+   done
+}
+
 tangle_all() {
     if [ ! -d "/home/$USERNAME/$DIRECTORY" ]; then
         run_cmd "git clone ${GITHUBPATH} /home/$USERNAME/${DIRECTORY}" "Cloning Dotfiles"
     fi
-    run_cmd "cd /home/$USERNAME/${DIRECTORY}" "Going to ${DIRECTORY}"
-    for dir in $( ls -d orgs/* ); do
-        cd ${dir}
-        for org in $( ls *.org ); do
-            run_cmd "${BABELCMD/\%s/${org}}" "Tangling ${dir}/${org}"
-        done
-        cd /home/$USERNAME/${DIRECTORY}
+    run_cmd "cd /home/$USERNAME/${DIRECTORY}/orgs" "Going to ${DIRECTORY}"
+    for dir in $( ls -d * ); do
+        tangle_pkg ${dir}
+        cd "/home/$USERNAME/${DIRECTORY}/orgs"
     done
+}
+
+stow_pkg() {
+    dir=$1
+    cd "/home/$USERNAME/${DIRECTORY}/dots"
+    run_cmd "stow ${dir}" "Stowing ${dir}"
 }
 
 stow_all() {
@@ -62,34 +73,50 @@ stow_all() {
     stow scripts
     stow mutt
     stow wall
-    feh --bg-scale wall/.config/wall.jpg
-    wal -f base16-dracula
     cd dots
 
 
     for dir in $( ls  ); do
-        run_cmd "stow ${dir}" "Stowing ${dir}"
+        stow_pkg "${dir}"
+    done
+}
+
+
+add_config() {
+    dir=$1
+    script=$2
+    run_cmd "bash ${script} /home/$USERNAME/${DIRECTORY} ${dir}" "Adding ${dir} config"
+}
+
+add_all_configs() {
+
+    run_cmd "cd /home/$USERNAME/${DIRECTORY}/configs" "Going to ${DIRECTORY}/configs"
+    for dir in $( ls -d * ); do
+        cd ${dir}
+        for script in $( ls *.sh 2> /dev/null ); do
+            add_config ${dir} ${script}
+        done
+        cd "/home/$USERNAME/${DIRECTORY}/configs"
+    done
+}
+
+postscript_pkg() {
+    dir=$1
+    cd "/home/$USERNAME/${DIRECTORY}/orgs/$dir"
+    for script in $( ls *.sh 2> /dev/null ); do
+        run_cmd "bash ${script} /home/$USERNAME/${DIRECTORY} ${dir}" "Postscripting ${dir}"
     done
 
 }
 
 postscript_all() {
-
+    cd "/home/$USERNAME/${DIRECTORY}" || exit 1
+    feh --bg-scale wall/.config/wall.jpg
+    wal -f base16-dracula
     run_cmd "cd /home/$USERNAME/${DIRECTORY}/orgs" "Going to ${DIRECTORY}/orgs"
     for dir in $( ls -d * ); do
-        cd ${dir}
-        for script in $( ls *.sh 2> /dev/null ); do
-            run_cmd "bash ${script} /home/$USERNAME/${DIRECTORY} ${dir}" "Postscripting ${dir}"
-        done
-        cd /home/$USERNAME/${DIRECTORY}/orgs
-    done
-    run_cmd "cd /home/$USERNAME/${DIRECTORY}/configs" "Going to ${DIRECTORY}/configs"
-    for dir in $( ls -d * ); do
-        cd ${dir}
-        for script in $( ls *.sh 2> /dev/null ); do
-            run_cmd "bash ${script} /home/$USERNAME/${DIRECTORY} ${dir}" "Postscripting ${dir}"
-        done
-        cd /home/$USERNAME/${DIRECTORY}/configs
+        postscript_pkg ${dir}
+        cd "/home/$USERNAME/${DIRECTORY}/orgs"
     done
 }
 
@@ -306,22 +333,35 @@ install_all() {
     clear
 }
 
-while getopts ":ilrsthapugIU:P:A:" opt; do
+while getopts ":ac:Cr:Rs:St:Tp:PiIhuG:F:H:U:" opt; do
     case $opt in
-    I) cd arch || exit ; ./fifo ;;
+    a) cd arch || exit ; ./fifo ;;
+    #I) install_all ;;
+
+    c) add_config "${OPTARG}" ;;
+    C) add_all_configs ;;
+
+    r) tangle_pkg "${OPTARG}";postscript_pkg "${OPTARG}";stow_pkg "${OPTARG}";;
+    R) tangle_all; postscript_all; stow_all ;;
+
+    s) stow_pkg "${OPTARG}" ;;
+    S) stow_all ;;
+
+    t) tangle_pkg "${OPTARG}" ;;
+    T) tangle_all ;;
+
+    p) postscript_pkg "${OPTARG}" ;;
+    P) postscript_all ;;
+
+    i) installationloop ;;
+    I) install_all; tangle_all; postscript_all; stow_all ;;
+
     h) display_usage; exit 1 ;;
-    i) install_all ;;
-    l) installationloop ;;
-    r) tangle_all; postscript_all; stow_all ;;
-    s) stow_all ;;
-    t) tangle_all ;;
-    p) postscript_all ;;
     u) update ;;
-    a) install_all; tangle_all; postscript_all; stow_all ;;
-	g) GITHUBPATH=${OPTARG} && git ls-remote "${GITHUBPATH}" || exit ;;
-	P) PROGSFILE=${OPTARG} ;;
-	A) AURHELPER=${OPTARG} ;;
-	U) USERNAME=${OPTARG} ;;
+    G) GITHUBPATH="${OPTARG}" && git ls-remote "${GITHUBPATH}" || exit ;;
+	F) PROGSFILE="${OPTARG}" ;;
+	H) AURHELPER="${OPTARG}" ;;
+	U) USERNAME="${OPTARG}" ;;
     *) display_usage; exit 1 ;;
   esac
 done
