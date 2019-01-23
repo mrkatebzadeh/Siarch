@@ -230,6 +230,11 @@ endif
 set gcr=a:blinkon0
 set scrolloff=3
 
+"" Change cursor in different modes
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
+
 "" Status bar
 set laststatus=2
 
