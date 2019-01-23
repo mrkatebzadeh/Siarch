@@ -120,6 +120,7 @@ alias bw="wal -i ~/.config/wall.png" # Rerun pywal
 alias lc='colorls -A --sd'
 alias llc='colorls -lA --sd'
 alias lgt='colorls --git-status --tree --sd'
+alias tree='colorls --git-status --tree --sd'
 alias lg='colorls --git-status --sd'
 alias lt='colorls --tree --sd'
 alias ls='ls -hN --color=auto --group-directories-first'
