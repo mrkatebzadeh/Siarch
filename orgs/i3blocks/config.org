@@ -78,7 +78,7 @@ label=
 [cpu]
 command=i3cpu
 interval=15
-label=💻
+label=
 #+END_SRC
 * Disk Usage
 ** /

@@ -11,7 +11,7 @@ case $BLOCK_BUTTON in
 - Scroll to change."
 esac
 
-[ "$(pulsemixer --get-mute)" = "1" ] && printf "\\n" && exit
+[ "$(pulsemixer --get-mute)" = "1" ] && printf "\\n" && exit
 
 vol=$(pulsemixer --get-volume | awk '{print $1}')
 

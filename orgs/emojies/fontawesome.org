@@ -754,6 +754,7 @@
  fa-volume-down; &#xf027
  fa-volume-off; &#xf026
  fa-volume-up; &#xf028
+ fa-volume-mute &#xf6a9
  fa-warning (alias); &#xf071
  fa-wechat (alias); &#xf1d7
  fa-weibo; &#xf18a
