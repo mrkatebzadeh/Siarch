@@ -13,17 +13,17 @@ esac
 
 capacity=$(cat /sys/class/power_supply/"$1"/capacity) || exit
 status=$(cat /sys/class/power_supply/"$1"/status)
-
+icon=
 if [ "$capacity" -ge 80 ]; then
-	color="#00FF00"
+	icon=
 elif [ "$capacity" -ge 60 ]; then
-	color="#FFFFFF"
+	icon=
 elif [ "$capacity" -ge 40 ]; then
-	color="#FFF600"
+	icon=
 elif [ "$capacity" -ge 20 ]; then
-	color="#FFAE00"
+	icon=
 else
-	color="#FF0000"
+	icon=
 	warn="❗"
 fi
 
@@ -31,4 +31,4 @@ fi
 
 [ "$status" = "Charging" ] && color="#FFF"
 
-printf "<span color='%s'>%s%s%s</span>" "$color" "$(echo "$status" | sed -e "s/,//g;s/Discharging/🔋/;s/Charging/🔌/;s/Unknown/♻️/;s/Full/⚡/;s/ 0*/ /g;s/ :/ /g")" "$warn" "$(echo "$capacity" | sed -e 's/$/%/')"
+printf "<span color='%s'>%s%s%s</span>"  "$(echo "$status" | sed -e "s/,//g;s/Discharging/${icon}/;s/Charging//;s/Unknown/♻️/;s/Full//;s/ 0*/ /g;s/ :/ /g")" "$warn" "$(echo "$capacity" | sed -e 's/$/%/')"

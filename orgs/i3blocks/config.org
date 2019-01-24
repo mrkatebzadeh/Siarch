@@ -17,7 +17,7 @@ markup=pango
 * News
 #+BEGIN_SRC i3blocks
 [news]
-label=📰
+label=
 command=i3news
 interval=once
 signal=6
@@ -31,16 +31,16 @@ signal=9
 #+END_SRC
 * MPD
 #+BEGIN_SRC i3blocks
-[mpd]
-label=🎼
-command=i3mpd
-interval=once
-signal=11
+#[mpd]
+#label=
+#command=i3mpd
+#interval=once
+#signal=11
 #+END_SRC
 * Pacman
 #+BEGIN_SRC i3blocks
 [pacman]
-label=📦
+label=
 command=i3pacman
 interval=once
 signal=8
@@ -61,7 +61,7 @@ interval=3600
 * Mail
 #+BEGIN_SRC i3blocks
 [mail]
-label=📬
+label=
 command=i3mail
 interval=120
 signal=12
@@ -71,7 +71,7 @@ signal=12
 [memory]
 command=i3mem
 interval=30
-label=🧠
+label=
 #+END_SRC
 * CPU
 #+BEGIN_SRC i3blocks
@@ -91,7 +91,7 @@ command=i3disk /
 #+BEGIN_SRC i3blocks
 [diskspace]
 interval=60
-command=i3disk /home 🏠
+command=i3disk /home 
 #+END_SRC
 * Battery
 ** BAT0
@@ -109,7 +109,7 @@ interval=5
 * Time
 #+BEGIN_SRC i3blocks
 [time]
-label=📅
+label=
 command=i3date
 interval=30
 #+END_SRC
