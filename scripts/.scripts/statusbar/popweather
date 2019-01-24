@@ -1,2 +1,2 @@
 #!/bin/sh
-cat ~/.weatherreport && read
+bash -c "cat ~/.weatherreport && read"

@@ -39,6 +39,15 @@ for_window [instance="tmuxdd"] move scratchpad
 for_window [instance="tmuxdd"] border pixel 3
 for_window [instance="tmuxdd"] sticky enable
 #+END_SRC
+** Weather
+#+BEGIN_SRC i3
+
+for_window [instance="popweather"] floating enable
+for_window [instance="popweather"] resize set 1285 700
+for_window [instance="popweather"] move scratchpad
+for_window [instance="popweather"] border pixel 3
+for_window [instance="popweather"] sticky enable
+#+END_SRC
 
 ** Calculator
 Then I have a window running R I use for basic arithmetic
