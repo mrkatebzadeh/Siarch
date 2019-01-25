@@ -5,6 +5,15 @@
 fundle plugin 'edc/bass'
 fundle plugin 'danhper/fish-fastdir'
 fundle plugin 'nesl247/fish-theme-dracula'
+fundle plugin 'decors/fish-colored-man'
 
 fundle init
+#+END_SRC
+* Theme
+** Man page
+#+BEGIN_SRC conf
+set -g man_blink -o ff5555
+set -g man_bold -o 50fa7b
+set -g man_standout -b 44475a 8be9fd
+set -g man_underline -u ff79c6
 #+END_SRC
