@@ -18,9 +18,11 @@ gaps outer 10
 ** General
 #+BEGIN_SRC i3
 set $BROWSER firefox
-set $terminal --no-startup-id st fish
+set $terminal --no-startup-id tabbed -c -r 2 st -w '' fish
 set $term --no-startup-id st
 set $mod Mod4
+set $ranger --no-startup-id tabbed -c -r 2 st -w '' -e ranger
+set $surf --no-startup-id tabbed -c surf -e
 set $stoprec --no-startup-id dmenurecord kill
 set $shutdown sudo -A shutdown -h now
 set $reboot sudo -A reboot
@@ -376,10 +378,10 @@ bindsym XF86Launch1     exec $stoprec & xset dpms force off
 ** applications
 *** ranger
 #+BEGIN_SRC i3
-bindsym $mod+r          exec $term -e ranger
-bindsym XF86Explorer        exec $term -e ranger
-bindsym XF86MyComputer      exec $term -e ranger
-bindsym XF86Documents       exec $term -e ranger ~/Documents
+bindsym $mod+r          exec $ranger
+bindsym XF86Explorer        exec $ranger
+bindsym XF86MyComputer      exec $ranger
+bindsym XF86Documents       exec $ranger ~/Documents
 #+END_SRC
 *** neofetch
 #+BEGIN_SRC i3
@@ -411,7 +413,7 @@ bindsym $mod+F5     exec --no-startup-id $netrefresh
 *** other
 #+BEGIN_SRC i3
 bindsym $mod+grave      exec --no-startup-id dmenuunicode
-bindsym $mod+Shift+Delete   exec --no-startup-id lmc truemute ; exec $truepause ; exec --no-startup-id pauseallmpv; workspace 0; exec $term -e htop ; exec $term -e ranger
+bindsym $mod+Shift+Delete   exec --no-startup-id lmc truemute ; exec $truepause ; exec --no-startup-id pauseallmpv; workspace 0; exec $term -e htop ; exec $ranger
 bindsym $mod+Insert     exec --no-startup-id showclip
 bindsym $mod+Pause      exec --no-startup-id xcqr
 bindsym $mod+e          exec $term -e neomutt && pkill -RTMIN+12 i3blocks
@@ -430,7 +432,7 @@ mode "$freeze" { bindsym $mod+Shift+f mode "default"
 
 bindsym $mod+Shift+f        mode "$freeze" ;; exec --no-startup-id notify-send "<b>Distraction-free mode activated.</b> Press Super+Shift+f to return."
 bindsym $mod+Shift+g        exec --no-startup-id gimp
-bindsym $mod+Shift+c        exec --no-startup-id camtoggle
+bindsym $mod+c        exec $surf
 #bindsym $mod+v          exec $term -e ncmpcpp -s visualizer
 bindsym $mod+v          exec $term -e cava
 bindsym $mod+n          exec $term -e newspod && pkill -RTMIN+6 i3blocks

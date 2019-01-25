@@ -81,6 +81,7 @@ opacity-rule = [
     "80:class_g = 'rofi'",
     "100:class_g = 'Firefox'",
     "65:class_g = 'st-256color'",
+    "65:class_g = 'tabbed'",
     "65:class_g = 'St'",
     "80:class_g = 'Nemo'",
 #    "80:class_g = 'polybar bar'",
