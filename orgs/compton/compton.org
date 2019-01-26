@@ -60,13 +60,13 @@ shadow-ignore-shaped = false;
 # Opacity
 #
 #################################
-blur-kern = "3x3box";
+blur-kern = "5x5box";
 blur-background = true;
 blur-method = "kawase";
 blur-strength = 15;
 menu-opacity = 1;
-inactive-opacity = 0.73;
-active-opacity = 1;
+inactive-opacity = 0.50;
+active-opacity = 0.65;
 frame-opacity = 1;
 inactive-opacity-override = false;
 blur-background-frame = true;
@@ -75,14 +75,19 @@ alpha-step = 0.06;
 #blur-background-fixed = true;
 blur-background-exclude = [
     "window_type = 'firefox'",
-    "window_type = 'desktop'"
+    "window_type = 'desktop'",
+    "window_type = 'emacs'",
+    "window_type = 'Emacs'"
 ];
 opacity-rule = [
     "80:class_g = 'rofi'",
-    "100:class_g = 'Firefox'",
-    "65:class_g = 'st-256color'",
-    "65:class_g = 'tabbed'",
-    "65:class_g = 'St'",
+    "90:class_g = 'emacs'",
+    "90:class_g = 'Emacs'",
+    "99:class_g = 'Firefox'",
+    "99:class_g = 'firefox'",
+#    "65:class_g = 'st-256color'",
+#    "65:class_g = 'tabbed'",
+#    "65:class_g = 'St'",
     "80:class_g = 'Nemo'",
 #    "80:class_g = 'polybar bar'",
 #    "80:class_g = 'test2'",
