@@ -1,9 +1,9 @@
 #!/bin/sh
 # Feed this script a link and it will give dmenu
 # some choice programs to use to open it.
-
-x=$(printf "mpv\\nmpv (loop)\\nwget\\nfeh\\nbrowser\\nw3m\\nmpv (float)" | dmenu -i -p "Open link with what program?")
+x=$(printf "podcaster\\nmpv\\nmpv (loop)\\nwget\\nfeh\\nbrowser\\nw3m\\nmpv (float)" | dmen "Open link with what program?")
 case "$x" in
+	podcaster) setsid podcaster "$1" >/dev/null 2>&1 & ;;
 	mpv) setsid mpv -quiet "$1" >/dev/null 2>&1 & ;;
 	"mpv (loop)") setsid mpv -quiet --loop "$1" >/dev/null 2>&1 & ;;
 	wget) wget "$1" >/dev/null 2>&1 ;;
