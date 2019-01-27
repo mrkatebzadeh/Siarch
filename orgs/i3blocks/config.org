@@ -85,7 +85,7 @@ label=
 #+BEGIN_SRC i3blocks
 [diskspace]
 interval=60
-command=i3disk 
+command=i3disk / 
 #+END_SRC
 ** home
 #+BEGIN_SRC i3blocks
