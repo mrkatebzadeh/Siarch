@@ -12,4 +12,5 @@
 (when (featurep! :completion helm)
   (package! helm-bibtex))
 (package! org-ref)
+(package! powerthesaurus)
 #+END_SRC

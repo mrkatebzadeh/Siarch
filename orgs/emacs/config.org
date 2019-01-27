@@ -441,3 +441,14 @@ right before sending message."
 
 (message "Pdf-tools is Doomed!")
 #+END_SRC
+* Thesaurus
+#+BEGIN_SRC emacs-lisp
+
+(def-package! powerthesaurus
+:config
+ (map!
+      (:leader
+        (:desc "Thesaurus" :prefix "j"
+          :desc "Fetch selected text"     :n "i"   #'powerthesaurus-lookup-word))))
+(message "Thesaurus is Doomed!")
+#+END_SRC
