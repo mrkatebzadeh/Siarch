@@ -17,3 +17,10 @@ set -g man_bold -o 50fa7b
 set -g man_standout -b 44475a 8be9fd
 set -g man_underline -u ff79c6
 #+END_SRC
+* Greeting
+#+BEGIN_SRC fish
+function fish_greeting
+    cowsay (fortune) | lolcat
+end
+funcsave fish_greeting
+#+END_SRC
