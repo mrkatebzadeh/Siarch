@@ -28,7 +28,7 @@ elif [ "$capacity" -ge 20 ]; then
 else
 	icon=
     color="#ff5555"
-	warn="❗"
+	warn=" ! "
 fi
 
 [ -z $warn ] && warn=" "
