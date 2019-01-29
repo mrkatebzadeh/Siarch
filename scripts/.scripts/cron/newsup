@@ -8,11 +8,13 @@ ping -q -t 1 -c 1 `ip r | grep -m 1 default | cut -d ' ' -f 3` >/dev/null || exi
 
 note "Updating RSS feeds..." "$PIX/rss.gif"
 
-echo 🔃 > ~/.config/newsboat/.update
+echo  > ~/.config/newsboat/.update
 pkill -RTMIN+6 i3blocks
 
+pgrep -x dunst >/dev/null && dunstify -r $(echo $0 | cksum | cut -b 1,2,3,4,5) "Updating RSS feeds..." --icon=rss
 /usr/bin/newsboat -x reload
 rm -f ~/.config/newsboat/.update
 pkill -RTMIN+6 i3blocks
 
+pgrep -x dunst >/dev/null && dunstify -r $(echo $0 | cksum | cut -b 1,2,3,4,5) "RSS feed update complete" --icon=rss
 note "RSS feed update complete." "$PIX/rss.gif"
