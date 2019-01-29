@@ -3,5 +3,5 @@
 #
 # Imported bash alias 'sv' from file '/home/siavash/.bashrc'
 
-command sudo vim ${@}
+command sudo nvim ${@}
 

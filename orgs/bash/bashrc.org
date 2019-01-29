@@ -98,13 +98,13 @@ alias se='ls /usr/bin | grep'
 ** Misc
 #+BEGIN_SRC sh
 # Some aliases
-alias vi='vim'
+alias vi='nvim'
 alias aur='yay -S --noconfirm'
 alias rm='rm -ri'
 alias :q='exit'
 alias p="sudo pacman"
 alias SS="sudo systemctl"
-alias sv="sudo vim"
+alias sv="sudo nvim"
 alias r="ranger"
 alias sr="sudo ranger"
 alias ka="killall"

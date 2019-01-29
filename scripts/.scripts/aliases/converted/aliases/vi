@@ -3,5 +3,5 @@
 #
 # Imported bash alias 'vi' from file '/home/siavash/.bashrc'
 
-command vim ${@}
+command nvim ${@}
 
