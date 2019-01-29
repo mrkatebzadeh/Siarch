@@ -104,7 +104,8 @@ postscript_pkg() {
     dir=$1
     cd "/home/$USERNAME/${DIRECTORY}/orgs/$dir"
     for script in $( ls *.sh 2> /dev/null ); do
-        run_cmd "bash ${script} /home/$USERNAME/${DIRECTORY} ${dir}" "Postscripting ${dir}"
+        echo "Postscripting ${dir}"
+        bash ${script} /home/$USERNAME/${DIRECTORY} ${dir}
     done
 
 }
