@@ -52,6 +52,7 @@ Plug 'scrooloose/syntastic'
 Plug 'Yggdroot/indentLine'
 Plug 'avelino/vim-bootstrap-updater'
 Plug 'sheerun/vim-polyglot'
+Plug 'junegunn/goyo.vim'
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 else
@@ -189,6 +190,7 @@ set number
 
 let no_buffers_menu=1
 if !exists('g:not_finish_vimplug')
+  let g:dracula_colorterm = 0
   colorscheme dracula
 endif
 
