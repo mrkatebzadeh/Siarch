@@ -12,8 +12,8 @@
 ** Needed for i3-gaps
 #+BEGIN_SRC i3
 for_window [class="^.*"] border pixel 0
-gaps inner 15
-gaps outer 10
+gaps inner 10
+gaps outer 1
 #+END_SRC
 ** General
 #+BEGIN_SRC i3
@@ -169,7 +169,7 @@ exec_always --no-startup-id notify-send --icon=siarch "<b>True</b> happiness can
 #+END_SRC
 ** keyboard layout
 #+BEGIN_SRC i3
-exec_always "setxkbmap -model pc104 -layout us,ir -variant ,, -option grp:alt_shift_toggle"
+exec_always "setxkbmap -model pc104 -layout gb,ir -variant ,, -option grp:alt_shift_toggle"
 #+END_SRC
 * Key Bindings
 ** i3
