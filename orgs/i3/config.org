@@ -161,8 +161,8 @@ bar {
 * Basic Setups
 ** start message
 #+BEGIN_SRC i3
-exec_always --no-startup-id notify-send --icon=siarch "<b>True</b> happiness can be found when two contrary powers cooperate together." -t 10000
-#+END_SRC
+exec_always --no-startup-id notify-send --icon=siarch "Welcome" "<b>True</b> happiness can be found when two contrary powers cooperate together." -t 10000
+#+End_SRC
 ** wal theme
 #+BEGIN_SRC i3
 #exec_always $term -e wal -i ~/.config/wall.jpg && wal -f base16-dracula
