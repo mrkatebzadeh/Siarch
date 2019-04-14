@@ -22,7 +22,7 @@ export REFER="$HOME/.referbib"
 export PIX="$HOME/.scripts/pix"
 
 [ -f ~/.bashrc ] && source ~/.bashrc
-
+setxkbmap -model pc104 -layout gb,ir -variant ,, -option grp:alt_shift_toggle
 # Start graphical server if i3 not already running.
 if [ "$(tty)" = "/dev/tty1" ]; then
 	pgrep -x i3 || exec startx
