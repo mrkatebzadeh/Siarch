@@ -38,6 +38,9 @@ values."
 #+BEGIN_SRC emacs-lisp
    dotspacemacs-configuration-layers
    '(
+    (c-c++ :variables 
+           c-c++-enable-clang-support t
+           c-c++-default-mode-for-headers 'c++-mode)
      html
      csv
      python
