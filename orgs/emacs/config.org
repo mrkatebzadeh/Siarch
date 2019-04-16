@@ -338,16 +338,19 @@ you should place your code here."
 #+END_SRC
 ** reload-siarch
 #+BEGIN_SRC emacs-lisp
-(defun reload-siarch  ()
-   "Reloading spacemacs configs."
-   (interactive)
-   (shell-command "~/.dotorg/siarch.sh -r emacs"))
-(defun open-siarch ()
-  "Edit the `config.org', in the current window."
-  (interactive)
-(find-file-existing "~/.dotorg/orgs/emacs/config.org"))
-(spacemacs/set-leader-keys "fer" 'reload-siarch)
-(spacemacs/set-leader-keys "feo" 'open-siarch)
+  (defun reload-siarch  ()
+    "Reloading spacemacs configs."
+    (interactive)
+    (shell-command "~/.dotorg/siarch.sh -r emacs"))
+  (defun open-siarch ()
+    "Edit the `config.org', in the current window."
+    (interactive)
+  (find-file-existing "~/.dotorg/orgs/emacs/config.org"))
+  (spacemacs/set-leader-keys "fer" 'reload-siarch)
+  (spacemacs/set-leader-keys "feo" 'open-siarch)
+  ;; Set custom-file to custom.el to avoid this init.el be populated by
+  ;; auto generated custom variable configs.
+  (setq custom-file "~/.emacs.d/custom.el")
 #+END_SRC
 ** yas-snippet
 #+BEGIN_SRC emacs-lisp
