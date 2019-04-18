@@ -373,6 +373,16 @@ you should place your code here."
   ;; org-ref
   (spacemacs/declare-prefix "]" "bracket-prefix")
   (spacemacs/set-leader-keys "]]" 'org-ref-clean-bibtex-entry)
+  (defun paperdlr (doi) 
+        "DOI paperdlr."
+        (interactive "sDOI: ")
+        (shell-command 
+           (concat (concat (concat (concat (concat 
+             "mkdir -p /tmp/paperdlr/ && cd /tmp/paperdlr/ && rm -rf *  && paperdlr " doi)
+                " && mv *.pdf " ) 
+                org-ref-pdf-directory) 
+                " && cat *.bib >> ") 
+                bibtex-completion-bibliography)))
   (setq org-latex-pdf-process '("latexmk -pdflatex='%latex -shell-escape -interaction nonstopmode' -pdf -output-directory=%o -f %f"))
   (setq org-ref-open-pdf-function
         (lambda (fpath)
@@ -383,6 +393,38 @@ you should place your code here."
   (setq bibtex-completion-bibliography "~/Dropbox/org/ref/master.bib"
         bibtex-completion-library-path "~/Dropbox/org/ref/pdfs"
         bibtex-completion-notes-path   "~/Dropbox/org/ref/notes.org")
+  ;; search in pdfs
+  (defun search-in-pdfs
+          (&optional targs use-region-or-symbol-p)
+        "Version of `helm-do-grep' with a default input."
+        (interactive)
+        (require 'helm)
+        (cl-letf*
+            (((symbol-function 'this-fn) (symbol-function 'helm-do-grep-1))
+             ((symbol-function 'helm-do-grep-1)
+              (lambda (targets &optional recurse zgrep exts
+                               default-input region-or-symbol-p)
+                (let* ((new-input (when region-or-symbol-p
+                                    (if (region-active-p)
+                                        (buffer-substring-no-properties
+                                         (region-beginning) (region-end))
+                                      (thing-at-point 'symbol t))))
+                       (quoted-input (when new-input
+                                       (rxt-quote-pcre new-input))))
+                  (this-fn targets recurse zgrep exts
+                           default-input quoted-input))))
+             (preselection (or (dired-get-filename nil t)
+                               (buffer-file-name (current-buffer))))
+             (targets   (if targs
+                            targs
+                          (helm-read-file-name
+                           "Search in file(s): "
+                           :marked-candidates t
+                           :preselect (if helm-ff-transformer-show-only-basename
+                                          (helm-basename preselection)
+                                        preselection)))))
+          (helm-do-grep-1 targets nil nil nil nil use-region-or-symbol-p)))
+
 #+END_SRC
 ** org-agenda
 #+BEGIN_SRC emacs-lisp
