@@ -28,6 +28,7 @@ set $shutdown sudo -A shutdown -h now
 set $reboot sudo -A reboot
 set $netrefresh --no-startup-id sudo -A systemctl restart NetworkManager
 set $hibernate sudo -A systemctl suspend
+set $calculator --no-startup-id rofi -show calc -modi calc -no-show-match -no-sort
 #+END_SRC
 
 * Dropdown Windows
@@ -55,11 +56,6 @@ for_window [instance="popweather"] sticky enable
 Then I have a window running R I use for basic arithmetic
 I'll later bind this to mod+a.
 #+BEGIN_SRC i3
-for_window [instance="dropdowncalc"] floating enable
-for_window [instance="dropdowncalc"] resize set 800 400
-for_window [instance="dropdowncalc"] move scratchpad
-for_window [instance="dropdowncalc"] border pixel 3
-for_window [instance="dropdowncalc"] sticky enable
 #+END_SRC
 
 * External Scripts
@@ -422,7 +418,7 @@ bindsym $mod+t          exec $term -e calcurse
 bindsym $mod+Shift+t          exec --no-startup-id dmenucalcurse
 bindsym $mod+i          exec $term -e htop
 bindsym $mod+Shift+v          exec $term -e vtop
-bindsym $mod+a          exec --no-startup-id ddspawn dropdowncalc
+bindsym $mod+a          exec $calculator
 bindsym $mod+Shift+a        exec $term -e pulsemixer
 
 bindsym $mod+g              exec --no-startup-id icefox
