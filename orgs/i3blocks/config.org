@@ -54,9 +54,9 @@ signal=7
 #+END_SRC
 * Weather
 #+BEGIN_SRC i3blocks
-[weather]
-command=i3weather
-interval=3600
+# [weather]
+# command=i3weather
+# interval=3600
 #+END_SRC
 * Mail
 #+BEGIN_SRC i3blocks
