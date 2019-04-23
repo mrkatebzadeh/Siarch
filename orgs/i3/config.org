@@ -42,6 +42,12 @@ for_window [instance="tmuxdd"] move scratchpad
 for_window [instance="tmuxdd"] border pixel 3
 for_window [instance="tmuxdd"] sticky enable
 #+END_SRC
+** MPV
+#+BEGIN_SRC i3
+for_window [class="mpv"] floating enable
+for_window [class="mpv"] sticky enable
+for_window [class="mpv"] exec --no-startup-id bottomright
+#+END_SRC
 ** Weather
 #+BEGIN_SRC i3
 
@@ -212,7 +218,8 @@ bindsym $mod+Shift+y        exec --no-startup-id i3resize left
 bindsym $mod+Shift+u        exec --no-startup-id i3resize down
 bindsym $mod+Shift+i        exec --no-startup-id i3resize up
 bindsym $mod+Shift+o        exec --no-startup-id i3resize right
-bindsym $mod+o              sticky toggle
+bindsym $mod+o        exec --no-startup-id mpvfinder
+# bindsym $mod+o              sticky toggle
 # bindsym $mod+Shift+d        gaps inner current set 0; gaps outer current set 0
 bindsym $mod+f              fullscreen toggle
 bindsym $mod+h              focus left
@@ -234,8 +241,8 @@ bindsym $mod+Shift+Down     move down
 bindsym $mod+Shift+Up       move up
 bindsym $mod+Shift+Right    move right
 bindsym $mod+b          bar mode toggle
-# bindsym $mod+Shift+b        floating toggle; sticky toggle; exec --no-startup-id bottomleft
-bindsym $mod+Shift+b        exec --no-startup-id dmenubluetooth
+bindsym $mod+Shift+b        floating toggle; sticky toggle; exec --no-startup-id bottomleft
+#bindsym $mod+Shift+b        exec --no-startup-id dmenubluetooth
 bindsym $mod+q          [con_id="__focused__" instance="^(?!dropdowncalc|tmuxdd).*$"] kill
 bindsym $mod+Shift+q        [con_id="__focused__" instance="^(?!dropdowncalc|tmuxdd).*$"] kill
 #+END_SRC
@@ -353,7 +360,7 @@ bindsym XF86AudioRewind     exec --no-startup-id lmc back 10
 bindsym XF86AudioForward    exec --no-startup-id lmc forward 10
 
 bindsym $mod+p          exec --no-startup-id lmc toggle
-bindsym $mod+Shift+p        exec --no-startup-id lmc pause
+# bindsym $mod+Shift+p        exec --no-startup-id lmc pause
 bindsym $mod+Shift+m        exec --no-startup-id dmenumpdyt
 
 #+END_SRC
@@ -372,16 +379,16 @@ bindsym $mod+Delete     exec $stoprec
 bindsym XF86Launch1     exec $stoprec & xset dpms force off
 #+END_SRC
 ** applications
+*** youtube
+#+BEGIN_SRC i3
+bindsym $mod+Shift+p    exec  --no-startup-id   playyt
+#+END_SRC
 *** ranger
 #+BEGIN_SRC i3
 bindsym $mod+r          exec $ranger
 bindsym XF86Explorer        exec $ranger
 bindsym XF86MyComputer      exec $ranger
 bindsym XF86Documents       exec $ranger ~/Documents
-#+END_SRC
-*** neofetch
-#+BEGIN_SRC i3
-bindsym $mod+Shift+n          exec $term -e neofetchp
 #+END_SRC
 *** browser
 #+BEGIN_SRC i3
@@ -420,6 +427,7 @@ bindsym $mod+i          exec $term -e htop
 bindsym $mod+Shift+v          exec $term -e vtop
 bindsym $mod+a          exec $calculator
 bindsym $mod+Shift+a        exec $term -e pulsemixer
+bindsym $mod+Shift+n          floating toggle; sticky toggle; exec --no-startup-id hover right
 
 bindsym $mod+g              exec --no-startup-id icefox
 set $freeze Distraction-free mode (super+shift+f to reactivate bindings)
