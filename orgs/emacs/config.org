@@ -68,6 +68,12 @@ values."
            mu4e-enable-notifications t)
      themes-megapack
      twitter
+     (scala :variables 
+           scala-indent:use-javadoc-style t
+           scala-enable-eldoc t
+           scala-use-unicode-arrows t
+           scala-auto-start-ensime t
+           scala-auto-insert-asterisk-in-comments t)
      )
 #+END_SRC
 * defaults end
