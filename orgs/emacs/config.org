@@ -1,5 +1,5 @@
 #+TITLE: spacemacs config
-#+PROPERTY: header-args  :results silent :tangle ../../dots/emacs/.spacemacs :mkdirp yes
+#+PROPERTY: header-args  :results silent :tangle ../../dots/emacs/.spacemacs.d/init.el :mkdirp yes
 * defaults start
 #+BEGIN_SRC emacs-lisp
 ;; -*- mode: emacs-lisp -*-
