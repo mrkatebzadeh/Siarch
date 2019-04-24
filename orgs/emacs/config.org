@@ -471,7 +471,7 @@ you should place your code here."
            (mu4e-drafts-folder "/gmail/[Gmail].Drafts")
            (user-mail-address "mr.katebzadeh@gmail.com")
            (user-full-name "M.R. Siavash Katebzadeh"))
-          ("college"
+          ("staff"
            (mu4e-sent-messages-behavior sent)
            (mu4e-sent-folder "/staff/Sent")
            (mu4e-drafts-folder "/staff/Drafts")
