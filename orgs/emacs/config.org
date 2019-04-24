@@ -82,7 +82,9 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(
+       verilog-mode
+   )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -500,3 +502,15 @@ you should place your code here."
 #+BEGIN_SRC emacs-lisp
   )
 #+END_SRC
+** verilog-mod
+   #+BEGIN_SRC emacs-lisp
+   (add-hook 'verilog-mode-hook
+          (lambda ()
+            (unless (or (file-exists-p "makefile")
+                        (file-exists-p "Makefile"))
+              (set (make-local-variable 'compile-command)
+                   (concat "iverilog __FILE__ -o "
+                           (if buffer-file-name
+                               (shell-quote-argument
+                                (file-name-sans-extension buffer-file-name))))))))
+   #+END_SRC
