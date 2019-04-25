@@ -84,6 +84,7 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
        verilog-mode
+       (org-drill :location (recipe :fetcher github :repo "iocanel/org-drill"))
    )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
