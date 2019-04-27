@@ -1,0 +1,90 @@
+command=/usr/lib/i3blocks/$BLOCK_NAME
+align=center
+separator=false
+
+separator_block_width=25
+
+markup=pango
+
+[news]
+label=
+command=i3news
+interval=once
+signal=6
+
+[record]
+command=cat ~/.recordingicon
+interval=once
+signal=9
+
+#[mpd]
+#label=
+#command=i3mpd
+#interval=once
+#signal=11
+
+[pacman]
+label=
+command=i3pacman
+interval=once
+signal=8
+
+[torrents]
+command=i3torrent
+interval=20
+signal=7
+
+# [weather]
+# command=i3weather
+# interval=3600
+
+[mail]
+label=E
+command=i3mail
+interval=120
+signal=12
+
+[memory]
+command=i3mem
+interval=30
+label=M
+
+[cpu]
+command=i3cpu
+interval=15
+label=C
+
+[diskspace]
+interval=60
+command=i3disk / R
+
+[diskspace]
+interval=60
+command=i3disk /home H
+
+[battery]
+command=i3battery BAT0
+interval=5
+
+[battery]
+command=i3battery BAT1
+interval=5
+
+[time]
+label=C
+command=i3date
+interval=30
+
+[internet]
+command=i3internet
+interval=10
+
+[volume]
+interval=once
+command=i3volume
+signal=10
+
+[keymap]
+label=K
+command=bash -c 'xkb-switch;xkb-switch -W'
+interval=persist
