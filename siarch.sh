@@ -14,10 +14,10 @@ CROSS_MARK="✗"
 BABELCMD="emacs --batch -l org %s -f org-babel-tangle"
 PACMANCMD="sudo pacman -S %s --noconfirm --needed"
 GITHUBPATH="https://github.com/mrkatebzadeh/Siarch.git"
-PROGSFILE="progs.csv"
+PROGSFILE="workstations/featured/progs.csv"
 AURHELPER="yay --needed"
 
-DIRECTORY=.dotorg
+DIRECTORY=.dot
 USERNAME=`whoami`
 run_cmd() {
     cmd=$1
@@ -65,6 +65,7 @@ stow_pkg() {
 }
 
 stow_all() {
+    rm -rf ~/.stow
     echo "--target=/home/$USERNAME" > ~/.stowrc
     cd /home/$USERNAME
     echo "--target=/home/$USERNAME" > .stowrc
@@ -277,6 +278,13 @@ finalize(){
 
 install_all() {
     run_cmd "sudo pacman -Sy --noconfirm" "Updating pacman"
+
+    CUR=`pwd`
+    cd /tmp
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si
+    cd "$CUR"
 
     initialcheck
 
