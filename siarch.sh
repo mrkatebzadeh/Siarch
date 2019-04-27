@@ -43,7 +43,7 @@ install_by_pacman() {
 
 tangle_pkg() {
    dir=$1
-   cd "/home/$USERNAME/${DIRECTORY}/${WORKSTATION}/orgs/$dir"
+   cd "/home/$USERNAME/${DIRECTORY}/workstations/${WORKSTATION}/orgs/$dir"
    for org in $( ls *.org 2> /dev/null); do
        run_cmd "${BABELCMD/\%s/${org}}" "Tangling ${dir}/${org}"
    done
@@ -53,16 +53,16 @@ tangle_all() {
     if [ ! -d "/home/$USERNAME/$DIRECTORY" ]; then
         run_cmd "git clone ${GITHUBPATH} /home/$USERNAME/${DIRECTORY}" "Cloning Dotfiles"
     fi
-    run_cmd "cd /home/$USERNAME/${DIRECTORY}/${WORKSTATION}/orgs" "Going to ${DIRECTORY}/${WORKSTATION}"
+    run_cmd "cd /home/$USERNAME/${DIRECTORY}/workstations/${WORKSTATION}/orgs" "Going to ${DIRECTORY}/workstations/${WORKSTATION}"
     for dir in $( ls -d * ); do
         tangle_pkg ${dir}
-        cd "/home/$USERNAME/${DIRECTORY}/${WORKSTATION}/orgs"
+        cd "/home/$USERNAME/${DIRECTORY}/workstations/${WORKSTATION}/orgs"
     done
 }
 
 stow_pkg() {
     dir=$1
-    cd "/home/$USERNAME/${DIRECTORY}/${WORKSTATION}/dots"
+    cd "/home/$USERNAME/${DIRECTORY}/workstations/${WORKSTATION}/dots"
     run_cmd "stow ${dir}" "Stowing ${dir}"
 }
 
@@ -76,7 +76,7 @@ stow_all() {
     stow scripts
     stow mutt
     stow wall
-    cd /home/$USERNAME/${DIRECTORY}/${WORKSTATION}
+    cd /home/$USERNAME/${DIRECTORY}/workstations/${WORKSTATION}
     cd dots
 
 
@@ -89,39 +89,39 @@ stow_all() {
 add_config() {
     dir=$1
     script=$2
-    run_cmd "bash ${script} /home/$USERNAME/${DIRECTORY}/${WORKSTATION} ${dir}" "Adding ${dir} config"
+    run_cmd "bash ${script} /home/$USERNAME/${DIRECTORY}/workstations/${WORKSTATION} ${dir}" "Adding ${dir} config"
 }
 
 add_all_configs() {
 
-    run_cmd "cd /home/$USERNAME/${DIRECTORY}/${WORKSTATION}/configs" "Going to ${DIRECTORY}/${WORKSTATION}/configs"
+    run_cmd "cd /home/$USERNAME/${DIRECTORY}/workstations/${WORKSTATION}/configs" "Going to ${DIRECTORY}/workstations/${WORKSTATION}/configs"
     for dir in $( ls -d * ); do
         cd ${dir}
         for script in $( ls *.sh 2> /dev/null ); do
             add_config ${dir} ${script}
         done
-        cd "/home/$USERNAME/${DIRECTORY}/${WORKSTATION}/configs"
+        cd "/home/$USERNAME/${DIRECTORY}/workstations/${WORKSTATION}/configs"
     done
 }
 
 postscript_pkg() {
     dir=$1
-    cd "/home/$USERNAME/${DIRECTORY}/${WORKSTATION}/orgs/$dir"
+    cd "/home/$USERNAME/${DIRECTORY}/workstations/${WORKSTATION}/orgs/$dir"
     for script in $( ls *.sh 2> /dev/null ); do
         echo "Postscripting ${dir}"
-        bash ${script} /home/$USERNAME/${DIRECTORY}/${WORKSTATION} ${dir}
+        bash ${script} /home/$USERNAME/${DIRECTORY}/workstations/${WORKSTATION} ${dir}
     done
 
 }
 
 postscript_all() {
-    cd "/home/$USERNAME/${DIRECTORY}/${WORKSTATION}" || exit 1
+    cd "/home/$USERNAME/${DIRECTORY}/workstations/${WORKSTATION}" || exit 1
     feh --bg-scale wall/.config/wall.jpg
     wal -f base16-dracula
-    run_cmd "cd /home/$USERNAME/${DIRECTORY}/${WORKSTATION}/orgs" "Going to ${DIRECTORY}/${WORKSTATION}/orgs"
+    run_cmd "cd /home/$USERNAME/${DIRECTORY}/workstations/${WORKSTATION}/orgs" "Going to ${DIRECTORY}/workstations/${WORKSTATION}/orgs"
     for dir in $( ls -d * ); do
         postscript_pkg ${dir}
-        cd "/home/$USERNAME/${DIRECTORY}/${WORKSTATION}/orgs"
+        cd "/home/$USERNAME/${DIRECTORY}/workstations/${WORKSTATION}/orgs"
     done
 }
 
@@ -213,7 +213,7 @@ aurinstall() {
 }
 
 installationloop() {
-    PROGSFILE="workstations/${WORKSTATION}/progs.csv"
+    PROGSFILE="workstations/workstations/${WORKSTATION}/progs.csv"
 	([ -f "$PROGSFILE" ] && cp "$PROGSFILE" /tmp/progs.csv) || curl -Ls "$PROGSFILE" | sed '/^#/d' > /tmp/progs.csv
 	total=$(wc -l < /tmp/progs.csv)
 	aurinstalled=$(pacman -Qm | awk '{print $1}')
@@ -362,7 +362,7 @@ display_usage() {
     echo -e "\t-U {user}\tApply changes for username {user}."
 }
 
-while getopts ":ac:Cr:Rs:St:Tp:PiIhuG:F:H:U:" opt; do
+while getopts ":ac:Cr:Rs:St:Tp:PiIhuG:F:f:H:U:" opt; do
     case $opt in
     a) cd arch || exit ; ./fifo ;;
     #I) install_all ;;
@@ -388,7 +388,7 @@ while getopts ":ac:Cr:Rs:St:Tp:PiIhuG:F:H:U:" opt; do
     h) display_usage; exit 1 ;;
     u) update ;;
     G) GITHUBPATH="${OPTARG}" && git ls-remote "${GITHUBPATH}" || exit ;;
-	f) WORKSTATION"${OPTARG}" ;;
+	f) WORKSTATION="${OPTARG}" ;;
 	F) PROGSFILE="${OPTARG}" ;;
 	H) AURHELPER="${OPTARG}" ;;
 	U) USERNAME="${OPTARG}" ;;
