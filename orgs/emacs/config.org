@@ -88,6 +88,7 @@ values."
        (justify-kp :location (recipe :fetcher github :repo "Fuco1/justify-kp"))
        nov
        visual-fill-column
+       define-word
    )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -560,6 +561,11 @@ you should place your code here."
    (add-hook 'nov-post-html-render-hook 'my-nov-post-html-render-hook)
    #+END_SRC
    
+** define-word
+   #+BEGIN_SRC emacs-lisp
+   (global-set-key (kbd "C-c d") 'define-word-at-point)
+   (global-set-key (kbd "C-c D") 'define-word)
+   #+END_SRC
 
 ** end
 #+BEGIN_SRC emacs-lisp
