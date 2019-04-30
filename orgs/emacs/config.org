@@ -89,6 +89,7 @@ values."
        nov
        visual-fill-column
        define-word
+       interleave
    )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -382,31 +383,139 @@ you should place your code here."
 
 #+END_SRC
 ** org-ref
+*** Clean
 #+BEGIN_SRC emacs-lisp
   ;; org-ref
-  (spacemacs/declare-prefix "]" "bracket-prefix")
-  (spacemacs/set-leader-keys "]]" 'org-ref-clean-bibtex-entry)
+
+      (defun my-orcb-key ()
+          
+         "Replace the key in the entry, also change the pdf file name if it exites."
+        
+        (let ((key (funcall org-ref-clean-bibtex-key-function
+        		      (bibtex-generate-autokey))))
+            ;; first we delete the existing key
+            (bibtex-beginning-of-entry)
+            (re-search-forward bibtex-entry-maybe-empty-head)
+        
+            (setq old-key (match-string 2));;store old key
+        
+            (if (match-beginning bibtex-key-in-head)
+        	(delete-region (match-beginning bibtex-key-in-head)
+        		       (match-end bibtex-key-in-head)))
+            ;; check if the key is in the buffer
+            (when (save-excursion
+        	    (bibtex-search-entry key))
+              (save-excursion
+        	(bibtex-search-entry key)
+        	(bibtex-copy-entry-as-kill)
+        	(switch-to-buffer-other-window "*duplicate entry*")
+        	(bibtex-yank))
+              (setq key (bibtex-read-key "Duplicate Key found, edit: " key)))
+            (insert key)
+            (kill-new key)
+        
+            (save-excursion 
+              "update pdf names and notes items"
+              ;; rename the pdf after change the bib item key
+              (my-update-pdf-names old-key key)
+              ;; renmae the notes item after change the bib item key
+              (my-update-notes-item old-key key))
+            
+            ;; save the buffer
+            (setq require-final-newline t)
+            (save-buffer)))
+        
+        
+        ;; define a function that update the pdf file names before change the key of a bib entry
+        
+        (defun my-update-pdf-names (old-key new-key)
+          (let ((old-filename (concat org-ref-pdf-directory old-key ".pdf"))
+        	(new-filename (concat org-ref-pdf-directory new-key ".pdf" )))
+            (if (file-exists-p old-filename)
+        	(rename-file old-filename new-filename))))
+        
+        
+        ;; define a function that update the notes items before change the key of bib entry
+        
+        (defun my-update-notes-item (old-key new-key)
+          "update a notes item of a old-key by a new-key in case the bib item is changed"
+        
+          (set-buffer (find-file-noselect org-ref-bibliography-notes))	
+          ;; move to the beginning of the buffer
+          (goto-char (point-min))
+          ;; find the string and replace it
+          (let ((newcite new-key)
+        	(regstr old-key))
+        
+            (while (re-search-forward regstr nil t)
+        
+              (delete-region (match-beginning 0)
+        		     (match-end 0))
+              (insert newcite))
+        
+              ;; save the buffer
+            (setq require-final-newline t)
+            (save-buffer)
+            (kill-buffer)))
+  (add-hook 'org-ref-clean-bibtex-entry-hook 'my-orcb-key)
+  (spacemacs/set-leader-keys "Bc" 'org-ref-clean-bibtex-entry)
+#+END_SRC
+*** DOI/PDF
+#+BEGIN_SRC emacs-lisp
+
+  (defun get-bibtex-from-doi (doi)
+      "Get a BibTeX entry from the DOI"
+      (interactive "MDOI: ")
+      (let ((url-mime-accept-string "text/bibliography;style=bibtex"))
+        (with-current-buffer 
+          (url-retrieve-synchronously 
+            (format "http://dx.doi.org/%s" 
+            	(replace-regexp-in-string "http://dx.doi.org/" "" doi)))
+          (switch-to-buffer (current-buffer))
+          (goto-char (point-max))
+          (setq bibtex-entry 
+          	  (buffer-substring 
+               	(string-match "@" (buffer-string))
+                   (point)))
+          (kill-buffer (current-buffer))))
+      (insert (decode-coding-string bibtex-entry 'utf-8))
+      (bibtex-fill-entry)
+      (org-ref-clean-bibtex-entry))
+  (spacemacs/set-leader-keys "Bd" 'get-bibtex-from-doi)
   (defun paperdlr (doi) 
         "DOI paperdlr."
         (interactive "sDOI: ")
         (shell-command 
-           (concat (concat (concat (concat (concat 
-             "mkdir -p /tmp/paperdlr/ && cd /tmp/paperdlr/ && rm -rf *  && paperdlr " doi)
-                " && mv *.pdf " ) 
-                org-ref-pdf-directory) 
-                " && cat *.bib >> ") 
+           (concat 
+             "mkdir -p /tmp/paperdlr/ && cd /tmp/paperdlr/ && rm -rf *  && paperdlr " doi
+                " && mv *.pdf " 
+                org-ref-pdf-directory 
+                " && cat *.bib >> "
                 bibtex-completion-bibliography)))
-  (setq org-latex-pdf-process '("latexmk -pdflatex='%latex -shell-escape -interaction nonstopmode' -pdf -output-directory=%o -f %f"))
-  (setq org-ref-open-pdf-function
-        (lambda (fpath)
-          (start-process "zathura" "*helm-bibtex-zathura*" "/usr/bin/zathura" fpath)))
+#+END_SRC
+*** Variables
+#+BEGIN_SRC emacs-lisp
   (setq org-ref-bibliography-notes     "~/Dropbox/org/ref/notes.org"
         org-ref-default-bibliography   '("~/Dropbox/org/ref/master.bib")
         org-ref-pdf-directory          "~/Dropbox/org/ref/pdfs/")
   (setq bibtex-completion-bibliography "~/Dropbox/org/ref/master.bib"
         bibtex-completion-library-path "~/Dropbox/org/ref/pdfs"
         bibtex-completion-notes-path   "~/Dropbox/org/ref/notes.org")
-  ;; search in pdfs
+  (setq helm-bibtex-bibliography '("~/Dropbox/org/ref/master.bib"))
+  (setq helm-bibtex-library-path '("~/Dropbox/org/ref/pdfs"))
+  (setq interleave-org-notes-dir-list `(,(concat org-directory "pdfs")))
+
+
+  (setq bibtex-completion-pdf-open-function
+     (lambda (fpath)
+       (start-process "zathura" "*helm-bibtex-zathura*" "/usr/bin/zathura" fpath)))
+  (setq org-ref-open-pdf-function
+        (lambda (fpath)
+          (start-process "zathura" "*helm-bibtex-zathura*" "/usr/bin/zathura" fpath)))
+  (spacemacs/set-leader-keys "Bh" 'helm-bibtex)
+#+END_SRC
+*** Search in PDFs
+#+BEGIN_SRC emacs-lisp
   (defun search-in-pdfs
           (&optional targs use-region-or-symbol-p)
         "Version of `helm-do-grep' with a default input."
@@ -437,7 +546,10 @@ you should place your code here."
                                           (helm-basename preselection)
                                         preselection)))))
           (helm-do-grep-1 targets nil nil nil nil use-region-or-symbol-p)))
-
+#+END_SRC
+*** Misc
+#+BEGIN_SRC emacs-lisp
+  (setq org-latex-pdf-process '("latexmk -pdflatex='%latex -shell-escape -interaction nonstopmode' -pdf -output-directory=%o -f %f"))
 #+END_SRC
 ** org-agenda
 #+BEGIN_SRC emacs-lisp
