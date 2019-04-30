@@ -550,6 +550,13 @@ you should place your code here."
 *** Misc
 #+BEGIN_SRC emacs-lisp
   (setq org-latex-pdf-process '("latexmk -pdflatex='%latex -shell-escape -interaction nonstopmode' -pdf -output-directory=%o -f %f"))
+  (defun bibtex-completion-get-pdf-address (keys)
+      "Return PDF address."
+    (kill-new (concat (car bibtex-completion-library-path) "/" (car keys) ".pdf" )))
+  (helm-bibtex-helmify-action bibtex-completion-get-pdf-address helm-bibtex-get-pdf-address)
+  (helm-add-action-to-source
+    "Get PDF address " 'helm-bibtex-get-pdf-address
+    helm-source-bibtex 2)
 #+END_SRC
 ** org-agenda
 #+BEGIN_SRC emacs-lisp
