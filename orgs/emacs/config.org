@@ -550,6 +550,7 @@ you should place your code here."
 *** Misc
 #+BEGIN_SRC emacs-lisp
   (setq org-latex-pdf-process '("latexmk -pdflatex='%latex -shell-escape -interaction nonstopmode' -pdf -output-directory=%o -f %f"))
+  (require 'helm-bibtex)
   (defun bibtex-completion-get-pdf-address (keys)
       "Return PDF address."
     (kill-new (concat (car bibtex-completion-library-path) "/" (car keys) ".pdf" )))
