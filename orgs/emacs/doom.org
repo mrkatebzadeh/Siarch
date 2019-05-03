@@ -405,7 +405,7 @@
      t)
 
  (set-email-account! "staff"
-     '((mu4e-sent-folder       . "/staff/Sent")
+     '((mu4e-sent-folder       . "/staff/Sent Items")
        (mu4e-drafts-folder     . "/staff/Drafts")
        (mu4e-trash-folder      . "/staff/Trash")
        (smtpmail-smtp-user     . "s1691546")
