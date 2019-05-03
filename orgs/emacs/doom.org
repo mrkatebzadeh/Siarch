@@ -498,3 +498,15 @@
     ",3" 'slack-message-embed-channel))
 (message "Slack is Doomed!")
 #+END_SRC
+* Verilog-mode
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'verilog-mode-hook
+         (lambda ()
+           (unless (or (file-exists-p "makefile")
+                       (file-exists-p "Makefile"))
+             (set (make-local-variable 'compile-command)
+                  (concat "iverilog __FILE__ -o "
+                          (if buffer-file-name
+                              (shell-quote-argument
+                               (file-name-sans-extension buffer-file-name))))))))
+#+END_SRC

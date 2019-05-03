@@ -22,4 +22,6 @@
 (package! linum)
 (package! persp-mode)
 (package! slack)
+;; verilog
+(package! verilog-mode)
 #+END_SRC
