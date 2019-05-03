@@ -24,4 +24,6 @@
 (package! slack)
 ;; verilog
 (package! verilog-mode)
+;; olivetti
+(package! olivetti)
 #+END_SRC
