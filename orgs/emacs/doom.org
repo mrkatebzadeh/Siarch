@@ -5,7 +5,7 @@
 (setq doom-theme 'doom-dracula)
 (message "Dracula is Doomed!")
 #+END_SRC
-* org
+* Org
 ** ox-kama
 #+BEGIN_SRC emacs-lisp
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
@@ -416,7 +416,7 @@
 #+BEGIN_SRC emacs-lisp
 (map!
       (:leader
-        (:desc "open" :prefix "o"
+        (:desc "Open" :prefix "o"
           :desc "Email"                :n "m"   #'mu4e)
         (:desc "file" :prefix "f"
           :desc "Neotree"              :n "t"   #'+neotree/toggle
@@ -501,12 +501,22 @@
 * Verilog-mode
 #+BEGIN_SRC emacs-lisp
   (add-hook 'verilog-mode-hook
-         (lambda ()
-           (unless (or (file-exists-p "makefile")
-                       (file-exists-p "Makefile"))
-             (set (make-local-variable 'compile-command)
-                  (concat "iverilog __FILE__ -o "
-                          (if buffer-file-name
-                              (shell-quote-argument
-                               (file-name-sans-extension buffer-file-name))))))))
+     (lambda ()
+       (unless (or (file-exists-p "makefile")
+                   (file-exists-p "Makefile"))
+         (set (make-local-variable 'compile-command)
+              (concat "iverilog __FILE__ -o "
+                 (if buffer-file-name
+                     (shell-quote-argument
+                      (file-name-sans-extension buffer-file-name))))))))
+#+END_SRC
+* Elfeed
+#+BEGIN_SRC emacs-lisp
+(def-package! elfeed-org
+   :config
+   (map!
+      (:leader
+        (:desc "Open" :prefix "o"
+          :desc "Elfeed"     :n "f"   #'elfeed)))
+   (setq rmh-elfeed-org-files  (list "~/Dropbox/org/feed/emacs.org")))
 #+END_SRC
