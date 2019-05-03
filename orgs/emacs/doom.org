@@ -49,15 +49,16 @@
         bibtex-completion-notes-path   "~/Dropbox/org/ref/notes.org")
   (setq helm-bibtex-bibliography '("~/Dropbox/org/ref/master.bib"))
   (setq helm-bibtex-library-path '("~/Dropbox/org/ref/pdfs"))
+  (setq org-latex-pdf-process '("latexmk -pdflatex='%latex -shell-escape -interaction nonstopmode' -pdf -output-directory=%o -f %f"))
   (setq interleave-org-notes-dir-list `(,(concat org-directory "pdfs")))
 
 
-  (setq bibtex-completion-pdf-open-function
-     (lambda (fpath)
-       (start-process "zathura" "*helm-bibtex-zathura*" "/usr/bin/zathura" fpath)))
-  (setq org-ref-open-pdf-function
-        (lambda (fpath)
-          (start-process "zathura" "*helm-bibtex-zathura*" "/usr/bin/zathura" fpath)))
+; (setq bibtex-completion-pdf-open-function
+;    (lambda (fpath)
+;      (start-process "zathura" "*helm-bibtex-zathura*" "/usr/bin/zathura" fpath)))
+; (setq org-ref-open-pdf-function
+;       (lambda (fpath)
+;         (start-process "zathura" "*helm-bibtex-zathura*" "/usr/bin/zathura" fpath)))
 (def-package! org-ref
   :commands (org-ref-bibtex-next-entry
              org-ref-bibtex-previous-entry
