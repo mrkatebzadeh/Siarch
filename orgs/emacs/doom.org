@@ -528,5 +528,6 @@
       (:leader
         (:desc "Open" :prefix "o"
           :desc "Elfeed"     :n "f"   #'elfeed)))
-   (setq rmh-elfeed-org-files  (list "~/Dropbox/org/feed/emacs.org")))
+   (setq rmh-elfeed-org-files  (list "~/Dropbox/org/feed/emacs.org"
+                                     "~/Dropbox/org/feed/research.org")))
 #+END_SRC
