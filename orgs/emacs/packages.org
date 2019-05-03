@@ -16,4 +16,10 @@
 (package! nov)
 (package! ox-moderncv :recipe (:fetcher github :repo "mrkatebzadeh/org-cv"))
 (package! justify-kp :recipe (:fetcher github :repo "Fuco1/justify-kp"))
+;; slack
+(package! alert)
+(package! emoji-cheat-sheet-plus)
+(package! linum)
+(package! persp-mode)
+(package! slack)
 #+END_SRC
