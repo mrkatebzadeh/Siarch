@@ -1,0 +1,461 @@
+#+TITLE: doom config
+#+PROPERTY: header-args  :results silent :tangle ../../dots/emacs/.config/doom/config.el :mkdirp yes
+* Theme
+#+BEGIN_SRC emacs-lisp
+(setq doom-theme 'doom-dracula)
+(message "Dracula is Doomed!")
+#+END_SRC
+* org
+** ox-kama
+#+BEGIN_SRC emacs-lisp
+;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
+
+;; Place your private configuration here
+(add-to-list 'load-path "~/.doom.d/lisp")
+(eval-after-load 'ox '(require 'ox-koma-letter))
+(eval-after-load 'ox-koma-letter
+  '(progn
+     (add-to-list 'org-latex-classes
+                  '("my-letter"
+                    "\\documentclass\{scrlttr2\}
+     \\usepackage[english]{babel}
+     \\setkomavar{frombank}{(1234)\\,567\\,890}
+     \[DEFAULT-PACKAGES]
+     \[PACKAGES]
+     \[EXTRA]"))
+
+     (setq org-koma-letter-default-class "my-letter")))
+(eval-after-load 'ox-latex
+  '(add-to-list 'org-latex-packages-alist '("AUTO" "babel" t) t))
+
+(message "Ox-Koma-letter is Doomed!")
+
+#+END_SRC
+** org-agenda
+#+BEGIN_SRC emacs-lisp
+(setq org-agenda-files (append (
+                            file-expand-wildcards "~/Dropbox/org/agenda/*.org"
+                                                  )))
+(message "Agenda is Doomed!")
+
+#+END_SRC
+** org-ref
+#+BEGIN_SRC emacs-lisp
+  (setq org-ref-bibliography-notes     "~/Dropbox/org/ref/notes.org"
+        org-ref-default-bibliography   '("~/Dropbox/org/ref/master.bib")
+        org-ref-pdf-directory          "~/Dropbox/org/ref/pdfs/")
+  (setq bibtex-completion-bibliography "~/Dropbox/org/ref/master.bib"
+        bibtex-completion-library-path "~/Dropbox/org/ref/pdfs"
+        bibtex-completion-notes-path   "~/Dropbox/org/ref/notes.org")
+  (setq helm-bibtex-bibliography '("~/Dropbox/org/ref/master.bib"))
+  (setq helm-bibtex-library-path '("~/Dropbox/org/ref/pdfs"))
+  (setq interleave-org-notes-dir-list `(,(concat org-directory "pdfs")))
+
+
+  (setq bibtex-completion-pdf-open-function
+     (lambda (fpath)
+       (start-process "zathura" "*helm-bibtex-zathura*" "/usr/bin/zathura" fpath)))
+  (setq org-ref-open-pdf-function
+        (lambda (fpath)
+          (start-process "zathura" "*helm-bibtex-zathura*" "/usr/bin/zathura" fpath)))
+(def-package! org-ref
+  :commands (org-ref-bibtex-next-entry
+             org-ref-bibtex-previous-entry
+             doi-utils-get-bibtex-entry-pdf
+             org-ref-ivy-insert-cite-link
+             org-ref-find-bibliography
+             org-ref-possible-bibfiles
+             org-ref-open-in-browser
+             org-ref-open-bibtex-notes
+             org-ref-open-bibtex-pdf
+             org-ref-bibtex-hydra/body
+             org-ref-bibtex-hydra/org-ref-bibtex-new-entry/body-and-exit
+             org-ref-sort-bibtex-entry
+             arxiv-add-bibtex-entry
+             arxiv-get-pdf-add-bibtex-entry
+             doi-utils-add-bibtex-entry-from-doi
+             isbn-to-bibtex
+             pubmed-insert-bibtex-from-pmid)
+  :init
+  (when (featurep! :completion helm)
+    (setq org-ref-completion-library 'org-ref-helm-bibtex))
+  (when (featurep! :completion ivy)
+    (setq org-ref-completion-library 'org-ref-ivy-cite))
+
+  :config
+      (defun my-orcb-key ()
+
+         "Replace the key in the entry, also change the pdf file name if it exites."
+
+        (let ((key (funcall org-ref-clean-bibtex-key-function
+        		      (bibtex-generate-autokey))))
+            ;; first we delete the existing key
+            (bibtex-beginning-of-entry)
+            (re-search-forward bibtex-entry-maybe-empty-head)
+
+            (setq old-key (match-string 2));;store old key
+
+            (if (match-beginning bibtex-key-in-head)
+        	(delete-region (match-beginning bibtex-key-in-head)
+        		       (match-end bibtex-key-in-head)))
+            ;; check if the key is in the buffer
+            (when (save-excursion
+        	    (bibtex-search-entry key))
+              (save-excursion
+        	(bibtex-search-entry key)
+        	(bibtex-copy-entry-as-kill)
+        	(switch-to-buffer-other-window "*duplicate entry*")
+        	(bibtex-yank))
+              (setq key (bibtex-read-key "Duplicate Key found, edit: " key)))
+            (insert key)
+            (kill-new key)
+
+            (save-excursion
+              "update pdf names and notes items"
+              ;; rename the pdf after change the bib item key
+              (my-update-pdf-names old-key key)
+              ;; renmae the notes item after change the bib item key
+              (my-update-notes-item old-key key))
+
+            ;; save the buffer
+            (setq require-final-newline t)
+            (save-buffer)))
+
+
+        ;; define a function that update the pdf file names before change the key of a bib entry
+
+        (defun my-update-pdf-names (old-key new-key)
+          (let ((old-filename (concat org-ref-pdf-directory old-key ".pdf"))
+        	(new-filename (concat org-ref-pdf-directory new-key ".pdf" )))
+            (if (file-exists-p old-filename)
+        	(rename-file old-filename new-filename))))
+
+
+        ;; define a function that update the notes items before change the key of bib entry
+
+        (defun my-update-notes-item (old-key new-key)
+          "update a notes item of a old-key by a new-key in case the bib item is changed"
+
+          (set-buffer (find-file-noselect org-ref-bibliography-notes))
+          ;; move to the beginning of the buffer
+          (goto-char (point-min))
+          ;; find the string and replace it
+          (let ((newcite new-key)
+        	(regstr old-key))
+
+            (while (re-search-forward regstr nil t)
+
+              (delete-region (match-beginning 0)
+        		     (match-end 0))
+              (insert newcite))
+
+              ;; save the buffer
+            (setq require-final-newline t)
+            (save-buffer)
+            (kill-buffer)))
+  (add-hook 'org-ref-clean-bibtex-entry-hook 'my-orcb-key)
+
+  (setq
+    orhc-bibtex-cache-file (concat doom-cache-dir "org-ref.cache")
+    org-ref-get-pdf-filename-function
+    (lambda (key) (car (bibtex-completion-find-pdf key)))
+    org-ref-notes-function
+    (lambda (thekey)
+      (let* ((results (org-ref-get-bibtex-key-and-file thekey))
+             (key (car results))
+             (bibfile (cdr results)))
+        (save-excursion
+          (with-temp-buffer
+            (insert-file-contents bibfile)
+            (bibtex-set-dialect (parsebib-find-bibtex-dialect) t)
+            (bibtex-search-entry key)
+            (org-ref-open-bibtex-notes)))))
+    org-ref-create-notes-hook
+    '((lambda ()
+        (org-narrow-to-subtree)
+        (insert (format "cite:%s\n" (org-entry-get (point) "CUSTOM_ID")))))
+    org-ref-note-title-format "* TODO %t
+ :PROPERTIES:
+  :CUSTOM_ID: %k
+ :END:
+")
+  (when (eq +reference-field 'bioinfo)
+    (require 'org-ref-biorxiv)
+    (add-to-list 'doi-utils-pdf-url-functions 'oup-pdf-url)
+    (add-to-list 'doi-utils-pdf-url-functions 'bmc-pdf-url)
+    (add-to-list 'doi-utils-pdf-url-functions 'biorxiv-pdf-url))
+  (when IS-MAC
+    (setq doi-utils-pdf-url-functions
+          (delete 'generic-full-pdf-url doi-utils-pdf-url-functions))
+    (add-to-list 'doi-utils-pdf-url-functions 'generic-as-get-pdf-url t)))
+
+
+(def-package! bibtex
+  :defer t
+  :config
+  (setq bibtex-dialect 'biblatex
+        bibtex-align-at-equal-sign t
+        bibtex-text-indentation 20)
+  (map! :map bibtex-mode-map
+        [fill-paragraph] #'bibtex-fill-entry))
+
+
+(def-package! bibtex-completion
+  :defer t
+  :config
+  (setq bibtex-completion-format-citation-functions
+        '((org-mode . bibtex-completion-format-citation-pandoc-citeproc)
+          (latex-mode . bibtex-completion-format-citation-cite)
+          (default . bibtex-completion-format-citation-default))
+        bibtex-completion-pdf-field "file"
+        bibtex-completion-additional-search-fields '("journaltitle")
+        bibtex-completion-pdf-symbol "@"
+        bibtex-completion-notes-symbol "#"
+        bibtex-completion-display-formats '((t . "${=has-pdf=:1}${=has-note=:1} ${author:20} ${journaltitle:10} ${year:4} ${title:*} ${=type=:3}")))
+  (cond
+   (IS-MAC
+    (setq bibtex-completion-pdf-open-function
+          (lambda (fpath)
+            (async-start-process "open" "open" "open" fpath))))
+   (IS-LINUX
+    (setq bibtex-completion-pdf-open-function
+          (lambda (fpath)
+            (async-start-process "open-pdf" "/usr/bin/xdg-open" nil fpath))))))
+
+(def-package! ivy-bibtex
+  :when (featurep! :completion ivy)
+  :commands (ivy-bibtex)
+  :config
+  (setq ivy-bibtex-default-action 'ivy-bibtex-insert-key)
+  (add-to-list 'ivy-re-builders-alist '(ivy-bibtex . ivy--regex-plus))
+  (when IS-MAC
+    (ivy-bibtex-ivify-action bibtex-completion-quicklook ivy-bibtex-quicklook)
+    (ivy-add-actions 'ivy-bibtex '(("SPC" ivy-bibtex-quicklook "Quick look")))))
+
+
+(def-package! helm-bibtex
+  :when (featurep! :completion helm)
+:commands helm-bibtex
+:config
+  (defun bibtex-completion-get-pdf-address (keys)
+      "Return PDF address."
+    (kill-new (concat (car bibtex-completion-library-path) "/" (car keys) ".pdf" )))
+  (helm-bibtex-helmify-action bibtex-completion-get-pdf-address helm-bibtex-get-pdf-address)
+  (helm-add-action-to-source
+    "Get PDF address " 'helm-bibtex-get-pdf-address
+    helm-source-bibtex 2)
+)
+
+(map!
+      (:leader
+        (:desc "org-ref" :prefix "r"
+          :desc "Open ref files"       :n "m"   (lambda() (interactive)(find-file bibtex-completion-bibliography))
+          :desc "Add Doi"              :n "d"   #'doi-utils-add-bibtex-entry-from-doi
+          :desc "Search Entry"         :n "s"   #'helm-bibtex
+          :desc "Open note of Entry"   :n "n"   #'org-ref-open-bibtex-notes
+          :desc "Open pdf of Entry"    :n "p"   #'org-ref-open-bibtex-pdf)))
+
+(message "Org-ref is Doomed!")
+
+#+END_SRC
+** org-beamer
+#+BEGIN_SRC emacs-lisp
+(unless (boundp 'org-export-latex-classes)
+  (setq org-export-latex-classes nil))
+(add-to-list 'org-export-latex-classes
+  ;; beamer class, for presentations
+  '("beamer"
+     "\\documentclass[11pt]{beamer}\n
+      \\mode<{{{beamermode}}}>\n
+      \\usetheme{{{{beamertheme}}}}\n
+      \\usecolortheme{{{{beamercolortheme}}}}\n
+      \\beamertemplateballitem\n
+      \\setbeameroption{show notes}
+      \\usepackage[utf8]{inputenc}\n
+      \\usepackage[T1]{fontenc}\n
+      \\usepackage{hyperref}\n
+      \\usepackage{color}
+      \\usepackage{listings}
+      \\lstset{numbers=none,language=[ISO]C++,tabsize=4,
+  frame=single,
+  basicstyle=\\small,
+  showspaces=false,showstringspaces=false,
+  showtabs=false,
+  keywordstyle=\\color{blue}\\bfseries,
+  commentstyle=\\color{red},
+  }\n
+      \\usepackage{verbatim}\n
+      \\institute{{{{beamerinstitute}}}}\n
+       \\subject{{{{beamersubject}}}}\n"
+
+     ("\\section{%s}" . "\\section*{%s}")
+
+     ("\\begin{frame}[fragile]\\frametitle{%s}"
+       "\\end{frame}"
+       "\\begin{frame}[fragile]\\frametitle{%s}"
+       "\\end{frame}")))
+
+  ;; letter class, for formal letters
+
+  (add-to-list 'org-export-latex-classes
+
+  '("letter"
+     "\\documentclass[11pt]{letter}\n
+      \\usepackage[utf8]{inputenc}\n
+      \\usepackage[T1]{fontenc}\n
+      \\usepackage{color}"
+
+     ("\\section{%s}" . "\\section*{%s}")
+     ("\\subsection{%s}" . "\\subsection*{%s}")
+     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+     ("\\paragraph{%s}" . "\\paragraph*{%s}")
+     ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+
+(setq org-latex-create-formula-image-program 'imagemagick)
+(setq org-latex-packages-alist
+      (quote (("" "color" t)
+          ("" "minted" t)
+          ("" "parskip" t)
+          ("" "tikz" t))))
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   (python . t)
+   (ditaa . t)
+   (dot . t)
+   (plantuml . t)
+   (gnuplot . t)
+;   (sh . t)
+   (org . t)
+   (latex . t)))
+(setq org-ditaa-jar-path "/usr/share/java/ditaa/ditaa-0.11.jar")
+(message "Beamer is Doomed!")
+
+#+END_SRC
+* EBook
+   #+BEGIN_SRC emacs-lisp
+   (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+(def-package! nov
+  :defer t
+  :config
+   (defun my-nov-font-setup ()
+       (face-remap-add-relative 'variable-pitch :family "Liberation Serif"
+          :height 1.5))
+   (setq nov-text-width most-positive-fixnum)
+   (add-hook 'nov-mode-hook 'my-nov-font-setup)
+   (setq nov-text-width 80)
+   (setq nov-text-width most-positive-fixnum)
+   (setq visual-fill-column-center-text t)
+   (add-hook 'nov-mode-hook 'visual-line-mode)
+   (add-hook 'nov-mode-hook 'visual-fill-column-mode)
+   (evil-define-key 'normal nov-mode-map "L" 'nov-next-document)
+   (evil-define-key 'normal nov-mode-map "H" 'nov-previous-document)
+   (evil-define-key 'normal nov-mode-map "T" 'nov-goto-toc)
+   )
+(message "Nov is Doomed!")
+   #+END_SRC
+
+* Basic
+#+BEGIN_SRC emacs-lisp
+(setq display-line-numbers-type 'relative)
+(setq c-basic-indent 2)
+(setq c-default-style "linux")
+(setq tab-width 2)
+(setq-default indent-tabs-mode nil)
+(setq display-line-numbers-mode t)
+
+(message "Siavash is Doomed!")
+
+#+END_SRC
+* Email
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
+(after! mu4e
+(def-package! mu4e-conversation
+  :defer t
+  )
+
+(setq message-send-mail-function 'message-send-mail-with-sendmail
+      sendmail-program "/usr/bin/msmtp"
+      mu4e-sent-messages-behavior 'sent)
+ (set-email-account! "gmail"
+     '((mu4e-sent-folder       . "/gmail/[Gmail].Sent Mail")
+       (mu4e-drafts-folder     . "/gmail/[Gmail].Drafts")
+       (mu4e-trash-folder      . "/gmail/[Gmail].Trash")
+       (smtpmail-smtp-user     . "mr.katebzadeh")
+       (mu4e-get-mail-command  . "offlineimap -o -q")
+       (smtpmail-local-domain  . "gmail.com")
+       (smtpmail-default-smtp-server . "smtp.gmail.com")
+       (smtpmail-smtp-server   . "smtp.gmail.com")
+       (user-mail-address      . "mr.katebzadeh@gmail.com")
+       (user-full-name         . "M. R. Siavash Katebzadeh")
+       (smtpmail-auth-credentials    . "~/.config/mutt/credentials/gmail.gpg")
+       (mu4e-compose-signature . "Best regards,\nSiavash"))
+     t)
+
+ (set-email-account! "staff"
+     '((mu4e-sent-folder       . "/staff/Sent")
+       (mu4e-drafts-folder     . "/staff/Drafts")
+       (mu4e-trash-folder      . "/staff/Trash")
+       (smtpmail-smtp-user     . "s1691546")
+       (mu4e-get-mail-command  . "offlineimap -o -q")
+       (smtpmail-local-domain  . "staffmail.ed.ac.uk")
+       (smtpmail-default-smtp-server . "smtp.staffmail.ed.ac.uk")
+       (smtpmail-smtp-server   . "smtp.staffmail.ed.ac.uk")
+       (user-mail-address      . "M.R.Katebzadeh@ed.ac.uk")
+       (user-full-name         . "KATEBZADEH Siavash")
+       (smtpmail-auth-credentials    . "~/.config/mutt/credentials/staff.gpg")
+       (mu4e-compose-signature . "Best regards,\nSiavash"))
+     t)
+)
+(message "Email is Doomed!")
+
+#+END_SRC
+* Keys
+#+BEGIN_SRC emacs-lisp
+(map!
+      (:leader
+        (:desc "open" :prefix "o"
+          :desc "Email"                :n "m"   #'mu4e)
+        (:desc "file" :prefix "f"
+          :desc "Neotree"              :n "t"   #'+neotree/toggle
+          :desc "Find file"            :n "f"   #'find-file)))
+
+(message "Keys are Doomed!")
+
+#+END_SRC
+* Gnuplot
+#+BEGIN_SRC emacs-lisp
+(def-package! gnuplot)
+
+(message "Gnuplot is Doomed!")
+#+END_SRC
+* PDF-tools
+#+BEGIN_SRC emacs-lisp
+(def-package! pdf-tools
+  :if (display-graphic-p)
+  :mode ("\\.pdf$" . pdf-view-mode)
+  :init (load "pdf-tools-autoloads" nil t)
+  :config
+  (pdf-tools-install)
+  ;; open pdfs scaled to fit page
+  (setq-default pdf-view-display-size 'fit-page)
+  ;; automatically annotate highlights
+  (setq pdf-annot-activate-created-annotations t)
+  ;; use normal isearch
+  (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward))
+
+(message "Pdf-tools is Doomed!")
+#+END_SRC
+* Thesaurus
+#+BEGIN_SRC emacs-lisp
+
+(def-package! powerthesaurus
+:config
+ (map!
+      (:leader
+        (:desc "Thesaurus" :prefix "j"
+          :desc "Fetch selected text"     :n "i"   #'powerthesaurus-lookup-word))))
+(message "Thesaurus is Doomed!")
+#+END_SRC
