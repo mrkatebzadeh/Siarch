@@ -427,7 +427,10 @@
 (map!
       (:leader
         (:desc "Open" :prefix "o"
-          :desc "Email"                :n "m"   #'mu4e)
+          :desc "Email"                :n "m"   #'mu4e
+          :desc "Slack"                :n "s"   #'slack-start
+          :desc "Elfeed"               :n "f"   #'elfeed
+          :desc "Twitter"              :n "t"   #'twit)
         (:desc "file" :prefix "f"
           :desc "Neotree"              :n "t"   #'+neotree/toggle
           :desc "Find file"            :n "f"   #'find-file)))
@@ -482,7 +485,6 @@
   :config
 
   (load-library "~/Dropbox/org/keys/slack.el.gpg")
-
   (evil-define-key 'normal slack-info-mode-map
     ",u" 'slack-room-update-messages)
   (evil-define-key 'normal slack-mode-map
@@ -524,10 +526,11 @@
 #+BEGIN_SRC emacs-lisp
 (def-package! elfeed-org
    :config
-   (map!
-      (:leader
-        (:desc "Open" :prefix "o"
-          :desc "Elfeed"     :n "f"   #'elfeed)))
    (setq rmh-elfeed-org-files  (list "~/Dropbox/org/feed/emacs.org"
                                      "~/Dropbox/org/feed/research.org")))
+#+END_SRC
+* Twitter
+#+BEGIN_SRC emacs-lisp
+(after! twittering-mode
+  (setq twittering-private-info-file "~/Dropbox/org/keys/twitter.gpg"))
 #+END_SRC
