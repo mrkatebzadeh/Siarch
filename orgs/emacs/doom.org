@@ -432,7 +432,7 @@
           :desc "Elfeed"               :n "f"   #'elfeed
           :desc "Twitter"              :n "t"   #'twit)
         (:desc "file" :prefix "f"
-          :desc "Neotree"              :n "t"   #'+neotree/toggle
+          :desc "Neotree"              :n "t"   #'treemcas/toggle
           :desc "Find file"            :n "f"   #'find-file)))
 
 (message "Keys are Doomed!")

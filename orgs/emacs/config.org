@@ -67,7 +67,10 @@ values."
            mu4e-enable-mode-line t
            mu4e-enable-notifications t)
      themes-megapack
+     slack
      twitter
+     (elfeed :variables rmh-elfeed-org-files (list "~/Dropbox/org/feed/emacs.org"
+                                              ))
      (scala :variables 
            scala-indent:use-javadoc-style t
            scala-enable-eldoc t
@@ -553,7 +556,8 @@ you should place your code here."
   (require 'helm-bibtex)
   (defun bibtex-completion-get-pdf-address (keys)
       "Return PDF address."
-    (kill-new (concat (car bibtex-completion-library-path) "/" (car keys) ".pdf" )))
+    (kill-new (concat (car bibtex-completion-library-path) "/" (car keys) ".pdf" ))
+    (message "Address has been copied."))
   (helm-bibtex-helmify-action bibtex-completion-get-pdf-address helm-bibtex-get-pdf-address)
   (helm-add-action-to-source
     "Get PDF address " 'helm-bibtex-get-pdf-address
@@ -606,7 +610,7 @@ you should place your code here."
            (user-full-name "M.R. Siavash Katebzadeh"))
           ("staff"
            (mu4e-sent-messages-behavior sent)
-           (mu4e-sent-folder "/staff/Sent")
+           (mu4e-sent-folder "/staff/Sent Items")
            (mu4e-drafts-folder "/staff/Drafts")
            (user-mail-address "m.r.katebzadeh@ed.ac.uk")
            (user-full-name "KATEBZADEH Siavash"))))
@@ -687,6 +691,11 @@ you should place your code here."
    (global-set-key (kbd "C-c D") 'define-word)
    #+END_SRC
 
+** gpgs
+#+BEGIN_SRC emacs-lisp
+(setq epg-gpg-program "gpg2")
+(load-library "~/Dropbox/org/keys/slack.el.gpg")
+#+END_SRC
 ** end
 #+BEGIN_SRC emacs-lisp
   )
