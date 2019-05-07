@@ -28,4 +28,6 @@
 (package! olivetti)
 ;; blog
 (package! ox-hugo)
+;; org-gcal
+(package! org-gcal)
 #+END_SRC

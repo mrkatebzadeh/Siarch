@@ -340,6 +340,18 @@
 (message "Beamer is Doomed!")
 
 #+END_SRC
+** org-gcal
+#+BEGIN_SRC emacs-lisp
+(def-package! org-gcal
+:defer t
+:config
+(load-library "~/Dropbox/org/keys/gcal.el.gpg")
+(add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
+(add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync) ))
+)
+(message "Org-gcal is Doomed!")
+
+#+END_SRC
 * EBook
    #+BEGIN_SRC emacs-lisp
    (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
@@ -388,6 +400,8 @@
 (after! mu4e
 (def-package! mu4e-conversation
   :defer t
+  :config
+  (global-mu4e-conversation-mode)
   )
 (def-package! olivetti
   :defer t
