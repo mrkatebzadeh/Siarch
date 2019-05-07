@@ -31,6 +31,12 @@
 (message "Ox-Koma-letter is Doomed!")
 
 #+END_SRC
+** ox-hugo
+#+BEGIN_SRC emacs-lisp
+
+(eval-after-load 'ox '(require 'ox-hugo))
+(message "Ox-Hugo is Doomed!")
+#+END_SRC
 ** org-agenda
 #+BEGIN_SRC emacs-lisp
 (setq org-agenda-files (append (

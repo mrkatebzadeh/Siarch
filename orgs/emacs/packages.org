@@ -26,4 +26,6 @@
 (package! verilog-mode)
 ;; olivetti
 (package! olivetti)
+;; blog
+(package! ox-hugo)
 #+END_SRC
