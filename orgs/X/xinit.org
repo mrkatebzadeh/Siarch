@@ -11,8 +11,5 @@ xset r rate 200 50
 
 . "${HOME}/.cache/wal/colors.sh"
 
-while true
-do
-    dwm
-done
+exec dwmstart
 #+END_SRC
