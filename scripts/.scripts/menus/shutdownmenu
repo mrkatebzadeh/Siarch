@@ -50,7 +50,7 @@ case "$action" in
         sudo systemctl suspend
     ;;
     '[Lock]')
-        i3lock --show-failed-attempts --color=EEEEEE --image="$LOCKSCREEN_WALLPAPER" --tiling &
+        lockscreen
     ;;
     '[Cancel]')
         notify-send "System:" "Shutdown command cancelled"
