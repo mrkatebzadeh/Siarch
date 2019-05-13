@@ -1,0 +1,15 @@
+#!/bin/bash
+
+MENU_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+source $MENU_DIR/lib/menu_helpers.sh
+
+processList=$(ps -ef | sed 1d)
+selection=$(menu "Kill: " "$processList")
+[[ -z "$selection" ]] && exit
+
+pid=$(awk '{print $2}' <<< "$selection" | tr '\n' ' ')
+[[ -z "$pid" ]] && exit
+
+notify-send "Killing Process:" "$selection"
+kill "$pid"
+

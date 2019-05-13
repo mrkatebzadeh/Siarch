@@ -1,0 +1,17 @@
+#!/bin/sh
+
+MENU_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+source $MENU_DIR/lib/menu_helpers.sh
+
+brightness="100
+80
+60
+40
+20"
+
+value=$(menu "Option: " "${brightness}")
+
+[[ -z "${value}" ]] && exit
+
+# notify-send "Brightness:" "Setting brightness to $value"
+xbacklight = "${value}"

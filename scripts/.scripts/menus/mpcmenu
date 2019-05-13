@@ -1,0 +1,255 @@
+#!/bin/bash
+
+MENU_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+source $MENU_DIR/lib/menu_helpers.sh
+
+MUSIC_DIR="${HOME}/docs/music"
+CACHE_FILE="/tmp/mpcmenu_cache"
+
+tempOut=$(mpc --format "")
+
+# playState=$(echo "${tempOut}" | sed -n 2p | awk '{ print $1; }')
+
+stateLine=$(echo "${tempOut}" | sed 's/volume://')
+randomState=$(awk '/repeat:/{ print $5; }' <<< "${stateLine}")
+repeatState=$(awk '/repeat:/{ print $3; }' <<< "${stateLine}")
+singleState=$(awk '/repeat:/{ print $7; }' <<< "${stateLine}")
+consumeState=$(awk '/repeat:/{ print $9; }' <<< "${stateLine}")
+
+# Menu Items
+mainMenu="[Select]
+[PushDir]
+[PushLoop]
+[Current]
+[Play]
+[Stop]
+[Pause]
+[Load]
+[Playlist]
+[Clear]
+[Previous]
+[Next]
+[Seek]
+[Replay]
+[Random: ${randomState}]
+[Repeat: ${repeatState}]
+[Single: ${singleState}]
+[Consume: ${consumeState}]
+[Lyrics]
+[Rescan]"
+
+playlistOptions="[AddAll]
+[Remove]
+[Clear]
+[Save]
+[Load]
+[Delete]"
+
+seekOptions="0%
+10%
+20%
+30%
+40%
+50%
+60%
+70%
+80%
+90%"
+
+filterOptions="any
+artist
+album
+title
+track
+name
+genre
+date
+composer
+performer
+comment
+disc
+filename"
+
+action=$(menu "Option: " "${mainMenu}")
+case "${action}" in
+    '[Select]')
+        candidates=$(mpc playlist --format '%position%  [%album% - ][%artist% - ]%title%')
+        selection=$(menu "Song: " "${candidates}")
+
+        # Only select song if not in consume ("playback queue") mode.
+        if [[ "${consumeState}" != "on" ]]; then
+            if [[ -n "${selection}" ]]; then
+                songNum=$(awk '{print $1}' <<< "${selection}")
+                mpc -q play "${songNum}"
+            fi
+        fi
+        ;;
+    '[PushDir]')
+        pushd ${MUSIC_DIR} > /dev/null
+        musicDirList=$(find . -type d | sed -e 's!^\./!!')
+        popd > /dev/null
+        query=$(menu "Add: " "${musicDirList}")
+
+        if [[ -n "${query}" ]]; then
+            mpc ls "${query}" | mpc -q add
+        fi
+        ;;
+    '[PushLoop]')
+        # if [[ ! -a "${CACHE_FILE}" || "${CACHE_FILE}" -ot "${MUSIC_DIR}" ]]; then
+        #     notify-send "MPD:" "Building Cache"
+        #     musicList=$(mpc listall | tee "${CACHE_FILE}")
+        # else
+        #     notify-send 'MPD:' 'Using Cache'
+        #     musicList=$(<${CACHE_FILE})
+        # fi
+
+        filterType=$(menu "Filter Type: " "${filterOptions}")
+        [[ -z "${filterType}" ]] && exit
+
+        filterQuery=$(menu "Query (${filterType}): " "")
+
+        # We should permit empty query strings so we can sift through all
+        # elements of a filter type.
+
+        # [[ -z "${filterQuery}" ]] && exit
+
+        filterList=$(mpc search "${filterType}" "${filterQuery}")
+
+        count=0
+        selection="a"
+        while [[ -n "${selection}" ]]; do
+            selection=$(menu "Song ($count): " "${filterList}")
+            echo " ${selection}"
+            if [[ -n "${selection}" ]]; then
+                mpc -q add "${selection}"
+                ((count++))
+            fi
+        done
+        ;;
+    '[Current]')
+        songInfo=$(mpc -f 'Title:  [%title%]\nArtist: [%artist%]\nAlbum:  [%album%]\n ')
+        notify-send "MPD:" "${songInfo}"
+        ;;
+    '[Play]')
+        mpc -q toggle
+        ;;
+    '[Stop]')
+        mpc -q stop
+        ;;
+    '[Pause]')
+        mpc -q toggle
+        ;;
+    '[Load]')
+        choice=$(menu "Load: " "$(mpc lsplaylists)")
+        if [[ -n "${choice}" ]]; then
+            mpc -q stop
+            mpc -q clear
+            mpc -q load "${choice}"
+            notify-send "MPD:" "Playlist \"${choice}\" Loaded"
+        fi
+        ;;
+    '[Playlist]')
+        action=$(menu "Option: " "${playlistOptions}")
+        case "${action}" in
+            '[AddAll]')
+                mpc -q update
+                mpc ls | mpc -q add
+                ;;
+            '[Remove]')
+                selection="a"
+                while [[ -n "${selection}" ]]; do
+                    candidates=$(mpc playlist --format '%position%  [%album% - ][%artist% - ]%title%')
+                    selection=$(menu "Song: " "${candidates}")
+
+                    if [[ -n "${selection}" ]]; then
+                        songNum=$(awk '{print $1}' <<< "${selection}")
+                        mpc -q del "${songNum}"
+                    fi
+                done
+            ;;
+            '[Clear]')
+                mpc -q clear
+                notify-send "MPD:" "Playlist Cleared"
+                ;;
+            '[Load]')
+                choice=$(menu "Load: " "$(mpc lsplaylists)")
+                if [[ -n "${choice}" ]]; then
+                    mpc -q stop
+                    mpc -q clear
+                    mpc -q load "${choice}"
+                    notify-send "MPD:" "Playlist \"${choice}\" Loaded"
+                fi
+                ;;
+            '[Save]')
+                name=$(menu "Load: " "$(mpc lsplaylists)")
+                if [[ -n "${name}" ]]; then
+                    mpc save "${name}"
+                    notify-send "MPD:" "Playlist \"${name}\" Saved"
+                fi
+                ;;
+            '[Delete]')
+                name=$(menu "Load: " "$(mpc lsplaylists)")
+                if [[ -n "${name}" ]]; then
+                    mpc rm "${name}"
+                    notify-send "MPD:" "Playlist \"${name}\" Deleted"
+                fi
+                ;;
+        esac
+        ;;
+    '[Clear]')
+        mpc -q clear
+        notify-send "MPD:" "Playlist Cleared"
+        ;;
+    '[Previous]')
+        mpc -q prev
+        ;;
+    '[Next]')
+        mpc -q next
+        ;;
+    '[Seek]')
+        seek=$(menu "Seek: " "${seekOptions}")
+        if [[ -n "${seek}" ]]; then
+            mpc -q seek "${seek}"
+        fi
+        ;;
+    '[Replay]')
+        mpc -q stop
+        mpc -q play
+        ;;
+    '[Random'*)
+        mpc -q random
+        ;;
+    '[Repeat'*)
+        mpc -q repeat
+        ;;
+    '[Single'*)
+        mpc -q single
+        ;;
+    '[Consume'*)
+        mpc -q consume
+        ;;
+    '[Lyrics]')
+        song=$(mpc current)
+        lyricsFile="$HOME/.lyrics/${song}.txt"
+
+        if [[ -e "${lyricsFile}" ]]; then
+            if [[ "${BACKEND}" == "fzf" ]]; then
+                ${EDITOR:-gvim} "${lyricsFile}"
+            else
+                xdg-open "${lyricsFile}"
+            fi
+            # emacsclient --no-wait "${lyricsFile}" 2> /dev/null
+        else
+            notify-send "MPD:" "Lyrics for \"${song}\" not found"
+            createFlag=$(confirm "Create Lyrics File?")
+            if [[ "${createFlag,,}" == "yes" ]]; then
+                touch "${lyricsFile}"
+                notify-send "MPD:" "Created ${lyricsFile}"
+            fi
+        fi
+        ;;
+    '[Rescan]')
+        notify-send "MPD Database" "Updating"
+        mpc -q update
+        ;;
+esac

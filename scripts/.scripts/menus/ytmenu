@@ -1,0 +1,47 @@
+#!/bin/bash
+
+
+xclip -h >/dev/null || exit
+
+url=""
+quality=""
+arguments=""
+helperPath=`dirname "$0"`
+
+#Function for getting arguments for the downloader
+providearguments(){  
+	arguments=`echo -e 'no\n-k 1M -x 5' |dmen -p "arguments"`
+	[[ $arguments = "" ]] && exit 0
+}
+
+#Function to select url from clipboard.
+#greenclip is here a clipboard manager.
+selecturl(){
+	url=`xclip -o | dmen -p "Select url" -l 10`
+	[[ $url = "" ]] && exit 0
+}
+
+#function to use youtube-dl to fetch quality of videos.
+selectquality(){
+	quality=`notify-send "Fetching" "video quality" | youtube-dl -F $url | \
+	sed -n '7,50p' | \
+	dmen -p "Select quality" -l 10 | \
+	awk '{print $1;}'`
+	[[ $quality = "" ]] && exit 0
+}
+
+main(){
+	selecturl
+	selectquality
+	providearguments
+	quality=`echo $quality | sed 's/ /+/'`
+	if [[ $arguments = "no" ]]
+		then
+			youtube-dl -f $quality --external-downloader aria2c $url
+	else
+		echo "$arguments"
+		youtube-dl -f $quality --external-downloader aria2c --external-downloader-args "$arguments" $url
+	fi
+}
+
+main

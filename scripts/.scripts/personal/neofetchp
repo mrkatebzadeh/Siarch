@@ -1,4 +1,0 @@
-#! /bin/sh
-
-neofetch
-read -n1 -r

@@ -1,0 +1,3 @@
+#!/bin/sh
+
+flock -n /tmp/menusuite.lock -c "$*"

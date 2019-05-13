@@ -1,0 +1,59 @@
+#!/bin/bash
+
+# Dmenu shutdown menu.
+# This script assumes you can run "shutdown" as a user through sudo without
+# entering a password. This can be done by editing /etc/sudoers via visudo.
+MENU_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+source $MENU_DIR/lib/menu_helpers.sh
+
+LOCKSCREEN_WALLPAPER="$HOME/docs/wallpapers/old/SoftAndClean.png"
+
+mainMenu="[Shutdown]
+[Reboot]
+[Sleep]
+[Lock]
+[Cancel]
+"
+#[Hibernate] #defunct
+
+pauseMenu="now
++60
++45
++30
++15
++10
++5
++3
++2
++1"
+
+action=$(menu "Option: " "$mainMenu")
+[ -z "$action" ] && exit
+
+case "$action" in
+    '[Shutdown]')
+        pauseTime=$(menu "Pause: " "$pauseMenu")
+        [ -z "$pauseTime" ] && exit
+
+        notify-send "System:" "Shutdown scheduled - $pauseTime"
+        sudo shutdown -P "$pauseTime"
+    ;;
+    '[Reboot]')
+        pauseTime=$(menu "Pause: " "$pauseMenu")
+        [ -z "$pauseTime" ] && exit
+
+        notify-send "System:" "Reboot scheduled - $pauseTime"
+        sudo shutdown -r "$pauseTime"
+    ;;
+    '[Sleep]')
+        notify-send "System:" "Suspending now"
+        sudo systemctl suspend
+    ;;
+    '[Lock]')
+        i3lock --show-failed-attempts --color=EEEEEE --image="$LOCKSCREEN_WALLPAPER" --tiling &
+    ;;
+    '[Cancel]')
+        notify-send "System:" "Shutdown command cancelled"
+        sudo shutdown -c
+    ;;
+esac

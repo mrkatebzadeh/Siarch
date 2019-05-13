@@ -1,0 +1,13 @@
+#!/bin/bash
+
+cd ~
+while true; do
+    url=$( { echo "Exit"; echo ".."; ls ;} | dmen -p "Select your file: `pwd`")
+    if [ -d "$url" ]
+    then
+        cd "$url"
+    else
+        xdg-open  "$url"
+        break
+    fi
+done
