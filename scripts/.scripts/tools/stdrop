@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Shell
+
+NAME="scratchpad"
+
+# autodecide command
+windowthere=$(xdotool search --name $NAME)
+windowvisible=$(xdotool search --onlyvisible --name $NAME)
+
+if [[ "$windowthere" == "" ]]; then
+  # window is not there
+  CMD=""
+elif [[ "$windowvisible" == "" ]]; then
+  CMD="on"
+else
+  CMD="off"
+fi
+
+if [[ "$CMD" == "" ]]; then
+  # CREATE
+  coproc $TERMINAL -T $NAME
+  CMD="on"
+fi
+
+# ON/OFF
+if [[ "$CMD" == "on" ]]; then
+  xdotool search --name $NAME windowmap
+elif [[ "$CMD" == "off" ]]; then
+  xdotool search --name $NAME windowunmap
+fi
+
+IFS='x' read screenWidth screenHeight < <(xdpyinfo | grep dimensions | grep -o '[0-9x]*' | head -n1)
+
+width=$(xdotool getactivewindow getwindowgeometry --shell | head -4 | tail -1 | sed 's/[^0-9]*//')
+height=$(xdotool getactivewindow getwindowgeometry --shell | head -5 | tail -1 | sed 's/[^0-9]*//')
+
+newPosX=$((screenWidth/2-width/2))
+newPosY=$((screenHeight/2-height/2))
+xdotool getactivewindow windowmove "$newPosX" "$newPosY"
