@@ -1,0 +1,6 @@
+#+TITLE: mpv config
+#+PROPERTY: header-args  :results silent :tangle ../../dots/mpv/.config/mpv/mpv.conf :mkdirp yes
+* Limiting youtube quality
+#+BEGIN_SRC config
+ytdl-format=bestvideo[height<=?720][fps<=?30][vcodec!=?vp9]+bestaudio/best
+#+END_SRC
