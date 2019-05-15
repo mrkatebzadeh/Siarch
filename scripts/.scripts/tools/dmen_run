@@ -1,4 +1,4 @@
 #!/bin/sh
 
 CMD=$(dmenu_path | dmen -p "Launch: ")
-[ "$CMD" != "" ] &&  $TERMINAL -e "$CMD"
+[ "$CMD" != "" ] && "$CMD"
