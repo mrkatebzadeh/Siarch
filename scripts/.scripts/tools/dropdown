@@ -2,11 +2,14 @@
 
 # Shell
 
-NAME="scratchpad"
+NAME="dropdown"
+TITLE="st"
+COMMAND=$1
+[[ $1 != "" ]] && TITLE="${NAME}_${COMMAND}" || NAME="scratchpad"
 
 # autodecide command
-windowthere=$(xdotool search --name $NAME)
-windowvisible=$(xdotool search --onlyvisible --name $NAME)
+windowthere=$(xdotool search --name $TITLE search --classname $NAME)
+windowvisible=$(xdotool search --onlyvisible --name $TITLE search --onlyvisible --classname $NAME)
 
 if [[ "$windowthere" == "" ]]; then
   # window is not there
@@ -19,15 +22,15 @@ fi
 
 if [[ "$CMD" == "" ]]; then
   # CREATE
-  coproc $TERMINAL -T $NAME
+  coproc $TERMINAL -T $TITLE -n $NAME -e $COMMAND
   CMD="on"
 fi
 
 # ON/OFF
 if [[ "$CMD" == "on" ]]; then
-  xdotool search --name $NAME windowmap
+  xdotool search --name $TITLE search --classname $NAME windowmap
 elif [[ "$CMD" == "off" ]]; then
-  xdotool search --name $NAME windowunmap
+  xdotool search --name $TITLE search --classname $NAME windowunmap
 fi
 
 IFS='x' read screenWidth screenHeight < <(xdpyinfo | grep dimensions | grep -o '[0-9x]*' | head -n1)
