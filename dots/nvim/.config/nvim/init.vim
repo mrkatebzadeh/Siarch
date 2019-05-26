@@ -18,6 +18,9 @@ Plug 'vimwiki/vimwiki'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-commentary'
 Plug 'vifm/vifm.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
 call plug#end()
 
 set bg=light
@@ -80,7 +83,7 @@ set clipboard=unnamedplus
 	nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 	nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
 " Goyo plugin makes text more readable when writing prose:
-	map <leader>f :Goyo \| set bg=light \| set linebreak<CR>
+	map <leader>tf :Goyo \| set bg=light \| set linebreak<CR>
 
 " Spell-check
 	map <leader>ts :setlocal spell! spelllang=en_us<CR>
@@ -89,7 +92,7 @@ set clipboard=unnamedplus
 	set splitbelow splitright
 
 " Nerd tree
-	map <leader>n :NERDTreeToggle<CR>
+	map <leader>tn :NERDTreeToggle<CR>
 	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Shortcutting split navigation, saving a keypress:
@@ -98,6 +101,13 @@ set clipboard=unnamedplus
 	map <C-k> <C-w>k
 	map <C-l> <C-w>l
 
+	autocmd VimEnter * nnoremap <leader>w<left>   :<C-w>h<cr>
+	autocmd VimEnter * nnoremap <leader>w<down>   :<C-w>j<cr>
+	autocmd VimEnter * nnoremap <leader>w<up>     :<C-w>k<cr>
+	autocmd VimEnter * nnoremap <leader>w<right>  :<C-w>l<cr>
+	autocmd VimEnter * nnoremap <leader>ws        :sp<cr>
+	autocmd VimEnter * nnoremap <leader>wv        :vsp<cr>
+	autocmd VimEnter * nnoremap <leader>wq        :quit<cr>
 " Check file in shellcheck:
 	map <leader>s :!clear && shellcheck %<CR>
 
@@ -149,3 +159,24 @@ set clipboard=unnamedplus
 	" Word count:
 	autocmd FileType tex map <leader>w :w !detex \| wc -w<CR>
 
+""" FzF
+    " This is the default extra key bindings
+    let g:fzf_action = {
+      \ 'ctrl-t': 'tab split',
+      \ 'ctrl-x': 'split',
+      \ 'ctrl-v': 'vsplit' }
+
+    " Default fzf layout
+    " - down / up / left / right
+    let g:fzf_layout = { 'down': '~40%' }
+
+    " Enable per-command history.
+    " CTRL-N and CTRL-P will be automatically bound to next-history and
+    " previous-history instead of down and up. If you don't like the change,
+    " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
+    let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+	nnoremap <leader>bb :Buffers<cr>
+	nnoremap <leader>bd :bd<cr>
+	nnoremap <leader>ff :GFiles<cr>
+	nnoremap <leader>wL :Windows<cr>
