@@ -1,0 +1,31 @@
+#!/bin/sh
+alias ka="killall" \
+    mkd="mkdir -pv" \
+    mpv="mpv --input-ipc-server=/tmp/mpvsoc$(date +%s)" \
+    calcurse="calcurse -D ~/.config/calcurse" \
+    magit="nvim -c MagitOnly" \
+    xi="sudo xbps-install" \
+    xr="sudo xbps-remove" \
+    xq="xbps-query" \
+    f="$FILE" \
+    g="git" \
+    trem="transmission-remote" \
+    e="$EDITOR" \
+    v="$EDITOR" \
+    vi="$EDITOR" \
+    rm='rm -ri' \
+    :q='exit' \
+    x="sxiv -ft *" \
+    sdn="sudo shutdown -h now" \
+    gua="git remote | xargs -L1 git push --all" \
+    ls="ls -hN --color=auto --group-directories-first" \
+    ll="ls -alhN --color=auto --group-directories-first" \
+    grep="grep --color=auto" \
+    diff="diff --color=auto" \
+    yt="youtube-dl --add-metadata -i -o '%(upload_date)s-%(title)s.%(ext)s'" \
+    yta="yt -x -f bestaudio/best" \
+    YT="youtube-viewer" \
+    ref="shortcuts >/dev/null; source ~/.config/shortcutrc" \
+    ffmpeg="ffmpeg -hide_banner"
+
+command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d" # Use neovim for vim if present.
