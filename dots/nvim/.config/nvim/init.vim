@@ -86,6 +86,8 @@ set clipboard=unnamedplus
 	map <leader>tf :Goyo \| set bg=light \| set linebreak<CR>
 
 " Spell-check
+    hi clear SpellBad
+    hi SpellBad cterm=underline ctermbg=White ctermfg=Red term=Reverse
 	map <leader>ts :setlocal spell! spelllang=en_us<CR>
 
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
@@ -176,7 +178,17 @@ set clipboard=unnamedplus
     " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
     let g:fzf_history_dir = '~/.local/share/fzf-history'
 
+    function! FzfSpellSink(word)
+      exe 'normal! "_ciw'.a:word
+    endfunction
+    function! FzfSpell()
+      let suggestions = spellsuggest(expand("<cword>"))
+      return fzf#run({'source': suggestions, 'sink': function("FzfSpellSink"), 'down': 10 })
+    endfunction
+
+    nnoremap z= :call FzfSpell()<CR>
 	nnoremap <leader>bb :Buffers<cr>
 	nnoremap <leader>bd :bd<cr>
 	nnoremap <leader>ff :GFiles<cr>
 	nnoremap <leader>wL :Windows<cr>
+
