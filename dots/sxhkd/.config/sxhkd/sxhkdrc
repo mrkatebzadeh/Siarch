@@ -10,7 +10,7 @@ super + e
 super + m
 	$TERMINAL -e ncmpcpp
 super + n
-	$TERMINAL -e emacs
+	$TERMINAL -e newsboat
 super + y
 	$TERMINAL -e htop
 super + shift + a
