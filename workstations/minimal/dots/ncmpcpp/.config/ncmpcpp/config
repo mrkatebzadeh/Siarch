@@ -3,22 +3,14 @@
 ## or $XDG_CONFIG_HOME/ncmpcpp/config and set up your preferences.          ##
 ##############################################################################
 #
-##### directories ######
-##
-## Directory for storing ncmpcpp related files.  Changing it is useful if you
-## want to store everything somewhere else and provide command line setting for
-## alternative location to config file which defines that while launching
-## ncmpcpp.
-##
-#
-#ncmpcpp_directory = ~/.ncmpcpp
+ncmpcpp_directory = ~/.config/ncmpcpp
 #
 ##
 ## Directory for storing downloaded lyrics. It defaults to ~/.lyrics since other
 ## MPD clients (eg. ncmpc) also use that location.
 ##
 #
-#lyrics_directory = ~/.lyrics
+lyrics_directory = ~/.local/share/lyrics
 #
 ##### connection settings #####
 #
@@ -30,6 +22,7 @@
 #
 ## Needed for tag editor and file operations to work.
 ##
+mpd_music_dir = "~/Music"
 #
 #mpd_crossfade_time = 5
 #
@@ -79,6 +72,7 @@
 #
 ## Available values: spectrum, wave, wave_filled, ellipse.
 ##
+visualizer_type = spectrum
 #
 #visualizer_look = ●卐
 #visualizer_look = 卐
@@ -112,6 +106,7 @@
 #
 ## Defines how long messages are supposed to be visible.
 ##
+message_delay_time = 1
 #
 ##### song format #####
 ##
@@ -179,6 +174,25 @@
 ##
 ## Note: colors can be nested.
 ##
+#
+song_list_format = {$4%a - }{%t}|{$8%f$9}$R{$3(%l)$9}
+#
+song_status_format = $b{{$8"%t"}} $3by {$4%a{ $3in $7%b{ (%y)}} $3}|{$8%f}
+#
+song_library_format = {%n - }{%t}|{%f}
+#
+alternative_header_first_line_format = $b$1$aqqu$/a$9 {%t}|{%f} $1$atqq$/a$9$/b
+#
+alternative_header_second_line_format = {{$4$b%a$/b$9}{ - $7%b$9}{ ($4%y$9)}}|{%D}
+#
+current_item_prefix = $(cyan)$r$b
+#
+current_item_suffix = $/r$(end)$/b
+#
+current_item_inactive_column_prefix = $(magenta)$r
+#
+current_item_inactive_column_suffix = $/r$(end)
+#
 #now_playing_prefix = $b
 #
 #now_playing_suffix = $/b
@@ -270,8 +284,9 @@
 ##
 ## Note: Possible display modes: classic, columns.
 ##
-#playlist_display_mode = columns
+playlist_display_mode = columns
 #
+browser_display_mode = columns
 #
 #search_engine_display_mode = classic
 #
@@ -295,6 +310,7 @@
 ## Note: You can specify third character which will be used to build 'empty'
 ## part of progressbar.
 ##
+progressbar_look = ->
 #
 ## Available values: database, playlist.
 ##
@@ -308,7 +324,9 @@
 #
 ## Available values: artist, album_artist, date, genre, composer, performer.
 ##
+media_library_primary_tag = album_artist
 #
+media_library_albums_split_by_date = no
 #
 ## Available values: wrapped, normal.
 ##
@@ -368,6 +386,7 @@
 ##
 ## Note: You can define startup screen by choosing screen from the list above.
 ##
+startup_screen = media_library
 #
 ##
 ## Note: You can define startup slave screen by choosing screen from the list
@@ -391,6 +410,7 @@
 #
 #clock_display_seconds = no
 #
+display_volume_level = no
 #
 #display_bitrate = no
 #
@@ -404,6 +424,7 @@
 ## Note: if below is enabled, ncmpcpp will ignore leading "The" word while
 ## sorting items in browser, tags in media library, etc.
 ##
+ignore_leading_the = yes
 #
 ##
 ## Note: if below is enabled, ncmpcpp will ignore diacritics while searching and
@@ -444,9 +465,11 @@
 #
 #search_engine_default_search_mode = 1
 #
+external_editor = vim
 #
 ## Note: set to yes if external editor is a console application.
 ##
+use_console_editor = yes
 #
 ##### colors definitions #####
 ##
@@ -480,6 +503,7 @@
 #
 #colors_enabled = yes
 #
+empty_tag_color = magenta
 #
 #header_window_color = magenta
 #
@@ -489,11 +513,19 @@
 #
 #state_flags_color = default:b
 #
-#main_window_color = white
+main_window_color = white
 #
 #color1 = white
 #
 #color2 = green
+#
+progressbar_color = black:b
+#
+progressbar_elapsed_color = blue:b
+#
+statusbar_color = red
+#
+statusbar_time_color = cyan:b
 #
 #player_state_color = default:b
 #
@@ -503,66 +535,3 @@
 #
 #active_window_border = red
 #
-
-mpd_music_dir = "~/Music"
-execute_on_player_state_change = ~/.scripts/i3cmds/ncmpcpp-notify
-message_delay_time = 1
-external_editor = vim
-
-# playlist
-playlist_display_mode = "columns"
-now_playing_prefix = "$3●$9$2●$9$3●"
-now_playing_suffix = "$/b"
-song_list_format = {$4%a - }{%t}|{$8%f$9}$R{$3(%l)$9}
-song_status_format = $b{{$8"%t"}} $3by {$4%a{ $3in $7%b{ (%y)}} $3}|{$8%f}
-song_library_format = {%n - }{%t}|{%f}
-alternative_header_first_line_format = $b$1$aqqu$/a$9 {%t}|{%f} $1$atqq$/a$9$/b
-alternative_header_second_line_format = {{$4$b%a$/b$9}{ - $7%b$9}{ ($4%y$9)}}|{%D}
-
-autocenter_mode = "yes"
-centered_cursor = "yes"
-playlist_disable_highlight_delay = "1"
-
-# bars
-#progressbar_look = "░█ "
-progressbar_look = "██|"
-header_visibility = "no"
-titles_visibility = "no"
-statusbar_visibility = "yes"
-user_interface = "alternative" (classic|alternative)
-alternative_ui_separator_color ="white"
-
-browser_display_mode = "columns"
-incremental_seeking = "yes"
-follow_now_playing_lyrics = "yes"
-ignore_leading_the = "yes"
-display_volume_level = "yes"
-
-display_bitrate = "yes"
-song_window_title_format = "MPD: {%a - }{%t}
-main_window_highlight_color = "red"
-
-# colors
-colors_enabled = "yes"
-discard_colors_if_item_is_selected = "yes"
-header_window_color = "blue"
-volume_color = "green"
-progressbar_color = "red"
-statusbar_color = "green"
-main_window_color = "cyan"
-color1 = "green"
-color2 = "white"
-empty_tag_color = "white"
-active_column_color = "black"
-#active_window_border = "white"
-
-visualizer_fifo_path = "/tmp/mpd.fifo"
-visualizer_output_name = "fifo"
-visualizer_in_stereo = "no"
-visualizer_color = "red"
-visualizer_look = "●●"
-#visualizer_look = "●▋"
-#visualizer_look = "∙▋"
-#visualizer_look = "¤¤"
-#visualizer_type = "wave" (spectrum/wave)
-visualizer_type = "spectrum" (spectrum/wave)

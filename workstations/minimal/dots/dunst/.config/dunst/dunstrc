@@ -1,21 +1,16 @@
-[slack]
-    appname = Slack
-    new_icon = slack
-
 [global]
     monitor = 0
     follow = keyboard
-    geometry = "450x10-10+24"
+    geometry = "350x5-0+24"
     indicate_hidden = yes
     shrink = yes
-    transparency = 100
+    transparency = 20
     notification_height = 0
     separator_height = 2
-    padding = 30
+    padding = 0
     horizontal_padding = 8
-    frame_width = 0
-    corner_radius = 5
-    frame_color = "#6272a4"
+    frame_width = 3
+    frame_color = "#282828"
 
     # Define a color for the separator.
     # possible values are:
@@ -43,7 +38,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "%s\n%b"
+    format = "<b>%s</b>\n%b"
 
     alignment = left
     show_age_threshold = 60
@@ -55,7 +50,7 @@
     show_indicators = yes
     icon_position = left
     max_icon_size = 40
-    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/:/usr/share/icons/Adwaita/256x256/status/:/home/siavash/.scripts/icons/
+    #icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/:/usr/share/icons/Adwaita/256x256/status/
     sticky_history = yes
     history_length = 20
     dmenu = /usr/bin/dmenu -p dunst:
@@ -68,7 +63,6 @@
     class = Dunst
     startup_notification = false
     force_xinerama = false
-
 [experimental]
     per_monitor_dpi = false
 
@@ -81,26 +75,22 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#44475a"
-    foreground = "FFFFFF"
+    background = "#282828"
+    foreground = "#928374"
     timeout = 5
     # Icon for notifications with low urgency, uncomment to enable
     #icon = /path/to/icon
 
 [urgency_normal]
-    background = "#44475a"
-    foreground = "#FFFFFF"
+    background = "#458588"
+    foreground = "#ebdbb2"
     timeout = 5
-    # Icon for notifications with normal urgency, uncomment to enable
-    #icon = /path/to/icon
 
 [urgency_critical]
-    background = "#f1fa8c"
-    foreground = "#ffffff"
-    frame_color = "#ff0000"
+    background = "#cc2421"
+    foreground = "#ebdbb2"
+    frame_color = "#fabd2f"
     timeout = 0
-    # Icon for notifications with critical urgency, uncomment to enable
-    #icon = /path/to/icon
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
