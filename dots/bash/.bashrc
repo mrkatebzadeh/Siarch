@@ -6,3 +6,5 @@ export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput se
 
 [ -f "$HOME/.config/sh/shortcutrc" ] && source "$HOME/.config/sh/shortcutrc"
 [ -f "$HOME/.config/sh/aliasrc" ] && source "$HOME/.config/sh/aliasrc"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
