@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Gives a dmen prompt to open websites.
+# Without input, will open DuckDuckGo.com.
+# If the site exists in .bookmarks, will open the site.
+# Anything else, it search it.
+
+pgrep -x dmen -p && exit
+browser=$1
+[ "$browser" != '' ] || browser=$BROWSER
+touch ~/.bookmarks
+choice=$(cat ~/.bookmarks | dmen -p " Open Site:" | awk '{print $1}') || exit 1
+lines=$( grep $choice ~/.bookmarks )
+if [ "$lines" != ""  ]; then
+     ${browser} $( echo "$lines" | awk '{print $2}' )
+fi

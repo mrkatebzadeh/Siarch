@@ -1,0 +1,22 @@
+#!/bin/bash
+
+MENU_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+source $MENU_DIR/lib/menu_helpers.sh
+
+passthrough_args="$@"
+
+menuchoices=$(find "${MENU_DIR}"  -maxdepth 1 -type f -exec basename {} \;)
+menuchoices="${menuchoices}
+[Common] Screenshot
+"
+choice=$(menu "Option: " "${menuchoices}")
+
+case "${choice}" in
+    '[Common] Screenshot')
+        maim -s
+        # Automatic upload?
+    ;;
+    *)
+        exec "${MENU_DIR}/${choice}" "${passthrough_args}"
+    ;;
+esac

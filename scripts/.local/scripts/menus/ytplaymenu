@@ -1,0 +1,22 @@
+#!/bin/bash
+
+
+xclip -h >/dev/null || exit
+
+url=""
+quality=""
+arguments=""
+helperPath=`dirname "$0"`
+
+#Function to select url from clipboard.
+selecturl(){
+    url=`xclip -o | dmen -p "Select url" -l 10`
+    [[ $url = "" ]] && exit 0
+}
+
+main(){
+    selecturl
+    mpv --demuxer-lavf-o=protocol_whitelist=[http,https,tls,rtp,tcp,udp,crypto,httpproxy] "${url}"
+}
+
+main

@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Gives a dmen prompt to search DuckDuckGo.
+# Without input, will open DuckDuckGo.com.
+# Anything else, it search it.
+
+pgrep -x dmen -p && exit
+
+choice=$(echo "🦆" | dmen -p "Search DuckDuckGo:") || exit 1
+
+if [ "$choice" = "🦆"  ]; then
+	$BROWSER "https://duckduckgo.com"
+else
+	$BROWSER "https://duckduckgo.com/?q=$choice&t=ffab&atb=v1-1"
+fi

@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# Shell
+
+NAME="dropdown"
+TITLE="st"
+COMMAND=$1
+[[ $1 != "" ]] && TITLE="${NAME}_${COMMAND}" || NAME="scratchpad"
+
+# autodecide command
+windowthere=$(xdotool search --name $TITLE search --classname $NAME)
+windowvisible=$(xdotool search --onlyvisible --name $TITLE search --onlyvisible --classname $NAME)
+
+if [[ "$windowthere" == "" ]]; then
+  # window is not there
+  CMD=""
+elif [[ "$windowvisible" == "" ]]; then
+  CMD="on"
+else
+  CMD="off"
+fi
+
+if [[ "$CMD" == "" ]]; then
+  # CREATE
+  coproc $TERMINAL -T $TITLE -n $NAME -e $COMMAND
+  CMD="on"
+fi
+
+# ON/OFF
+if [[ "$CMD" == "on" ]]; then
+  xdotool search --name $TITLE search --classname $NAME windowmap
+elif [[ "$CMD" == "off" ]]; then
+  xdotool search --name $TITLE search --classname $NAME windowunmap
+fi
+
+IFS='x' read screenWidth screenHeight < <(xdpyinfo | grep dimensions | grep -o '[0-9x]*' | head -n1)
+
+width=$(xdotool getactivewindow getwindowgeometry --shell | head -4 | tail -1 | sed 's/[^0-9]*//')
+height=$(xdotool getactivewindow getwindowgeometry --shell | head -5 | tail -1 | sed 's/[^0-9]*//')
+
+newPosX=$((screenWidth/2-width/2))
+newPosY=$((screenHeight/2-height/2))
+xdotool getactivewindow windowmove "$newPosX" "$newPosY"

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+MENU_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+source $MENU_DIR/lib/menu_helpers.sh
+
+info=$(
+    date +"%a %B %d, %I:%M %p"
+    acpi -ba
+)
+
+menu "" "$info"
+
