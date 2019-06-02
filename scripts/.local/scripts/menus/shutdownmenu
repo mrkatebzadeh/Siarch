@@ -50,7 +50,9 @@ case "$action" in
         sudo systemctl suspend
     ;;
     '[Lock]')
-        lockscreen
+        notify-send "System:" "Locking..."
+        sleep 3
+        slock
     ;;
     '[Cancel]')
         notify-send "System:" "Shutdown command cancelled"
