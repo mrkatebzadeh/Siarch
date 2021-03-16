@@ -1,0 +1,10 @@
+#!/bin/sh
+val=$(cat /sys/class/backlight/intel_backlight/brightness)
+max=$(cat /sys/class/backlight/intel_backlight/max_brightness)
+perc=`expr $max / 15`
+if [ "$1" = "up" ] ; then
+  val=`expr $val + $perc`
+else
+  val=`expr $val - $perc`
+fi
+echo $val | sudo tee /sys/class/backlight/intel_backlight/brightness

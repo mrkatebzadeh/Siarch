@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+# AUTHOR: gotbletu (@gmail|twitter|youtube|github|lbry)
+#         https://www.youtube.com/user/gotbletu
+# DESC:   fuzzy find a song in cmus library and play
+# DEPEND: fzf cmus coreutils
+
+selected="$( mpc listall | fzf -e -i +s -m --reverse --delimiter / --with-nth -2,-1 )"
+[ -z "$selected" ] && exit
+
+# clear cmus queue
+mpc clear
+
+# add songs
+echo "$selected" | while read -r line ; do mpc add "$line" ; done
+
+# play queued song
+mpc play

@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+# youtube viewer not using API
+cd /tmp
+mkdir -p ytfzf_dl
+cd ytfzf_dl
+rm -rf *
+ytfzf -t -d -m
+find . -name "*.mp4" -o -name "*.mkv" -o -name "*.webm" -o -name "*.m4a" | xargs  -d "\n"  -I {} ffmpeg -i {} -b:a 320K -vn {}.mp3
+for file_name in *; do
+    mv "$file_name" "`echo $file_name | sed  "s/.mp4//g;s/.m4a//g;s/.mkv//g;s/.webm//g"`";
+done
+cp *.mp3 ~/Music
+mpc update
+cd -

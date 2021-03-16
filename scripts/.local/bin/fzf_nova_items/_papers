@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# List and open bibtex entries.
+# Get user selection via dmenu from emoji file.
+export BIBTEXERPATH=~/Documents/Papers
+export BIBTEXERFILE="$BIBTEXERPATH"/references.bib
+export BIBTEXERCACHE=~/.cache/bibtexer
+#chosen=$(| dmenu -i | awk -F"|" '{print $1}')
+chosen="$(cat $BIBTEXERCACHE | awk -F"|" '{print $2"|"$4}' | fzf -e -i -m --reverse)"
+
+# Exit if none chosen.
+[ -z "$chosen" ] && notify-send "'$chosen': no pdf found." && exit
+chosen=$(echo "$chosen" | awk -F"|" '{print $1}' )
+pdf=$(grep  "$chosen" $BIBTEXERCACHE | awk -F"|" '{print $3"/"$4}')
+echo "$BIBTEXERPATH"/"$pdf"
+setsid -f sh -c "zathura '$BIBTEXERPATH'/'$pdf'"
+notify-send "'$chosen': will be open."
