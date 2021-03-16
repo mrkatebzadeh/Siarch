@@ -1,0 +1,157 @@
+# Local/private config goes in the include
+[include]
+    path = ~/.gitaliases
+
+[user]
+    name = Siavash Katebzadeh
+    email = mr.katebzadeh@gmail.com
+
+[core]
+    editor = vim
+    excludesfile = ~/.gitignore
+
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    ui = true
+
+[diff]
+    tool = meld
+
+[difftool]
+    prompt = false
+
+[gui]
+    # Remove `git gui` pop-up warning
+    gcwarning = false
+
+[help]
+    autocorrect = 1
+
+[merge]
+    tool = meld
+
+[mergetool]
+    keepBackup = false
+
+[mergetool "meld"]
+    cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
+
+[pull]
+    rebase = true
+
+[push]
+    default = simple
+
+[rebase]
+    autoStash = true
+
+[alias]
+    last = log -1 HEAD
+    uncommit = reset --soft HEAD~
+    unstage = reset HEAD --
+    lg = log --graph --abbrev-commit --decorate --date=relative --all
+
+    # list aliases
+    la = "!git config -l | grep alias | cut -c 7-"
+    h = help
+
+    su = submodule
+    root = "!pwd"
+
+    ### Reading ###
+
+    sh = show
+    # diffs with last commit
+    dl = show -1
+    dls = show -1 --stat
+
+    # branches with details, sorted by last modified
+    b = "!git for-each-ref --sort='-authordate' --format='%(refname)   $%(authordate:relative)   $%(authorname)   $%(objectname:short)' refs/heads | sed -e 's-refs/heads/--' | column -nt -s$"
+    br = branch
+
+    # one-line log with info
+    l = log --topo-order --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %C(bold blue)%an%Creset %s %Cgreen(%cr)' --abbrev-commit --date=relative
+
+    # one-line log with file changes summary
+    ll = "!git l --decorate --numstat"
+
+    # log for a specific file
+    lf = "!git l -u"
+
+    # log commits not shared with something else
+    ln = "!git l HEAD --not"
+
+    co = checkout
+    cob = checkout -b
+
+    rl = reflog
+
+    # find files by name
+    find = "!git ls-files --exclude-standard | grep -i"
+
+    # Grep grouped by file
+    g = grep -P --break --heading --line-number --no-index --exclude-standard -I
+
+    # search history for a pattern
+    hg = log --patch --source --all --pickaxe-regex -S
+
+    day = "!git shortlog --format='[%h] %s' --since=one.day.ago"
+    week = "!git shortlog --format='[%h] %s' --since=one.week.ago"
+    month = "!git shortlog --format='[%h] %s' --since=one.month.ago"
+
+    ribbon = tag --force _ribbon origin/master
+    catchup = log --patch --reverse --topo-order _ribbon..origin/master
+
+    ### Writing ###
+
+    st = status -s
+
+    # don't add untracked files
+    a = add -u
+    ap = add -u -p
+    aa = add
+
+    # show diff in commit message editor
+    c = commit --verbose
+    ca = commit -a --verbose
+    cm = commit -m
+    cam = commit -a -m
+    m = commit --amend --verbose
+
+    # create a fixup commit for rebase with autosquash
+    cf = commit --fixup
+
+    d = diff
+    ds = diff --stat
+    dc = diff --cached
+
+    dlc = diff --cached HEAD^
+    dlcs = diff --cached --stat HEAD^
+
+    con = diff --name-only --diff-filter=U
+
+    findmerge = "!git log --merges --ancestry-path --oneline $1..origin | tail"
+    p = push
+    po = push origin
+    pfo = push -f origin
+    pu = push upstream
+    pfu = push -f upstream
+
+    pl = pull
+
+    cp = cherry-pick
+
+    r = rebase
+    ri = rebase -i
+    rc = rebase --continue
+
+    re = reset
+    re1 = reset HEAD^
+    re2 = reset HEAD^^
+    reh = reset --hard
+    reh1 = reset HEAD^ --hard
+    reh2 = reset HEAD^^ --hard
+
+    sh = stash
