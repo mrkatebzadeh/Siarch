@@ -1,3 +1,4 @@
 #!/usr/bin/env sh
 # toggle pause/play
-mpc play
+music=$(mpc play | head -n 1)
+notify-send "🎶 Music" "Playing $music"
