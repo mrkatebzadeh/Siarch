@@ -15,4 +15,4 @@
 
 DIR="${0%/*}"
 	clear
-	"$DIR"/fzf_nova_items/"$(find "$DIR"/fzf_nova_items -type f -exec basename {} \; | grep '^_' | sort | fzf -e -i --delimiter _ --with-nth='2..' --reverse --prompt="Command: ")"
+	"$DIR"/fzf_nova_items/"$(find "$DIR"/fzf_nova_items -type f -exec basename {} \; | grep '^_' | sort | fzf -i --delimiter _ --with-nth='2..' --reverse --prompt="Command: ")"
