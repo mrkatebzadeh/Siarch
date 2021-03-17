@@ -61,11 +61,16 @@ lfcd () {
         [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
     fi
 }
+psk() {
+	ps -afx|  fzf |  xargs -0 -I {} echo {} | awk '{ printf $1 }' | xargs -0 -I {}  kill -9  {};
+}
+
 
 . /usr/share/fzf/key-bindings.zsh
 . /usr/share/fzf/completion.zsh
 
 bindkey -s '^o' 'lfcd\n'
+bindkey -s '^p' 'psk\n'
 
 bindkey  '^a' beginning-of-line
 bindkey  '^e' vi-end-of-line
