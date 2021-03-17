@@ -37,6 +37,7 @@ alias \
 	xr="sudo xbps-remove -R" \
 	xq="xbps-query" \
 	z="zathura"
+alias pacfuz="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
 
 alias \
 	magit="nvim -c MagitOnly" \

@@ -61,17 +61,22 @@ lfcd () {
         [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
     fi
 }
+
+. /usr/share/fzf/key-bindings.zsh
+. /usr/share/fzf/completion.zsh
+
 bindkey -s '^o' 'lfcd\n'
 
-bindkey -s '^a' 'bc -lq\n'
+bindkey  '^a' beginning-of-line
+bindkey  '^e' vi-end-of-line
 
 bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
 
 bindkey '^[[P' delete-char
 
 # Edit line in vim with ctrl-e:
-autoload edit-command-line; zle -N edit-command-line
-bindkey '^e' edit-command-line
+#autoload edit-command-line; zle -N edit-command-line
+#bindkey '^e' edit-command-line
 
 # Load syntax highlighting; should be last.
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
