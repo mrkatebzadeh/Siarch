@@ -157,4 +157,4 @@ and replace \`libxft\`. Afterwards, you may start the graphical server by runnin
 fi
 
 # Switch escape and caps if tty and no passwd required:
-sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/larbs/ttymaps.kmap 2>/dev/null
+sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/siarch/ttymaps.kmap 2>/dev/null
