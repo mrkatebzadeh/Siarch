@@ -280,6 +280,6 @@ installall() {
 [[  "$INSTALLALL" = 1 ]] && installall
 [ -n  "$STOW"  ] && stow_config $STOW
 [[  "$STOWALL" = 1 ]] && stow_all
-[ -n  "$DELETE"  ] && delete_config $DELETE
+[ -n  "$DELETESTOW"  ] && delete_config $DELETESTOW
 [[  "$DELETEALL" = 1 ]] && delete_all
 exit 1
