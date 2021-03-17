@@ -62,7 +62,7 @@ lfcd () {
     fi
 }
 psk() {
-	ps -afx|  fzf |  xargs -0 -I {} echo {} | awk '{ printf $1 }' | xargs -0 -I {}  kill -9  {};
+	ps -afx|  fzf -e |  xargs -0 -I {} echo {} | awk '{ printf $1 }' | xargs -0 -I {}  kill -9  {};
 }
 
 
