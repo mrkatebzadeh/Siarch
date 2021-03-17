@@ -16,4 +16,5 @@ selected="$(echo $files | fzf -e -i -m --reverse --delimiter / --with-nth -1)"
 cd || return
 
 #echo "$selected" | ${SHELL:-"/bin/sh"} &
-setsid  -f sh -c "$selected"
+eval setsid setsid "$selected"
+echo Launching "$selected"
