@@ -77,7 +77,7 @@ Plug 'honza/vim-snippets'
 
 "" Color
 Plug 'tomasr/molokai'
-Plug 'dracula/vim'
+"Plug 'dracula/vim'
 
 "*****************************************************************************
 "" Custom bundles
@@ -184,10 +184,10 @@ set ruler
 set number
 
 let no_buffers_menu=1
-if !exists('g:not_finish_vimplug')
-  let g:dracula_colorterm = 0
-  colorscheme dracula
-endif
+"if !exists('g:not_finish_vimplug')
+"  let g:dracula_colorterm = 0
+"  colorscheme dracula
+"endif
 
 set mousemodel=popup
 set t_Co=256
