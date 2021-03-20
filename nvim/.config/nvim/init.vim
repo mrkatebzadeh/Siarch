@@ -48,6 +48,14 @@ Plug 'Yggdroot/indentLine'
 Plug 'avelino/vim-bootstrap-updater'
 Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/goyo.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'jackguo380/vim-lsp-cxx-highlight'
+Plug 'vim-syntastic/syntastic'
+Plug 'rhysd/vim-clang-format'
+Plug 'liuchengxu/vim-which-key'
+
+" On-demand lazy load
+Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 else
@@ -147,8 +155,10 @@ set shiftwidth=4
 set expandtab
 
 "" Map leader to ,
-let mapleader=','
-
+nnoremap <SPACE> <Nop>
+let mapleader=' '
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+set timeoutlen=500
 "" Enable hidden buffers
 set hidden
 
@@ -567,3 +577,15 @@ else
   let g:airline_symbols.readonly = ''
   let g:airline_symbols.linenr = ''
 endif
+
+" c++ syntax highlighting
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:syntastic_cpp_checkers = ['cpplint']
+let g:syntastic_c_checkers = ['cpplint']
+let g:syntastic_cpp_cpplint_exec = 'cpplint'
+" The following two lines are optional. Configure it to your liking!
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+nnoremap <Leader>f :<C-u>ClangFormat<CR>
