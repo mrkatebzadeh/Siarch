@@ -1,0 +1,172 @@
+# The Simple X Hotkey Daemon is the program used by LARBS to map most of the
+# dwm-independent commands.  This file is pretty readable, so I'll let you read
+# it.
+
+# The keys NOT bound here by sxhkd, but by dwm or i3 are:
+# The t thru p keys on the top row
+# The f thru ; keys on the home row
+# The b key on the bottom row (hides the bar in either case)
+
+# Basic binds
+super + Return
+	$TERMINAL #Run Terminal
+#super + shift + Return
+#	tabbed -c -r 2 $TERMINAL -w "" #Run terminal with tabbed
+#super + shift + Return
+#	$TERMINAL -n "spterm" -g 120x34 #Run terminal with tabbed
+super + q
+	kill -9 `xdotool getwindowfocus getwindowpid` #Kill focused window
+super + shift + q
+    sysact #Show power options
+#super + d
+#	$TERMINAL -n fzfnova2 -e fzf-nova
+#super + d
+#	dmenu_run #dmenu lanucher
+super + shift + d
+	passmenu #Passmenu
+super + e
+    $TERMINAL -e neomutt ; pkill -RTMIN+12 dwmblocks; rmdir ~/.abook #Email
+super + shift + e
+    $TERMINAL  -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook #Address book
+super + r
+    $TERMINAL -e lf #File manager
+super + shift + r
+    $TERMINAL -e htop #Top
+super + BackSpace
+	dmenubibtex #Bibtex menu
+super + shift + BackSpace
+	dc-toggle #Docker start
+super + m
+	$TERMINAL -e ncmpcpp #Music player
+super + n
+	$TERMINAL -e nvim -c VimwikiIndex #vimwiki
+super + shift + n
+	$TERMINAL -e newsboat; pkill -RTMIN+6 dwmblocks #RSS manager
+#super + c
+#	$TERMINAL -e calcurse -D ~/.config/calcurse
+#super + v
+#	$TERMINAL -e nvim -c VimwikiIndex
+#super + shift + a
+#	$TERMINAL -e alsamixer || pulsemixer; pkill -RTMIN+10 $STATUSBAR
+#super + shift + c
+#	mpv --no-osc --no-input-default-bindings --input-conf=/dev/null --title='mpvfloat' /dev/video0
+super + shift + w
+	$TERMINAL -e sudo nmtui #network manager
+super + w
+	$BROWSER #Broswer
+
+# Et cetera...
+super + grave
+	dmenuunicode
+super + Scroll_Lock
+	killall screenkey || screenkey
+super + Insert
+    xdotool type $(grep -v '^#' ~/.local/share/siarch/snippets | dmenu -i -l 50 | cut -d' ' -f1)
+XF86Launch1
+	xset dpms force off
+XF86TouchpadToggle
+	(synclient | grep "TouchpadOff.*1" && synclient TouchpadOff=0) || synclient TouchpadOff=1
+XF86Touchpad{Off,On}
+	synclient TouchpadOff={1,0}
+XF86MonBrightnessDown
+	xbacklight -dec 15
+XF86MonBrightnessUp
+	xbacklight -inc 15
+
+# Recording
+# Take screenshot
+Print
+	maim pic-full-$(date '+%y%m%d-%H%M-%S').png
+# Pick screenshot type
+shift + Print
+	maimpick
+# Print: Record audio or video; Del: kill recording
+super + Print
+	dmenurecord
+super + Delete
+	dmenurecord kill
+
+# Pause audio
+super + p
+	mpc toggle
+super + shift + p
+	mpc pause; pauseallmpv
+# Changes to next/previous tracks
+super + {comma,period}
+	mpc {prev,next}
+# Restart track
+super + shift + less
+	mpc seek 0%
+# Seek foward in song
+super + {_,shift +} bracketright
+	mpc seek +{10,120}
+# Seek backward in song
+super + {_,shift +} bracketleft
+	mpc seek -{10,120}
+# Increase volume
+super + {equal,plus}
+    pamixer --allow-boost -i 5; kill -44 $(pidof dwmblocks)
+# Decrease volume
+super {_,shift +} + minus
+    pamixer --allow-boost -d 5; kill -44 $(pidof dwmblocks)
+super + shift + m
+	pamixer -t; kill -44 $(pidof dwmblocks)
+
+# Audiokeys
+XF86AudioMute
+    pamixer -t; kill -44 $(pidof dwmblocks)
+XF86Audio{Raise,Lower}Volume
+    pamixer --allow-boost -{i,d} 3; kill -44 $(pidof dwmblocks)
+XF86Audio{Next,Prev}
+	mpc {next,prev}
+XF86Audio{Pause,Play,Stop}
+	mpc {pause,play,stop}
+XF86Audio{Rewind,Forward}
+	mpc seek {-,+}10
+XF86AudioRecord
+	dmenurecord
+XF86AudioMedia
+	$TERMINAL -e ncmpcpp
+
+XF86PowerOff
+    sysact
+XF86Calculator
+	$TERMINAL -e bc -l
+XF86Sleep
+    sudo -A zzz
+XF86WWW
+	$BROWSER
+XF86DOS
+	$TERMINAL
+XF86ScreenSaver
+    slock & xset dpms force off; mpc pause; pauseallmpv
+XF86TaskPane
+	$TERMINAL -e htop
+XF86Mail
+	$TERMINAL -e neomutt; pkill -RTMIN+12 dwmblocks
+XF86MyComputer
+	$TERMINAL -e lf /
+
+# Change display
+super + F3
+	displayselect
+# Hibernate
+super + F4
+    $TERMINAL -e pulsemixer; kill -44 $(pidof dwmblocks)
+super + F5 is unbound.
+# Start torrent daemon/open interface
+super + F6
+	torwrap
+# toggle torrent daemon
+super + F7
+	td-toggle
+# sync email
+super + F8
+	mw -Y
+# Mount a USB drive or Android device
+super + {F9,F10}
+	{dmenumount,dmenuumount}
+super + F11
+	mpv --no-cache --no-osc --no-input-default-bindings --profile=low-latency --input-conf=/dev/null --title=webcam $(ls /dev/video[0,2,4,6,8] | tail -n 1)
+super + F12
+    remaps & notify-send \\\"⌨ Keyboard remapping...\\\" \\\"Re-running keyboard defaults for any newly plugged-in keyboards.\\\"
