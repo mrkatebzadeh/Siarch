@@ -53,6 +53,7 @@ Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'vim-syntastic/syntastic'
 Plug 'rhysd/vim-clang-format'
 Plug 'liuchengxu/vim-which-key'
+Plug 'ryanoasis/vim-devicons'
 
 " On-demand lazy load
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
@@ -589,3 +590,16 @@ let g:syntastic_cpp_cpplint_exec = 'cpplint'
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 nnoremap <Leader>f :<C-u>ClangFormat<CR>
+"******************************************************************************
+"" Bindings
+"******************************************************************************
+nmap <leader>wv   :vsplit<CR>
+nmap <leader>ws   :split<CR>
+nmap <leader>wd   :quit<CR>
+nnoremap <leader>wj <C-W><C-J>
+nnoremap <leader>wk <C-W><C-K>
+nnoremap <leader>wl <C-W><C-L>
+nnoremap <leader>wh <C-W><C-H>
+nnoremap <leader>fn :NERDTreeToggle<CR>
+nnoremap <leader>fN :NERDTreeFocusToggle<CR>
+
