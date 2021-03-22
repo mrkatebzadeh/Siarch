@@ -2,4 +2,4 @@
 # AUTHOR: M.R. Siavash Katebzadeh 
 # DESC:   fuzzy interface to pacman -S
 
-pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S
+pacman -Slq | fzf --height 100% --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S

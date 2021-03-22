@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 # Fuzzy find a process and kill it
 
-ps -afx|  fzf -e |  xargs -0 -I {} echo {} | awk '{ printf $1 }' | xargs -0 -I {}  kill -9  {};
+ps -afx|  fzf -e --height 100% |  xargs -0 -I {} echo {} | awk '{ printf $1 }' | xargs -0 -I {}  kill -9  {};

@@ -616,7 +616,7 @@ fzf-docker-debug-info() {
 }
 
 commands=( remove_image clean restart logs exec remove remove_all stop stop_all kill kill_all )
-selected=$(printf "%s\n" ${commands[@]} | fzf)
+selected=$(printf "%s\n" ${commands[@]} | fzf --height 100% )
 case $selected in
   remove_image)
     drmi  	

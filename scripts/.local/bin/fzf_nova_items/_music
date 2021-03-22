@@ -4,7 +4,7 @@
 # DESC:   fuzzy find a song in cmus library and play
 # DEPEND: fzf cmus coreutils
 
-selected="$( mpc listall | fzf -e -i +s -m --reverse --delimiter / --with-nth -2,-1 )"
+selected="$( mpc listall | fzf --height 100% -e -i +s -m --reverse --delimiter / --with-nth -2,-1 )"
 [ -z "$selected" ] && exit
 
 # clear cmus queue

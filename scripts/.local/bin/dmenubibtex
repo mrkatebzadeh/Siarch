@@ -3,7 +3,7 @@
 # List and open bibtex entries.
 # Get user selection via dmenu from emoji file.
 
-chosen=$(bibtexer -l | dmenu -i | awk -F"|" '{print $1}')
+chosen=$(bibtexer -l | fzf -e | awk -F"|" '{print $1}')
 
 # Exit if none chosen.
 [ -z "$chosen" ] && notify-send "'$chosen': no pdf found." && exit

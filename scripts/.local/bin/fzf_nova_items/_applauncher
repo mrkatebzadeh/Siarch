@@ -11,7 +11,7 @@ if stest -dqr -n "$cache" $PATH; then
 fi
 files=$(cat $cache)
 clear
-selected="$(echo $files | fzf -e -i -m --reverse --delimiter / --with-nth -1)"
+selected="$(echo $files | fzf --height 100% -e -i -m --reverse --delimiter / --with-nth -1)"
 [ -z "$selected" ] && exit
 cd || return
 
