@@ -103,3 +103,6 @@ A,cpplint,""
 G,https://github.com/mrkatebzadeh/tabbed.git,"is the tab manager."
 G,https://github.com/mrkatebzadeh/surf.git,"is the browser."
 ,sxhkd,"binding manager"
+,noto-fonts,""
+,noto-fonts-emoji, ""
+
