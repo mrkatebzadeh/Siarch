@@ -638,5 +638,5 @@ nnoremap <silent> <F2> :NERDTreeFind<CR>
 nnoremap <leader>fw :write<CR>
 nnoremap <leader>qq :quit<CR>
 
-nmap <leader>bb   :Buffers<CR>
+nnoremap <leader>bb   :Buffers<CR>
 
