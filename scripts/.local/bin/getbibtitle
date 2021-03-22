@@ -1,0 +1,3 @@
+#!/bin/sh
+
+echo $1 | grep -oh "title = {{[^{}]*}}" | grep -oh "{[^{}]*}"
