@@ -402,9 +402,9 @@ nnoremap <leader>sd :DeleteSession<CR>
 nnoremap <leader>sc :CloseSession<CR>
 
 "" Tabs
-nnoremap <Tab> gt
-nnoremap <S-Tab> gT
-nnoremap <silent> <S-t> :tabnew<CR>
+"nnoremap <Tab> gt
+"nnoremap <S-Tab> gT
+"nnoremap <silent> <S-t> :tabnew<CR>
 
 "" Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
@@ -621,10 +621,10 @@ let g:syntastic_cpp_cpplint_exec = 'cpplint'
 " The following two lines are optional. Configure it to your liking!
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-nnoremap <Leader>f :<C-u>ClangFormat<CR>
 "******************************************************************************
 "" Bindings
 "******************************************************************************
+nnoremap <Leader>ff :<C-u>ClangFormat<CR>
 nmap <leader>wv   :vsplit<CR>
 nmap <leader>ws   :split<CR>
 nmap <leader>wd   :quit<CR>
@@ -639,4 +639,12 @@ nnoremap <leader>fw :write<CR>
 nnoremap <leader>qq :quit<CR>
 
 nnoremap <leader>bb   :Buffers<CR>
+nmap <leader>gd <Plug>(coc-definition)
+nmap <leader>gy <Plug>(coc-type-definition)
+nmap <leader>gi <Plug>(coc-implementation)
+nmap <leader>gr <Plug>(coc-references)
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <silent><expr> <NUL> coc#refresh()
 
