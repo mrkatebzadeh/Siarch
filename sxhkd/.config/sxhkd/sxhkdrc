@@ -25,7 +25,7 @@ super + shift + q
 super + shift + d
 	passmenu #Passmenu
 super + e
-    $TERMINAL -e neomutt ; pkill -RTMIN+12 dwmblocks; rmdir ~/.abook #Email
+    muttmails ; pkill -RTMIN+12 dwmblocks; rmdir ~/.abook #Email
 super + shift + e
     $TERMINAL  -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook #Address book
 super + r

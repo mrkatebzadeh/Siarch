@@ -1,0 +1,4 @@
+#! /bin/bash
+xid="$(tabbed -n "neomutt" -c -d -s -r 2 st -w x)"
+st -w "$xid" neomutt -F ~/.config/mutt/muttrc &
+st -w "$xid" neomutt -F ~/.config/mutt/muttrc2 &
