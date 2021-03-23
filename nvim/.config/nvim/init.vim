@@ -314,13 +314,12 @@ let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
 let g:NERDTreeShowBookmarks=1
 let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
-let g:NERDTreeWinSize = 50
+let g:NERDTreeWinSize = 35
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 nnoremap <silent> <F2> :NERDTreeFind<CR>
 nnoremap <silent> <F3> :NERDTreeToggle<CR>
 
 " grep.vim
-nnoremap <silent> <leader>f :Rgrep<CR>
 let Grep_Default_Options = '-IR'
 let Grep_Skip_Files = '*.log *.db'
 let Grep_Skip_Dirs = '.git node_modules'
@@ -335,6 +334,16 @@ if g:vim_bootstrap_editor == 'nvim'
 else
   nnoremap <silent> <leader>sh :VimShellCreate<CR>
 endif
+
+" coc config
+let g:coc_global_extensions = [
+  \ 'coc-snippets',
+  \ 'coc-pairs',
+  \ 'coc-tsserver',
+  \ 'coc-eslint',
+  \ 'coc-prettier',
+  \ 'coc-json',
+  \ ]
 
 "*****************************************************************************
 "" Functions
@@ -416,6 +425,16 @@ noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 "" fzf.vim
+let $FZF_DEFAULT_OPTS="--layout=reverse --info=inline"
+let g:fzf_layout = {
+            \ 'window': {
+            \ 'width': 0.64,
+            \ 'height': 0.48,
+            \ 'highlight': 'Identifier',
+            \ 'border': 'rounded'
+            \ }
+            \ }
+let g:fzf_history_dir = '~/.cache/fzf'
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
@@ -438,8 +457,8 @@ nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>e :FZF -m<CR>
 
 " snippets
-let g:UltiSnipsExpandTrigger="."
-let g:UltiSnipsJumpForwardTrigger="."
+let g:UltiSnipsExpandTrigger="<c-.>"
+let g:UltiSnipsJumpForwardTrigger="<c-.>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 let g:UltiSnipsEditSplit="vertical"
 
@@ -451,6 +470,7 @@ let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '⚠'
 let g:syntastic_auto_loc_list=1
 let g:syntastic_aggregate_errors = 1
+autocmd VimEnter * SyntasticToggleMode " disable syntastic by default
 
 " Tagbar
 nmap <silent> <F4> :TagbarToggle<CR>
@@ -476,15 +496,6 @@ if has('macunix')
   vmap <C-x> :!pbcopy<CR>
   vmap <C-c> :w !pbcopy<CR><CR>
 endif
-
-"" Buffer nav
-noremap <leader>z :bp<CR>
-noremap <leader>q :bp<CR>
-noremap <leader>x :bn<CR>
-noremap <leader>w :bn<CR>
-
-"" Close buffer
-noremap <leader>c :bd<CR>
 
 "" Clean search (highlight)
 nnoremap <silent> <leader><space> :noh<cr>
@@ -624,7 +635,7 @@ let g:syntastic_check_on_wq = 0
 "******************************************************************************
 "" Bindings
 "******************************************************************************
-nnoremap <Leader>ff :<C-u>ClangFormat<CR>
+nnoremap <Leader>Ff :<C-u>ClangFormat<CR>
 nmap <leader>wv   :vsplit<CR>
 nmap <leader>ws   :split<CR>
 nmap <leader>wd   :quit<CR>
@@ -632,13 +643,23 @@ nnoremap <leader>wj <C-W><C-J>
 nnoremap <leader>wk <C-W><C-K>
 nnoremap <leader>wl <C-W><C-L>
 nnoremap <leader>wh <C-W><C-H>
+nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fn :call ToggleTree()<CR>
 nnoremap <leader>fN :NERDTreeFocusToggle<CR>
 nnoremap <silent> <F2> :NERDTreeFind<CR>
 nnoremap <leader>fw :write<CR>
 nnoremap <leader>qq :quit<CR>
+nnoremap <leader>qr :source $MYVIMRC<CR>
+
+nnoremap <leader>s/ :Rg<CR>
+nnoremap <leader>sr :Rgrep<CR>
 
 nnoremap <leader>bb   :Buffers<CR>
+nnoremap <leader>bp :bp<CR>
+nnoremap <leader>bn :bn<CR>
+nnoremap <leader>bd :bd<CR>
+
+
 nmap <leader>gd <Plug>(coc-definition)
 nmap <leader>gy <Plug>(coc-type-definition)
 nmap <leader>gi <Plug>(coc-implementation)
@@ -647,4 +668,6 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent><expr> <NUL> coc#refresh()
+
+nnoremap <leader>tn :set number! relativenumber!<CR>
 
