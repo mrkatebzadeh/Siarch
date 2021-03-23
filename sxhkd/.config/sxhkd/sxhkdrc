@@ -9,7 +9,7 @@
 
 # Basic binds
 super + Return
-	$TERMINAL #Run Terminal
+	termite #Run Terminal
 #super + shift + Return
 #	tabbed -c -r 2 $TERMINAL -w "" #Run terminal with tabbed
 #super + shift + Return
