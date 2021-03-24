@@ -130,7 +130,7 @@ Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 if filereadable(expand("~/.config/nvim/local_bundles.vim"))
   source ~/.config/nvim/local_bundles.vim
 endif
-
+autocmd User vim-which-key call which_key#register('<Space>', 'g:which_key_map')
 call plug#end()
 
 " Required:
@@ -142,7 +142,7 @@ filetype plugin indent on
 "*****************************************************************************"
 "" Encoding
 set encoding=utf-8
-set fileencoding=utf-8
+"set fileencoding=utf-8
 set fileencodings=utf-8
 set bomb
 set binary
@@ -157,11 +157,14 @@ set softtabstop=0
 set shiftwidth=4
 set expandtab
 
-"" Map leader to ,
+"" Map leader to 
 nnoremap <SPACE> <Nop>
-let mapleader=' '
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
-set timeoutlen=500
+let g:mapleader = "\<Space>"
+let g:maplocalleader = ','
+nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
+vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
+set timeoutlen=100
 "" Enable hidden buffers
 set hidden
 
@@ -317,8 +320,6 @@ let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
 let g:NERDTreeWinSize = 35
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
-nnoremap <silent> <F2> :NERDTreeFind<CR>
-nnoremap <silent> <F3> :NERDTreeToggle<CR>
 
 " grep.vim
 let Grep_Default_Options = '-IR'
@@ -328,13 +329,6 @@ let Grep_Skip_Dirs = '.git node_modules'
 " vimshell.vim
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
-
-" terminal emulation
-if g:vim_bootstrap_editor == 'nvim'
-  nnoremap <silent> <leader>sh :terminal<CR>
-else
-  nnoremap <silent> <leader>sh :VimShellCreate<CR>
-endif
 
 " coc config
 let g:coc_global_extensions = [
@@ -390,40 +384,14 @@ set autoread
 "*****************************************************************************
 "" Mappings
 "*****************************************************************************
-
-"" Split
-noremap <Leader>h :<C-u>split<CR>
-noremap <Leader>v :<C-u>vsplit<CR>
-
-"" Git
-noremap <Leader>ga :Gwrite<CR>
-noremap <Leader>gc :Gcommit<CR>
-noremap <Leader>gsh :Gpush<CR>
-noremap <Leader>gll :Gpull<CR>
-noremap <Leader>gs :Gstatus<CR>
-noremap <Leader>gb :Gblame<CR>
-noremap <Leader>gd :Gvdiff<CR>
-noremap <Leader>gr :Gremove<CR>
-
-" session management
-nnoremap <leader>so :OpenSession<Space>
-nnoremap <leader>ss :SaveSession<Space>
-nnoremap <leader>sd :DeleteSession<CR>
-nnoremap <leader>sc :CloseSession<CR>
-
-"" Tabs
-"nnoremap <Tab> gt
-"nnoremap <S-Tab> gT
-"nnoremap <silent> <S-t> :tabnew<CR>
-
 "" Set working directory
-nnoremap <leader>. :lcd %:p:h<CR>
+"nnoremap <leader>. :lcd %:p:h<CR>
 
 "" Opens an edit command with the path of the currently edited file filled in
-noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+"noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
 "" Opens a tab edit command with the path of the currently edited file filled
-noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
+"noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 "" fzf.vim
 let $FZF_DEFAULT_OPTS="--layout=reverse --info=inline"
@@ -452,10 +420,6 @@ if executable('rg')
   set grepprg=rg\ --vimgrep
   command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 endif
-
-cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader>e :FZF -m<CR>
 
 " snippets
 let g:UltiSnipsExpandTrigger="<c-.>"
@@ -501,12 +465,6 @@ endif
 "" Clean search (highlight)
 nnoremap <silent> <leader><space> :noh<cr>
 
-"" Switching windows
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
-noremap <C-h> <C-w>h
-
 "" Vmap for maintain Visual Mode after shifting > and <
 vmap < <gv
 vmap > >gv
@@ -514,9 +472,6 @@ vmap > >gv
 "" Move visual block
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
-
-"" Open current line on GitHub
-nnoremap <Leader>o :.Gbrowse<CR>
 
 "*****************************************************************************
 "" Startify
@@ -659,39 +614,128 @@ let g:syntastic_check_on_wq = 0
 "******************************************************************************
 "" Bindings
 "******************************************************************************
+autocmd! FileType which_key
+autocmd  FileType which_key set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 nnoremap <Leader>Ff :<C-u>ClangFormat<CR>
-nmap <leader>wv   :vsplit<CR>
-nmap <leader>ws   :split<CR>
-nmap <leader>wd   :quit<CR>
-nnoremap <leader>wj <C-W><C-J>
-nnoremap <leader>wk <C-W><C-K>
-nnoremap <leader>wl <C-W><C-L>
-nnoremap <leader>wh <C-W><C-H>
-nnoremap <leader>ff :Files<CR>
-nnoremap <leader>fn :call ToggleTree()<CR>
-nnoremap <leader>fN :NERDTreeFocusToggle<CR>
-nnoremap <silent> <F2> :NERDTreeFind<CR>
-nnoremap <leader>fw :write<CR>
 nnoremap <leader>qq :quit<CR>
 nnoremap <leader>qr :source $MYVIMRC<CR>
 
-nnoremap <leader>s/ :Rg<CR>
-nnoremap <leader>sr :Rgrep<CR>
-
-nnoremap <leader>bb   :Buffers<CR>
-nnoremap <leader>bp :bp<CR>
-nnoremap <leader>bn :bn<CR>
-nnoremap <leader>bd :bd<CR>
-
-
-nmap <leader>gd <Plug>(coc-definition)
-nmap <leader>gy <Plug>(coc-type-definition)
-nmap <leader>gi <Plug>(coc-implementation)
-nmap <leader>gr <Plug>(coc-references)
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent><expr> <NUL> coc#refresh()
 
+let g:which_key_map =  {}
+let g:which_key_sep = '→'
+let g:which_key_display_names = {'<CR>': '↵', '<TAB>': '⇆'}
 nnoremap <leader>tn :set number! relativenumber!<CR>
 
+let g:which_key_map.b = {
+      \ 'name' : '+buffer' ,
+      \ '>' : [':BufferMoveNext'        , 'move next'],
+      \ '<' : [':BufferMovePrevious'    , 'move prev'],
+      \ 'b' : [':Buffers'                , 'fzf-buffer'],
+      \ 'd' : [':Bdelete'               , 'delete-buffer'],
+      \ 'n' : [':bnext'                  , 'next-buffer'],
+      \ 'p' : [':bprevious'              , 'previous-buffer'],
+      \ }
+
+let g:which_key_map['e'] = {
+      \ 'name' : '+emmet' ,
+      \ ',' : ['<Plug>(emmet-expand-abbr)'               , 'expand abbr'],
+      \ ';' : ['<plug>(emmet-expand-word)'               , 'expand word'],
+      \ 'u' : ['<plug>(emmet-update-tag)'                , 'update tag'],
+      \ 'd' : ['<plug>(emmet-balance-tag-inward)'        , 'balance tag in'],
+      \ 'D' : ['<plug>(emmet-balance-tag-outward)'       , 'balance tag out'],
+      \ 'n' : ['<plug>(emmet-move-next)'                 , 'move next'],
+      \ 'N' : ['<plug>(emmet-move-prev)'                 , 'move prev'],
+      \ 'i' : ['<plug>(emmet-image-size)'                , 'image size'],
+      \ '/' : ['<plug>(emmet-toggle-comment)'            , 'toggle comment'],
+      \ 'j' : ['<plug>(emmet-split-join-tag)'            , 'split join tag'],
+      \ 'k' : ['<plug>(emmet-remove-tag)'                , 'remove tag'],
+      \ 'a' : ['<plug>(emmet-anchorize-url)'             , 'anchorize url'],
+      \ 'A' : ['<plug>(emmet-anchorize-summary)'         , 'anchorize summary'],
+      \ 'm' : ['<plug>(emmet-merge-lines)'               , 'merge lines'],
+      \ 'c' : ['<plug>(emmet-code-pretty)'               , 'code pretty'],
+      \ }
+
+let g:which_key_map.f = {
+      \ 'name' : '+files' ,
+      \ 'f' : [':Files'        , 'Files'],
+      \ 'n' : [':call ToggleTree()'    , 'Toggle Tree'],
+      \ 'N' : [':NERDTreeFocusToggle'            , 'Toggle Focus'],
+      \ 'F' : [':NERDTreeFind'            , 'Tree Find'],
+      \ 'w' : [':write'               , 'Write File'],
+      \ }
+
+let g:which_key_map.F = {
+    \ 'name': '+fold',
+    \ 'O' : [':set foldlevel=20'  , 'open all'],
+    \ 'C' : [':set foldlevel=0'   , 'close all'],
+    \ 'c' : [':foldclose'         , 'close'],
+    \ 'o' : [':foldopen'          , 'open'],
+    \ '1' : [':set foldlevel=1'   , 'level1'],
+    \ '2' : [':set foldlevel=2'   , 'level2'],
+    \ '3' : [':set foldlevel=3'   , 'level3'],
+    \ '4' : [':set foldlevel=4'   , 'level4'],
+    \ '5' : [':set foldlevel=5'   , 'level5'],
+    \ '6' : [':set foldlevel=6'   , 'level6']
+    \ }
+
+let g:which_key_map.g = {
+      \ 'name' : '+goto' ,
+      \ 'd' : ['<Plug>(coc-definition)'      , 'Goto Definition'],
+      \ 'y' : ['<Plug>(coc-type-definition)' , 'Goto Type Definition'],
+      \ 'i' : ['<Plug>(coc-implementation)'  , 'Goto Implementation'],
+      \ 'r' : ['<Plug>(coc-references)'      , 'Goto References'],
+      \ }
+
+let g:which_key_map.G = {
+      \ 'name' : '+Git' ,
+      \ 'a' : [':Gwrite', 'Gwrite'],
+      \ 'c' : [':Gcommit', 'Gcommit'],
+      \ 'sh' : [':Gpush', 'Gpush'],
+      \ 'll' : [':Gpull', 'Gpull'],
+      \ 's' : [':Gstatus', 'Gstatus'],
+      \ 'b' : [':Gblame', 'Gblame'],
+      \ 'd' : [':Gvdiff', 'Gvdiff'],
+      \ 'r' : [':Gremove', 'Gremove'],
+      \ 'o' : ['.Gbrowse', '.Gbrowse'],
+      \ }
+
+let g:which_key_map.s = {
+      \ 'name' : '+search' ,
+      \ '/' : [':Rg'        , 'Rg'],
+      \ 'r' : [':Rgrep'    , 'Rgrep'],
+      \ }
+
+let g:which_key_map.S = {
+      \ 'name' : '+Session' ,
+      \ 'c' : [':SClose'          , 'Close Session']  ,
+      \ 'd' : [':SDelete'         , 'Delete Session'] ,
+      \ 'l' : [':SLoad'           , 'Load Session']     ,
+      \ 's' : [':Startify'        , 'Start Page']     ,
+      \ 'S' : [':SSave'           , 'Save Session']   ,
+      \ }
+
+let g:which_key_map.w = {
+      \ 'name' : '+windows' ,
+      \ 'w' : ['<C-W>w'     , 'other-window']          ,
+      \ 'd' : ['<C-W>c'     , 'delete-window']         ,
+      \ '-' : ['<C-W>s'     , 'split-window-below']    ,
+      \ '|' : ['<C-W>v'     , 'split-window-right']    ,
+      \ '2' : ['<C-W>v'     , 'layout-double-columns'] ,
+      \ 'h' : ['<C-W>h'     , 'window-left']           ,
+      \ 'j' : ['<C-W>j'     , 'window-below']          ,
+      \ 'l' : ['<C-W>l'     , 'window-right']          ,
+      \ 'k' : ['<C-W>k'     , 'window-up']             ,
+      \ 'H' : ['<C-W>5<'    , 'expand-window-left']    ,
+      \ 'J' : [':resize +5'  , 'expand-window-below']   ,
+      \ 'L' : ['<C-W>5>'    , 'expand-window-right']   ,
+      \ 'K' : [':resize -5'  , 'expand-window-up']      ,
+      \ '=' : ['<C-W>='     , 'balance-window']        ,
+      \ 's' : ['<C-W>s'     , 'split-window-below']    ,
+      \ 'v' : ['<C-W>v'     , 'split-window-below']    ,
+      \ '?' : ['Windows'    , 'fzf-window']            ,
+      \ }
