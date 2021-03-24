@@ -13,4 +13,9 @@ case $BLOCK_BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-echo "$kb"
+case "$kb" in
+  "gb") KBD="GB" ;;
+  "ir") KBD="IR" ;;
+  *) KBD="unknown" ;;
+esac
+echo "[ $KBD]"
