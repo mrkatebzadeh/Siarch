@@ -438,7 +438,6 @@ let g:syntastic_aggregate_errors = 1
 autocmd VimEnter * SyntasticToggleMode " disable syntastic by default
 
 " Tagbar
-nmap <silent> <F4> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 
 " Disable visualbell
@@ -629,7 +628,6 @@ inoremap <silent><expr> <NUL> coc#refresh()
 let g:which_key_map =  {}
 let g:which_key_sep = '→'
 let g:which_key_display_names = {'<CR>': '↵', '<TAB>': '⇆'}
-nnoremap <leader>tn :set number! relativenumber!<CR>
 
 let g:which_key_map.b = {
       \ 'name' : '+buffer' ,
@@ -739,3 +737,10 @@ let g:which_key_map.w = {
       \ 'v' : ['<C-W>v'     , 'split-window-below']    ,
       \ '?' : ['Windows'    , 'fzf-window']            ,
       \ }
+
+let g:which_key_map.t = {
+      \ 'name' : '+toggles' ,
+      \ 't' : [':TagbarToggle'        , 'TagbarToggle'],
+      \ 'n' : [':set number! relativenumber!'    , 'RelativeNumer'],
+      \ }
+
