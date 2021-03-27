@@ -56,6 +56,7 @@ Plug 'rhysd/vim-clang-format'
 Plug 'liuchengxu/vim-which-key'
 Plug 'ryanoasis/vim-devicons'
 Plug 'mhinz/vim-startify'
+Plug 'vimwiki/vimwiki'
 
 " On-demand lazy load
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
@@ -321,6 +322,10 @@ let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
 let g:NERDTreeWinSize = 35
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 
+" Vim Wiki
+let g:vimwiki_list = [{'path': '~/Dropbox/wiki/', 'syntax': 'markdown'}]
+au FileType vimwiki setlocal shiftwidth=6 tabstop=6 noexpandtab
+
 " grep.vim
 let Grep_Default_Options = '-IR'
 let Grep_Skip_Files = '*.log *.db'
@@ -563,6 +568,75 @@ if filereadable(expand("~/.config/nvim/local_init.vim"))
 endif
 
 "*****************************************************************************
+"" Buffer
+"*****************************************************************************
+
+function s:Kwbd(kwbdStage)
+  if(a:kwbdStage == 1)
+    if(&modified)
+      let answer = confirm("This buffer has been modified.  Are you sure you want to delete it?", "&Yes\n&No", 2)
+      if(answer != 1)
+        return
+      endif
+    endif
+    if(!buflisted(winbufnr(0)))
+      bd!
+      return
+    endif
+    let s:kwbdBufNum = bufnr("%")
+    let s:kwbdWinNum = winnr()
+    windo call s:Kwbd(2)
+    execute s:kwbdWinNum . 'wincmd w'
+    let s:buflistedLeft = 0
+    let s:bufFinalJump = 0
+    let l:nBufs = bufnr("$")
+    let l:i = 1
+    while(l:i <= l:nBufs)
+      if(l:i != s:kwbdBufNum)
+        if(buflisted(l:i))
+          let s:buflistedLeft = s:buflistedLeft + 1
+        else
+          if(bufexists(l:i) && !strlen(bufname(l:i)) && !s:bufFinalJump)
+            let s:bufFinalJump = l:i
+          endif
+        endif
+      endif
+      let l:i = l:i + 1
+    endwhile
+    if(!s:buflistedLeft)
+      if(s:bufFinalJump)
+        windo if(buflisted(winbufnr(0))) | execute "b! " . s:bufFinalJump | endif
+      else
+        enew
+        let l:newBuf = bufnr("%")
+        windo if(buflisted(winbufnr(0))) | execute "b! " . l:newBuf | endif
+      endif
+      execute s:kwbdWinNum . 'wincmd w'
+    endif
+    if(buflisted(s:kwbdBufNum) || s:kwbdBufNum == bufnr("%"))
+      execute "bd! " . s:kwbdBufNum
+    endif
+    if(!s:buflistedLeft)
+      set buflisted
+      set bufhidden=delete
+      set buftype=
+      setlocal noswapfile
+    endif
+  else
+    if(bufnr("%") == s:kwbdBufNum)
+      let prevbufvar = bufnr("#")
+      if(prevbufvar > 0 && buflisted(prevbufvar) && prevbufvar != s:kwbdBufNum)
+        b #
+      else
+        bn
+      endif
+    endif
+  endif
+endfunction
+
+command! Kwbd call s:Kwbd(1)
+nnoremap <silent> <Plug>Kwbd :<C-u>Kwbd<CR>
+"*****************************************************************************
 "" Convenience variables
 "*****************************************************************************
 
@@ -634,12 +708,12 @@ let g:which_key_map.b = {
       \ '>' : [':BufferMoveNext'        , 'move next'],
       \ '<' : [':BufferMovePrevious'    , 'move prev'],
       \ 'b' : [':Buffers'                , 'fzf-buffer'],
-      \ 'd' : [':Bdelete'               , 'delete-buffer'],
+      \ 'd' : ['<Plug>Kwbd'               , 'delete-buffer'],
       \ 'n' : [':bnext'                  , 'next-buffer'],
       \ 'p' : [':bprevious'              , 'previous-buffer'],
       \ }
 
-let g:which_key_map['e'] = {
+let g:which_key_map.e = {
       \ 'name' : '+emmet' ,
       \ ',' : ['<Plug>(emmet-expand-abbr)'               , 'expand abbr'],
       \ ';' : ['<plug>(emmet-expand-word)'               , 'expand word'],
@@ -744,3 +818,15 @@ let g:which_key_map.t = {
       \ 'n' : [':set number! relativenumber!'    , 'RelativeNumer'],
       \ }
 
+let g:which_key_map.v = {
+      \ 'name' : '+vimwiki' ,
+      \ 'w' : ['<Plug>VimwikiIndex', 'VimwikiIndex'],
+      \ 't' : ['<Plug>VimwikiTabIndex', 'VimwikiTabIndex'],
+      \ 's' : ['<Plug>VimwikiUISelect', 'VimwikiUISelect'],
+      \ 'i' : ['<Plug>VimwikiDiaryIndex', 'VimwikiDiaryIndex'],
+      \ 'I' : ['<Plug>VimwikiDiaryGenerateLinks', 'VimwikiDiaryGenerateLinks'],
+      \ 'W' : ['<Plug>VimwikiMakeDiaryNote', 'VimwikiMakeDiaryNote'],
+      \ 'T' : ['<Plug>VimwikiTabMakeDiaryNote', 'VimwikiTabMakeDiaryNote'],
+      \ 'y' : ['<Plug>VimwikiMakeYesterdayDiaryNote', 'VimwikiMakeYesterdayDiaryNote'],
+      \ 'm' : ['<Plug>VimwikiMakeTomorrowDiaryNote', 'VimwikiMakeTomorrowDiaryNote'],
+      \}
