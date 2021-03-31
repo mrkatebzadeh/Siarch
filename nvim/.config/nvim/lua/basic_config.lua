@@ -1,5 +1,6 @@
 vim.o.fileencoding = "utf-8"
 vim.cmd('set colorcolumn=99999')
+vim.cmd('set noswapfile')
 vim.o.mouse = "a"
 vim.o.splitbelow = true
 vim.o.splitright = true
