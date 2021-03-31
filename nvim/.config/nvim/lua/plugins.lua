@@ -29,9 +29,11 @@ return require('packer').startup(function()
   -- Comment
   use 'terrortylor/nvim-comment'
 
-  -- Airline
-  use 'vim-airline/vim-airline'
-  use 'vim-airline/vim-airline-themes'
+  -- Buffer & Status
+  --use 'vim-airline/vim-airline'
+  --use 'vim-airline/vim-airline-themes'
+  use 'glepnir/galaxyline.nvim'
+  use 'romgrk/barbar.nvim'
 
   -- Git
   use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}

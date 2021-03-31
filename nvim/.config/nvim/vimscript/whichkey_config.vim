@@ -17,9 +17,10 @@ let g:which_key_map.b = {
       \ '>' : [':BufferMoveNext'        , 'move next'],
       \ '<' : [':BufferMovePrevious'    , 'move prev'],
       \ 'b' : [':Buffers'                , 'fzf-buffer'],
-      \ 'd' : ['<Plug>Kwbd'               , 'delete-buffer'],
+      \ 'd' : [':BufferClose'               , 'delete-buffer'],
       \ 'n' : [':bnext'                  , 'next-buffer'],
       \ 'p' : [':bprevious'              , 'previous-buffer'],
+      \ 'B' : [':BufferPick'                , 'fzf-buffer'],
       \ }
 
 let g:which_key_map.c = {

@@ -23,7 +23,7 @@ vim.o.smartcase = true
 vim.g.CSApprox_loaded = 1
 
 -- session management
-vim.g.session_directory = "~/.config/vim/session"
+vim.g.session_directory = "~/.config/nvim/session"
 vim.g.session_autoload = "no"
 vim.g.session_autosave = "no"
 vim.g.session_command_aliases = 1
@@ -33,14 +33,6 @@ vim.g.indentLine_enabled = 1
 vim.g.indentLine_concealcursor = 0
 vim.g.indentLine_char = '┆'
 vim.g.indentLine_faster = 1
-
--- vim-airline
-vim.g.airline_theme = 'powerlineish'
-vim.g['airline#extensions#syntastic#enabled'] = 1
-vim.g['airline#extensions#branch#enabled'] = 1
-vim.g['airline#extensions#tabline#enabled'] = 1
-vim.g['airline#extensions#tagbar#enabled'] = 1
-vim.g.airline_skip_empty_sections = 1
 
 DATA_PATH = vim.fn.stdpath('data')
 CACHE_PATH = vim.fn.stdpath('cache')
