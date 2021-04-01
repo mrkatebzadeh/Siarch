@@ -59,6 +59,7 @@ return require('packer').startup(function()
   use 'mhinz/vim-startify'
   use 'vimwiki/vimwiki'
   use 'windwp/nvim-autopairs'
+  use 'voldikss/vim-floaterm'
 
   -- Sessions
   use 'xolox/vim-misc'
@@ -105,4 +106,10 @@ return require('packer').startup(function()
   use 'p00f/nvim-ts-rainbow'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
   use 'windwp/nvim-ts-autotag'
+
+  -- Telescope
+  use 'nvim-lua/popup.nvim'
+  --use 'nvim-lua/plenary.nvim'
+  use 'nvim-telescope/telescope.nvim'
+  use 'nvim-telescope/telescope-media-files.nvim'
 end)

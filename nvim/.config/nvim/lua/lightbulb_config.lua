@@ -3,12 +3,12 @@ require'nvim-lightbulb'.update_lightbulb {
         enabled = true,
         -- Priority of the gutter sign
         priority = 10,
-        text = "💡",
+        text = "ﯦ",
     },
     float = {
         enabled = false,
         -- Text to show in the popup float
-        text = "💡",
+        text = "ﯦ",
         -- Available keys for window options:
         -- - height     of floating window
         -- - width      of floating window
@@ -28,6 +28,6 @@ require'nvim-lightbulb'.update_lightbulb {
     virtual_text = {
         enabled = false,
         -- Text to show at virtual text
-        text = "💡",
+        text = "ﯦ",
     }
 }

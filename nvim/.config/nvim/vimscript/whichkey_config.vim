@@ -49,7 +49,7 @@ let g:which_key_map.e = {
 
 let g:which_key_map.f = {
       \ 'name' : '+files' ,
-      \ 'f' : [':Files'        , 'Files'],
+      \ 'f' : [':Telescope find_files'        , 'Files'],
       \ 'n' : [':NvimTreeToggle'    , 'Toggle Tree'],
       \ 'N' : [':NvimTreeOpen'            , 'Toggle Focus'],
       \ 'F' : [':NvimTreeFindFile'            , 'Tree Find'],
@@ -147,4 +147,37 @@ let g:which_key_map.v = {
       \ 'm' : ['<Plug>VimwikiMakeTomorrowDiaryNote', 'VimwikiMakeTomorrowDiaryNote'],
       \}
 
+let g:which_key_map.l = {
+      \ 'name' : '+lsp' ,
+      \ 'a' : [':Lspsaga code_action'                , 'code action'],
+      \ 'A' : [':Lspsaga range_code_action'          , 'selected action'],
+      \ 'd' : [':Telescope lsp_document_diagnostics' , 'document diagnostics'],
+      \ 'D' : [':Telescope lsp_workspace_diagnostics', 'workspace diagnostics'],
+      \ 'f' : [':LspFormatting'                      , 'format'],
+      \ 'I' : [':LspInfo'                            , 'lsp info'],
+      \ 'v' : [':LspVirtualTextToggle'               , 'lsp toggle virtual text'],
+      \ 'l' : [':Lspsaga lsp_finder'                 , 'lsp finder'],
+      \ 'L' : [':Lspsaga show_line_diagnostics'      , 'line_diagnostics'],
+      \ 'p' : [':Lspsaga preview_definition'         , 'preview definition'],
+      \ 'q' : [':Telescope quickfix'                 , 'quickfix'],
+      \ 'r' : [':Lspsaga rename'                     , 'rename'],
+      \ 'T' : [':LspTypeDefinition'                  , 'type defintion'],
+      \ 'x' : [':cclose'                             , 'close quickfix'],
+      \ 's' : [':Telescope lsp_document_symbols'     , 'document symbols'],
+      \ 'S' : [':Telescope lsp_workspace_symbols'    , 'workspace symbols'],
+      \ }
+
+let g:which_key_map.T = {
+      \ 'name' : '+terminal' ,
+      \ ';' : [':FloatermNew --wintype=normal --height=6'       , 'terminal'],
+      \ 'f' : [':FloatermNew fzf'                               , 'fzf'],
+      \ 'g' : [':FloatermNew lazygit'                           , 'git'],
+      \ 'd' : [':FloatermNew lazydocker'                        , 'docker'],
+      \ 'n' : [':FloatermNew node'                              , 'node'],
+      \ 'N' : [':FloatermNew lf'                                , 'lf'],
+      \ 'p' : [':FloatermNew python'                            , 'python'],
+      \ 't' : [':FloatermToggle'                                , 'toggle'],
+      \ 'h' : [':FloatermNew htop'                              , 'htop'],
+      \ 'u' : [':FloatermNew ncdu'                              , 'ncdu'],
+      \ }
 call which_key#register('<Space>', "g:which_key_map")
