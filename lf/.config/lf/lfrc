@@ -1,3 +1,5 @@
+set cleaner ~/.config/lf/cleaner
+set previewer ~/.config/lf/preview
 # Luke's lf settings
 
 # Basic vars
