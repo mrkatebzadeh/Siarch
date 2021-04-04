@@ -323,7 +323,7 @@ let g:NERDTreeWinSize = 35
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 
 " Vim Wiki
-let g:vimwiki_list = [{'path': '~/Dropbox/wiki/', 'syntax': 'markdown'}]
+let g:vimwiki_list = [{'path': '~/Dropbox/wiki/notes', 'syntax': 'markdown'}, {'path': '~/Dropbox/wiki/research', 'syntax': 'markdown'}, {'path': '~/Dropbox/wiki/todo', 'syntax': 'markdown'}]
 au FileType vimwiki setlocal shiftwidth=6 tabstop=6 noexpandtab
 
 " grep.vim
