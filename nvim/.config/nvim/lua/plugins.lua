@@ -112,4 +112,8 @@ return require('packer').startup(function()
   --use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'
   use 'nvim-telescope/telescope-media-files.nvim'
+
+  -- Markdown
+  use 'vim-pandoc/vim-pandoc-syntax'
+  use 'iamcco/markdown-preview.nvim'
 end)
