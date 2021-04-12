@@ -70,13 +70,7 @@ let g:which_key_map.F = {
     \ '6' : [':set foldlevel=6'   , 'level6']
     \ }
 
-let g:which_key_map.g = {
-      \ 'name' : '+goto' ,
-      \ 'd' : ['<Plug>(coc-definition)'      , 'Goto Definition'],
-      \ 'y' : ['<Plug>(coc-type-definition)' , 'Goto Type Definition'],
-      \ 'i' : ['<Plug>(coc-implementation)'  , 'Goto Implementation'],
-      \ 'r' : ['<Plug>(coc-references)'      , 'Goto References'],
-      \ }
+
 
 let g:which_key_map.G = {
       \ 'name' : '+Git' ,
@@ -130,7 +124,8 @@ let g:which_key_map.w = {
 let g:which_key_map.t = {
       \ 'name' : '+toggles' ,
       \ 'b' : [':GitBlameToggle'        , 'GitBlame'],
-      \ 't' : [':NERDTreeToggle'        , 'Tagbar'],
+      \ 't' : [':TagbarToggle'        , 'Tagbar'],
+      \ 'T' : [':TagbarOpen j'        , 'Jump to Tagbar'],
       \ 'n' : [':set number! relativenumber!'    , 'RelativeNumer'],
       \ }
 
@@ -167,6 +162,14 @@ let g:which_key_map.l = {
       \ 'S' : [':Telescope lsp_workspace_symbols'    , 'workspace symbols'],
       \ }
 
+let g:which_key_map.l.g = {
+      \ 'name' : '+goto' ,
+      \ 'd' : [':LspDefinition'      , 'Goto Definition'],
+      \ 'y' : [':LspTypeDefinition' , 'Goto Type Definition'],
+      \ 'i' : [':LspImplementation'  , 'Goto Implementation'],
+      \ 'r' : [':LspReferences'      , 'Goto References'],
+      \ }
+
 let g:which_key_map.T = {
       \ 'name' : '+terminal' ,
       \ ';' : [':FloatermNew --wintype=normal --height=6'       , 'terminal'],
@@ -179,5 +182,10 @@ let g:which_key_map.T = {
       \ 't' : [':FloatermToggle'                                , 'toggle'],
       \ 'h' : [':FloatermNew htop'                              , 'htop'],
       \ 'u' : [':FloatermNew ncdu'                              , 'ncdu'],
+      \ }
+let g:which_key_map.q = {
+      \ 'name' : '+vim' ,
+      \ 'r' : [':source $MYVIMRC'  , 'Goto Implementation'],
+      \ 'q' : [':qall'      , 'Quit Vim'],
       \ }
 call which_key#register('<Space>', "g:which_key_map")
