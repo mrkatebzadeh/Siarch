@@ -54,6 +54,14 @@ let g:which_key_map.f = {
       \ 'N' : [':NvimTreeOpen'            , 'Toggle Focus'],
       \ 'F' : [':NvimTreeFindFile'            , 'Tree Find'],
       \ 'w' : [':write'               , 'Write File'],
+      \ 'e' : [':e'               , 'e'],
+      \ 'm' : [':Move'               , 'Move'],
+      \ 'd' : [':Delete'               , 'Delete'],
+      \ 'r' : [':Rename'               , 'Rename'],
+      \ 'c' : [':Chmod'               , 'Chmod'],
+      \ 'k' : [':Mkdir'               , 'Mkdir'],
+      \ 'W' : [':SudoWrite'               , 'SudoWrite'],
+      \ 'E' : [':SudoEdit'               , 'SudoEdit'],
       \ }
 
 let g:which_key_map.F = {
@@ -183,6 +191,16 @@ let g:which_key_map.T = {
       \ 'h' : [':FloatermNew htop'                              , 'htop'],
       \ 'u' : [':FloatermNew ncdu'                              , 'ncdu'],
       \ }
+
+let g:which_key_map.p = {
+      \ 'name' : '+packages' ,
+      \ 'c' : [':PackerClean'      , 'PackerClean'],
+      \ 'i' : [':PackerInstall'      , 'PackerInstall'],
+      \ 'u' : [':PackerUpdate' , 'PackerUpdate'],
+      \ 's' : [':PackerSync'  , 'PackerSync'],
+      \ 'S' : [':PackerStatus'      , 'PackerStatus'],
+      \ }
+
 let g:which_key_map.q = {
       \ 'name' : '+vim' ,
       \ 'r' : [':source $MYVIMRC'  , 'Goto Implementation'],
