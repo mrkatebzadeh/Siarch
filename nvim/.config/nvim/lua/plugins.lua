@@ -60,6 +60,7 @@ return require('packer').startup(function()
   use 'vimwiki/vimwiki'
   use 'windwp/nvim-autopairs'
   use 'voldikss/vim-floaterm'
+  use 'tpope/vim-eunuch'
 
   -- Sessions
   use 'xolox/vim-misc'
