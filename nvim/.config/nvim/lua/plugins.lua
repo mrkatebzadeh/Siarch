@@ -55,12 +55,16 @@ return require('packer').startup(function()
   use 'jackguo380/vim-lsp-cxx-highlight'
   use 'vim-syntastic/syntastic'
   use 'rhysd/vim-clang-format'
-  use 'liuchengxu/vim-which-key'
+  -- use 'liuchengxu/vim-which-key'
   use 'mhinz/vim-startify'
   use 'vimwiki/vimwiki'
   use 'windwp/nvim-autopairs'
   use 'voldikss/vim-floaterm'
   use 'tpope/vim-eunuch'
+  use {
+    'AckslD/nvim-whichkey-setup.lua',
+    requires = {'liuchengxu/vim-which-key'},
+  }
 
   -- Sessions
   use 'xolox/vim-misc'
@@ -80,7 +84,7 @@ return require('packer').startup(function()
   --- lisp
   use 'vim-scripts/slimv.vim'
   --- python
-  use 'davidhalter/jedi-vim'
+--  use 'davidhalter/jedi-vim'
   use {'raimon49/requirements.txt.vim', ft = {'requirements'}}
 
   -- LSP
