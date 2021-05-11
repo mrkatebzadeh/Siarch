@@ -18,3 +18,6 @@ wine-extension-xml.desktop
 wine-extension-xsl.desktop
 photoshop.desktop
 mimeinfo.cache
+wine*
+*.desktop
+defaults.list
