@@ -6,9 +6,15 @@
 # to clean up.
 
 # Adds `~/.local/bin` to $PATH
-export PATH="$PATH:${$(find ~/.local/bin/ -type d -printf %p:)%%:}"
-export PATH="$PATH:/opt/omnetpp/bin/"
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/omnetpp/lib
+case "$OSTYPE" in
+  linux*)   
+    export PATH="$PATH:${$(find ~/.local/bin/ -type d -printf %p:)%%:}"
+    export PATH="$PATH:/opt/omnetpp/bin/"
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/omnetpp/lib
+      ;;
+  darwin*)  ;;
+  *)        echo "unknown: $OSTYPE" ;;
+esac
 
 unsetopt PROMPT_SP
 
@@ -146,17 +152,24 @@ ex=🎯:\
 *.java=♨:\
 "
 
-[ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ] && shortcuts >/dev/null 2>&1 &
 
-if pacman -Qs libxft-bgra >/dev/null 2>&1; then
-	# Start graphical server on user's current tty if not already running.
-	[ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx
-else
-	echo "\033[31mIMPORTANT\033[0m: Note that \033[32m\`libxft-bgra\`\033[0m must be installed for this build of dwm.
-Please run:
-	\033[32myay -S libxft-bgra-git\033[0m
-and replace \`libxft\`. Afterwards, you may start the graphical server by running \`startx\`."
-fi
+case "$OSTYPE" in
+  linux*)   
 
-# Switch escape and caps if tty and no passwd required:
-sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/siarch/ttymaps.kmap 2>/dev/null
+    [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ] && shortcuts >/dev/null 2>&1 &
+    if pacman -Qs libxft-bgra >/dev/null 2>&1; then
+    	# Start graphical server on user's current tty if not already running.
+    	[ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx
+    else
+    	echo "\033[31mIMPORTANT\033[0m: Note that \033[32m\`libxft-bgra\`\033[0m must be installed for this build of dwm.
+    Please run:
+    	\033[32myay -S libxft-bgra-git\033[0m
+    and replace \`libxft\`. Afterwards, you may start the graphical server by running \`startx\`."
+    fi
+    # Switch escape and caps if tty and no passwd required:
+    sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/siarch/ttymaps.kmap 2>/dev/null
+    ;;
+  darwin*)  ;;
+  *)        echo "unknown: $OSTYPE" ;;
+esac
+
