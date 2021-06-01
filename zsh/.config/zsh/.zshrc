@@ -65,9 +65,14 @@ psk() {
 	ps -afx|  fzf -e |  xargs -0 -I {} echo {} | awk '{ printf $1 }' | xargs -0 -I {}  kill -9  {};
 }
 
-
-. /usr/share/fzf/key-bindings.zsh
-. /usr/share/fzf/completion.zsh
+case "$OSTYPE" in
+  linux*)
+    . /usr/share/fzf/key-bindings.zsh
+    . /usr/share/fzf/completion.zsh
+      ;;
+  darwin*);;
+  *)        echo "unknown: $OSTYPE" ;;
+esac
 
 bindkey -s '^o' 'lfcd\n'
 bindkey -s '^p' 'psk\n'
