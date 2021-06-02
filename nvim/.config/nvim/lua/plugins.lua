@@ -97,6 +97,7 @@ return require('packer').startup(function()
 
   -- FZF
   use 'junegunn/fzf.vim'
+  use '/usr/local/opt/fzf'
   
   -- Autocomplete
   use 'hrsh7th/nvim-compe'
