@@ -12,7 +12,13 @@ case "$OSTYPE" in
     export PATH="$PATH:/opt/omnetpp/bin/"
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/omnetpp/lib
       ;;
-  darwin*)  ;;
+  darwin*) 
+    # llvm path
+    # libc++ LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
+    export PATH="/usr/local/opt/llvm/bin:$PATH"
+    export LDFLAGS="-L/usr/local/opt/llvm/lib"
+    export CPPFLAGS="-I/usr/local/opt/llvm/include"
+      ;;
   *)        echo "unknown: $OSTYPE" ;;
 esac
 
