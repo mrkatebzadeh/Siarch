@@ -103,6 +103,7 @@ return require('packer').startup(function()
   -- Autocomplete
   use 'hrsh7th/nvim-compe'
   use 'hrsh7th/vim-vsnip'
+  use 'hrsh7th/vim-vsnip-integ'
   use "rafamadriz/friendly-snippets"
   use 'ChristianChiarulli/html-snippets'
 
