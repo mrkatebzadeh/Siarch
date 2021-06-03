@@ -74,6 +74,7 @@ return require('packer').startup(function()
   --- C
   use {'vim-scripts/c.vim', ft = {'c', 'cpp'}}
   use 'ludwig/split-manpage.vim'
+  use 'alpertuna/vim-header'
   --- html
   use 'hail2u/vim-css3-syntax'
   use 'gorodinskiy/vim-coloresque'
