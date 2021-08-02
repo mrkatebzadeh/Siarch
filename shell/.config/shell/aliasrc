@@ -4,6 +4,7 @@
 [ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
 
 # Verbosity and settings that you pretty much just always are going to want.
+
 alias \
 	cp="cp -iv" \
 	mv="mv -iv" \
@@ -14,12 +15,26 @@ alias \
 	ffmpeg="ffmpeg -hide_banner"
 
 # Colorize commands when possible.
+case "$OSTYPE" in
+  linux*)   
+alias \
+	ls="ls -hN --color=auto --group-directories-first" \
+	ll="ls -al" \
+	grep="grep --color=auto" \
+	diff="diff --color=auto" \
+	ccat="highlight --out-format=ansi"
+      ;;
+  darwin*) 
 alias \
 	ls="ls -hG" \
 	ll="ls -al" \
 	grep="grep --color=auto" \
 	diff="diff --color=auto" \
 	ccat="highlight --out-format=ansi"
+      ;;
+  *)        echo "unknown: $OSTYPE" ;;
+esac
+
 
 # These common commands are just too long! Abbreviate them.
 alias \
