@@ -23,7 +23,7 @@ while getopts ":s:u:r:o:hiSU" o; do case "${o}" in
 esac done
 
 progsfile=packs.csv
-
+aurhelper=yay
 ### FUNCTIONS ###
 
 stow_config() {
