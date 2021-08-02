@@ -9,7 +9,7 @@
 
 # Basic binds
 super + Return
-	termite #Run Terminal
+	alacritty #Run Terminal
 #super + shift + Return
 #	tabbed -c -r 2 $TERMINAL -w "" #Run terminal with tabbed
 #super + shift + Return
@@ -46,10 +46,10 @@ super + n
 	$TERMINAL -e nvim -c VimwikiIndex #vimwiki
 super + shift + n
 	$TERMINAL -e newsboat; pkill -RTMIN+6 dwmblocks #RSS manager
-#super + c
-#	$TERMINAL -e calcurse -D ~/.config/calcurse
-#super + v
-#	$TERMINAL -e nvim -c VimwikiIndex
+super + c
+	copier
+super + v
+	paster
 #super + shift + a
 #	$TERMINAL -e alsamixer || pulsemixer; pkill -RTMIN+10 $STATUSBAR
 #super + shift + c
