@@ -1,7 +1,5 @@
 require('plugins')
 require('binding_config')
--- vim.cmd('source ~/.config/nvim/vimscript/whichkey_config.vim')
---vim.cmd('source ~/.config/nvim/vimscript/airline_config.vim')
 vim.cmd('source ~/.config/nvim/vimscript/commands.vim')
 vim.cmd('source ~/.config/nvim/vimscript/vimwiki.vim')
 require('whichkey_config')

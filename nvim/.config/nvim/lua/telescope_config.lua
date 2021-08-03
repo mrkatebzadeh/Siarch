@@ -35,7 +35,7 @@ require('telescope').setup {
         qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
 
         -- Developer configurations: Not meant for general override
-        buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker,
+        -- buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker,
         mappings = {
             i = {
                 ["<C-j>"] = actions.move_selection_next,
@@ -69,6 +69,10 @@ require('telescope').setup {
             -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
             filetypes = {"png", "webp", "jpg", "jpeg"},
             find_cmd = "rg" -- find command (defaults to `fd`)
-        }
+        },
+        	fzy_native = {
+        	override_generic_sorter = false,
+        	override_file_sorter = true,
+        },
     }
 }
