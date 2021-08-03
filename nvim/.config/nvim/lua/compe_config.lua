@@ -1,7 +1,7 @@
 vim.o.completeopt = "menuone,noselect"
 
 require'compe'.setup {
-    enabled = O,
+    enabled = true,
     autocomplete = true,
     debug = false,
     min_length = 1,
@@ -12,7 +12,14 @@ require'compe'.setup {
     max_abbr_width = 100,
     max_kind_width = 100,
     max_menu_width = 100,
-    documentation = true,
+	documentation = {
+      border = "single",
+      winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
+      max_width = 120,
+      min_width = 60,
+      max_height = math.floor(vim.o.lines * 0.3),
+      min_height = 1,
+    },
 
     source = {
         path = {kind = "  "},
@@ -29,7 +36,22 @@ require'compe'.setup {
         -- treesitter = {kind = "  "},
         emoji = {kind = " ﲃ ", filetypes={"markdown"}}
         -- for emoji press : (idk if that in compe tho)
-    }
+    },
+	keymap = {
+      values = {
+        insert_mode = {
+          ["<Tab>"] = { 'pumvisible() ? "<C-n>" : "<Tab>"', { silent = true, noremap = true, expr = true } },
+          ["<S-Tab>"] = { 'pumvisible() ? "<C-p>" : "<S-Tab>"', { silent = true, noremap = true, expr = true } },
+          ["<C-Space>"] = { "compe#complete()", { silent = true, noremap = true, expr = true } },
+          ["<C-e>"] = { "compe#close('<C-e>')", { silent = true, noremap = true, expr = true } },
+          ["<C-f>"] = { "compe#scroll({ 'delta': +4 })", { silent = true, noremap = true, expr = true } },
+          ["<C-d>"] = { "compe#scroll({ 'delta': -4 })", { silent = true, noremap = true, expr = true } },
+        },
+      },
+      opts = {
+        insert_mode = { noremap = true, silent = true, expr = true },
+      },
+    },
 }
 
 -- 

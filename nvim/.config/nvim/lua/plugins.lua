@@ -87,6 +87,8 @@ return require('packer').startup(function()
   --- python
 --  use 'davidhalter/jedi-vim'
   use {'raimon49/requirements.txt.vim', ft = {'requirements'}}
+  --- latex
+  use {"lervag/vimtex", ft = "tex"   }
 
   -- LSP
   use 'neovim/nvim-lspconfig'

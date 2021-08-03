@@ -161,6 +161,17 @@ local keymap = {
        }
 	},
 
+    L = {
+  		name = "+Latex",
+	    b = { "<cmd>TexlabBuild<cr>", "Build with Texlab" },
+        p = { "<cmd>TexlabForward<cr>", "Preview with Texlab" },
+  		c = { "<cmd>VimtexCompile<cr>", "Toggle Compilation Mode" },
+  		f = { "<cmd>call vimtex#fzf#run()<cr>", "Fzf Find" },
+  		i = { "<cmd>VimtexInfo<cr>", "Project Information" },
+  		s = { "<cmd>VimtexStop<cr>", "Stop Project Compilation" },
+  		t = { "<cmd>VimtexTocToggle<cr>", "Toggle Table Of Content" },
+  		v = { "<cmd>VimtexView<cr>", "View PDF" },
+	},
     T = {
        name = '+terminal' ,
        [';'] = {':FloatermNew --wintype=normal --height=6'       , 'terminal'},
