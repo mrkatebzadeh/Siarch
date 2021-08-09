@@ -10,6 +10,7 @@ case "$OSTYPE" in
   linux*)   
     export PATH="$PATH:${$(find ~/.local/bin/ -type d -printf %p:)%%:}"
     export PATH="$PATH:/opt/omnetpp/bin/"
+    export PATH="$PATH:/opt/idea/bin/"
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/omnetpp/lib
       ;;
   darwin*) 
