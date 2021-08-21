@@ -1,3 +1,8 @@
+--[[--
+File              : plugins.lua
+Date              : 09.08.2021
+Last Modified Date: 09.08.2021
+--]]--
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
