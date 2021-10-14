@@ -1,0 +1,6 @@
+echo "Section "InputClass"
+   Identifier "mytouchpad"
+   Driver "libinput"
+   MatchIsTouchpad "on"
+   NaturalScrolling "true"
+EndSection"

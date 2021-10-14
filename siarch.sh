@@ -24,6 +24,9 @@ esac done
 
 progsfile=packs.csv
 aurhelper=yay
+
+mkdir /etc/siarch
+
 ### FUNCTIONS ###
 
 stow_config() {

@@ -25,7 +25,7 @@ super + shift + q
 alt + Tab
     skippy-xd
 alt + shift + l
-    {setxkbmap ir, setxkbmap gb};pkill -RTMIN+13 dwmblocks
+    {setxkbmap ir, setxkbmap $KEYLANG};pkill -RTMIN+13 dwmblocks
 super + shift + d
 	passmenu #Passmenu
 super + e
