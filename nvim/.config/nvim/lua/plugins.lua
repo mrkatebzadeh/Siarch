@@ -76,6 +76,8 @@ return require('packer').startup(function()
   use 'xolox/vim-session'
 
   -- Languages
+  --- grammar checking
+  use 'rhysd/vim-grammarous'
   --- C
   use {'vim-scripts/c.vim', ft = {'c', 'cpp'}}
   use 'ludwig/split-manpage.vim'

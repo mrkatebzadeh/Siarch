@@ -122,6 +122,7 @@ local keymap = {
        t = {':TagbarToggle<CR>'        , 'Tagbar'},
        T = {':TagbarOpen j<CR>'        , 'Jump to Tagbar'},
        n = {':set number! relativenumber!<CR>'    , 'RelativeNumer'},
+       l = {':set wrap! linebreak<CR>'    , 'Linebreaks'},
        },
 
     v = {
