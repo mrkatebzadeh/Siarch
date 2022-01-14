@@ -25,7 +25,7 @@ esac done
 progsfile=packs.csv
 aurhelper=yay
 
-mkdir /etc/siarch
+mkdir -p /etc/siarch
 
 ### FUNCTIONS ###
 
