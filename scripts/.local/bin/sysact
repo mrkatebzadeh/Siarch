@@ -8,6 +8,17 @@ case "$(readlink -f /sbin/init)" in
 	*openrc*) reb="sudo -A openrc-shutdown -r"; shut="sudo -A openrc-shutdown -p" ;;
 esac
 
+case "$RUNNING_WM" in
+    i3)
+cmds="\
+🔒 lock		slock
+🚪 leave i3	i3-msg exit
+♻ renew i3	i3-msg restart
+🐻 hibernate	slock ${hib:-systemctl suspend-then-hibernate -i}
+🔃 reboot	${reb:-sudo -A reboot}
+🖥 shutdown	${shut:-sudo -A shutdown -h now}"
+    ;;
+    dwm)
 cmds="\
 🔒 lock		slock
 🚪 leave dwm	kill -TERM $(pgrep -u $USER "\bdwm$")
@@ -15,7 +26,8 @@ cmds="\
 🐻 hibernate	slock ${hib:-systemctl suspend-then-hibernate -i}
 🔃 reboot	${reb:-sudo -A reboot}
 🖥 shutdown	${shut:-sudo -A shutdown -h now}"
-
-choice="$(echo "$cmds" | cut -d'	' -f 1 | dmenu)" || exit 1
+;;
+esac
+choice="$(echo "$cmds" | cut -d'	' -f 1 | dmenu -l 6)" || exit 1
 
 `echo "$cmds" | grep "^$choice	" | cut -d '	' -f2-`
