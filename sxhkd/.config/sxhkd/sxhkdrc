@@ -73,9 +73,9 @@ XF86TouchpadToggle
 XF86Touchpad{Off,On}
 	synclient TouchpadOff={1,0}
 XF86MonBrightnessDown
-	xbacklight -dec 15
+	brightnessctl s 10%-
 XF86MonBrightnessUp
-	xbacklight -inc 15
+	brightnessctl s +10%
 
 # Recording
 # Take screenshot
