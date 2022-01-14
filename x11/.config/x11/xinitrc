@@ -17,6 +17,8 @@ fi
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 
-sxhkd &
+#sxhkd &
 
-ssh-agent dwm
+#ssh-agent dwm
+
+exec i3
