@@ -1,4 +1,4 @@
-#TAG,NAME IN REPO (or git url),PURPOSE (should be a verb phrase to sound right while installing)
+#TAG,NAME IN REPO (or git url),PURPOSE
 ,xorg-server,"is the graphical server."
 ,xorg-xwininfo,"allows querying information about windows."
 ,xorg-xinit,"starts the graphical server."
@@ -111,6 +111,7 @@ A,nerd-fonts-mononoki,""
 ,gdb, "Godly tool for everyday usage"
 A,skippy-xd-git,"Task switcher"
 ,lazygit,"Git frontend for lazy users"
+A,lazydocker,"Docker frontend for lazy users"
 ,ripgrep, "Search tool everyone needs"
 ,xdg-user-dirs, "help manage "well known" user directories like the desktop folder and the music folder."
 ,bmon, "Network traffic visualizer"
