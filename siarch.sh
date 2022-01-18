@@ -31,12 +31,16 @@ mkdir -p /etc/siarch
 ### FUNCTIONS ###
 
 stow_config() {
+	cd dotfiles
 	config=$1
-	stow -v $config
+	stow -v $config -t ~
+	cd -
 }
 
 stow_all() {
-	ls -d -- */ | xargs stow -v
+	cd dotfiles
+	ls -d -- */ | xargs stow -v -t ~
+	cd -
 }
 
 delete_config() {
@@ -89,6 +93,7 @@ adduserandpass() { \
 	useradd -m -g wheel -s /bin/zsh "$name" >/dev/null 2>&1 ||
 	usermod -a -G wheel "$name" && mkdir -p /home/"$name" && chown "$name":wheel /home/"$name"
     OUTPUTPATH="/home/$name/.siarch"
+	siarchdir="/home/$name/.siarch"; mkdir -p "$siarchdir"; chown -R "$name":wheel "$(dirname "$siarchdir")"
 	repodir="/home/$name/.local/src"; mkdir -p "$repodir"; chown -R "$name":wheel "$(dirname "$repodir")"
 	sharedir="/home/$name/.local/share"; mkdir -p "$sharedir"; chown -R "$name":wheel "$(dirname "$sharedir")"
 	bindir="/home/$name/.local/bin"; mkdir -p "$bindir"; chown -R "$name":wheel "$(dirname "$bindir")"
@@ -109,10 +114,13 @@ newperms() { # Set special sudoers settings for install (or after).
 
 putgitrepo() { # Downloads a gitrepo $1 and places the files in $2 only overwriting conflicts
 	echo "Downloading and installing config files..."
-    dir="/home/$name/.siarch"
-	sudo -u "$name" cp -rfT "." "$dir"
-	chown "$name":wheel "$dir" 
-	}
+    	dir="/home/$name/.siarch"
+	cp -r * $dir
+	chown -R "$name":wheel "$dir"
+	cd "$dir"
+	runuser -l $name -c "cd .siarch; ./siarch.sh -S;"
+	cd -
+}
 
 systembeepoff() { echo "Getting rid of that retarded error beep sound..." 
 	rmmod pcspkr
