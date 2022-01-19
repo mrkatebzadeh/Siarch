@@ -108,6 +108,8 @@ bindsym $mod+Shift+Right move right
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
+bindsym $mod+Shift+F floating toggle, sticky toggle
+
 # change container layout (stacked, tabbed, toggle split)
 #bindsym $mod+q layout stacking
 #bindsym $mod+a layout tabbed

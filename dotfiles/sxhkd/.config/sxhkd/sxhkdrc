@@ -47,7 +47,7 @@ super + n
 super + shift + n
 	$TERMINAL -e newsboat; pkill -RTMIN+6 dwmblocks #RSS manager
 super + c
-	copier
+	siarch_i3_sticky
 super + v
 	paster
 #super + shift + a
