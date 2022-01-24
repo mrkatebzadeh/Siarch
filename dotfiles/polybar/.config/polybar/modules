@@ -227,20 +227,12 @@ label = "%{A1:$TERMINAL -e top &:}%percentage%% %{A}"
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
 [module/time]
-type = internal/date
-interval = 1
-format-margin = 0
-time = "%I:%M %p"
-time-alt = "%A, %d/%m/%y"
+type = custom/script
+exec = date "+%Y %b %d (%a) %I:%M%p" 
+interval = 5
+label-foreground = ${color.cyan}
 
-format-prefix = 
-format-prefix-foreground = ${color.blue}
-;format-prefix-background = ${color.blue}
-
-label = %time%
-label-foreground = ${color.blue}
-;label-background = ${color.blue}
-label-padding = 1
+click-left=notify-send "This Month" "$(cal --color=always | sed "s/..7m/<b><span color=\"red\">/;s/..27m/<\/span><\/b>/")" && notify-send "Appointments" "$(calcurse -d3)" &
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
@@ -290,7 +282,7 @@ label = "%{A1:$TERMINAL -e top &:} %gb_used% %{A}"
 type=custom/text
 content = "  "
 content-font = 15
-content-foreground= ${color.blue}
+content-foreground= ${color.cyan}
 ;content-background = ${color.blue} 
 content-padding=0
 click-left=launcher

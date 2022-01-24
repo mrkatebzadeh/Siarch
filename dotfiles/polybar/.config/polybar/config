@@ -2,7 +2,7 @@
 
 [global/wm]
 margin-bottom = 0
-margin-top = 20
+margin-top = 0
 
 include-file = ~/.config/polybar/colors
 include-file = ~/.config/polybar/modules
@@ -23,7 +23,7 @@ bottom = false
 fixed-center = true
 
 width = 100%
-height = 32
+height = 22
 
 offset-x = 0%
 offset-y = 0%
@@ -31,13 +31,13 @@ offset-y = 0%
 background = ${color.background}
 foreground = ${color.foreground}
 
-radius = 10.0
+radius = 20.0
 radius-top = 0.0
 radius-bottom = 0.0
 
 include-file = ~/.config/polybar/fonts
 
-line-size = 2
+line-size = 1
 line-color = ${color.blue}
 
 border-size = 0
@@ -46,16 +46,15 @@ border-right-size = 0
 border-left-size = 0
 border-color = ${color.blue}
 
-padding-left = 1
+padding-top = 1
 padding-right = 2
 module-margin-left = 2
 module-margin-right = 1
-margin-top = 2
 
 # Default
 modules-left = spacing launcher 
-modules-center = 
-modules-right = spacing network dot battery dot volume dot brightness dot time spacing
+modules-center = time
+modules-right = spacing network dot battery dot volume dot brightness spacing
 
 spacing = 0
 dim-value = 1.0
