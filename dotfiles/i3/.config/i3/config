@@ -74,7 +74,7 @@ bar {
 floating_modifier $mod
 
 bindsym $mod+Shift+Return exec --no-startup-id ddspawn tmuxdd
-bindsym $mod+space exec --no-startup-id ddspawn fzf-nova
+bindsym $mod+space exec --no-startup-id launcher
 # change focus
 bindsym $mod+k focus up
 bindsym $mod+h focus left
