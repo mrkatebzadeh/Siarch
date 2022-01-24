@@ -194,7 +194,8 @@ assign [class="Thunar"] $ws3
 assign [class="Geany|Code"] $ws4
 assign [class="plexmediaplayer"] $ws5
 assign [class="VirtualBox Manager"] $ws7
-assign [class="Telegram-desktop"] $ws9
+assign [class="TelegramDesktop"] $ws9
+assign [class="telegram-desktop"] $ws9
 
 ##~~~ Rules For Windows ~~~~~~~~~~~~~~~~~~~~~~~ 
 ##
