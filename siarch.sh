@@ -33,7 +33,8 @@ mkdir -p /etc/siarch
 stow_config() {
 	cd dotfiles
 	config=$1
-	stow -v $config -t ~
+    echo $config
+	stow -vvR $config -t ~
 	cd -
 }
 
