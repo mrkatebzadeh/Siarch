@@ -55,7 +55,7 @@ margin-top = 2
 # Default
 modules-left = spacing launcher 
 modules-center = 
-modules-right = spacing cpu spacing memory spacing filesystem dot network dot battery dot volume dot brightness dot time spacing
+modules-right = spacing network dot battery dot volume dot brightness dot time spacing
 
 spacing = 0
 dim-value = 1.0

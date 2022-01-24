@@ -35,7 +35,7 @@ card = ${system.graphics_card}
 
 enable-scroll = true
 
-format = <ramp> <label>
+format = <ramp>
 ;format-background = ${color.yellow}
 format-padding = 1
 
@@ -53,7 +53,7 @@ ramp-7 = 
 ramp-8 = 
 ramp-9 = 
 ramp-font = 2
-ramp-foreground = ${color.yellow}
+ramp-foreground = ${color.cyan}
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
@@ -66,16 +66,16 @@ use-ui-max = false
 
 interval = 5
 
-format-volume = <ramp-volume><label-volume>
+format-volume = <ramp-volume>
 
 format-muted = <label-muted>
-format-muted-prefix = " "
+format-muted-prefix = ""
 format-muted-prefix-font = 2
 format-muted-prefix-foreground = ${color.red}
 ;format-muted-prefix-background = ${color.green}
 
 label-volume = "%percentage%% "
-label-muted = "Mute"
+label-muted = " "
 
 ;label-volume-background = ${color.green}
 ;label-muted-background = ${color.green}
@@ -83,18 +83,18 @@ label-muted = "Mute"
 label-volume-foreground = ${color.red}
 label-muted-foreground = ${color.red}
 
-ramp-volume-0 = " "
-ramp-volume-1 = " "
-ramp-volume-2 = " "
-ramp-volume-3 = " "
-ramp-volume-4 = " "
-ramp-volume-5 = " "
-ramp-volume-6 = " "
-ramp-volume-7 = " "
-ramp-volume-8 = " "
-ramp-volume-9 = " "
+ramp-volume-0 = ""
+ramp-volume-1 = ""
+ramp-volume-2 = ""
+ramp-volume-3 = ""
+ramp-volume-4 = ""
+ramp-volume-5 = ""
+ramp-volume-6 = ""
+ramp-volume-7 = ""
+ramp-volume-8 = ""
+ramp-volume-9 = ""
 ramp-volume-font = 2
-ramp-volume-foreground = ${color.red}
+ramp-volume-foreground = ${color.cyan}
 ;ramp-volume-background = ${color.green}
 
 ramp-headphones-0 = 
@@ -105,7 +105,7 @@ ramp-headphones-1 = 
 [module/battery]
 type = internal/battery
 
-full-at = 99
+full-at = 98
 
 battery = ${system.battery}
 adapter = ${system.adapter}
@@ -113,20 +113,20 @@ adapter = ${system.adapter}
 poll-interval = 2
 time-format = %H:%M
 
-format-charging = <animation-charging><label-charging>
+format-charging = <animation-charging>
 format-charging-prefix = 
 
-format-discharging = <ramp-capacity><label-discharging>
+format-discharging = <ramp-capacity>
 
 format-full = <label-full>
-format-full-prefix = " "
+format-full-prefix = "%{F#E5E9F0} "
 format-full-prefix-font = 2
 format-full-prefix-foreground = ${color.red}
 ;format-full-prefix-background = ${color.red}
 
 label-charging = %percentage%%
 label-discharging = %percentage%%
-label-full = %percentage%%
+label-full = " "
 
 ;label-charging-background = ${color.red}
 ;label-discharging-background = ${color.red}
@@ -136,13 +136,13 @@ label-charging-foreground = ${color.red}
 label-discharging-foreground = ${color.red}
 label-full-foreground = ${color.red}
 
-ramp-capacity-0 = " "
-ramp-capacity-1 = " "
+ramp-capacity-0 = "%{F#ff5555} "
+ramp-capacity-1 = "%{F#f1fa8c} "
 ramp-capacity-2 = " "
 ramp-capacity-3 = " "
 ramp-capacity-4 = " "
 ramp-capacity-font = 2
-ramp-capacity-foreground = ${color.red}
+ramp-capacity-foreground = ${color.cyan}
 ;ramp-capacity-background = ${color.red}
 
 animation-charging-0 = " "
@@ -151,7 +151,7 @@ animation-charging-2 = " "
 animation-charging-3 = " "
 animation-charging-4 = " "
 animation-charging-font = 2
-animation-charging-foreground = ${color.red}
+animation-charging-foreground = ${color.cyan}
 ;animation-charging-background = ${color.red}
 animation-charging-framerate = 750
 
@@ -289,7 +289,7 @@ label = "%{A1:$TERMINAL -e top &:} %gb_used% %{A}"
 [module/launcher]
 type=custom/text
 content = "  "
-content-font = 5
+content-font = 15
 content-foreground= ${color.blue}
 ;content-background = ${color.blue} 
 content-padding=0
@@ -300,44 +300,47 @@ click-left=launcher
 [module/wired-network]
 type = internal/network
 interface = ${system.network_interface}
-click-left=ddspawn nmtui
+click-left=$TERMINAL -e nmtui
+click-right=notify-send "🌐 Internet module" "\- Click to connect
 
 [module/wireless-network]
 type = internal/network
 interface = ${system.network_interface}
-click-left=ddspawn nmtui
+click-left=$TERMINAL -e nmtui
+click-right=notify-send "🌐 Internet module" "\- Click to connect
 
 [module/network]
 type = internal/network
 interface = ${system.network_interface}
-click-left=ddspawn nmtui
+click-left=$TERMINAL -e nmtui
+click-right=notify-send "🌐 Internet module" "\- Click to connect
 
 interval = 1.0
 accumulate-stats = true
 unknown-as-up = true
 
-format-connected = <ramp-signal><label-connected>
+format-connected = <ramp-signal>
 
 format-disconnected = <label-disconnected>
-format-disconnected-prefix = "睊 "
+format-disconnected-prefix = "睊"
 format-disconnected-prefix-font = 2
-format-disconnected-foreground = ${color.magenta}
+format-disconnected-foreground = ${color.red}
 ;format-disconnected-background = ${color.magenta}
 
-label-connected = "%{A1:def-nmdmenu &:}%essid%%{A}"
-label-disconnected = "%{A1:def-nmdmenu &:}Offline%{A}"
+label-connected = "%{A1:$TERMINAL -e nmtui &:}%{A}"
+label-disconnected = "%{A1:$TERMINAL -e nmtui &:}%{A}"
 
 label-connected-foreground = ${color.magenta}
-label-disconnected-foreground = ${color.magenta}
+label-disconnected-foreground = ${color.red}
 
 ;label-connected-background = ${color.magenta}
 ;label-disconnected-background = ${color.magenta}
 
-ramp-signal-0 = " "
-ramp-signal-1 = " "
-ramp-signal-2 = " "
-ramp-signal-3 = " "
-ramp-signal-4 = " "
-ramp-signal-foreground = ${color.magenta}
+ramp-signal-0 = ""
+ramp-signal-1 = ""
+ramp-signal-2 = ""
+ramp-signal-3 = ""
+ramp-signal-4 = ""
+ramp-signal-foreground = ${color.cyan}
 ;ramp-signal-background = ${color.magenta}
 ramp-signal-font = 2
