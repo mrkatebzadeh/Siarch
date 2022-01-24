@@ -288,12 +288,12 @@ label = "%{A1:$TERMINAL -e top &:} %gb_used% %{A}"
 
 [module/launcher]
 type=custom/text
-content = 
+content = "  "
 content-font = 5
 content-foreground= ${color.blue}
 ;content-background = ${color.blue} 
 content-padding=0
-click-left=ddspawn fzf-nova
+click-left=launcher
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 

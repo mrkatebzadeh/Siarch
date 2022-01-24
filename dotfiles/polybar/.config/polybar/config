@@ -35,6 +35,8 @@ radius = 10.0
 radius-top = 0.0
 radius-bottom = 0.0
 
+include-file = ~/.config/polybar/fonts
+
 line-size = 2
 line-color = ${color.blue}
 
@@ -49,11 +51,6 @@ padding-right = 2
 module-margin-left = 2
 module-margin-right = 1
 margin-top = 2
-
-font-0 = "monospace Regular:size=10;3"
-font-1 = "monospace Regular:size=12;3"
-font-2 = "monospace Regular:size=14;4"
-font-3 = "monospace Regular:size=16;4"
 
 # Default
 modules-left = spacing launcher 
