@@ -20,7 +20,7 @@ ksuperkey -e 'Super_R=Alt_L|F1' &
 sxhkd &
 
 # Launch notification daemon
-dunst -config $HOME/.config/i3/dunstrc &
+dunst -config $HOME/.config/dunst/dunstrc &
 
 
 
