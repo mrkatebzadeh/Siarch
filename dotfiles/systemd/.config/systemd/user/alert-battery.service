@@ -1,0 +1,9 @@
+[Unit]
+Description=Alert in case of low remaining battery
+
+[Service]
+Type=oneshot
+ExecStart=/home/siavash/.local/share/siarch/services/alertbattery.sh
+
+[Install]
+WantedBy=graphical.target
