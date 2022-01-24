@@ -17,14 +17,15 @@ monitor-fallback =
 monitor-strict = false
 
 override-redirect = false
+wm-restack = i3
 
 bottom = false
 fixed-center = true
 
 width = 100%
-height = 22
+height = 32
 
-offset-x = 5%
+offset-x = 0%
 offset-y = 0%
 
 background = ${color.background}
@@ -43,15 +44,16 @@ border-right-size = 0
 border-left-size = 0
 border-color = ${color.blue}
 
-padding = 5
+padding-left = 1
+padding-right = 2
+module-margin-left = 2
+module-margin-right = 1
+margin-top = 2
 
-module-margin-left = 0
-module-margin-right = 0
-
-font-0 = "MeslLGS NF Regular:size=10;3"
-font-1 = "Iosevka Nerd Font:size=12;3"
-font-2 = "Iosevka Nerd Font:size=14;4"
-font-3 = "Iosevka Nerd Font:size=16;4"
+font-0 = "monospace Regular:size=10;3"
+font-1 = "monospace Regular:size=12;3"
+font-2 = "monospace Regular:size=14;4"
+font-3 = "monospace Regular:size=16;4"
 
 # Default
 modules-left = spacing BLD launcher BRD 
