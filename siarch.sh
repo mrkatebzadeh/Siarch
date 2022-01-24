@@ -115,7 +115,7 @@ newperms() { # Set special sudoers settings for install (or after).
 putgitrepo() { # Downloads a gitrepo $1 and places the files in $2 only overwriting conflicts
 	echo "Downloading and installing config files..."
     	dir="/home/$name/.siarch"
-	cp -r * $dir
+	cp -rT `pwd` $dir
 	chown -R "$name":wheel "$dir"
 	cd "$dir"
 	runuser -l $name -c "cd .siarch; ./siarch.sh -S;"
