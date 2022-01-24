@@ -9,8 +9,8 @@
     separator_height = 2
     padding = 0
     horizontal_padding = 8
-    frame_width = 3
-    frame_color = "#282828"
+    frame_width = 1
+    frame_color = "#4C566A"
 
     # Define a color for the separator.
     # possible values are:
@@ -82,7 +82,7 @@
     #icon = /path/to/icon
 
 [urgency_normal]
-    background = "#458588"
+    background = "#232731"
     foreground = "#ebdbb2"
     timeout = 5
 
