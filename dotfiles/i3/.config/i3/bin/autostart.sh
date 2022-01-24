@@ -1,7 +1,7 @@
 #!/bin/env bash
 
-# sets wallpaper using feh
-bash $HOME/.config/i3/.fehbg
+# sets wallpaper
+setbg &
 
 # polybar
 $HOME/.config/i3/bin/launchbar.sh

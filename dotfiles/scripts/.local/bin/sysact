@@ -15,7 +15,7 @@ esac
 case "$RUNNING_WM" in
     i3)
 cmds="\
-🔒 lock		slock
+🔒 lock		betterlockscreen -l blur
 🚪 leave i3	i3-msg exit
 ♻ renew i3	i3-msg restart
 🐻 hibernate	slock ${hib:-systemctl suspend-then-hibernate -i}
