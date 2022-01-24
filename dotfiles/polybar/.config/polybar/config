@@ -56,9 +56,9 @@ font-2 = "monospace Regular:size=14;4"
 font-3 = "monospace Regular:size=16;4"
 
 # Default
-modules-left = spacing BLD launcher BRD 
+modules-left = spacing launcher 
 modules-center = 
-modules-right = GLD cpu YPL memory CPL filesystem CRD dot MLD network RPL battery RRD dot GLD volume YPL brightness YRD dot BLD time BRD spacing
+modules-right = spacing cpu spacing memory spacing filesystem dot network dot battery dot volume dot brightness dot time spacing
 
 spacing = 0
 dim-value = 1.0
