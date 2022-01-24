@@ -119,9 +119,9 @@ format-charging-prefix =
 format-discharging = <ramp-capacity>
 
 format-full = <label-full>
-format-full-prefix = "%{F#E5E9F0} "
+format-full-prefix = " "
 format-full-prefix-font = 2
-format-full-prefix-foreground = ${color.red}
+format-full-prefix-foreground = ${color.cyan}
 ;format-full-prefix-background = ${color.red}
 
 label-charging = %percentage%%
@@ -228,7 +228,7 @@ label = "%{A1:$TERMINAL -e top &:}%percentage%% %{A}"
 
 [module/time]
 type = custom/script
-exec = date "+%Y %b %d (%a) %I:%M%p" 
+exec = date "+%b %d (%a) %I:%M%p" 
 interval = 5
 label-foreground = ${color.cyan}
 
