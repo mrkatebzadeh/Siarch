@@ -55,7 +55,7 @@ textbox-prompt-colon {
 
 entry {
     spacing:    					0;
-    text-color: 					@fg;
+    text-color: 					@red;
 }
 
 case-indicator {
@@ -88,6 +88,10 @@ listview {
 element {
     border: 						0px;
     padding: 						1px;
+}
+element-text {
+    background-color: inherit;
+    text-color:       inherit;
 }
 element normal.normal {
     background-color: 				@bg;
