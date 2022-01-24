@@ -1,7 +1,13 @@
 #!/bin/sh
 # Gives a dmenu prompt to mount unmounted local NAS shares for read/write.
 # Requirements - "%wheel ALL=(ALL) NOPASSWD: ALL"
-#
+
+dir="$(dirname "`readlink -f $0`")"/rofi_theme
+theme="style"
+
+alias dmenu='rofi -no-lazy-grab -dmenu -theme "$dir/$theme"'
+
+
 # Browse for mDNS/DNS-SD services using the Avahi daemon...
 srvname=$(avahi-browse _smb._tcp -t | awk '{print $4}' | dmenu -i -p "Which NAS?") || exit 1
 notify-send "Searching for network shares..." "Please wait..."

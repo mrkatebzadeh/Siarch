@@ -1,5 +1,10 @@
 #!/bin/sh
 
+dir="$(dirname "`readlink -f $0`")"/rofi_theme
+theme="style"
+
+alias dmenu='rofi -no-lazy-grab -dmenu -theme "$dir/$theme"'
+
 # Feed this script a link and it will give dmenu
 # some choice programs to use to open it.
 feed="${1:-$(printf "%s" | dmenu -p 'Paste URL or file path')}"

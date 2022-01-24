@@ -2,6 +2,12 @@
 
 # The famous "get a menu of emojis to copy" script.
 
+dir="$(dirname "`readlink -f $0`")"/rofi_theme
+theme="style"
+
+alias dmenu='rofi -p "Action" -no-lazy-grab -dmenu -theme "$dir/$theme"'
+
+
 # Get user selection via dmenu from emoji file.
 chosen=$(cut -d ';' -f1 ~/.local/share/siarch/emoji | dmenu -i -l 30 | sed "s/ .*//")
 

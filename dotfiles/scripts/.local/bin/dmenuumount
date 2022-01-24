@@ -4,6 +4,12 @@
 # Provides you with mounted partitions, select one to unmount.
 # Drives mounted at /, /boot and /home will not be options to unmount.
 
+
+dir="$(dirname "`readlink -f $0`")"/rofi_theme
+theme="style"
+
+alias dmenu='rofi -no-lazy-grab -dmenu -theme "$dir/$theme"'
+
 unmountusb() {
 	[ -z "$drives" ] && exit
 	chosen="$(echo "$drives" | dmenu -i -p "Unmount which drive?")" || exit 1

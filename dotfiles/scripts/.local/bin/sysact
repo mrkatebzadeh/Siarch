@@ -1,6 +1,10 @@
 #!/bin/sh
 
-# A dmenu wrapper script for system functions.
+dir="$(dirname "`readlink -f $0`")"/rofi_theme
+theme="style"
+
+alias dmenu='rofi -p "Action" -no-lazy-grab -dmenu -theme "$dir/$theme"'
+
 
 # For non-systemd init systems.
 case "$(readlink -f /sbin/init)" in

@@ -5,4 +5,9 @@
 # For example:
 # `./prompt "Do you want to shutdown?" "shutdown -h now"`
 
+dir="$(dirname "`readlink -f $0`")"/rofi_theme
+theme="style"
+
+alias dmenu='rofi -no-lazy-grab -dmenu -theme "$dir/$theme"'
+
 [ "$(printf "No\\nYes" | dmenu -i -p "$1" -nb darkred -sb red -sf white -nf gray )" = "Yes" ] && $2

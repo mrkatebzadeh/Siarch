@@ -2,6 +2,12 @@
 
 # If transmission-daemon is running, will ask to kill, else will ask to start.
 
+dir="$(dirname "`readlink -f $0`")"/rofi_theme
+theme="style"
+
+alias dmenu='rofi -p "Action" -no-lazy-grab -dmenu -theme "$dir/$theme"'
+
+
 if pidof transmission-daemon >/dev/null ;
 then
 	[ "$(printf "No\\nYes" | dmenu -i -p "Turn off transmission-daemon?")" = "Yes" ] && killall transmission-da && notify-send "transmission-daemon disabled."

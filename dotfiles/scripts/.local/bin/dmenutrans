@@ -5,11 +5,17 @@
 # be prompted to give a mountpoint from already existsing directories. If you
 # input a novel directory, it will prompt you to create that directory.
 
+dir="$(dirname "`readlink -f $0`")"/rofi_theme
+theme="style"
+
+alias dmenu='rofi -no-lazy-grab -dmenu -theme "$dir/$theme"'
+
+
 translations=( fa en )
 
 target=$(printf '%s\n' "${translations[@]}" | dmenu -p 'Select your target')
 
-word=$(echo "" | dmenu_o -p "Enter your sentence")
+word=$(echo "" | dmenu -p "Enter your sentence")
 result=$(trans -b "$word" -t $target)
 echo $result
 notify-send "Translation " "'$word'\n '$result'" &

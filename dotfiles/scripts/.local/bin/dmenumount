@@ -1,4 +1,10 @@
 #!/bin/sh
+dir="$(dirname "`readlink -f $0`")"/rofi_theme
+theme="style"
+
+alias dmenu='rofi -no-lazy-grab -dmenu -theme "$dir/$theme"'
+
+
 
 # Gives a dmenu prompt to mount unmounted drives and Android phones. If
 # they're in /etc/fstab, they'll be mounted automatically. Otherwise, you'll
