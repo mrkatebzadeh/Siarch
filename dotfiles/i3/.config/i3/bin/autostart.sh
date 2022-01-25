@@ -10,7 +10,7 @@ $HOME/.config/i3/bin/launchbar.sh
 xsetroot -cursor_name left_ptr
 
 # kill if already running
-killall -9 dunst sxhkd 
+killall -9 dunst sxhkd deadd-notification-center
 
 # sets superkey
 ksuperkey -e 'Super_L=Alt_L|F1' &
@@ -20,8 +20,8 @@ ksuperkey -e 'Super_R=Alt_L|F1' &
 sxhkd &
 
 # Launch notification daemon
-dunst -config $HOME/.config/dunst/dunstrc &
-
+# dunst -config $HOME/.config/dunst/dunstrc &
+deadd-notification-center &
 
 
 

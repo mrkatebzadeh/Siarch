@@ -1,11 +1,20 @@
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+[module/notif]
+type=custom/text
+content = 
+content-font = 15
+content-foreground = ${color.cyan}
+content-padding = 0
+click-left = kill -s USR1 $(pidof deadd-notification-center) &
+
+
 [module/power]
 type=custom/text
 content = ⏻
 content-font = 15
 content-foreground = ${color.cyan}
 content-padding = 0
-click-left = sysact
+click-left = sysact &
 
 
 [module/backlight]
