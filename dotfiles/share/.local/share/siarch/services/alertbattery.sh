@@ -11,7 +11,7 @@ if [[ ${bat_status}=="Discharging" && ${capacity} -le 5 ]]; then
         "${capacity}% battery remaining"
     sleep 5
     systemctl suspend-then-hibernate
-elif [[ ${bat_status}=="Discharging" && ${capacity} -le 35 ]]; then
+elif [[ ${bat_status}=="Discharging" && ${capacity} -le 9 ]]; then
     echo "Battery alert - ${capacity}%"
     notify-send -u critical \
         --icon=$HOME/.local/share/siarch/icons/empty-battery-64.png \
