@@ -191,13 +191,14 @@ mode "resize" {
 ##assign [class="Alacritty"] $ws1
 assign [class="Code"] $ws2
 assign [class="code"] $ws2
-assign [window_role="browser"] $ws7
+assign [class="Slack"] $ws9
 assign [class="Thunar"] $ws3
 assign [class="Geany|Code"] $ws4
 assign [class="plexmediaplayer"] $ws5
 assign [class="VirtualBox Manager"] $ws7
 assign [class="TelegramDesktop"] $ws9
 assign [class="telegram-desktop"] $ws9
+assign [window_role="browser"] $ws7
 
 ##~~~ Rules For Windows ~~~~~~~~~~~~~~~~~~~~~~~ 
 ##
