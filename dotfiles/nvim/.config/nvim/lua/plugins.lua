@@ -103,14 +103,17 @@ return require('packer').startup(function()
   use 'onsails/lspkind-nvim'
   use 'kosayoda/nvim-lightbulb'
   use 'mfussenegger/nvim-jdtls'
-  use 'kabouzeid/nvim-lspinstall'
+  use 'williamboman/nvim-lsp-installer'
 
   -- FZF
   use 'junegunn/fzf.vim'
-  use '/usr/local/opt/fzf'
+  -- use '/usr/local/opt/fzf'
   
   -- Autocomplete
-  use 'hrsh7th/nvim-compe'
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
   use 'hrsh7th/vim-vsnip'
   use 'hrsh7th/vim-vsnip-integ'
   use "rafamadriz/friendly-snippets"

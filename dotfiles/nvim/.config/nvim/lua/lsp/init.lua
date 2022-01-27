@@ -58,6 +58,38 @@ function lsp_config.tsserver_on_attach(client, bufnr)
     client.resolved_capabilities.document_formatting = false
 end
 
+local lsp_installer_servers = require('nvim-lsp-installer.servers')
+
+local servers = {
+    "rust_analyzer",
+    "ccls",
+    "pyright",
+	"bashls",
+	"cmake",
+	"dockerls",
+	"efm",
+	"jsonls",
+	"texlab", 
+}
+
+-- Loop through the servers listed above.
+for _, server_name in pairs(servers) do
+    local server_available, server = lsp_installer_servers.get_server(server_name)
+    if server_available then
+        server:on_ready(function ()
+            -- When this particular server is ready (i.e. when installation is finished or the server is already installed),
+            -- this function will be invoked. Make sure not to use the "catch-all" lsp_installer.on_server_ready()
+            -- function to set up servers, to avoid doing setting up a server twice.
+            local opts = {}
+            server:setup(opts)
+        end)
+        if not server:is_installed() then
+            -- Queue the server to be installed.
+            server:install()
+        end
+    end
+end
+
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
 -- local servers = {"pyright", "tsserver"}
