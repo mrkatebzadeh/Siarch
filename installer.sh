@@ -65,7 +65,7 @@ installationloop() { \
 			"A") aurinstall "$program" "$comment" ;;
 			"G") gitmakeinstall "$program" "$comment" ;;
 			"P") pipinstall "$program" "$comment" ;;
-			"#") echo "Skipping: "$program" "$comment" ;;
+			"#") echo "Skipping:" "$program" "$comment" ;;
 			*) maininstall "$program" "$comment" ;;
 		esac
 	done < /tmp/progs.csv ;}

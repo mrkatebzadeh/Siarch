@@ -202,7 +202,12 @@ installall() {
 	newperms "%wheel ALL=(ALL) ALL #Siarch
 	%wheel ALL=(ALL) NOPASSWD: /usr/bin/shutdown,/usr/bin/reboot,/usr/bin/systemctl suspend,/usr/bin/wifi-menu,/usr/bin/mount,/usr/bin/umount,/usr/bin/nmtui,/usr/bin/pacman -Syu,/usr/bin/pacman -Syyu,/usr/bin/packer -Syu,/usr/bin/packer -Syyu,/usr/bin/systemctl restart NetworkManager,/usr/bin/rc-service NetworkManager restart,/usr/bin/pacman -Syyu --noconfirm,/usr/bin/loadkeys,/usr/bin/yay,/usr/bin/pacman -Syyuw --noconfirm"
 
-	xdg-user-dirs-update
+	runuser -l $name -c "xdg-user-dirs-update"
+	systemctl enable NetworkManager
+	systemctl start NetworkManager
+	systemctl enable dhcpcd
+	systemctl start dhcpcd
+
 	# Last message! Install complete!
 	finalize
 }
