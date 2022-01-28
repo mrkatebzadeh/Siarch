@@ -1,11 +1,3 @@
-# The Simple X Hotkey Daemon is the program used by LARBS to map most of the
-# dwm-independent commands.  This file is pretty readable, so I'll let you read
-# it.
-
-# The keys NOT bound here by sxhkd, but by dwm or i3 are:
-# The t thru p keys on the top row
-# The f thru ; keys on the home row
-# The b key on the bottom row (hides the bar in either case)
 
 # Basic binds
 super + Return
@@ -28,16 +20,16 @@ alt + shift + l
     {setxkbmap ir, setxkbmap $KEYLANG};pkill -RTMIN+13 dwmblocks
 super + shift + d
 	passmenu #Passmenu
-super + e
-    muttmails ; pkill -RTMIN+12 dwmblocks; rmdir ~/.abook #Email
+#super + e
+#    muttmails ; pkill -RTMIN+12 dwmblocks; rmdir ~/.abook #Email
 super + shift + e
     $TERMINAL  -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook #Address book
 super + r
     $TERMINAL -e lf #File manager
 super + shift + r
     $TERMINAL -e htop #Top
-super + BackSpace
-	dmenubibtex #Bibtex menu
+#super + BackSpace
+#	dmenubibtex #Bibtex menu
 super + shift + BackSpace
 	dc-toggle #Docker start
 super + m
@@ -46,10 +38,12 @@ super + n
 	$TERMINAL -e nvim -c VimwikiIndex #vimwiki
 super + shift + n
 	$TERMINAL -e newsboat; pkill -RTMIN+6 dwmblocks #RSS manager
-super + c
+super + shift + c
 	siarch_i3_sticky
-super + v
-	paster
+super + c
+	calc
+#super + v
+#	paster
 #super + shift + a
 #	$TERMINAL -e alsamixer || pulsemixer; pkill -RTMIN+10 $STATUSBAR
 #super + shift + c
@@ -118,9 +112,9 @@ super + shift + m
 
 # Audiokeys
 XF86AudioMute
-    pamixer -t; kill -44 $(pidof dwmblocks)
+    volctl mute
 XF86Audio{Raise,Lower}Volume
-    pamixer --allow-boost -{i,d} 3; kill -44 $(pidof dwmblocks)
+    volctl {up,down}
 XF86Audio{Next,Prev}
 	mpc {next,prev}
 XF86Audio{Pause,Play,Stop}
@@ -135,7 +129,7 @@ XF86AudioMedia
 XF86PowerOff
     sysact
 XF86Calculator
-	$TERMINAL -e bc -l
+	calc
 XF86Sleep
     sudo -A zzz
 XF86WWW

@@ -1,12 +1,12 @@
 #!/bin/sh
-# $0 volup
-# $0 voldown
+# $0 up
+# $0 down
 #  make adjustment
 #  read new volume level
 #  set icon relevant to new volume
 #  send notification with con + level
 #  play ding
-# $0 togglemute
+# $0 mute
 #  read whether currently muted
 #  toggle mute
 #  if muting, set icon to mute, notify
@@ -35,17 +35,17 @@ getnewvol () {
     fi
 
 }
-if [ $1 = 'volup' ]; then
+if [ $1 = 'up' ]; then
     echo "Up"
     pactl set-sink-volume 0 +5%
     MSG='Volume up'
     getnewvol
-elif [ $1 = 'voldown' ]; then
+elif [ $1 = 'down' ]; then
     echo "Down"
     pactl set-sink-volume 0 -5%
     MSG='Volume down'
     getnewvol
-elif [ $1 = 'volmute' ]; then
+elif [ $1 = 'mute' ]; then
     echo "Mute"
     pactl set-sink-mute 0 toggle
     if [ `pactl list sinks  | grep Mute | awk '{print $2}'` = 'yes' ]; then
@@ -63,8 +63,8 @@ echo "CURVOL: $CURVOL"
 ICON="$HOME/.local/share/siarch/icons/$ICON.png"
 
 #notify-send "$MSG ($CURVOL%)" --icon "$HOME/.local/share/siarch/icons/$ICON.png"
-
-notify-send.py "$MSG" "$CURVOL%" -r 1000\
+echo $ICON
+notify-send.py "$MSG" "$CURVOL%" -t 3000\
                          --hint string:image-path:$ICON boolean:transient:true \
                                 int:has-percentage:$CURVOL \
-                         --replaces-process "volume-popup"
+                         --replaces-process "volctl" &

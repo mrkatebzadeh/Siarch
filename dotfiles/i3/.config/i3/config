@@ -66,10 +66,6 @@ bar {
 # reload the configuration file
 #bindsym $mod+Shift+c reload
 
-# Restart/Quit i3 session 
-#bindsym Control+Shift+r restart
-#bindsym Control+Shift+q exec "pkill -KILL -u $USER"
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -103,12 +99,13 @@ bindsym $mod+Shift+Right move right
 #bindsym $mod+b split h
 
 # split in vertical orientation
-#bindsym $mod+v split v
+bindsym $mod+v split toggle
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
 bindsym $mod+Shift+F floating toggle, sticky toggle
+bindsym $mod+s sticky toggle
 
 # change container layout (stacked, tabbed, toggle split)
 #bindsym $mod+q layout stacking
