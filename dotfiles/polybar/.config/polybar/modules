@@ -1,4 +1,12 @@
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+[module/siarch]
+type = custom/script
+exec = checksiarch 
+interval = 60
+label-foreground = ${color.cyan}
+
+click-left=notify-send "Siarch" "Check your dotfiles." &
+
 [module/notif]
 type=custom/text
 content = 
@@ -6,7 +14,6 @@ content-font = 15
 content-foreground = ${color.cyan}
 content-padding = 0
 click-left = kill -s USR1 $(pidof deadd-notification-center) &
-
 
 [module/power]
 type=custom/text

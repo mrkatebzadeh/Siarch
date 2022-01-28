@@ -54,7 +54,7 @@ module-margin-right = 1
 # Default
 modules-left = spacing launcher 
 modules-center = time
-modules-right = spacing network dot battery dot volume dot brightness dot power dot notif spacing
+modules-right = spacing network dot battery dot volume dot siarch dot power dot notif spacing
 
 spacing = 0
 dim-value = 1.0
