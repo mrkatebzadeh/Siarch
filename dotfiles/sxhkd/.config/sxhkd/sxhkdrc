@@ -145,23 +145,26 @@ XF86Mail
 XF86MyComputer
 	$TERMINAL -e lf /
 
-# Change display
 super + F3
 	displayselect
-# Hibernate
-super + F4
-    $TERMINAL -e pulsemixer; kill -44 $(pidof dwmblocks)
-super + F5 is unbound.
-# Start torrent daemon/open interface
+
+#super + F4
+#    $TERMINAL -e pulsemixer; kill -44 $(pidof dwmblocks)
+
+#super + F5 
+
 super + F6
 	torwrap
-# toggle torrent daemon
+
+
 super + F7
 	td-toggle
-# sync email
+
+
 super + F8
 	mw -Y
-# Mount a USB drive or Android device
+
+
 super + {F9,F10}
 	{dmenumount,dmenuumount}
 super + F11

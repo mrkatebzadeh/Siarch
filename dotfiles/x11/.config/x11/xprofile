@@ -1,13 +1,11 @@
 #!/bin/sh
 
-# This file runs when a DM logs you into a graphical session.
-# If you use startx/xinit like a Chad, this file will also be sourced.
 
 #mpd &			# music player daemon-you might prefer it as a service though
 #remaps &		# run the remaps script, switching caps/esc and more; check it for more info
 setbg &			# set the background with the `setbg` script
 #xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources &	# Uncomment to use Xresources colors/settings on startup
-picom &		# xcompmgr for transparency
+
 dunst -config ~/.config/dunst/dunstrc &			# dunst for notifications
 xset r rate 300 50 &	# Speed xrate up
 unclutter &		# Remove mouse when idle
@@ -15,10 +13,3 @@ unclutter &		# Remove mouse when idle
 export KEYLANG=`cat /etc/siarch/xkeylang`
 setxkbmap -model pc104 -layout $KEYLANG -variant ,, 
 
-
-# This line autostarts an instance of Pulseaudio that does not exit on idle.
-# This is "necessary" on Artix due to a current bug between PA and
-# Chromium-based browsers where they fail to start PA and use dummy output.
-#pidof -s runit &&
-#	! pidof -s pulseaudio >/dev/null 2>&1 &&
-#	setsid -f pulseaudio --start --exit-idle-time=-1 >/dev/null 2>&1
