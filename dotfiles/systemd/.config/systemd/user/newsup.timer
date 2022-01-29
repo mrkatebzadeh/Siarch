@@ -1,0 +1,9 @@
+[Unit]
+Description=Check available news every 1 hour
+
+[Timer]
+OnActiveSec=10m
+OnUnitActiveSec=1h
+
+[Install]
+WantedBy=timers.target

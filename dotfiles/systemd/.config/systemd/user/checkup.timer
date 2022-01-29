@@ -1,0 +1,9 @@
+[Unit]
+Description=Check available updates every 24 hours
+
+[Timer]
+OnActiveSec=1m
+OnUnitActiveSec=24h
+
+[Install]
+WantedBy=timers.target

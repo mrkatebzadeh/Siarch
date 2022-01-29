@@ -1,0 +1,9 @@
+[Unit]
+Description=Check available updates
+
+[Service]
+Type=oneshot
+ExecStart=/home/siavash/.local/bin/services/newsup
+
+[Install]
+WantedBy=graphical.target
