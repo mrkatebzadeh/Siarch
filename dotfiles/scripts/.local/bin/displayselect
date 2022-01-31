@@ -4,6 +4,11 @@
 # displays and lets user select one to use. User may also select "manual
 # selection" which opens arandr.
 
+dir="$(dirname "`readlink -f $0`")"/rofi_theme
+theme="style"
+
+alias dmenu='rofi -no-lazy-grab -dmenu -theme "$dir/$theme"'
+
 twoscreen() { # If multi-monitor is selected and there are two screens.
 
     mirror=$(printf "no\\nyes" | dmenu -i -p "Mirror displays?")
