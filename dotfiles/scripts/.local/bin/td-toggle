@@ -5,7 +5,7 @@
 dir="$(dirname "`readlink -f $0`")"/rofi_theme
 theme="style"
 
-alias dmenu='rofi -p "Action" -no-lazy-grab -dmenu -theme "$dir/$theme"'
+alias dmenu='rofi -no-lazy-grab -dmenu -theme "$dir/$theme"'
 
 
 if pidof transmission-daemon >/dev/null ;
