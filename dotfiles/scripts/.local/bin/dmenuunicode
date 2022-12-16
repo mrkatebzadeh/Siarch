@@ -1,11 +1,16 @@
 #!/bin/sh
 
 # The famous "get a menu of emojis to copy" script.
+case "$RUNNING_WM" in
+    i3)
+	dir="$(dirname "`readlink -f $0`")"/i3_scripts/rofi_theme
+	theme="style"
 
-dir="$(dirname "`readlink -f $0`")"/rofi_theme
-theme="style"
+	alias dmenu='rofi -p "Action" -no-lazy-grab -dmenu -theme "$dir/$theme"'
+    ;;
+    dwm)
+;;
 
-alias dmenu='rofi -p "Action" -no-lazy-grab -dmenu -theme "$dir/$theme"'
 
 
 # Get user selection via dmenu from emoji file.

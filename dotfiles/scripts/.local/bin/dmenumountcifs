@@ -2,10 +2,17 @@
 # Gives a dmenu prompt to mount unmounted local NAS shares for read/write.
 # Requirements - "%wheel ALL=(ALL) NOPASSWD: ALL"
 
-dir="$(dirname "`readlink -f $0`")"/rofi_theme
-theme="style"
+case "$RUNNING_WM" in
+    i3)
+	dir="$(dirname "`readlink -f $0`")"/i3_scripts/rofi_theme
+	theme="style"
 
-alias dmenu='rofi -no-lazy-grab -dmenu -theme "$dir/$theme"'
+	alias dmenu='rofi -no-lazy-grab -dmenu -theme "$dir/$theme"'
+    ;;
+    dwm)
+;;
+esac
+
 
 
 # Browse for mDNS/DNS-SD services using the Avahi daemon...

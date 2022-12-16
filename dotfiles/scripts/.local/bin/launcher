@@ -1,7 +1,10 @@
 #!/bin/sh
 
-dir="$(dirname "`readlink -f $0`")"/rofi_theme
-theme="style"
-
-rofi -p "Run" -show drun -theme "$dir/$theme"
-
+case "$RUNNING_WM" in
+    i3)
+	    i3_launcher
+    ;;
+    dwm)
+	    dwm_launcher
+;;
+esac

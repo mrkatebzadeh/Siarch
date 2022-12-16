@@ -1,11 +1,17 @@
 #!/bin/sh
 
 # If docker-daemon is running, will ask to kill, else will ask to start.
+case "$RUNNING_WM" in
+    i3)
+	dir="$(dirname "`readlink -f $0`")"/i3_scripts/rofi_theme
+	theme="style"
 
-dir="$(dirname "`readlink -f $0`")"/rofi_theme
-theme="style"
+	alias dmenu='rofi -no-lazy-grab -dmenu -theme "$dir/$theme"'
+    ;;
+    dwm)
+;;
+esac
 
-alias dmenu='rofi -no-lazy-grab -dmenu -theme "$dir/$theme"'
 
 if pidof dockerd >/dev/null ;
 then

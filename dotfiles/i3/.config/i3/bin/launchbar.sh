@@ -39,7 +39,7 @@ launch_bar() {
 			touch "$MFILE"
 		fi
 	fi
-		
+
 	if [[ ! $(pidof polybar) ]]; then
 		polybar -q main -c "$DIR"/config &
 	else
@@ -48,7 +48,7 @@ launch_bar() {
 
 	if type "xrandr">/dev/null; then
   echo "Lanching polybar for each screen"
-  xrandr --listactivemonitors | grep -oP '(HDMI\-\d+$|eDP\-\d+$)' | xargs -P1 -I{} bash -c "MONITOR={} polybar -q -r p00 &"
+  xrandr --listactivemonitors | grep -oP '(HDMI\-\d+$|eDP\-\d+$)' | xargs -P1 -I{} bash -c "MONITOR={} polybar -q -r main &"
 fi
 }
 

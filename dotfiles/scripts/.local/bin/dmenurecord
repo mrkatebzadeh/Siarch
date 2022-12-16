@@ -8,10 +8,15 @@
 # `$0 kill`: Kill existing recording
 #
 # If there is already a running instance, user will be prompted to end it.
-dir="$(dirname "`readlink -f $0`")"/rofi_theme
-theme="style"
+case "$RUNNING_WM" in
+    i3)
+	dir="$(dirname "`readlink -f $0`")"/i3_scripts/rofi_theme
+	theme="style"
 
-alias dmenu='rofi -no-lazy-grab -dmenu -theme "$dir/$theme"'
+	alias dmenu='rofi -no-lazy-grab -dmenu -theme "$dir/$theme"'
+    ;;
+    dwm)
+;;
 
 
 updateicon() { \

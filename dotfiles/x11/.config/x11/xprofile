@@ -1,15 +1,1 @@
-#!/bin/sh
-
-
-#mpd &			# music player daemon-you might prefer it as a service though
-#remaps &		# run the remaps script, switching caps/esc and more; check it for more info
-setbg &			# set the background with the `setbg` script
-#xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources &	# Uncomment to use Xresources colors/settings on startup
-
-dunst -config ~/.config/dunst/dunstrc &			# dunst for notifications
-xset r rate 300 50 &	# Speed xrate up
-unclutter &		# Remove mouse when idle
-#setxkbmap -model pc104 -layout gb,ir -variant ,, -option grp:alt_shift_toggle
-export KEYLANG=`cat /etc/siarch/xkeylang`
-setxkbmap -model pc104 -layout $KEYLANG -variant ,, 
-
+xhost +SI:localuser:root

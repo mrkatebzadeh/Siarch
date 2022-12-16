@@ -4,11 +4,15 @@
 # they're in /etc/fstab, they'll be mounted automatically. Otherwise, you'll
 # be prompted to give a mountpoint from already existsing directories. If you
 # input a novel directory, it will prompt you to create that directory.
+case "$RUNNING_WM" in
+    i3)
+	dir="$(dirname "`readlink -f $0`")"/i3_scripts/rofi_theme
+	theme="style"
 
-dir="$(dirname "`readlink -f $0`")"/rofi_theme
-theme="style"
-
-alias dmenu='rofi -no-lazy-grab -dmenu -theme "$dir/$theme"'
+	alias dmenu='rofi -no-lazy-grab -dmenu -theme "$dir/$theme"'
+    ;;
+    dwm)
+;;
 
 
 translations=( fa en )

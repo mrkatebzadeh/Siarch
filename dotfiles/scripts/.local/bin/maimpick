@@ -1,10 +1,13 @@
 #!/bin/sh
+case "$RUNNING_WM" in
+    i3)
+	dir="$(dirname "`readlink -f $0`")"/i3_scripts/rofi_theme
+	theme="style"
 
-dir="$(dirname "`readlink -f $0`")"/rofi_theme
-theme="style"
-
-alias dmenu='rofi -no-lazy-grab -dmenu -theme "$dir/$theme"'
-
+	alias dmenu='rofi -no-lazy-grab -dmenu -theme "$dir/$theme"'
+    ;;
+    dwm)
+;;
 
 # This is bound to Shift+PrintScreen by default, requires maim. It lets you
 # choose the kind of screenshot to take, including copying the image or even

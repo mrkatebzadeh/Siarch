@@ -5,18 +5,21 @@
 # If you don't plan on reverting to bash, you can remove the link in ~/.profile
 # to clean up.
 
-export RUNNING_WM=i3
+#export RUNNING_WM=i3
 
 # Adds `~/.local/bin` to $PATH
 case "$OSTYPE" in
-  linux*)   
+  linux*)
     export PATH="$PATH:${$(find ~/.local/bin/ -type d -printf %p:)%%:}"
+    export PATH=$PATH:~/.local/bin/dwm_scripts
+    export PATH=$PATH:~/.local/bin/sb_scripts
+    export PATH=$PATH:~/.local/bin/i3_scripts
     export PATH="$PATH:/opt/flutter/bin/"
     export PATH="$PATH:/opt/omnetpp/bin/"
     export PATH="$PATH:/opt/idea/bin/"
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/omnetpp/lib
       ;;
-  darwin*) 
+  darwin*)
     # llvm path
     # libc++ LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
     export PATH="/usr/local/opt/llvm/bin:$PATH"
@@ -164,7 +167,7 @@ ex=🎯:\
 
 
 case "$OSTYPE" in
-  linux*)   
+  linux*)
 
     [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ] && shortcuts >/dev/null 2>&1 &
     if pacman -Qs libxft-bgra >/dev/null 2>&1; then
@@ -182,4 +185,3 @@ case "$OSTYPE" in
   darwin*)  ;;
   *)        echo "unknown: $OSTYPE" ;;
 esac
-

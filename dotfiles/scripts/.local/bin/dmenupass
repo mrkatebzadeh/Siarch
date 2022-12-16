@@ -2,11 +2,14 @@
 
 # This script is the SUDO_ASKPASS variable, meaning that it will be used as a
 # password prompt if needed.
-
-dir="$(dirname "`readlink -f $0`")"/rofi_theme
-theme="style"
-
-alias dmenu='rofi -no-lazy-grab -dmenu -theme "$dir/$theme"'
-
+case "$RUNNING_WM" in
+    i3)
+	dir="$(dirname "`readlink -f $0`")"/i3_scripts/rofi_theme
+	theme="style"
+	alias dmenu='rofi -p "Password: " -no-lazy-grab -dmenu -theme "$dir/$theme"'
+    ;;
+    dwm)
+;;
+esac
 
 dmenu -fn Monospace-18 -P -p "$1" <&- && echo

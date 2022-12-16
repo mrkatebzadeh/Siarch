@@ -1,7 +1,7 @@
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 [module/siarch]
 type = custom/script
-exec = checksiarch 
+exec = checksiarch
 interval = 60
 label-foreground = ${color.cyan}
 
@@ -138,7 +138,7 @@ poll-interval = 2
 time-format = %H:%M
 
 format-charging = <animation-charging>
-format-charging-prefix = 
+format-charging-prefix =
 
 format-discharging = <ramp-capacity>
 
@@ -252,11 +252,11 @@ label = "%{A1:$TERMINAL -e top &:}%percentage%% %{A}"
 
 [module/time]
 type = custom/script
-exec = date "+%b %d (%a) %I:%M%p" 
+exec = date "+%b %d (%a) %I:%M%p"
 interval = 5
 label-foreground = ${color.cyan}
 
-click-left=notify-send "This Month" "$(cal --color=always | sed "s/..7m/<b><span color=\"red\">/;s/..27m/<\/span><\/b>/")" && notify-send "Appointments" "$(calcurse -d3)" &
+;;click-left=notify-send "This Month" "$(cal --color=always | sed "s/..7m/<b><span color=\"red\">/;s/..27m/<\/span><\/b>/")" && notify-send "Appointments" "$(calcurse -d3)" &
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
@@ -307,7 +307,7 @@ type=custom/text
 content = "  "
 content-font = 15
 content-foreground= ${color.cyan}
-;content-background = ${color.blue} 
+;content-background = ${color.blue}
 content-padding=0
 click-left=launcher
 
@@ -317,19 +317,19 @@ click-left=launcher
 type = internal/network
 interface = ${system.network_interface}
 click-left=$TERMINAL -e nmtui
-click-right=notify-send "🌐 Internet module" "\- Click to connect
+;;click-right=notify-send "🌐 Internet module" "\- Click to connect
 
 [module/wireless-network]
 type = internal/network
 interface = ${system.network_interface}
 click-left=$TERMINAL -e nmtui
-click-right=notify-send "🌐 Internet module" "\- Click to connect
+;;click-right=notify-send "🌐 Internet module" "\- Click to connect
 
 [module/network]
 type = internal/network
 interface = ${system.network_interface}
-click-left=$TERMINAL -e nmtui
-click-right=notify-send "🌐 Internet module" "\- Click to connect
+;;click-left=$TERMINAL -e nmtui
+;;click-right=notify-send "🌐 Internet module" "\- Click to connect
 
 interval = 1.0
 accumulate-stats = true

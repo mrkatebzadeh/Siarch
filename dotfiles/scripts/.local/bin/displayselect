@@ -3,11 +3,18 @@
 # A UI for detecting and selecting all displays. Probes xrandr for connected
 # displays and lets user select one to use. User may also select "manual
 # selection" which opens arandr.
+case "$RUNNING_WM" in
+    i3)
+	dir="$(dirname "`readlink -f $0`")"/i3_scripts/rofi_theme
+	theme="style"
 
-dir="$(dirname "`readlink -f $0`")"/rofi_theme
-theme="style"
+	alias dmenu='rofi -no-lazy-grab -dmenu -theme "$dir/$theme"'
+    ;;
+    dwm)
+;;
+esac
 
-alias dmenu='rofi -no-lazy-grab -dmenu -theme "$dir/$theme"'
+
 
 twoscreen() { # If multi-monitor is selected and there are two screens.
 

@@ -1,7 +1,10 @@
-#!/usr/bin/env sh
-# AUTHOR: M.R. Siavash Katebzadeh 
+#!/bin/sh
 
-dir="$(dirname "`readlink -f $0`")"/rofi_theme
-theme="style"
-
-rofi -show calc -modi calc -no-show-match -no-sort -theme "$dir/$theme"
+case "$RUNNING_WM" in
+    i3)
+	    i3_calc
+    ;;
+    dwm)
+	    dwm_calc
+;;
+esac

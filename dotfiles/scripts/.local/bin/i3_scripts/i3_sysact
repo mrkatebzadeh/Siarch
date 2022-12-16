@@ -1,0 +1,24 @@
+#!/bin/sh
+
+dir="$(dirname "`readlink -f $0`")"/rofi_theme
+theme="style"
+
+alias dmenu='rofi -p "Action" -no-lazy-grab -dmenu -theme "$dir/$theme"'
+
+
+# For non-systemd init systems.
+case "$(readlink -f /sbin/init)" in
+	*runit*) hib="sudo -A zzz" ;;
+	*openrc*) reb="sudo -A openrc-shutdown -r"; shut="sudo -A openrc-shutdown -p" ;;
+esac
+
+cmds="\
+🔒 lock		betterlockscreen -l blur
+🚪 leave i3	i3-msg exit
+♻ renew i3	i3-msg restart
+🐻 hibernate	slock ${hib:-systemctl suspend-then-hibernate -i}
+🔃 reboot	${reb:-sudo -A reboot}
+🖥 shutdown	${shut:-sudo -A shutdown -h now}"
+choice="$(echo "$cmds" | cut -d'	' -f 1 | dmenu -l 6)" || exit 1
+
+`echo "$cmds" | grep "^$choice	" | cut -d '	' -f2-`
