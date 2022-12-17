@@ -11,6 +11,7 @@ case $BLOCK_BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
+
 update() {
     sum=0
     for arg; do
