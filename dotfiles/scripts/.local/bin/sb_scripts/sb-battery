@@ -33,6 +33,7 @@ for battery in /sys/class/power_supply/BAT?*; do
 	timeleft=$(acpi -b | awk '{print $5}'| awk -F ":" '{print $1":"$2}')
 	# Will make a warn variable if discharging and low
   [ "$status" = "🔋" ] && [ "$capacity" -le 25 ] && warn="❗"
-	# Prints the info
-	printf "(%s)%s %s%d%%" "$timeleft" "$status" "$warn" "$capacity"; unset warn
+  [ "$status" = "🔋" ] && status="[$timeleft] 🔋"  
+  # Prints the info
+	printf "  %s %s%d%%  " "$status" "$warn" "$capacity"; unset warn
 done && exit 0
