@@ -45,11 +45,13 @@ stow_all() {
 }
 
 delete_config() {
+	cd dotfiles
 	config=$1
 	stow -v -D $config
 }
 
 delete_all() {
+	cd dotfiles
 	ls -d -- */ | xargs stow -v -D
 }
 
