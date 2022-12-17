@@ -16,6 +16,7 @@ esac
 case "$kb" in
   "gb") KBD="GB" ;;
   "ir") KBD="IR" ;;
+  "us") KBD="EN" ;;
   *) KBD="unknown" ;;
 esac
 echo "[ $KBD]"
