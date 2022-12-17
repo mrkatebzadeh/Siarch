@@ -37,7 +37,10 @@ for battery in /sys/class/power_supply/BAT?*; do
           $((capacity >= 30)) ) status="" ;;
           $((capacity >= 20)) ) status="" ;;
           $((capacity >= 10)) ) status="" ;;
-          * ) status="" ;;
+          * )
+            status=""
+            notify-send "Low battery" "$(acpi -b)"
+            ;;
         esac;;
 		"Charging") 
          case 1 in
@@ -51,7 +54,7 @@ for battery in /sys/class/power_supply/BAT?*; do
           * ) status="" ;;
         esac ;;
 		"Not charging") status="" ;;
-		"Unknown") status="♻️" ;;
+		"Unknown") status="";;
 		*) exit 1 ;;
 	esac
 	# Will make a warn variable if discharging and low
