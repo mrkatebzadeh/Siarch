@@ -21,19 +21,41 @@ for battery in /sys/class/power_supply/BAT?*; do
 	# If non-first battery, print a space separator.
 	[ -n "${capacity+x}" ] && printf " "
 	# Sets up the status and capacity
+	capacity=$(cat "$battery/capacity")
+	timeleft=$(acpi -b | awk '{print $5}'| awk -F ":" '{print $1":"$2}')
 	case "$(cat "$battery/status" 2>&1)" in
-		"Full") status="⚡" ;;
-		"Discharging") status="🔋" ;;
-		"Charging") status="🔌" ;;
-		"Not charging") status="🛑" ;;
+		"Full") status="" ;;
+		"Discharging") 
+        case 1 in
+          $((capacity >= 95)) ) status="" ;;
+          $((capacity >= 90)) ) status="" ;;
+          $((capacity >= 80)) ) status="" ;;
+          $((capacity >= 70)) ) status="" ;;
+          $((capacity >= 60)) ) status="" ;;
+          $((capacity >= 50)) ) status="" ;;
+          $((capacity >= 40)) ) status="" ;;
+          $((capacity >= 30)) ) status="" ;;
+          $((capacity >= 20)) ) status="" ;;
+          $((capacity >= 10)) ) status="" ;;
+          * ) status="" ;;
+        esac;;
+		"Charging") 
+         case 1 in
+          $((capacity >= 95)) ) status="" ;;
+          $((capacity >= 90)) ) status="" ;;
+          $((capacity >= 80)) ) status="" ;;
+          $((capacity >= 60)) ) status="" ;;
+          $((capacity >= 40)) ) status="" ;;
+          $((capacity >= 30)) ) status="" ;;
+          $((capacity >= 20)) ) status="" ;;
+          * ) status="" ;;
+        esac ;;
+		"Not charging") status="" ;;
 		"Unknown") status="♻️" ;;
 		*) exit 1 ;;
 	esac
-	capacity=$(cat "$battery/capacity")
-	timeleft=$(acpi -b | awk '{print $5}'| awk -F ":" '{print $1":"$2}')
 	# Will make a warn variable if discharging and low
-  [ "$status" = "🔋" ] && [ "$capacity" -le 25 ] && warn="❗"
-  [ "$status" = "🔋" ] && status="[$timeleft] 🔋"  
+
   # Prints the info
-	printf "  %s %s%d%%  " "$status" "$warn" "$capacity"; unset warn
+	printf "  %s %d%%  \n" "$status" "$capacity"; unset warn
 done && exit 0
