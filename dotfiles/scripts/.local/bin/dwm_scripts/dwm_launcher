@@ -1,2 +1,2 @@
 #!/bin/sh
-dmenu_run
+dmenu_run -l 5
