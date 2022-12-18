@@ -103,12 +103,12 @@ super + {_,shift +} bracketleft
 	mpc seek -{10,120}
 # Increase volume
 super + {equal,plus}
-    pamixer --allow-boost -i 5; kill -44 $(pidof dwmblocks)
+  volctl up
 # Decrease volume
 super {_,shift +} + minus
-    pamixer --allow-boost -d 5; kill -44 $(pidof dwmblocks)
+  volctl down
 super + shift + m
-	pamixer -t; kill -44 $(pidof dwmblocks)
+  volctl mute
 
 # Audiokeys
 XF86AudioMute

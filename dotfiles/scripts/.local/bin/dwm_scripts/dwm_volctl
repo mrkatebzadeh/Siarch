@@ -1,0 +1,39 @@
+#!/bin/sh
+# $0 up
+# $0 down
+#  make adjustment
+#  read new volume level
+#  play ding
+# $0 mute
+#  read whether currently muted
+#  toggle mute
+#  if unmuting, set icon to current volume level, notify, ding
+if [ $# -ne 1 ]; then
+    echo "Need 1 argument (up, down, mute)"
+    exit 1;
+fi
+getnewvol () {
+    # return a percentage
+    CURVOL=`pactl list sinks | grep -i volume | head -1 | awk '{print $5}' | sed -e 's/%//'`
+}
+if [ $1 = 'up' ]; then
+    pactl set-sink-volume 0 +5%
+    MSG='Volume up'
+    getnewvol
+elif [ $1 = 'down' ]; then
+    pactl set-sink-volume 0 -5%
+    MSG='Volume down'
+    getnewvol
+elif [ $1 = 'mute' ]; then
+    pactl set-sink-mute 0 toggle
+    if [ `pactl list sinks  | grep Mute | awk '{print $2}'` = 'yes' ]; then
+        MSG='Mute'
+    else
+        MSG='Unmute'
+    fi
+    getnewvol
+fi
+echo "MSG: $MSG"
+echo "CURVOL: $CURVOL"
+pkill -RTMIN+10 "${STATUSBAR:-dwmblocks}"
+notify-send "$MSG: $CURVOL%"
