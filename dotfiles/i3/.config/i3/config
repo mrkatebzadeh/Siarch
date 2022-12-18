@@ -192,6 +192,7 @@ assign [class="plexmediaplayer"] $ws5
 assign [class="Thunderbird"] $ws8
 assign [class="TelegramDesktop"] $ws9
 assign [class="telegram-desktop"] $ws9
+assign [class="Microsoft Teams - Preview"] $ws8
 assign [window_role="browser"] $ws7
 
 ##~~~ Rules For Windows ~~~~~~~~~~~~~~~~~~~~~~~ 
