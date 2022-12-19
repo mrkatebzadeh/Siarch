@@ -33,7 +33,46 @@ elif [ $1 = 'mute' ]; then
     fi
     getnewvol
 fi
+
+function send_notification {
+    volume=${CURVOL}
+		if [ "$volume" = "0" ]; then
+       icon_name="/usr/share/icons/Faba/48x48/notifications/notification-audio-volume-muted.svg"
+       icon_name="/usr/share/icons/Adwaita/48x48/status/audio-volume-muted-symbolic.symbolic.png"
+			 notify-send.sh "$volume""      " -i "$icon_name" -t 2000 -h int:value:"$volume" -h string:synchronous:"─" --replace=555
+    else
+		if [  "$volume" -lt "10" ]; then
+	     icon_name="/usr/share/icons/Faba/48x48/notifications/notification-audio-volume-low.svg"
+       icon_name="/usr/share/icons/Adwaita/48x48/status/audio-volume-low-symbolic.symbolic.png"
+			 #notify-send.sh "$volume""     " -i "$icon_name" --replace=555 -t 2000
+    else
+    if [ "$volume" -lt "30" ]; then
+       icon_name="/usr/share/icons/Faba/48x48/notifications/notification-audio-volume-low.svg"
+       icon_name="/usr/share/icons/Adwaita/48x48/status/audio-volume-low-symbolic.symbolic.png"
+    else
+    if [ "$volume" -lt "70" ]; then
+       icon_name="/usr/share/icons/Faba/48x48/notifications/notification-audio-volume-medium.svg"
+       icon_name="/usr/share/icons/Adwaita/48x48/status/audio-volume-medium-symbolic.symbolic.png"
+    else
+       icon_name="/usr/share/icons/Faba/48x48/notifications/notification-audio-volume-high.svg"
+       icon_name="/usr/share/icons/Adwaita/48x48/status/audio-volume-high-symbolic.symbolic.png"
+    fi
+    fi
+    fi
+		fi
+		bar=$(seq -s "─" $(($volume/5)) | sed 's/[0-9]//g')
+		# Send the notification
+		if [ $(pactl list sinks  | grep Mute | awk '{print $2}') = 'yes' ] ; then
+        icon_name="/usr/share/icons/Adwaita/48x48/status/audio-volume-muted-symbolic.symbolic.png"
+    		notify-send.sh -i "$icon_name" --replace=555 -u normal "Mute" -t 2000
+				exit
+		else
+		notify-send.sh "$volume"" ""$bar" -i "$icon_name" -t 2000 -h int:value:"$volume" -h string:synchronous:"$bar" --replace=555
+		fi
+
+}
 echo "MSG: $MSG"
 echo "CURVOL: $CURVOL"
 pkill -RTMIN+10 "${STATUSBAR:-dwmblocks}"
-notify-send "$MSG: $CURVOL%"
+#notify-send.sh "$MSG: $CURVOL%" -t 2000
+send_notification
