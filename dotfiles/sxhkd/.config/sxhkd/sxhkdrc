@@ -20,8 +20,8 @@ alt + shift + l
     {setxkbmap ir, setxkbmap $KEYLANG};pkill -RTMIN+13 dwmblocks
 super + shift + d
 	passmenu #Passmenu
-#super + e
-#    muttmails ; pkill -RTMIN+12 dwmblocks; rmdir ~/.abook #Email
+super + e
+    muttmails ; pkill -RTMIN+12 dwmblocks # rmdir ~/.abook #Email
 super + shift + e
     $TERMINAL  -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook #Address book
 super + r
