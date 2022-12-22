@@ -11,7 +11,7 @@ an executable
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
-lvim.colorscheme = "lunar"
+lvim.colorscheme = "xresources"
 vim.g.vimtex_view_method = 'zathura'
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
@@ -218,6 +218,9 @@ lvim.plugins = {
   {
     "lervag/vimtex",
     cmd = { "VimtexInfo", "VimtexCompile", "VimtexStop", "VimtexClean", "VimtexView" },
+  },
+  {
+    'nekonako/xresources-nvim'
   },
 }
 
