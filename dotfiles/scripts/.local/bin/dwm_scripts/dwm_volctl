@@ -58,7 +58,9 @@ function send_notification {
     fi
     fi
 		fi
-		bar=$(seq -s "─" $(($volume/5)) | sed 's/[0-9]//g')
+		# bar=$(seq -s "─" $(($volume/5)) | sed 's/[0-9]//g')
+		bar="%"
+    volume=$(printf "%3s" $volume)
 		# Send the notification
 		if [ $(pactl list sinks  | grep Mute | awk '{print $2}') = 'yes' ] ; then
         icon_name="/usr/share/icons/Adwaita/48x48/status/audio-volume-muted-symbolic.symbolic.png"

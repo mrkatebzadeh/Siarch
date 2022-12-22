@@ -1,16 +1,17 @@
 [global]
     monitor = 0
     follow = keyboard
-    geometry = "350x5-0+24"
+    geometry = "500x5-0+24"
     indicate_hidden = yes
     shrink = yes
     transparency = 20
     notification_height = 0
     separator_height = 2
-    padding = 0
+    padding = 15
     horizontal_padding = 8
-    frame_width = 3
+    frame_width = 1
     frame_color = "{color4}"
+    highlight = "{color4}"
 
     # Define a color for the separator.
     # possible values are:

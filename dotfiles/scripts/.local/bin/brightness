@@ -13,7 +13,9 @@ function send_notification {
     val=$(cat /sys/class/backlight/intel_backlight/brightness)
     CURVAL=$(( val * 100 / max))
     icon_name="/usr/share/icons/Adwaita/48x48/status/display-brightness-symbolic.symbolic.png"
-		bar=$(seq -s "─" $(($CURVAL/5)) | sed 's/[0-9]//g')
+		# bar=$(seq -s "─" $(($CURVAL/5)) | sed 's/[0-9]//g')
+		bar="%"
+    CURVAL=$(printf "%3s" $CURVAL)
 		# Send the notification
 		notify-send.sh "$CURVAL"" ""$bar" -i "$icon_name" -t 2000 -h int:value:"$CURVAL" -h string:synchronous:"$bar" --replace=555
 }

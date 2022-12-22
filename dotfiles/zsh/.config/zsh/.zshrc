@@ -26,6 +26,10 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Include hidden files.
 
+if command -v wal >/dev/null 2>&1 ; then
+  (cat ~/.cache/wal/sequences &)
+fi
+
 # vi mode
 bindkey -v
 export KEYTIMEOUT=1
