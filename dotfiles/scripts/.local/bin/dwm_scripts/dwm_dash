@@ -1,4 +1,5 @@
 #!/bin/sh
+(cat ~/.cache/wal/sequences &)
 DIR="${0%/*}"
 	clear
 	"$DIR"/launcher_items/"$(find "$DIR"/launcher_items/* -type f -exec basename {} \; | grep '^_' | sort | fzf --height 100% -i --delimiter _ --with-nth='2..' --reverse --prompt="Command: ")"
