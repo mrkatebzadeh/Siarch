@@ -102,6 +102,10 @@ lvim.builtin.which_key.mappings["w"] = {
   s = { '<C-W>s', 'split-window-below' },
   v = { '<C-W>v', 'split-window-below' },
 }
+lvim.builtin.which_key.mappings["t"] = {
+  name = "+Toggles",
+  w = { ':set wrap<CR>', 'Soft Wrap Text' },
+}
 lvim.builtin.which_key.mappings["L"] = {
   name = "+Latex",
   c = { "<cmd>VimtexCompile<cr>", "Toggle Compilation Mode" },
@@ -141,10 +145,11 @@ lvim.builtin.treesitter.highlight.enable = true
 -- generic LSP settings
 
 -- -- make sure server will always be installed even if the server is in skipped_servers list
--- lvim.lsp.installer.setup.ensure_installed = {
---     "sumneko_lua",
---     "jsonls",
--- }
+lvim.lsp.installer.setup.ensure_installed = {
+    "sumneko_lua",
+    -- "jsonls",
+    "grammarly",
+}
 -- -- change UI setting of `LspInstallInfo`
 -- -- see <https://github.com/williamboman/nvim-lsp-installer#default-configuration>
 -- lvim.lsp.installer.setup.ui.check_outdated_servers_on_open = false

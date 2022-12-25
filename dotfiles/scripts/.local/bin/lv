@@ -1,0 +1,2 @@
+#!/bin/sh
+alacritty --config-file ~/.config/alacritty/lvim.yml -e lvim $@
