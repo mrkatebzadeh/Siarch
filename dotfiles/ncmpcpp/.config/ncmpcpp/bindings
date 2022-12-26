@@ -407,6 +407,8 @@ def_key "+"
 def_key "="
     volume_up
 
+def_key "-"
+    volume_down
 def_key "j"
     scroll_down
 def_key "k"
