@@ -4,7 +4,7 @@ cd /tmp
 mkdir -p ytfzf_dl
 cd ytfzf_dl
 rm -rf *
-YTFZF_PLAYER="youtube-dl -cit --extract-audio --add-metadata --xattrs --embed-thumbnail --audio-quality 0 --audio-format mp3" YTFZF_PLAYER_FORMAT="youtube-dl --extract-audio --add-metadata --xattrs --embed-thumbnail --audio-quality 0 --audio-format mp3 -f " YTFZF_AUDIO_PLAYER=$YTFZF_PLAYER YTFZF_AUDIO_PLAYER_FORMAT=$YTFZF_PLAYER_FORMAT ytfzf -m -t
-cp *.mp3 ~/Music
+YTFZF_PLAYER="youtube-dl -cit --extract-audio --add-metadata --xattrs --embed-thumbnail --audio-quality 0 --audio-format mp3" YTFZF_PLAYER_FORMAT="youtube-dl --extract-audio --add-metadata --xattrs --embed-thumbnail --audio-quality 0 --audio-format mp3 -f " YTFZF_AUDIO_PLAYER=$YTFZF_PLAYER YTFZF_AUDIO_PLAYER_FORMAT=$YTFZF_PLAYER_FORMAT ytfzf -m -t -d
+cp * ~/Music
 mpc update
 cd -
