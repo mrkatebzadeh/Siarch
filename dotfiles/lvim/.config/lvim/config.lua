@@ -13,6 +13,7 @@ lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
 lvim.colorscheme = "xresources"
 vim.g.vimtex_view_method = 'zathura'
+vim.wo.relativenumber = true
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -104,7 +105,7 @@ lvim.builtin.which_key.mappings["w"] = {
 }
 lvim.builtin.which_key.mappings["t"] = {
   name = "+Toggles",
-  w = { ':set wrap<CR>', 'Soft Wrap Text' },
+  w = { ':set wrap!<CR>', 'Soft Wrap Text' },
 }
 lvim.builtin.which_key.mappings["L"] = {
   name = "+Latex",
@@ -114,6 +115,7 @@ lvim.builtin.which_key.mappings["L"] = {
   t = { "<cmd>VimtexTocToggle<cr>", "Toggle Table Of Content" },
   v = { "<cmd>VimtexView<cr>", "View PDF" },
 }
+table.insert(lvim.builtin.nvimtree.setup.view.mappings.list, {key = { "<tab>" }, action = "preview", mode = "n" })
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
