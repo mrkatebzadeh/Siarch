@@ -25,7 +25,9 @@ super + e
 super + shift + e
     $TERMINAL  -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook #Address book
 super + r
-    $TERMINAL -e lf #File manager
+    $TERMINAL -e lfub #File manager
+super + shift + b
+    $TERMINAL -e lfub ~/.local/share/backgrounds 
 super + shift + r
     $TERMINAL -e htop #Top
 #super + BackSpace
