@@ -13,14 +13,15 @@ zathuraconf="${XDG_CONFIG_HOME:-$HOME/.config}/zathura/zathurarc"
 
 trueloc="$(readlink -f "$1")" &&
 case "$(file --mime-type -b "$trueloc")" in
-	image/* ) ln -sf "$(readlink -f "$1")" "$bgloc" && notify-send -i "$bgloc" "Changing wallpaper..." ;;
+	image/* ) ln -sf "$(readlink -f "$1")" "$bgloc" && notify-send.sh -i "$bgloc" "Changing wallpaper..." ;;
 	inode/directory ) ln -sf "$(find "$trueloc" -iregex '.*.\(jpg\|jpeg\|png\|gif\)' -type f | shuf -n 1)" "$bgloc" && notify-send -i "$bgloc" "Random Wallpaper chosen." ;;
-	*) notify-send "Error" "Not a valid image." ; exit 1;;
+	*) notify-send.sh "Error" "Not a valid image." ; exit 1;;
 esac
 
 # If pywal is installed, use it.
 if command -v wal >/dev/null 2>&1 ; then
   echo Using wal
+  wal -c
 	wal -n -i "$bgloc" -o "${XDG_CONFIG_HOME:-$HOME/.config}/wal/postrun" >/dev/null 2>&1 &&
 	pidof dwm >/dev/null && xdotool key super+F12
 else
@@ -28,6 +29,6 @@ else
   [ -f "$zathuraconf.bak" ] && unlink "$zathuraconf" && mv "$zathuraconf.bak" "$zathuraconf"
 fi
 
-betterlockscreen -u $HOME/.local/share/bg --blur 1.0 &
 xwallpaper --zoom "$bgloc"
+betterlockscreen -u $HOME/.local/share/bg --blur 1.0
 
