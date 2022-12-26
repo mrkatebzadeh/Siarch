@@ -1,3 +1,5 @@
+set synctex true
+set synctex-editor-command "code -g %{{input}}:%{{line}}"
 set sandbox none
 set statusbar-h-padding 0
 set statusbar-v-padding 0
