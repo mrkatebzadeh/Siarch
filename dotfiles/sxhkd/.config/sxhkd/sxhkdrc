@@ -17,7 +17,7 @@ super + shift + q
 alt + Tab
     skippy-xd
 alt + shift + l
-    {setxkbmap ir, setxkbmap $KEYLANG};pkill -RTMIN+13 dwmblocks
+    {k="setxkbmap ""$KEYMODEL"" -layout ir"; eval $k, k="setxkbmap ""$KEYMODEL"" -layout ""$KEYLANG"; eval $k};pkill -RTMIN+13 dwmblocks
 super + shift + d
 	passmenu #Passmenu
 super + e
