@@ -1,4 +1,7 @@
-# Luke's config for the Zoomer Shell
+# Zsh-autosuggestion
+
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+bindkey '^ ' autosuggest-accept
 
 # Enable colors and change prompt:
 autoload -U colors && colors	# Load colors
