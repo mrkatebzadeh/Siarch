@@ -229,6 +229,19 @@ lvim.plugins = {
   {
     'nekonako/xresources-nvim'
   },
+  {
+    'jackMort/ChatGPT.nvim',
+        config = function()
+    require("chatgpt").setup({
+        -- optional configuration
+    })
+    end,
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+  }
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
