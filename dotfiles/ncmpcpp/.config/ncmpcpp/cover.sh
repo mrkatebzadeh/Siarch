@@ -7,8 +7,8 @@
 source "`ueberzug library`"
 
 COVER="/tmp/cover.png"
-X_PADDING=0
-Y_PADDING=0
+X_PADDING=2
+Y_PADDING=2
 
 function add_cover() {
     ImageLayer::add [identifier]="cover" [x]="$X_PADDING" [y]="$Y_PADDING" [path]="$COVER" 
