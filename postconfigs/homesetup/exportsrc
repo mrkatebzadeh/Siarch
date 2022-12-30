@@ -1,0 +1,3 @@
+#!/bin/sh
+
+export TERMFONTSIZE=12.5

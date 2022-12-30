@@ -56,7 +56,8 @@ font:
     # Style can be specified to pick a specific face.
     style: Italic
 
-  size: 7.5
+  # size: 7.5
+  size: 12.5
 
   ligatures: true
 
