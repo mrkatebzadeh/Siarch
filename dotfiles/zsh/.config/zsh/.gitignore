@@ -3,3 +3,5 @@
 .zsh_history
 .zsh_sessions
 .zdirs
+exportrc
+userrc

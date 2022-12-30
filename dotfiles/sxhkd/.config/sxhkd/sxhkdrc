@@ -35,7 +35,7 @@ super + shift + r
 super + shift + BackSpace
 	dc-toggle #Docker start
 super + m
-	$TERMINAL -o "window.class.general: music" -o "window.class.instance: music" -e tmux new-session "tmux source-file ~/.config/ncmpcpp/tmux_session" #Music player
+	music
 super + n
 	$TERMINAL -e nvim -c VimwikiIndex #vimwiki
 super + shift + n

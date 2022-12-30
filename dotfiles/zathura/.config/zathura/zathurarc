@@ -1,2 +1,1 @@
-set synctex true
-set synctex-editor-command "code -g %{input}:%{line}"
+/home/siavash/.cache/wal/zathurarc
