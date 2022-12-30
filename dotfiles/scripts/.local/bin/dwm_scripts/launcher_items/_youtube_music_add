@@ -1,11 +1,4 @@
 #!/usr/bin/env sh
 # youtube viewer not using API
-cd /tmp
-mkdir -p ytfzf_dl
-cd ytfzf_dl
-rm -rf *
 url=$(ytfzf -L -t)
-youtube-dl -cit --extract-audio --add-metadata --xattrs --embed-thumbnail --audio-quality 0 --audio-format mp3 "$url"
-cp * ~/Music
-mpc update
-cd -
+tsp youtube_mp3_dl "$url"

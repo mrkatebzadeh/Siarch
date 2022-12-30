@@ -1,0 +1,18 @@
+#!/bin/sh
+
+WORK_DIR=`mktemp -d -p "/tmp"`
+cd $WORK_DIR
+
+url=$1
+notify-send.sh "⏲️ Started downloading from $url"
+
+youtube-dl -cit --extract-audio --add-metadata --xattrs --embed-thumbnail --audio-quality 0 --audio-format mp3 "$url"
+
+notify-send.sh "Download finished!"
+
+cp * ~/Music
+mpc update
+
+cd 
+
+rm -rf $WORK_DIR 
