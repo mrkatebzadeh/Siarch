@@ -18,6 +18,8 @@ case "$OSTYPE" in
     export PATH="$PATH:/opt/omnetpp/bin/"
     export PATH="$PATH:/opt/idea/bin/"
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/omnetpp/lib
+    [ -f $HOME/.config/shell/exportsrc ] && . $HOME/.config/shell/exportsrc 
+    [ -f $HOME/.config/shell/userrc ] && . $HOME/.config/shell/userrc 
       ;;
   darwin*)
     # llvm path

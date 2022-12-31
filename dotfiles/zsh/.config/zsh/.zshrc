@@ -3,15 +3,9 @@
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^ ' autosuggest-accept
 
-[ -f $HOME/.config/zsh/exportsrc ] && . $HOME/.config/zsh/exportsrc 
-[ -f $HOME/.config/zsh/userrc ] && . $HOME/.config/zsh/userrc 
-
-alias alacritty='alacritty -o font.size=$TERMFONTSIZE $@'
-alias nopadlv='alacritty -o window.padding.x=0 -o window.padding.y=0 -e lvim $@'
-
 # Enable colors and change prompt:
 autoload -U colors && colors	# Load colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+PS1="(%T)%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%d%{$fg[red]%}]%{$reset_color%}$%b "
 setopt autocd		# Automatically cd into typed directory.
 stty stop undef		# Disable ctrl-s to freeze terminal.
 setopt interactive_comments
@@ -23,7 +17,6 @@ SAVEHIST=10000000
 HISTFILE=~/.cache/zsh/history
 setopt appendhistory
 
-alias music='$TERMINAL -o "window.class.general: music" -o "window.class.instance: music" -e tmux new-session "tmux source-file ~/.config/ncmpcpp/tmux_session"'
 _trap_exit() { tmux kill-session -t $$; }
 
 # Load aliases and shortcuts if existent.
