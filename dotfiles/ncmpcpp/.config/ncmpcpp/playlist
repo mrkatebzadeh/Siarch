@@ -338,16 +338,16 @@ default_find_mode = wrapped
 
 default_tag_editor_pattern = %n - %t
 
-header_visibility = yes
+header_visibility = no
 
-statusbar_visibility = yes
+statusbar_visibility = no
 
 # Show the "Connected to ..." message on startup
 # connected_message_on_startup = no
 
-titles_visibility = yes
+titles_visibility = no
 
-header_text_scrolling = yes
+header_text_scrolling = no
 
 cyclic_scrolling = no
 
@@ -388,12 +388,12 @@ show_hidden_files_in_local_browser = no
 # media_library, playlist_editor, tag_editor, outputs, visualizer, clock,
 # lyrics, last_fm.
 #
-screen_switcher_mode = playlist, browser
+screen_switcher_mode = clock
 
 #
 # Note: You can define startup screen by choosing screen from the list above.
 #
-startup_screen = media_library
+startup_screen = playlist
 
 #
 # Note: You can define startup slave screen by choosing screen from the list

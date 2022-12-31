@@ -1,0 +1,2 @@
+#!/bin/sh
+setsid -f $TERMINAL -o "window.class.general: music" -o "window.class.instance: music" -e tmux new-session "tmux source-file ~/.config/ncmpcpp/tmux_session"
