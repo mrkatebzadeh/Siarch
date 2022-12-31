@@ -89,7 +89,7 @@ map i push A<a-b><a-b><a-f> # before extention
 map a push A<a-b> # after extention
 map B bulkrename
 map b $setbg $f
-
+map . set hidden!
 map <c-e> down
 map <c-y> up
 map V push :!nvim<space>
