@@ -35,6 +35,7 @@ unsetopt PROMPT_SP
 
 # Default programs:
 export EDITOR="nvim"
+alias alacritty='alacritty -o font.size=$TERMFONTSIZE $@'
 export TERMINAL="alacritty"
 export BROWSER="brave"
 

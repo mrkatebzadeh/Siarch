@@ -59,5 +59,4 @@ alias \
 	ref="shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/zshnameddirrc" \
 	weath="less -S ${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport" 
 
-alias alacritty='alacritty -o font.size=$TERMFONTSIZE $@'
 alias nopadlv='alacritty -o window.padding.x=0 -o window.padding.y=0 -e lvim $@'
