@@ -1,2 +1,7 @@
 #!/bin/sh
-dmenu_run -l 5
+
+IFS=x read -r X Y <<< $(xdpyinfo | awk '/dimensions/ {print $2}')
+WIDTH=800
+X=$((X/2 - WIDTH/2))
+Y=$((Y/2 - WIDTH/4))
+dmenu_run -l 15 -z 800 -x $X -y $Y -bw 2 -h 30
