@@ -1,7 +1,12 @@
 #!/bin/sh
 
-IFS=x read -r X Y <<< $(xdpyinfo | awk '/dimensions/ {print $2}')
+#IFS=x read -r X Y <<< $(xdpyinfo | awk '/dimensions/ {print $2}')
+INFO=$(dwm-msg get_monitors | grep -A 5 '"is_selected": true,')
+X=$(dwm-msg get_monitors | grep -A 5 '"is_selected": true,' | grep width | awk '{print $2}' |  sed 's/,//')
+Y=$(dwm-msg get_monitors | grep -A 5 '"is_selected": true,' | grep height | awk '{print $2}' |  sed 's/,//')
+#OFFSET=$(dwm-msg get_monitors | grep -A 5 '"is_selected": true,' | grep x | awk '{print $2}' |  sed 's/,//')
+OFFSET=0
 WIDTH=800
-X=$((X/2 - WIDTH/2))
+X=$((X/2 - WIDTH/2 + OFFSET))
 Y=$((Y/2 - WIDTH/4))
 dmenu_run -l 15 -z 800 -x $X -y $Y -bw 2 -h 30
