@@ -2,7 +2,7 @@
 
 filter() { 
     text=$(mpc | sed "/^volume:/d;s/\\&/&amp;/g;s/\\[paused\\].*//g;/\\[playing\\].*/d" | sed -e 's/([^()]*)//g' | paste -sd ' ' -;)
-    [ ! -z "$text" ] && echo echo [$text]
+    [ ! -z "$text" ] && echo "  🎶 "
 }
 
 pidof -x sb-mpdup >/dev/null 2>&1 || sb-mpdup >/dev/null 2>&1 &
