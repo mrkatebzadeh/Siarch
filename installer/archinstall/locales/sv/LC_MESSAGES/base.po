@@ -1,0 +1,844 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+msgid "[!] A log file has been created here: {} {}"
+msgstr "[!] En logg-fil har skapats här: {} {}"
+
+msgid "    Please submit this issue (and file) to https://github.com/archlinux/archinstall/issues"
+msgstr " Vänligen rapportera detta fel (och logg-filen) till https://github.com/archlinux/archinstall/issues"
+
+msgid "Do you really want to abort?"
+msgstr "Vill du verkligen avbryta?"
+
+msgid "And one more time for verification: "
+msgstr "Och en gång till för verifikation: "
+
+msgid "Would you like to use swap on zram?"
+msgstr "Vill du använda swap under zram?"
+
+msgid "Desired hostname for the installation: "
+msgstr "Önskat 'hostname' för din installation: "
+
+msgid "Username for required superuser with sudo privileges: "
+msgstr "Användarnamn för obligatoriska superanvändaren med sudo rättigheter: "
+
+msgid "Any additional users to install (leave blank for no users): "
+msgstr "Några ytterligare användare att installera (lämna tom när du är klar): "
+
+msgid "Should this user be a superuser (sudoer)?"
+msgstr "Är detta en superanvändare (sudo-rättigheter)?"
+
+msgid "Select a timezone"
+msgstr "Välj en tidszon"
+
+msgid "Would you like to use GRUB as a bootloader instead of systemd-boot?"
+msgstr "Vill du använda GRUB istället för systemd-boot som boot-loader?"
+
+msgid "Choose a bootloader"
+msgstr "Välj en boot-loader"
+
+msgid "Choose an audio server"
+msgstr "Välj en ljud-server"
+
+msgid "Only packages such as base, base-devel, linux, linux-firmware, efibootmgr and optional profile packages are installed."
+msgstr "Enbart paket som base, base-devel, linux, linux-firmware, efibootmgr och självvalda paket är installerade."
+
+msgid "If you desire a web browser, such as firefox or chromium, you may specify it in the following prompt."
+msgstr "Om du önskar en webbläsare, exempelvis firefox eller chromium, bör du skriva in dom i följande fält."
+
+msgid "Write additional packages to install (space separated, leave blank to skip): "
+msgstr "Skriv ytterligare paket som skall installeras (separerade med mellanslag, lämna tom för att skippa): "
+
+msgid "Copy ISO network configuration to installation"
+msgstr "Kopiera nätverkskonfigurationen från ISO till installationen"
+
+msgid "Use NetworkManager (necessary to configure internet graphically in GNOME and KDE)"
+msgstr "Använd NetworkManager (nödvändig för konfigurera internet i grafiska miljöerna GNOME och KDE)"
+
+msgid "Select one network interface to configure"
+msgstr "Välj ett nätverkskort för konfigurering"
+
+msgid "Select which mode to configure for \"{}\" or skip to use default mode \"{}\""
+msgstr "Välj vilket läge att konfigurera för \"{}\" eller använd standardläge \"{}\""
+
+msgid "Enter the IP and subnet for {} (example: 192.168.0.5/24): "
+msgstr "Mata in IP och subnät för {} (exempelvis: 192.168.0.5/24): "
+
+msgid "Enter your gateway (router) IP address or leave blank for none: "
+msgstr "Mata in IP-adress till gateway (router) eller lämna tom för ingen: "
+
+msgid "Enter your DNS servers (space separated, blank for none): "
+msgstr "Mata in DNS-servrar (separerade med mellanslag, lämna tom för ingen): "
+
+msgid "Select which filesystem your main partition should use"
+msgstr "Välj vilket filsystem din huvudpartition skall använda"
+
+msgid "Current partition layout"
+msgstr "Nuvarande partioneringslayout"
+
+msgid ""
+"Select what to do with\n"
+"{}"
+msgstr ""
+"Välj vad du vill göra med\n"
+"{}"
+
+msgid "Enter a desired filesystem type for the partition"
+msgstr "Mata in önskad filsystemtyp för partition"
+
+msgid "Enter the start sector (percentage or block number, default: {}): "
+msgstr "Mata in startsektor (procent eller block-nummer, standard: {}): "
+
+msgid "Enter the end sector of the partition (percentage or block number, ex: {}): "
+msgstr "Mata in slutsektor för partitionen (procent eller block-nummer, ex: {}): "
+
+msgid "{} contains queued partitions, this will remove those, are you sure?"
+msgstr "{} innehåller uppköade partitionen och detta kommer ta bort dessa. Är du säker?"
+
+msgid ""
+"{}\n"
+"\n"
+"Select by index which partitions to delete"
+msgstr ""
+"{}\n"
+"\n"
+"Välj vilket partitionsindex du vill ta bort"
+
+msgid ""
+"{}\n"
+"\n"
+"Select by index which partition to mount where"
+msgstr ""
+"{}\n"
+"\n"
+"Välj vilket partitionsindex du vill montera vart"
+
+msgid " * Partition mount-points are relative to inside the installation, the boot would be /boot as an example."
+msgstr " * Partitionens monteringsplats är relativa till insidan av installationen, boot är exempelvis /boot."
+
+msgid "Select where to mount partition (leave blank to remove mountpoint): "
+msgstr "Välj vart du vill montera partitionen (lämna tom för att ta bort montering): "
+
+msgid ""
+"{}\n"
+"\n"
+"Select which partition to mask for formatting"
+msgstr ""
+"{}\n"
+"\n"
+"Välj vilken partition som skall markeras för formatering"
+
+msgid ""
+"{}\n"
+"\n"
+"Select which partition to mark as encrypted"
+msgstr ""
+"{}\n"
+"\n"
+"Välj vilken partition som skall markeras för kryptering"
+
+msgid ""
+"{}\n"
+"\n"
+"Select which partition to mark as bootable"
+msgstr ""
+"{}\n"
+"\n"
+"Välj vilken partition som skall markeras som bootbar"
+
+msgid ""
+"{}\n"
+"\n"
+"Select which partition to set a filesystem on"
+msgstr ""
+"{}\n"
+"\n"
+"Välj vilken partition som du vill välja filsystem till"
+
+msgid "Enter a desired filesystem type for the partition: "
+msgstr "Mata in ett önskat filsystem för partitionen: "
+
+msgid "Archinstall language"
+msgstr "Språk för detta gränssnitt"
+
+msgid "Wipe all selected drives and use a best-effort default partition layout"
+msgstr "Töm alla partitioner och använd en generiskt rekommenderad partitionslayout"
+
+msgid "Select what to do with each individual drive (followed by partition usage)"
+msgstr "Välj vad som skall hända med varje individuell hårddisk (följt av partitionsanvändning)"
+
+msgid "Select what you wish to do with the selected block devices"
+msgstr "Välj vad du önskar göra med valda hårddiskarna"
+
+msgid "This is a list of pre-programmed profiles, they might make it easier to install things like desktop environments"
+msgstr "Detta är en lista med förprogrammerade profiler, dom kan göra installation av exempelvis skrivbordsmiljöer lite enklare"
+
+msgid "Select keyboard layout"
+msgstr "Välj tangentbordslayout"
+
+msgid "Select one of the regions to download packages from"
+msgstr "Välj en av regionerna för att ladda ner paket ifrån"
+
+msgid "Select one or more hard drives to use and configure"
+msgstr "Välj en eller flera hårddiskar som skall användas och konfigureras"
+
+msgid "For the best compatibility with your AMD hardware, you may want to use either the all open-source or AMD / ATI options."
+msgstr "För bästa kompabilitet med din AMD-hårdvara, vill du förmodligen använda antingen \"open-source\" eller \"AMD/ATI\" valet."
+
+msgid "For the best compatibility with your Intel hardware, you may want to use either the all open-source or Intel options.\n"
+msgstr "För bästa kompabilitet med din Intel-hårdvara, vill du förmodligen använda antingen \"open-source\" eller \"Intel\" valet.\n"
+
+msgid "For the best compatibility with your Nvidia hardware, you may want to use the Nvidia proprietary driver.\n"
+msgstr "För bästa kompabilitet med din nVidia-hårdvara, vill du förmodligen använda antingen \"nVidia priprieetary driver\".\n"
+
+msgid ""
+"\n"
+"\n"
+"Select a graphics driver or leave blank to install all open-source drivers"
+msgstr ""
+"\n"
+"\n"
+"Välj en grafikdrivrutin eller lämna blank för att installera alla med publika drivrutiner"
+
+msgid "All open-source (default)"
+msgstr "Alla med öppen mjukvara (standardvalet)"
+
+msgid "Choose which kernels to use or leave blank for default \"{}\""
+msgstr "Välj vilken Linux-kernel du vill använda, lämna tomt för att använda \"{}\""
+
+msgid "Choose which locale language to use"
+msgstr "Välj vilket språk du vill använda"
+
+msgid "Choose which locale encoding to use"
+msgstr "Välj vilken teckenuppsättning du vill använda"
+
+msgid "Select one of the values shown below: "
+msgstr "Välj en av alternativen nedan: "
+
+msgid "Select one or more of the options below: "
+msgstr "Välj ett eller flera av följande val: "
+
+msgid "Adding partition...."
+msgstr "Skapar en partition...."
+
+msgid "You need to enter a valid fs-type in order to continue. See `man parted` for valid fs-type's."
+msgstr "Du måste mata in en supporterad filsystem-typ för att fortsätta. Kör `man parted` för supporterade filsystem."
+
+msgid "Error: Listing profiles on URL \"{}\" resulted in:"
+msgstr "Fel: Listning av profiler på \"{}\" resulterade i:"
+
+msgid "Error: Could not decode \"{}\" result as JSON:"
+msgstr "Fel: Kunde inte tyda \"{}\" resultatet som JSON:"
+
+msgid "Keyboard layout"
+msgstr "Tangentbordslayout"
+
+msgid "Mirror region"
+msgstr "Region för paketsynk"
+
+msgid "Locale language"
+msgstr "Språk du vill använda"
+
+msgid "Locale encoding"
+msgstr "Teckenuppsättning du vill använda"
+
+msgid "Drive(s)"
+msgstr "Hårddiskar"
+
+#, fuzzy
+msgid "Disk layout"
+msgstr "Spara disk konfigurering"
+
+#, fuzzy
+msgid "Encryption password"
+msgstr "Välj ett krypterings-lösenord"
+
+msgid "Swap"
+msgstr "Swap"
+
+msgid "Bootloader"
+msgstr "Boot-loader"
+
+#, fuzzy
+msgid "Root password"
+msgstr "root-lösenord"
+
+msgid "Superuser account"
+msgstr "Superanvändar-konto"
+
+msgid "User account"
+msgstr "Användarkonto"
+
+msgid "Profile"
+msgstr "Profil"
+
+msgid "Audio"
+msgstr "Ljud mjukvara"
+
+msgid "Kernels"
+msgstr "Linux-kernels"
+
+msgid "Additional packages"
+msgstr "Extra paket"
+
+msgid "Network configuration"
+msgstr "Konfigurera nätverk"
+
+msgid "Automatic time sync (NTP)"
+msgstr "Automatisk tidssynk (NTP)"
+
+msgid "Install ({} config(s) missing)"
+msgstr "Installera ({} inställningar saknas)"
+
+msgid ""
+"You decided to skip harddrive selection\n"
+"and will use whatever drive-setup is mounted at {} (experimental)\n"
+"WARNING: Archinstall won't check the suitability of this setup\n"
+"Do you wish to continue?"
+msgstr ""
+"Du valde att hoppa över hårddiskvalet.\n"
+"Archinstall kommer därför använda vad som finns monterat under {} (experimentell)!\n"
+"Varning: Archinstall kommer inte kontrollera lämpligheten i diskvalet.\n"
+"Vill du fortsätta?"
+
+msgid "Re-using partition instance: {}"
+msgstr "Återanvänder disk-instans: {}"
+
+msgid "Create a new partition"
+msgstr "Skapa en ny partition"
+
+msgid "Delete a partition"
+msgstr "Ta bort en partition"
+
+msgid "Clear/Delete all partitions"
+msgstr "Ränsa alla partitioner"
+
+msgid "Assign mount-point for a partition"
+msgstr "Välj monteringspunkt för en partition"
+
+msgid "Mark/Unmark a partition to be formatted (wipes data)"
+msgstr "Markera/Avmarkera en partition för formatering (tar bort alla data)"
+
+msgid "Mark/Unmark a partition as encrypted"
+msgstr "Markera/Avmarkera en partition för att bli krypterad"
+
+msgid "Mark/Unmark a partition as bootable (automatic for /boot)"
+msgstr "Markera/Avmarkera en partition som bootbar (automatiskt gjort för /boot)"
+
+msgid "Set desired filesystem for a partition"
+msgstr "Sätt önskat filsystem för partitionen"
+
+msgid "Abort"
+msgstr "Avbryt"
+
+msgid "Hostname"
+msgstr "Hostname"
+
+msgid "Not configured, unavailable unless setup manually"
+msgstr "Inte konfigurerad, otillgängligt utan manuell konfigurering"
+
+msgid "Timezone"
+msgstr "Tidszon"
+
+msgid "Set/Modify the below options"
+msgstr "Sätt eller modifiera nedan alternativ"
+
+msgid "Install"
+msgstr "Installera"
+
+msgid ""
+"Use ESC to skip\n"
+"\n"
+msgstr ""
+"Använd ESC för att hoppa över\n"
+"\n"
+
+msgid "Suggest partition layout"
+msgstr "Rekommendera en disk-layout"
+
+msgid "Enter a password: "
+msgstr "Mata in ett lösenord: "
+
+msgid "Enter a encryption password for {}"
+msgstr "Mata in ett krypterings-lösenord för {}"
+
+msgid "Enter disk encryption password (leave blank for no encryption): "
+msgstr "Mata in ett disk-krypteringslösenord (lämna blankt för att hoppa över kryptering): "
+
+msgid "Create a required super-user with sudo privileges: "
+msgstr "Skapa ett super-användarkonto med sudo-rättigheter (detta är ett krav): "
+
+msgid "Enter root password (leave blank to disable root): "
+msgstr "Mata in ett root-lösenord (lämna blankt för att deaktivera kontot): "
+
+msgid "Password for user \"{}\": "
+msgstr "Lösenord för användare \"{}\": "
+
+msgid "Verifying that additional packages exist (this might take a few seconds)"
+msgstr "Verifierar att valda paket existerar (detta kan ta några sekunder)"
+
+msgid "Would you like to use automatic time synchronization (NTP) with the default time servers?\n"
+msgstr "Skulle du vilja använda automatisk tidssynkronisering (NTP) med standard-tidsservrar?\n"
+
+msgid ""
+"Hardware time and other post-configuration steps might be required in order for NTP to work.\n"
+"For more information, please check the Arch wiki"
+msgstr ""
+"Hårdvaru-tid och annan efterkonfigurering kan behövas för att NTP skall fungera korrekt.\n"
+"För mer information, se Arch Wiki-sidan"
+
+msgid "Enter a username to create an additional user (leave blank to skip): "
+msgstr "Mata in ett användarnamn för att skapa ytterligare användare (lämna tom för att hoppa över): "
+
+msgid "Use ESC to skip\n"
+msgstr "Använd ESC för att hoppa över\n"
+
+msgid ""
+"\n"
+" Choose an object from the list, and select one of the available actions for it to execute"
+msgstr ""
+"\n"
+"Välj ett objekt från listan, och välj en åtgärd att exekvera"
+
+msgid "Cancel"
+msgstr "Avbryt"
+
+msgid "Confirm and exit"
+msgstr "Godkän och gå ur"
+
+msgid "Add"
+msgstr "Lägg till"
+
+msgid "Copy"
+msgstr "Kopiera"
+
+msgid "Edit"
+msgstr "Editera"
+
+msgid "Delete"
+msgstr "Ta bort"
+
+msgid "Select an action for '{}'"
+msgstr "Välj vad du vill göra med '{}'"
+
+msgid "Copy to new key:"
+msgstr "Kopiera till en ny nyckel:"
+
+msgid "Unknown nic type: {}. Possible values are {}"
+msgstr "Okänd NIC typ: {}. Möjliga val är {}"
+
+msgid ""
+"\n"
+"This is your chosen configuration:"
+msgstr ""
+"\n"
+"Det här är din valda konfiguration:"
+
+msgid "Pacman is already running, waiting maximum 10 minutes for it to terminate."
+msgstr "Pacman körs redan, väntar max 10 minuter innan vi avbryter."
+
+msgid "Pre-existing pacman lock never exited. Please clean up any existing pacman sessions before using archinstall."
+msgstr "Existerande pacman-lås avslutades aldrig. Vänligen ränsa upp föregående körningar av pacman-sessioner innan du använder achinstall."
+
+msgid "Choose which optional additional repositories to enable"
+msgstr "Välj vilka frivilliga repositories som ska aktiveras"
+
+msgid "Add a user"
+msgstr "Lägg till användare"
+
+msgid "Change password"
+msgstr "Byt lösenord"
+
+msgid "Promote/Demote user"
+msgstr "Befodra/Degradera användare"
+
+msgid "Delete User"
+msgstr "Ta bort användare"
+
+msgid ""
+"\n"
+"Define a new user\n"
+msgstr ""
+"\n"
+"Skapa ny användare\n"
+
+msgid "User Name : "
+msgstr "Användarnamn : "
+
+msgid "Should {} be a superuser (sudoer)?"
+msgstr "Är detta en superanvändare (sudo-rättigheter)?"
+
+msgid "Define users with sudo privilege: "
+msgstr "Skapa användare med sudo-rättigheter: "
+
+msgid "No network configuration"
+msgstr "Ingen nätverkskonfigurering"
+
+msgid "Set desired subvolumes on a btrfs partition"
+msgstr "Välj önskade sub-volymen på en BTRFS partition"
+
+msgid ""
+"{}\n"
+"\n"
+"Select which partition to set subvolumes on"
+msgstr ""
+"{}\n"
+"\n"
+"Välj vilken partition som du ska sätta sub-volymer på"
+
+msgid "Manage btrfs subvolumes for current partition"
+msgstr "Managera BTRFS sub-volymer på nuvarande partition"
+
+msgid "No configuration"
+msgstr "Ingen konfiguration"
+
+msgid "Save user configuration"
+msgstr "Spara användarkonfigurering"
+
+msgid "Save user credentials"
+msgstr "Spara användar-/lösenordsuppgifter"
+
+msgid "Save disk layout"
+msgstr "Spara disk konfigurering"
+
+msgid "Save all"
+msgstr "Spara alla"
+
+msgid "Choose which configuration to save"
+msgstr "Välj vilken konfigurering du vill spara"
+
+msgid "Enter a directory for the configuration(s) to be saved: "
+msgstr "Välj vilken mapp du vill spara konfigurerationerna till: "
+
+msgid "Not a valid directory: {}"
+msgstr "Inte en giltig mapp: {}"
+
+msgid "The password you are using seems to be weak,"
+msgstr "Lösenordet du angav verkar svagt,"
+
+msgid "are you sure you want to use it?"
+msgstr "Vill du verkligen använda det?"
+
+msgid "Optional repositories"
+msgstr "Extra repositories"
+
+msgid "Save configuration"
+msgstr "Spara konfigurationen"
+
+msgid "Missing configurations:\n"
+msgstr "Konfigurationer som saknas:\n"
+
+msgid "Either root-password or at least 1 superuser must be specified"
+msgstr "Antingen måste ett root-lösenord sättas eller 1 superanvändarkonto skapas"
+
+msgid "Manage superuser accounts: "
+msgstr "Managera super-användare: "
+
+msgid "Manage ordinary user accounts: "
+msgstr "Managera vanliga användarkonton: "
+
+msgid " Subvolume :{:16}"
+msgstr " Sub-volym :{:16}"
+
+msgid " mounted at {:16}"
+msgstr " Monterad som {:16}"
+
+msgid " with option {}"
+msgstr " Med inställningen {}"
+
+msgid ""
+"\n"
+" Fill the desired values for a new subvolume \n"
+msgstr ""
+"\n"
+"Mata in önskvärda värden för nya sub-volymer \n"
+
+msgid "Subvolume name "
+msgstr "Namn för Sub-volymen "
+
+msgid "Subvolume mountpoint"
+msgstr "Monteringspunkt för sub-volymen"
+
+msgid "Subvolume options"
+msgstr "Flaggor för sub-volymen"
+
+msgid "Save"
+msgstr "Spara"
+
+msgid "Subvolume name :"
+msgstr "Namn på sub-volymen :"
+
+msgid "Select a mount point :"
+msgstr "Välj en monteringspunkt :"
+
+msgid "Select the desired subvolume options "
+msgstr "Välj önskade inställningar för sub-volymen "
+
+msgid "Define users with sudo privilege, by username: "
+msgstr "Definera användarnamn med sudo-rättigheter: "
+
+msgid "[!] A log file has been created here: {}"
+msgstr "[!] En logg-fil har skapats här: {}"
+
+msgid "Would you like to use BTRFS subvolumes with a default structure?"
+msgstr "Vill du använda BTRFS sub-volymer med standard-layout?"
+
+msgid "Would you like to use BTRFS compression?"
+msgstr "Vill du använda komprimering för BTRFS?"
+
+msgid "Would you like to create a separate partition for /home?"
+msgstr "Vill du skapa en separat partition för /home?"
+
+msgid "The selected drives do not have the minimum capacity required for an automatic suggestion\n"
+msgstr "De valda diskarna uppfyller inte minsta lagringskapacitet för automatisk layout-förslag\n"
+
+msgid "Minimum capacity for /home partition: {}GB\n"
+msgstr "Minsta kapaciteten för /home är: {}GB\n"
+
+msgid "Minimum capacity for Arch Linux partition: {}GB"
+msgstr "Minsta kapaciteten för Arch Linux partitionen är: {}GB"
+
+msgid "Continue"
+msgstr "Gå vidare"
+
+msgid "yes"
+msgstr "Ja"
+
+msgid "no"
+msgstr "Nej"
+
+msgid "set: {}"
+msgstr "sätt: {}"
+
+msgid "Manual configuration setting must be a list"
+msgstr "Manuell konfigurering måste vara en lista"
+
+msgid "No iface specified for manual configuration"
+msgstr "Inget interface specificerat för manuell konfigurering"
+
+msgid "Manual nic configuration with no auto DHCP requires an IP address"
+msgstr "Manuell NIC-konfiguration utan DHCP kräver en IP adress"
+
+msgid "Add interface"
+msgstr "Lätt till interface"
+
+msgid "Edit interface"
+msgstr "Editera interface"
+
+msgid "Delete interface"
+msgstr "Ta bort interface"
+
+msgid "Select interface to add"
+msgstr "Välj ett nätverkskort att lägga till"
+
+msgid "Manual configuration"
+msgstr "Manuell konfiguration"
+
+msgid "Mark/Unmark a partition as compressed (btrfs only)"
+msgstr "Markera/Avmarkera en partition för komprimering (BTRFS enbart)"
+
+msgid "The password you are using seems to be weak, are you sure you want to use it?"
+msgstr "Lösenordet du angav verkar svagt, är du säker på att du vill använda det?"
+
+msgid "Provides a selection of desktop environments and tiling window managers, e.g. gnome, kde, sway"
+msgstr "Ger ett urval av desktop-val och fönster-hanterare, t.ex. Gnome, KDE och sway"
+
+msgid "Select your desired desktop environment"
+msgstr "Välj din desktop miljö"
+
+msgid "A very basic installation that allows you to customize Arch Linux as you see fit."
+msgstr "En väldigt minimal installation som möjliggör konfigurering av Arch Linux som du själv vill ha det."
+
+msgid "Provides a selection of various server packages to install and enable, e.g. httpd, nginx, mariadb"
+msgstr "Erbjuder ett urval av olika server-packeteringar, t.ex. httpd, nginx och mariadb"
+
+#, fuzzy
+msgid "Choose which servers to install, if none then a minimal installation will be done"
+msgstr "Välj vilka servrar du vill installera, en minimal installation sker om du hoppar över detta"
+
+msgid "Installs a minimal system as well as xorg and graphics drivers."
+msgstr "Installerar ett minimal system med xorg och grafikdrivrutiner."
+
+msgid "Press Enter to continue."
+msgstr "Tryck på Enter för att fortsätta."
+
+msgid "Would you like to chroot into the newly created installation and perform post-installation configuration?"
+msgstr "Vill du hoppa in i det nyligen installerade systemet och utföra förändringar? (skriv 'exit' när du är klart)"
+
+msgid "Are you sure you want to reset this setting?"
+msgstr "Vill du verkligen återställa denna inställning?"
+
+msgid "Select one or more hard drives to use and configure\n"
+msgstr "Välj en eller flera hårddiskar som skall användas och konfigureras\n"
+
+msgid "Any modifications to the existing setting will reset the disk layout!"
+msgstr "Modiferingar av inställningen kommer återställa disk-konfigureringen!"
+
+msgid "If you reset the harddrive selection this will also reset the current disk layout. Are you sure?"
+msgstr "Om du återställer hårddiskvalen kommer det också återställa diskuppsättningen. Är du säker?"
+
+msgid "Save and exit"
+msgstr "Spara och gå ur"
+
+msgid ""
+"{}\n"
+"contains queued partitions, this will remove those, are you sure?"
+msgstr ""
+"{}\n"
+"innehåller uppköade partitionen och detta kommer ta bort dessa. Är du säker?"
+
+msgid "No audio server"
+msgstr "Ingen ljud-server"
+
+msgid "(default)"
+msgstr "(standard)"
+
+msgid "Use ESC to skip"
+msgstr "Använd ESC för att hoppa över"
+
+msgid ""
+"Use CTRL+C to reset current selection\n"
+"\n"
+msgstr ""
+"Använd CTRL+C för att återställa valen\n"
+"\n"
+
+msgid "Copy to: "
+msgstr "Kopiera till: "
+
+msgid "Edit: "
+msgstr "Editera: "
+
+msgid "Key: "
+msgstr "Nyckel: "
+
+msgid "Edit {}: "
+msgstr "Editera {}: "
+
+msgid "Add: "
+msgstr "Lägg till: "
+
+msgid "Value: "
+msgstr "Värde: "
+
+msgid "You can skip selecting a drive and partitioning and use whatever drive-setup is mounted at /mnt (experimental)"
+msgstr "Du kan hoppa över val av disk och partitionering och använda det som är monterat vid /mnt/archinstall (experimentellt)"
+
+msgid "Select one of the disks or skip and use /mnt as default"
+msgstr "Välj en disk eller hoppa över och använd /mnt/archinstall utan formatering"
+
+msgid "Select which partitions to mark for formatting:"
+msgstr "Välj vilken partition som skall markeras för formatering:"
+
+msgid "Use HSM to unlock encrypted drive"
+msgstr ""
+
+msgid "Device"
+msgstr ""
+
+msgid "Size"
+msgstr ""
+
+msgid "Free space"
+msgstr ""
+
+msgid "Bus-type"
+msgstr ""
+
+#, fuzzy
+msgid "Either root-password or at least 1 user with sudo privileges must be specified"
+msgstr "Antingen måste ett root-lösenord sättas eller 1 superanvändarkonto skapas"
+
+#, fuzzy
+msgid "Enter username (leave blank to skip): "
+msgstr "Mata in ett användarnamn för att skapa ytterligare användare (lämna tom för att hoppa över): "
+
+msgid "The username you entered is invalid. Try again"
+msgstr ""
+
+#, fuzzy
+msgid "Should \"{}\" be a superuser (sudo)?"
+msgstr "Är detta en superanvändare (sudo-rättigheter)?"
+
+#, fuzzy
+msgid "Select which partitions to encrypt:"
+msgstr ""
+"{}\n"
+"\n"
+"Välj vilken partition som skall markeras för kryptering"
+
+msgid "very weak"
+msgstr ""
+
+msgid "weak"
+msgstr ""
+
+msgid "moderate"
+msgstr ""
+
+msgid "strong"
+msgstr ""
+
+#, fuzzy
+msgid "Add subvolume"
+msgstr " Sub-volym :{:16}"
+
+msgid "Edit subvolume"
+msgstr ""
+
+#, fuzzy
+msgid "Delete subvolume"
+msgstr "Ta bort användare"
+
+msgid "Configured {} interfaces"
+msgstr ""
+
+msgid "This option enables the number of parallel downloads that can occur during installation"
+msgstr ""
+
+#, python-brace-format
+msgid ""
+"Enter the number of parallel downloads to be enabled.\n"
+" (Enter a value between 1 to {max_downloads})\n"
+"Note:"
+msgstr ""
+
+msgid " - Maximum value   : {max_downloads} ( Allows {max_downloads} parallel downloads, allows {max_downloads+1} downloads at a time )"
+msgstr ""
+
+msgid " - Minimum value   : 1 ( Allows 1 parallel download, allows 2 downloads at a time )"
+msgstr ""
+
+msgid " - Disable/Default : 0 ( Disables parallel downloading, allows only 1 download at a time )"
+msgstr ""
+
+#, python-brace-format
+msgid "Invalid input! Try again with a valid input [1 to {max_downloads}, or 0 to disable]"
+msgstr ""
+
+msgid "Parallel Downloads"
+msgstr ""
+
+#, fuzzy
+msgid "ESC to skip"
+msgstr "Använd ESC för att hoppa över"
+
+msgid "CTRL+C to reset"
+msgstr ""
+
+msgid "TAB to select"
+msgstr ""
+
+#~ msgid "Select disk layout"
+#~ msgstr "Välj hårddisk-layout"
