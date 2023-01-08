@@ -5,7 +5,8 @@
 # If you don't plan on reverting to bash, you can remove the link in ~/.profile
 # to clean up.
 
-#export RUNNING_WM=i3
+
+export TERMINAL="terminal"
 
 # Adds `~/.local/bin` to $PATH
 case "$OSTYPE" in
@@ -35,8 +36,6 @@ unsetopt PROMPT_SP
 
 # Default programs:
 export EDITOR="nvim"
-alias alacritty='alacritty -o font.size=$TERMFONTSIZE $@'
-export TERMINAL="alacritty"
 export BROWSER="brave"
 
 # ~/ Clean-up:

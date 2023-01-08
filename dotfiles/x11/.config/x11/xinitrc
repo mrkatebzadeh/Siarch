@@ -21,7 +21,6 @@ export RUNNING_WM=dwm
 export KEYLANG=$(cat /etc/siarch/xkeylang)
 export KEYMODEL=$(cat /etc/siarch/xkeymodel)
 
-
 case "$RUNNING_WM" in
     i3)
 	    exec i3

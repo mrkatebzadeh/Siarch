@@ -1,0 +1,3 @@
+#!/bin/sh
+source $HOME/.config/shell/exportsrc
+alacritty -o font.size=$TERMFONTSIZE $@

@@ -1,7 +1,7 @@
 
 # Basic binds
 super + Return
-	alacritty #Run Terminal
+	terminal #Run Terminal
 #super + shift + Return
 #	tabbed -c -r 2 $TERMINAL -w "" #Run terminal with tabbed
 #super + shift + Return
