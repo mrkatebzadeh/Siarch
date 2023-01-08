@@ -190,22 +190,27 @@ usage() {
   echo ""
   echo "Options:"
   echo "  --install, -i   Run the installation process"
-  echo "  --post, -p      Run the postinstallation process"
-  echo "  --stow, -s      Run the postinstallation process"
-  echo "  --delete, -d      Run the postinstallation process"
-  echo "  --stowall, -S      Run the postinstallation process"
-  echo "  --deleteall, -D      Run the postinstallation process"
+  echo "  --post, -P      Run the postinstallation process"
+  echo "  --package, -p   Install packages"
+  echo "  --stow, -s      Stow config <app>"
+  echo "  --delete, -d    Delete config <app>"
+  echo "  --stowall, -S   Stow all configs"
+  echo "  --deleteall, -D Delete all configs"
   echo "  --help, -h      Show this usage message"
 }
 
-while getopts "ihps:d:rSD" opt; do
+while getopts "ihps:d:rSDP" opt; do
   case $opt in
     i)
       install
       exit 0
       ;;
-    p)
+    P)
       postinstall
+      exit 0
+      ;;
+    p)
+      ./packages/packer.py -u "$USER" -f ./packages/packs.csv -i 
       exit 0
       ;;
     s)
@@ -251,6 +256,12 @@ fi
 # Check for --post option
 if [ "$1" = "--post" ]; then
   postinstall
+  exit 0
+fi
+
+# Check for --post option
+if [ "$1" = "--post" ]; then
+  ./packages/packer.py -u "$USER" -f ./packages/packs.csv -i 
   exit 0
 fi
 

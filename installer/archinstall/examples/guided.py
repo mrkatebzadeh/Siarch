@@ -270,8 +270,8 @@ def perform_installation(mountpoint):
 
         installation.copy_siarch() 
         if not archinstall.arguments.get('silent'):
-            prompt = str(_('Now you can perform post-installation process by chrooting. Do you want to continue?'
-                           'You can go to /root/siarch directory and run: ./siarch.sh -p'))
+            prompt = str(_('Now you can perform post-installation process by chrooting. Do you want to continue?\n'
+                           'You can go to /root/siarch directory and run: ./siarch.sh -P'))
             choice = Menu(prompt, Menu.yes_no(), default_option=Menu.yes()).run()
             if choice.value == Menu.yes():
                 try:

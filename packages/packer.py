@@ -18,7 +18,7 @@ def check_install_package(package, manager, install=False):
         subprocess.run([manager, "show", package], check=True)
     elif manager == 'git':
         package_name = package.split("/")[-1]
-        repo_path = os.path.join("/", "home", username, ".config", "siarch", "repos", package_name)
+        repo_path = os.path.join("/", "home", username, ".siarch", "repos", package_name)
         if not os.path.isdir(repo_path):
             raise subprocess.CalledProcessError(-1, "git")
     print(f"{package} is already installed")
@@ -36,7 +36,7 @@ def check_install_package(package, manager, install=False):
             subprocess.run([manager, "install", package], check=True)
         elif manager == 'git':
             package_name = package.split("/")[-1]
-            repo_path = os.path.join("/", "home", username, ".config", "siarch", "repos", package_name)
+            repo_path = os.path.join("/", "home", username, ".siarch", "repos", package_name)
             subprocess.run(["git", "clone", package, repo_path])
             print(f"Cloned {package}")
             os.chdir(repo_path)
