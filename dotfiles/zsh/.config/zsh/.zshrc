@@ -1,16 +1,14 @@
 # Zsh-autosuggestion
 
-[ -f "$HOME/.config/zsh/zplug" ] && source "$HOME/.config/zsh/zplug"
+# [ -f "$HOME/.config/zsh/zplug" ] && source "$HOME/.config/zsh/zplug"
 
-plug "esc/conda-zsh-completion"
-plug "zsh-users/zsh-autosuggestions"
-plug "hlissner/zsh-autopair"
-plug "zap-zsh/supercharge"
-plug "zap-zsh/vim"
-plug "zap-zsh/zap-prompt"
-plug "zap-zsh/fzf"
-plug "zsh-users/zsh-syntax-highlighting"
-bindkey '^ ' autosuggest-accept
+[ -f "$HOME/.config/zsh/plugs" ] && source "$HOME/.config/zsh/plugs"
+
+[ -f "$HOME/.config/zsh/func" ] && source "$HOME/.config/zsh/func"
+
+[ -f "$HOME/.config/zsh/bind" ] && source "$HOME/.config/zsh/bind"
+
+[ -f "$HOME/.config/shell/aliasrc" ] && source "$HOME/.config/shell/aliasrc"
 
 export GPG_TTY=$(tty)
 # History in cache directory:
@@ -19,45 +17,47 @@ SAVEHIST=10000000
 HISTFILE=~/.cache/zsh/history
 setopt appendhistory
 
-_trap_exit() { tmux kill-session -t $$; }
+autoload -Uz compinit
+zstyle ':completion:*' menu yes select
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+zmodload zsh/complist
+_comp_options+=(globdots)		# Include hidden files.
+zle_highlight=('paste:none')
+for dump in "${ZDOTDIR:-$HOME}/.zcompdump"(N.mh+24); do
+  compinit
+done
+compinit -C
 
-# Load aliases and shortcuts if existent.
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
+unsetopt BEEP
+setopt AUTO_CD
+setopt GLOB_DOTS
+setopt NOMATCH
+setopt MENU_COMPLETE
+setopt EXTENDED_GLOB
+setopt INTERACTIVE_COMMENTS
+setopt APPEND_HISTORY
+setopt BANG_HIST                 # Treat the '!' character specially during expansion.
+setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
+setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
+setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
+setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
+setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
+setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+# Colors
+autoload -Uz colors && colors
 
 if command -v wal >/dev/null 2>&1 ; then
   (cat ~/.cache/wal/sequences &)
 fi
-
-# Use lf to switch directories and bind it to ctrl-o
-lfcd () {
-    tmp="$(mktemp)"
-    lf -last-dir-path="$tmp" "$@"
-    if [ -f "$tmp" ]; then
-        dir="$(cat "$tmp")"
-        rm -f "$tmp" >/dev/null
-        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
-    fi
-}
-
-case "$OSTYPE" in
-  linux*)
-    . /usr/share/fzf/key-bindings.zsh
-    . /usr/share/fzf/completion.zsh
-      ;;
-  darwin*);;
-  *)        echo "unknown: $OSTYPE" ;;
-esac
-
-bindkey -s '^o' 'lfcd\n'
-
-bindkey  '^a' beginning-of-line
-bindkey  '^e' vi-end-of-line
-
-bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
-
-bindkey '^[[P' delete-char
-
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

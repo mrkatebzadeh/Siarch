@@ -1,5 +1,7 @@
-#!/usr/bin/env zsh
+#!/bin/sh
 
+# Plugin manager
+# ------------------------------------------------
 export ZPLUG_DIR="$HOME/.local/share/zplug"
 export ZPLUG_PLUGIN_DIR="$ZPLUG_DIR/plugins"
 export ZPLUG_ZSHRC="${ZDOTDIR:-$HOME}/.zshrc"
@@ -60,3 +62,19 @@ _pull() {
 }
 
 
+# Plugins
+# ------------------------------------------------
+plug "esc/conda-zsh-completion"
+plug "zsh-users/zsh-autosuggestions"
+plug "hlissner/zsh-autopair"
+plug "zap-zsh/vim"
+plug "zap-zsh/zap-prompt"
+plug "zap-zsh/fzf"
+plug "zsh-users/zsh-syntax-highlighting"
+
+# Autosuggestion
+ZSH_AUTOSUGGEST_STRATEGY=(completion history)
+
+# Prompt
+PROMPT="%B%{$fg[red]%}⚡[%{$fg[yellow]%}%n@%m%{$fg[red]%}] % %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )%{$fg[cyan]%}%c%{$reset_color%}"
+PROMPT+="\$vcs_info_msg_0_ "
