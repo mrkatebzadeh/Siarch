@@ -162,3 +162,5 @@
 	required = true
 [init]
 	defaultBranch = main
+[safe]
+	directory = /opt/flutter
