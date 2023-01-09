@@ -2,7 +2,7 @@
 
 # Prints the current volume or 🔇 if muted.
 
-[ $(pamixer --get-mute) = true ] && echo ﱝ && exit
+[ $(pamixer --get-mute) = true ] && icon="ﱝ" && echo " $icon " && exit
 
 vol="$(pamixer --get-volume)"
 
@@ -10,7 +10,7 @@ case 1 in
   $((vol >= 70)) ) icon="" ;;
   $((vol >= 30)) ) icon="" ;;
   $((vol >= 1)) ) icon="" ;;
-  * ) echo ﱝ && exit ;;
+  * ) icon="ﱝ"; echo " $icon " && exit ;;
 esac
    
 case $BLOCK_BUTTON in

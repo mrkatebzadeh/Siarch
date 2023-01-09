@@ -56,5 +56,4 @@ alias pacfuz="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro s
 
 alias \
 	magit="nvim -c MagitOnly" \
-	ref="shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/zshnameddirrc" \
 	weath="less -S ${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport"
