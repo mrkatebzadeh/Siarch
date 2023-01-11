@@ -16,6 +16,7 @@ lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
+lvim.lsp.diagnostics.virtual_text = false
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -256,14 +257,6 @@ lvim.plugins = {
 		event = "CursorMoved",
 		config = function()
 			vim.g.matchup_matchparen_offscreen = { method = "popup" }
-		end,
-	},
-	{
-		"f-person/git-blame.nvim",
-		event = "BufRead",
-		config = function()
-			vim.cmd("highlight default link gitblame SpecialComment")
-			vim.g.gitblame_enabled = 0
 		end,
 	},
 	{
