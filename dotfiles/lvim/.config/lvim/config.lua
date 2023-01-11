@@ -1,12 +1,6 @@
 --[[
 lvim is the global options object
-
-Linters should be
-filled in as strings with either
-a global executable or a path to
-an executable
 ]]
--- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 
 -- general
 lvim.log.level = "warn"
@@ -107,38 +101,9 @@ lvim.builtin.which_key.mappings["t"] = {
   name = "+Toggles",
   w = { ':set wrap!<CR>', 'Soft Wrap Text' },
 }
-lvim.builtin.which_key.mappings["L"] = {
-  name = "+Latex",
-  c = { "<cmd>VimtexCompile<cr>", "Toggle Compilation Mode" },
-  i = { "<cmd>VimtexInfo<cr>", "Project Information" },
-  s = { "<cmd>VimtexStop<cr>", "Stop Project Compilation" },
-  t = { "<cmd>VimtexTocToggle<cr>", "Toggle Table Of Content" },
-  v = { "<cmd>VimtexView<cr>", "View PDF" },
-}
+
 table.insert(lvim.builtin.nvimtree.setup.view.mappings.list, { key = { "<tab>" }, action = "preview", mode = "n" })
 
-vim.api.nvim_set_keymap("n", "<m-d>", "<cmd>RustOpenExternalDocs<Cr>", { noremap = true, silent = true })
-
-lvim.builtin.which_key.mappings["C"] = {
-  name = "Rust",
-  r = { "<cmd>RustRunnables<Cr>", "Runnables" },
-  t = { "<cmd>lua _CARGO_TEST()<cr>", "Cargo Test" },
-  m = { "<cmd>RustExpandMacro<Cr>", "Expand Macro" },
-  c = { "<cmd>RustOpenCargo<Cr>", "Open Cargo" },
-  p = { "<cmd>RustParentModule<Cr>", "Parent Module" },
-  d = { "<cmd>RustDebuggables<Cr>", "Debuggables" },
-  v = { "<cmd>RustViewCrateGraph<Cr>", "View Crate Graph" },
-  R = {
-    "<cmd>lua require('rust-tools/workspace_refresh')._reload_workspace_from_cargo_toml()<Cr>",
-    "Reload Workspace",
-  },
-  o = { "<cmd>RustOpenExternalDocs<Cr>", "Open External Docs" },
-  y = { "<cmd>lua require'crates'.open_repository()<cr>", "[crates] open repository" },
-  P = { "<cmd>lua require'crates'.show_popup()<cr>", "[crates] show popup" },
-  i = { "<cmd>lua require'crates'.show_crate_popup()<cr>", "[crates] show info" },
-  f = { "<cmd>lua require'crates'.show_features_popup()<cr>", "[crates] show features" },
-  D = { "<cmd>lua require'crates'.show_dependencies_popup()<cr>", "[crates] show dependencies" },
-}
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
@@ -159,9 +124,9 @@ lvim.builtin.treesitter.ensure_installed = {
   "tsx",
   "css",
   "rust",
-  "java",
   "yaml",
   "latex",
+  "dart",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -208,23 +173,6 @@ lvim.lsp.installer.setup.ensure_installed = {
 --   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 -- end
 
--- -- set a formatter, this will override the language server formatting capabilities (if it exists)
-local formatters = require "lvim.lsp.null-ls.formatters"
-formatters.setup {
-  { command = "shfmt", filetypes = { "sh" } },
-  --   { command = "black", filetypes = { "python" } },
-  --   { command = "isort", filetypes = { "python" } },
-  --   {
-  --     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
-  --     command = "prettier",
-  --     ---@usage arguments to pass to the formatter
-  --     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
-  --     extra_args = { "--print-with", "100" },
-  --     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-  --     filetypes = { "typescript", "typescriptreact" },
-  --   },
-}
-
 -- -- set additional linters
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
@@ -249,6 +197,8 @@ vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rust_analyz
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   { command = "stylua", filetypes = { "lua" } },
+  { command = "shfmt", filetypes = { "sh" } },
+  { command = "dart_format", filetypes = { "dart" } },
 }
 
 local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
@@ -387,6 +337,26 @@ lvim.plugins = {
     requires = "nvim-lua/plenary.nvim",
     config = function()
       require("flutter-tools").setup {
+        widget_guides = {
+          enabled = true,
+        },
+        closing_tags = {
+          highlight = "ErrorMsg", -- highlight for the closing tag
+          prefix = ">", -- character to use for close tag e.g. > Widget
+          enabled = true -- set to false to disable
+        },
+        dev_log = {
+          enabled = true,
+          open_cmd = "tabedit", -- command to use to open the log buffer
+        },
+        dev_tools = {
+          autostart = false, -- autostart devtools server if not detected
+          auto_open_browser = false, -- Automatically opens devtools in the browser
+        },
+        outline = {
+          open_cmd = "30vnew", -- command to use to open the outline buffer
+          auto_open = false -- if true this will open the outline automatically when it is first populated
+        },
         lsp = {
           on_attach = require("lvim.lsp").common_on_attach,
         },
