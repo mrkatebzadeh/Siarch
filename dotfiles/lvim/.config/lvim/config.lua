@@ -62,7 +62,7 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 --   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
 -- }
 lvim.builtin.which_key.mappings["!"] = lvim.builtin.which_key.mappings["L"]
-lvim.builtin.which_key.mappings["b"].d = { ':BufferClose<CR>', 'Close Buffer' }
+lvim.builtin.which_key.mappings["b"].d = { ':bp<bar>sp<bar>bn<bar>bd<CR>', 'Close Buffer' }
 lvim.builtin.which_key.mappings["f"] = {
   name = "+Files",
   f = {
