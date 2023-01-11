@@ -149,3 +149,4 @@ A,clock-tui, "A clock, timer, and stopwatch for your terminal"
 ,exa,a modern replacement for ls
 ,shfmt, shell formatter
 ,shellchecker, shell linter
+,stylua, lua formatter
