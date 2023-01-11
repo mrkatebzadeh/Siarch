@@ -17,6 +17,7 @@ vim.wo.relativenumber = true
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
+lvim.lsp.override = { "dart" }
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
 -- add your own keymapping
@@ -379,6 +380,18 @@ lvim.plugins = {
     config = function()
       require("fidget").setup()
     end,
+  },
+  {
+    "akinsho/flutter-tools.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("flutter-tools").setup {
+        lsp = {
+          on_attach = require("lvim.lsp").common_on_attach,
+        },
+      }
+    end,
+    ft = "dart",
   },
 }
 
