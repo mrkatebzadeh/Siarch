@@ -289,6 +289,8 @@ lvim.plugins = {
 	},
 
 	{ "zbirenbaum/copilot-cmp", after = { "copilot.lua", "nvim-cmp" } },
+	{ "jose-elias-alvarez/typescript.nvim" },
+  "mxsdev/nvim-dap-vscode-js",
 }
 
 lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"
@@ -296,3 +298,4 @@ table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
 
 require("user.dap").config()
 require("user.bindings").config()
+-- require("user.js-ts").config()
