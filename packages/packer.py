@@ -29,7 +29,7 @@ def check_install_package(package, manager, install=False):
         return 
     try:
         if manager == 'pacman':
-            subprocess.run([manager, "-S", "--noconfirm", package], check=True)
+            subprocess.run(["sudo", manager, "-S", "--noconfirm", package], check=True)
         elif manager == 'yay':
             subprocess.run(["sudo", "-u", username, manager, "-S", "--noconfirm", package], check=True)
         elif manager == 'pip':
