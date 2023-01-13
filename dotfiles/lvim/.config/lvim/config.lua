@@ -82,7 +82,7 @@ pcall(function()
 				only_current_line = false,
 				show_parameter_hints = false,
 				parameter_hints_prefix = "<-",
-				other_hints_prefix = "=>",
+				other_hints_prefix = "=> ",
 				max_len_align = false,
 				max_len_align_padding = 1,
 				right_align = false,
