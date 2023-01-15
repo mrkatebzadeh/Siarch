@@ -1,0 +1,8 @@
+#!/bin/sh
+# requirements: dmenu, xorg-setxkbmap
+
+kb="$(echo -e "us\nir\ngb" | dmenu -l 15)"
+[ ! -z "$kb" ] && setxkbmap $KEYMODEL "$kb"
+pkill -RTMIN+22 "${STATUSBAR:-dwmblocks}"
+notify-send "⌨  Keyboard" " $kb "
+printf $kb

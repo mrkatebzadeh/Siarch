@@ -17,7 +17,7 @@ super + shift + q
 alt + Tab
     skippy-xd
 alt + shift + l
-    {k="setxkbmap ""$KEYMODEL"" -layout ir"; eval $k, k="setxkbmap ""$KEYMODEL"" -layout ""$KEYLANG"; eval $k};pkill -RTMIN+13 dwmblocks
+    dmenukb
 super + shift + d
 	passmenu #Passmenu
 super + e
@@ -153,7 +153,8 @@ super + F3
 #super + F4
 #    $TERMINAL -e pulsemixer; kill -44 $(pidof dwmblocks)
 
-#super + F5 
+super + F5 
+  pkill -usr1 -x sxhkd; notify-send 'SXHKD' 'Reloaded config'
 
 super + F6
 	torwrap
