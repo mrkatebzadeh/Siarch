@@ -5,7 +5,7 @@ lvim is the global options object
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
-lvim.colorscheme = "lunar"
+lvim.colorscheme = "xresources"
 vim.g.vimtex_view_method = "zathura"
 vim.wo.relativenumber = true
 -- to disable icons and use a minimalist setup, uncomment the following
