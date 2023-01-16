@@ -146,4 +146,5 @@ A,chs-git,"Chess TUI"
 A,cava, "Console-based Audio Visualizer for Alsa"
 A,clock-tui, "A clock, timer, and stopwatch for your terminal"
 ,inotify-tools, "A set of command-line programs for Linux providing a simple interface to inotify."
-,exa,a modern replacement for ls
+,exa,"a modern replacement for ls"
+,neofetch, "system information tool"
