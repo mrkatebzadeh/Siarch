@@ -14,11 +14,11 @@ postrun() { # Stuff to run to clean up.
 	setbg      # Fix background if screen size/arangement has changed.
 	killall dunst >/dev/null 2>&1
 	setsid -f dunst >/dev/null 2>&1
-	# dwm uses the Xinerama extension to manage multi-monitor setups, 
-  # which is independent of the monitor layout set by xrandr.
+	# dwm uses the Xinerama extension to manage multi-monitor setups,
+	# which is independent of the monitor layout set by xrandr.
 	# When you use the script to configure the monitor layout, it changes
-  # the layout as seen by the X server, but dwm is not aware of this change
-  # and continues to use the old layout.
+	# the layout as seen by the X server, but dwm is not aware of this change
+	# and continues to use the old layout.
 	# You can use the following command to synchronize dwm with the new layout:
 	kill -HUP $(pgrep -u $USER "\bdwm$")
 }
