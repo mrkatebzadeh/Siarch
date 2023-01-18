@@ -1,97 +1,74 @@
 #!/bin/sh
 
-# A UI for detecting and selecting all displays. Probes xrandr for connected
-# displays and lets user select one to use. User may also select "manual
-# selection" which opens arandr.
 case "$RUNNING_WM" in
-    i3)
-	dir="$(dirname "`readlink -f $0`")"/i3_scripts/rofi_theme
+i3)
+	dir="$(dirname "$(readlink -f $0)")"/i3_scripts/rofi_theme
 	theme="style"
 
 	alias dmenu='rofi -no-lazy-grab -dmenu -theme "$dir/$theme"'
-    ;;
-    dwm)
-;;
+	;;
+dwm) ;;
 esac
-
-
-
-twoscreen() { # If multi-monitor is selected and there are two screens.
-
-    mirror=$(printf "no\\nyes" | dmenu -i -p "Mirror displays?")
-    # Mirror displays using native resolution of external display and a scaled
-    # version for the internal display
-    if [ "$mirror" = "yes" ]; then
-        external=$(echo "$screens" | dmenu -i -p "Optimize resolution for:")
-        internal=$(echo "$screens" | grep -v "$external")
-
-        res_external=$(xrandr --query | sed -n "/^$external/,/\+/p" | \
-            tail -n 1 | awk '{print $1}')
-        res_internal=$(xrandr --query | sed -n "/^$internal/,/\+/p" | \
-            tail -n 1 | awk '{print $1}')
-
-        res_ext_x=$(echo "$res_external" | sed 's/x.*//')
-        res_ext_y=$(echo "$res_external" | sed 's/.*x//')
-        res_int_x=$(echo "$res_internal" | sed 's/x.*//')
-        res_int_y=$(echo "$res_internal" | sed 's/.*x//')
-
-        scale_x=$(echo "$res_ext_x / $res_int_x" | bc -l)
-        scale_y=$(echo "$res_ext_y / $res_int_y" | bc -l)
-
-        xrandr --output "$external" --auto --scale 1.0x1.0 \
-            --output "$internal" --auto --same-as "$external" \
-            --scale "$scale_x"x"$scale_y"
-    else
-
-        primary=$(echo "$screens" | dmenu -i -p "Select primary display:")
-        secondary=$(echo "$screens" | grep -v "$primary")
-        direction=$(printf "left\\nright" | dmenu -i -p "What side of $primary should $secondary be on?")
-        rotate=$(printf "no\\nyes" | dmenu -i -p "Rotate left display?")
-        [ "$rotate" = "yes" ] && rotation="--rotation right"
-        xrandr --output "$primary" --auto --scale 1.0x1.0 --output "$secondary" --"$direction"-of "$primary" --auto --scale 1.0x1.0 $rotation
-    fi
-    }
-
-morescreen() { # If multi-monitor is selected and there are more than two screens.
-	primary=$(echo "$screens" | dmenu -i -p "Select primary display:")
-	secondary=$(echo "$screens" | grep -v "$primary" | dmenu -i -p "Select secondary display:")
-	direction=$(printf "left\\nright" | dmenu -i -p "What side of $primary should $secondary be on?")
-	tertiary=$(echo "$screens" | grep -v "$primary" | grep -v "$secondary" | dmenu -i -p "Select third display:")
-	xrandr --output "$primary" --auto --output "$secondary" --"$direction"-of "$primary" --auto --output "$tertiary" --"$(printf "left\\nright" | grep -v "$direction")"-of "$primary" --auto
-	}
-
-multimon() { # Multi-monitor handler.
-	case "$(echo "$screens" | wc -l)" in
-		2) twoscreen ;;
-		*) morescreen ;;
-	esac ;}
-
-onescreen() { # If only one output available or chosen.
-	xrandr --output "$1" --auto --scale 1.0x1.0 $(echo "$allposs" | grep -v "\b$1" | awk '{print "--output", $1, "--off"}' | paste -sd ' ' -)
-	}
 
 postrun() { # Stuff to run to clean up.
-	setbg		# Fix background if screen size/arangement has changed.
-	remaps		# Re-remap keys if keyboard added (for laptop bases)
-	{ killall dunst ; setsid -f dunst ;} >/dev/null 2>&1 # Restart dunst to ensure proper location on screen
-	}
+	setbg      # Fix background if screen size/arangement has changed.
+	killall dunst >/dev/null 2>&1
+	setsid -f dunst >/dev/null 2>&1
+	# dwm uses the Xinerama extension to manage multi-monitor setups, 
+  # which is independent of the monitor layout set by xrandr.
+	# When you use the script to configure the monitor layout, it changes
+  # the layout as seen by the X server, but dwm is not aware of this change
+  # and continues to use the old layout.
+	# You can use the following command to synchronize dwm with the new layout:
+	kill -HUP $(pgrep -u $USER "\bdwm$")
+}
 
-# Get all possible displays
-allposs=$(xrandr -q | grep "connected")
+# Get a list of connected monitors
+monitors=$(xrandr | grep " connected" | awk '{print $1}')
 
 # Get all connected screens.
-screens=$(echo "$allposs" | awk '/ connected/ {print $1}')
+screens=$(echo "$monitors" | awk '/ connected/ {print $1}')
 
-# If there's only one screen
-[ "$(echo "$screens" | wc -l)" -lt 2 ] &&
-	{ onescreen "$screens"; postrun; notify-send "💻 Only one screen detected." "Using it in its optimal settings...";  exit ;}
+# Show a dmenu prompt with the options
+chosen=$(echo -e "List Monitors\nMirroring\nMulti-Monitor" | dmenu -i -p "Select an option:")
 
-# Get user choice including multi-monitor and manual selection:
-chosen=$(printf "%s\\nmulti-monitor\\nmanual selection" "$screens" | dmenu -i -p "Select display arangement:") &&
-case "$chosen" in
-	"manual selection") arandr ; exit ;;
-	"multi-monitor") multimon ;;
-	*) onescreen "$chosen" ;;
-esac
+if [ "$chosen" = "List Monitors" ]; then
+	# Show a dmenu prompt with the list of monitors
+	monitor=$(echo "$monitors" | dmenu -i -p "Select monitor:")
+	for m in $monitors; do
+		if [ "$m" = "$monitor" ]; then
+			xrandr --output "$m" --primary --auto
+		else
+			xrandr --output "$m" --off
+		fi
+	done
+	notify-send "💻 Single monitor" "$chosen is on."
+
+elif [ "$chosen" = "Mirroring" ]; then
+	# Enable mirroring on all monitors
+	primary=$(echo "$monitors" | head -n1)
+	others=$(echo "$monitors" | tail -n+2)
+	for monitor in $others; do
+		xrandr --output "$monitor" --auto --same-as "$primary"
+	done
+	notify-send "💻 Mirroring monitors" "$primary is the primary monitor in mirroring mode."
+
+elif [ "$chosen" = "Multi-Monitor" ]; then
+	# Set the primary monitor
+	primary=$(echo "$monitors" | dmenu -i -p "Select primary monitor:")
+	xrandr --output "$primary" --primary --auto
+
+	# Set the position for each remaining monitor
+	for monitor in $monitors; do
+		if [ "$monitor" != "$primary" ]; then
+			position=$(echo -e "left-of\nright-of\nabove\nbelow" | dmenu -i -p "Select position for $monitor:")
+			xrandr --output "$monitor" --$position "$primary" --auto
+		fi
+	done
+	notify-send "💻 Multi monitors" "$primary is the primary monitor in multi-monitor mode."
+
+else
+	echo "Invalid option selected"
+fi
 
 postrun
