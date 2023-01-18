@@ -1,4 +1,6 @@
 -- Setup lsp.
+M = {}
+M.config = function()
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "tsserver" })
 
 local capabilities = require("lvim.lsp").common_capabilities()
@@ -55,3 +57,6 @@ end
 -- linters.setup({
 --   { command = "eslint", filetypes = { "javascript", "typescript" } },
 -- })
+end
+
+return M
