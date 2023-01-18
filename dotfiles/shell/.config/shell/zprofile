@@ -170,7 +170,7 @@ ex=🎯:\
 
 case "$OSTYPE" in
   linux*)
-    sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/siarch/ttymaps.kmap 2>/dev/null
+    # sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/siarch/ttymaps.kmap 2>/dev/null
     ;;
   darwin*)  ;;
   *)        echo "unknown: $OSTYPE" ;;
