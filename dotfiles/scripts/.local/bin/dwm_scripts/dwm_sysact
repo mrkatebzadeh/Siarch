@@ -1,14 +1,13 @@
 #!/bin/sh
-cmds=( "🔒 lock" "🚪 logout" "♻ renew WM" "🐻 hibernate" "🔃 reboot" "🖥 shutdown" )
+cmds=( "🔒 Lock" "🚪 Logout" "♻ Renew WM" "🐻 Hibernate" "🔃 Reboot" "🖥 Shutdown" )
 
-#selected=$(printf "%s\n" "${cmds[@]}"| fzf --height 100% --multi -i --reverse --prompt="Action: ")
-selected=$(printf "%s\n" "${cmds[@]}"| dmenu -l 6)
+selected=$(printf "%s\n" "${cmds[@]}"| dmenu -l 6 -i -p "Choose an action: ")
 
 case "$selected" in
-"🔒 lock")		betterlockscreen -l;;
-"🚪 logout")	kill -TERM $(pgrep -u $USER "\bdwm$");;
-"♻ renew WM")	kill -HUP $(pgrep -u $USER "\bdwm$");;
-"🐻 hibernate")	slock ${hib:-systemctl suspend-then-hibernate -i} ;;
-"🔃 reboot")	${reb:-sudo -A reboot};;
-"🖥 shutdown")	${shut:-sudo -A shutdown -h now};;
+"🔒 Lock")		betterlockscreen -l;;
+"🚪 Logout")	kill -TERM $(pgrep -u $USER "\bdwm$");;
+"♻ Renew WM")	kill -HUP $(pgrep -u $USER "\bdwm$");;
+"🐻 Hibernate")	slock ${hib:-systemctl suspend-then-hibernate -i} ;;
+"🔃 Reboot")	${reb:-sudo -A reboot};;
+"🖥 Shutdown")	${shut:-sudo -A shutdown -h now};;
 esac

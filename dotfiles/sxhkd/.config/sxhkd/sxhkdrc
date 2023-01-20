@@ -90,7 +90,7 @@ super + Delete
 super + p
 	mpc toggle
 super + shift + p
-	mpc pause; pauseallmpv
+  dwm_papis	
 # Changes to next/previous tracks
 super + {comma,period}
 	mpc {prev,next}

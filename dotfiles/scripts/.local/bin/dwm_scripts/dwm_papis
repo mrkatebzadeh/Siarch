@@ -1,0 +1,10 @@
+#!/bin/sh
+cmds=( "Open" "Edit" "Add" )
+
+selected=$(printf "%s\n" "${cmds[@]}"| dmenu -l 3 -i -p "Papis => Select an option:")
+
+case "$selected" in
+"Open") papis open;;
+"Edit")	papis edit;;
+"Add")	notify-send.sh "Papis error" "Command is not implemented yet";;
+esac
