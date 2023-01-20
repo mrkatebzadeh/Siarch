@@ -10,6 +10,7 @@ bgloc="${XDG_DATA_HOME:-$HOME/.local/share/}/bg"
 
 dunstconf="${XDG_CONFIG_HOME:-$HOME/.config}/dunst/dunstrc"
 zathuraconf="${XDG_CONFIG_HOME:-$HOME/.config}/zathura/zathurarc"
+papisconf="${XDG_CONFIG_HOME:-$HOME/.config}/papis/config"
 
 trueloc="$(readlink -f "$1")" &&
 case "$(file --mime-type -b "$trueloc")" in
@@ -27,6 +28,7 @@ if command -v wal >/dev/null 2>&1 ; then
 else
   [ -f "$dunstconf.bak" ] && unlink "$dunstconf" && mv "$dunstconf.bak" "$dunstconf"
   [ -f "$zathuraconf.bak" ] && unlink "$zathuraconf" && mv "$zathuraconf.bak" "$zathuraconf"
+  [ -f "$papisconf.bak" ] && unlink "$papisconf" && mv "$papisconf.bak" "$papisconf"
 fi
 
 xwallpaper --zoom "$bgloc"

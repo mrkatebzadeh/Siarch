@@ -1,0 +1,17 @@
+[papers]
+dir = ~/Documents/papers
+opentool = zathura
+picktool = dmenu
+
+
+[settings]
+default-library = papers
+
+[dmenu-gui]
+lines: 10
+bottom = false
+font: monospace-14
+background: {background}
+foreground: {foreground}
+background_selected: {foreground}
+foreground_selected: {background}

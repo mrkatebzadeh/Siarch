@@ -4,8 +4,10 @@ source "${HOME}/.cache/wal/colors.sh"
 
 mkdir -p  "${HOME}/.config/dunst"
 mkdir -p  "${HOME}/.config/zathura"
+mkdir -p  "${HOME}/.config/papis/scripts"
 ln -sf    "${HOME}/.cache/wal/dunstrc"    "${HOME}/.config/dunst/dunstrc"
 ln -sf    "${HOME}/.cache/wal/zathurarc"    "${HOME}/.config/zathura/zathurarc"
+ln -sf    "${HOME}/.cache/wal/papis"    "${HOME}/.config/papis/config"
 
 fix_sequences() {
         e=$'\e'
