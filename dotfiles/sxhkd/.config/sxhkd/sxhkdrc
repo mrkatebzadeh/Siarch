@@ -28,7 +28,7 @@ super + f
 super + shift + e
     $TERMINAL  -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook #Address book
 super + {j,k}
-	bspc node -f @{parent,first}
+	bspc node -f {next,prev}.local
 super + shift +{j,k}
 	bspc node '@/' -C {backward,forward}
 super + {h,l}
