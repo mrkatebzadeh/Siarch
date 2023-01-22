@@ -16,8 +16,7 @@ super + shift + q
 #super + d
 #	dmenu_run #dmenu lanucher
 alt + Tab
-    rofi -show window -window-thumbnail
-    # skippy-xd
+    switch
 alt + shift + l
     dmenukb
 super + shift + d

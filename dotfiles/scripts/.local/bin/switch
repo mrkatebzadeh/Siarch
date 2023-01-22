@@ -1,0 +1,12 @@
+#!/bin/sh
+case "$RUNNING_WM" in
+i3)
+	rofi -show window -window-thumbnail
+	;;
+dwm)
+	skippy-xd
+	;;
+bspwm)
+	bsp_switch
+	;;
+esac
