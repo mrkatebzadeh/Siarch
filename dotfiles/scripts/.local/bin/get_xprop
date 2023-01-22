@@ -1,0 +1,7 @@
+#!/bin/sh
+
+notify-send.sh "Xprop" "Click on a window to get its properties" -t 2000
+
+window_class=$(xprop | grep WM_CLASS | cut -d '"' -f 4)
+
+notify-send.sh "Xprop" "Class: $window_class" -t 2000

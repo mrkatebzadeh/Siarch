@@ -1,4 +1,4 @@
 #! /bin/bash
 xid="$(tabbed -n "neomutt" -c -d -s -r 2 alacritty --embed x)"
-alacritty -t "Gmail" --embed "$xid" -e neomutt -F ~/.config/mutt/muttrc &
-alacritty -t "ED" --embed "$xid" -e neomutt -F ~/.config/mutt/muttrc2 &
+terminal -t "Gmail" --embed "$xid" -e neomutt -F ~/.config/mutt/muttrc &
+terminal -t "ED" --embed "$xid" -e neomutt -F ~/.config/mutt/muttrc2 &
