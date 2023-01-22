@@ -17,3 +17,10 @@ bspc config focus_follows_pointer true
 bspc config remove_disabled_monitors true
 bspc config remove_unplugged_monitors true
 bspc config merge_overlapping_monitors true
+
+bspc rule -a Brave-browser desktop=^7
+bspc rule -a music desktop=^5
+bspc rule -a tabbed desktop=^8
+bspc rule -a "Microsoft Teams - Preview" desktop=^8
+bspc rule -a Slack desktop=^9
+bspc rule -a TelegramDesktop desktop=^9
