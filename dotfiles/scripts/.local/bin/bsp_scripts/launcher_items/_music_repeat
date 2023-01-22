@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+# toggle repeat
+repeat=$(mpc repeat | tail -n 1 | awk '{ print $3 }')
+notify-send "🎶 Music" "Repeat is $repeat"

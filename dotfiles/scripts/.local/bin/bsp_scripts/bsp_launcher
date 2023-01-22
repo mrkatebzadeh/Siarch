@@ -1,0 +1,3 @@
+#!/bin/sh
+
+dmenu_run -l 15  -bw 2 -h 30 -p "Run:"

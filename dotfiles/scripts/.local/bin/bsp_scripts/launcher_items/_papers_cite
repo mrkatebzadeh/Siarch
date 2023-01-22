@@ -1,0 +1,12 @@
+
+# List and open bibtex entries.
+# Get user selection via dmenu from emoji file.
+#chosen=$(| dmenu -i | awk -F"|" '{print $1}')
+chosen=$(getbib)
+
+# Exit if none chosen.
+[ -z "$chosen" ]  && exit
+[ "$chosen" = '' ] && exit
+cite=$(getbibcite "$chosen")
+echo $cite
+notify-send "'$cite': Found."

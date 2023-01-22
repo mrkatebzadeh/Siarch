@@ -1,0 +1,14 @@
+
+# List and open bibtex entries.
+# Get user selection via dmenu from emoji file.
+#chosen=$(| dmenu -i | awk -F"|" '{print $1}')
+chosen=$(getbib)
+
+# Exit if none chosen.
+[ -z "$chosen" ]  && exit
+[ "$chosen" = '' ] && exit
+pdf=$(getbibpdf "$chosen")
+[ ! -f "$BIBTEXERPATH/$pdf" ] && notify-send "'$pdf': no pdf found." && exit
+title=$(getbibtitle "$chosen")
+setsid -f sh -c "zathura '$BIBTEXERPATH'/'$pdf'"
+notify-send "'$title': will be open."

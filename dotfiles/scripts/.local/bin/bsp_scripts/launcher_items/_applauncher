@@ -1,0 +1,20 @@
+#!/bin/sh
+
+cachedir="${XDG_CACHE_HOME:-"$HOME/.cache"}"
+cache="$cachedir/dmenu_run"
+
+[ ! -e "$cachedir" ] && mkdir -p "$cachedir"
+
+IFS=:
+if stest -dqr -n "$cache" $PATH; then
+	stest -flx $PATH | sort -u | tee "$cache"
+fi
+files=$(cat $cache)
+clear
+selected="$(echo $files | fzf --height 100% -e -i -m --reverse --delimiter / --with-nth -1)"
+[ -z "$selected" ] && exit
+cd || return
+
+#echo "$selected" | ${SHELL:-"/bin/sh"} &
+eval setsid setsid "$selected"
+echo Launching "$selected"

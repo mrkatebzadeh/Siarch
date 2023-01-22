@@ -1,0 +1,77 @@
+#!/bin/sh
+# $0 up
+# $0 down
+#  make adjustment
+#  read new volume level
+#  play ding
+# $0 mute
+#  read whether currently muted
+#  toggle mute
+#  if unmuting, set icon to current volume level, notify, ding
+if [ $# -ne 1 ]; then
+    echo "Need 1 argument (up, down, mute)"
+    exit 1;
+fi
+getnewvol () {
+    # return a percentage
+    CURVOL=`pactl list sinks | grep -i volume | head -1 | awk '{print $5}' | sed -e 's/%//'`
+}
+if [ $1 = 'up' ]; then
+    pactl set-sink-volume 0 +5%
+    MSG='Volume up'
+    ICON="🔊"
+    getnewvol
+elif [ $1 = 'down' ]; then
+    pactl set-sink-volume 0 -5%
+    MSG='Volume down'
+    ICON="🔊"
+    getnewvol
+elif [ $1 = 'mute' ]; then
+    pactl set-sink-mute 0 toggle
+    if [ `pactl list sinks  | grep Mute | awk '{print $2}'` = 'yes' ]; then
+        MSG='Mute'
+        ICON="🔇"
+    else
+        MSG='Unmute'
+    ICON="🔈"
+    fi
+    getnewvol
+fi
+
+function send_notification {
+    volume=${CURVOL}
+		if [ "$volume" = "0" ]; then
+       icon_name="/usr/share/icons/Adwaita/48x48/status/audio-volume-muted-symbolic.symbolic.png"
+			 notify-send.sh "$volume""      " -i "$icon_name" -t 2000 -h int:value:"$volume" -h string:synchronous:"─" --replace=555
+    else
+		if [  "$volume" -lt "10" ]; then
+       icon_name="/usr/share/icons/Adwaita/48x48/status/audio-volume-low-symbolic.symbolic.png"
+    else
+    if [ "$volume" -lt "30" ]; then
+       icon_name="/usr/share/icons/Adwaita/48x48/status/audio-volume-low-symbolic.symbolic.png"
+    else
+    if [ "$volume" -lt "70" ]; then
+       icon_name="/usr/share/icons/Adwaita/48x48/status/audio-volume-medium-symbolic.symbolic.png"
+    else
+       icon_name="/usr/share/icons/Adwaita/48x48/status/audio-volume-high-symbolic.symbolic.png"
+    fi
+    fi
+    fi
+		fi
+		# bar=$(seq -s "─" $(($volume/5)) | sed 's/[0-9]//g')
+		bar="%"
+    volume=$(printf "%3s" $volume)
+		# Send the notification
+		if [ $(pactl list sinks  | grep Mute | awk '{print $2}') = 'yes' ] ; then
+        icon_name="/usr/share/icons/Adwaita/48x48/status/audio-volume-muted-symbolic.symbolic.png"
+    		notify-send.sh -i "$icon_name" --replace=555 -u normal "Mute" -t 2000
+				exit
+		else
+		notify-send.sh "$volume"" ""$bar" -i "$icon_name" -t 2000 -h int:value:"$volume" -h string:synchronous:"$bar" --replace=555
+		fi
+
+}
+echo "MSG: $MSG"
+echo "CURVOL: $CURVOL"
+pkill -RTMIN+10 "${STATUSBAR:-dwmblocks}"
+send_notification

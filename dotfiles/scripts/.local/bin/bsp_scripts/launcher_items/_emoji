@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+selected="$(cut -d ';' -f1 ~/.local/share/siarch/emoji | fzf --height 100% -e -i -m --reverse | sed "s/ .*//")"
+[ -z "$selected" ] && notify-send "No emojie has been selected!" && exit
+printf "$selected" | nohup xclip -selection clipboard -l 0 >/dev/null 2>&1
+notify-send "'$selected' copied to clipboard."
+

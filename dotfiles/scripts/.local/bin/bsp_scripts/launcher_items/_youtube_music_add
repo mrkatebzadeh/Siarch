@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+# youtube viewer not using API
+url=$(ytfzf -L -t)
+tsp youtube_mp3_dl "$url"
