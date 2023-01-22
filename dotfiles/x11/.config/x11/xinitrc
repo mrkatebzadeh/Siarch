@@ -17,20 +17,23 @@ fi
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 
-export RUNNING_WM=dwm
+export RUNNING_WM=bspwm
 export KEYLANG=$(cat /etc/siarch/xkeylang)
 export KEYMODEL=$(cat /etc/siarch/xkeymodel)
 
 case "$RUNNING_WM" in
-    i3)
-	    exec i3
-    ;;
-    dwm)
-      killall -9 dunst sxhkd deadd-notification-center picom sxhkd
-      setbg &  
-      picom &
-      sxhkd &
-      dunst &
-      ssh-agent dwm
-    ;;
+i3)
+	exec i3
+	;;
+dwm)
+	killall -9 dunst sxhkd deadd-notification-center picom sxhkd
+	setbg &
+	picom &
+	sxhkd &
+	dunst &
+	ssh-agent dwm
+	;;
+bspwm)
+	ssh-agent bspwm
+	;;
 esac

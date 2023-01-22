@@ -1,0 +1,13 @@
+#!/bin/sh
+cmds=( "🔒 Lock" "🚪 Logout" "♻ Renew WM" "🐻 Hibernate" "🔃 Reboot" "🖥 Shutdown" )
+
+selected=$(printf "%s\n" "${cmds[@]}"| dmenu -l 6 -i -p "Choose an action: ")
+
+case "$selected" in
+"🔒 Lock")		betterlockscreen -l;;
+"🚪 Logout")	bspc quit;;
+"♻ Renew WM")	bspc wm -r;;
+"🐻 Hibernate")	slock ${hib:-systemctl suspend-then-hibernate -i} ;;
+"🔃 Reboot")	${reb:-sudo -A reboot};;
+"🖥 Shutdown")	${shut:-sudo -A shutdown -h now};;
+esac

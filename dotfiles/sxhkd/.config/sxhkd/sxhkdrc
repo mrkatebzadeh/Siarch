@@ -22,8 +22,18 @@ super + shift + d
 	passmenu #Passmenu
 super + e
     muttmails ; pkill -RTMIN+12 dwmblocks # rmdir ~/.abook #Email
+super + f
+  bspc node -t {tiled,fullscreen}  
 super + shift + e
     $TERMINAL  -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook #Address book
+super + {j,k}
+	bspc node -f @{parent,first}
+super + shift +{j,k}
+	bspc node '@/' -C {backward,forward}
+super + {h,l}
+	bspc node -z {left -20 0, left 20 0}
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
 super + r
     $TERMINAL -e lfub #File manager
 super + shift + b
@@ -44,8 +54,8 @@ super + shift + c
 	siarch_i3_sticky
 super + c
 	calc
-#super + v
-#	paster
+super + space
+	i3_launcher
 #super + shift + a
 #	$TERMINAL -e alsamixer || pulsemixer; pkill -RTMIN+10 $STATUSBAR
 #super + shift + c

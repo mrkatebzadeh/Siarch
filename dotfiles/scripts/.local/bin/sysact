@@ -1,10 +1,13 @@
 #!/bin/sh
 
 case "$RUNNING_WM" in
-    i3)
-	    i3_sysact
-    ;;
-    dwm)
-	    dwm_sysact
-;;
+i3)
+	i3_sysact
+	;;
+dwm)
+	dwm_sysact
+	;;
+bspwm)
+  bsp_sysact
+  ;;
 esac
