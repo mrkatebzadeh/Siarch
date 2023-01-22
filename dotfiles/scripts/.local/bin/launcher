@@ -1,10 +1,13 @@
 #!/bin/sh
 
 case "$RUNNING_WM" in
-    i3)
-	    i3_launcher
-    ;;
-    dwm)
-	    dwm_launcher
-;;
+i3)
+	i3_launcher
+	;;
+dwm)
+	dwm_launcher
+	;;
+bspwm)
+	bsp_launcher
+	;;
 esac
