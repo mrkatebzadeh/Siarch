@@ -55,7 +55,7 @@ super + shift + c
 super + c
 	calc
 super + space
-	i3_launcher
+	launcher
 #super + shift + a
 #	$TERMINAL -e alsamixer || pulsemixer; pkill -RTMIN+10 $STATUSBAR
 #super + shift + c
