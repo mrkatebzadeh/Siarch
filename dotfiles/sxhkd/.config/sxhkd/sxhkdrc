@@ -2,7 +2,8 @@
 # Basic binds
 super + Return
 	terminal #Run Terminal
-#super + shift + Return
+super + shift + Return
+  id=$(cat /tmp/sptermid);bspc node $id --flag hidden;bspc node -f $id
 #	tabbed -c -r 2 $TERMINAL -w "" #Run terminal with tabbed
 #super + shift + Return
 #	$TERMINAL -n "spterm" -g 120x34 #Run terminal with tabbed
@@ -15,7 +16,8 @@ super + shift + q
 #super + d
 #	dmenu_run #dmenu lanucher
 alt + Tab
-    skippy-xd
+    rofi -show window -window-thumbnail
+    # skippy-xd
 alt + shift + l
     dmenukb
 super + shift + d
@@ -56,6 +58,9 @@ super + c
 	calc
 super + space
 	launcher
+
+super + shift + space
+  bspc node -t {tiled,floating}
 #super + shift + a
 #	$TERMINAL -e alsamixer || pulsemixer; pkill -RTMIN+10 $STATUSBAR
 #super + shift + c

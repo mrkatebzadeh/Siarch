@@ -1,8 +1,20 @@
 #! /bin/sh
 picom &
 setbg &
-killall -q sxhkd && sxhkd &
-killall -q polybar && polybar &
+
+killall -q sxhkd
+sxhkd &
+
+# Check if polybar is already running
+if pgrep -x "polybar" > /dev/null; then
+    # If it is, kill it
+    killall -q polybar
+    # Wait until the process is killed
+    while pgrep -x "polybar" > /dev/null; do sleep 1; done
+fi
+
+# Launch polybar
+polybar &
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
@@ -24,3 +36,6 @@ bspc rule -a tabbed desktop=^8
 bspc rule -a "Microsoft Teams - Preview" desktop=^8
 bspc rule -a Slack desktop=^9
 bspc rule -a TelegramDesktop desktop=^9
+
+bspc rule -a spterm sticky=on state=floating hidden=on
+[ "$(ps -x | grep -c 'spterm')" -eq "1" ] && terminal --class=spterm --title=spter -e bsp_spterm &
