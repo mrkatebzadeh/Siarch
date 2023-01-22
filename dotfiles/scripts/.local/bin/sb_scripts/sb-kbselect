@@ -17,4 +17,4 @@ case "$kb" in
 "us") KBD="EN" ;;
 *) KBD="unknown" ;;
 esac
-echo "[  $KBD ]"
+echo " $KBD"

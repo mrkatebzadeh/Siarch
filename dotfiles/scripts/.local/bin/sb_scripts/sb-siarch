@@ -21,4 +21,4 @@ fi
 if [[ `git status --porcelain` ]]; then
     MODIFIED=" "
 fi
-echo [ "$MODIFIED""$UPCHANGE" ]
+echo "$MODIFIED""$UPCHANGE"

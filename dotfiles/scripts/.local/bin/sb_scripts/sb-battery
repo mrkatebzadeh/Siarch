@@ -60,5 +60,5 @@ for battery in /sys/class/power_supply/BAT?*; do
 	# Will make a warn variable if discharging and low
 
   # Prints the info
-	printf "  %s %d%%  \n" "$status" "$capacity"; unset warn
+	printf "%s %d%%" "$status" "$capacity"; unset warn
 done && exit 0
