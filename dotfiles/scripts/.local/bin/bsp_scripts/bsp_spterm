@@ -1,11 +1,9 @@
-#!/bin/sh
-# ########################################
-# ░█▀▀░█▀▀░█▀▄░█▀█░▀█▀░█▀▀░█░█░█▀█░█▀█░█▀▄
-# ░▀▀█░█░░░█▀▄░█▀█░░█░░█░░░█▀█░█▀▀░█▀█░█░█
-# ░▀▀▀░▀▀▀░▀░▀░▀░▀░░▀░░▀▀▀░▀░▀░▀░░░▀░▀░▀▀░
-# ########################################
+#!/bin/bash
 
-#!/usr/bin/sh
-# only add floating scratchpad window node id to /tmp/scratchid
-bspc query -N -n .floating | xargs -i sh -c 'bspc query  --node {} -T | grep -q spterm && echo {} > /tmp/sptermid'
-exec $SHELL
+spterm_name="spterm_$(bspc query -M -m .focused)"
+if [ $(ps -x | grep -c $spterm_name) -eq 1 ]; then
+	terminal --class=spterm,$spterm_name --title=spterm &
+else
+	spterm_id=$(xdotool search --classname $spterm_name)
+  bspc node $spterm_id --flag hidden --focus
+fi

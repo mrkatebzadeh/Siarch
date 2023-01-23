@@ -3,7 +3,7 @@
 super + Return
 	terminal #Run Terminal
 super + shift + Return
-  id=$(cat /tmp/sptermid);bspc node $id --flag hidden;bspc node -f $id
+  spterm
 #	tabbed -c -r 2 $TERMINAL -w "" #Run terminal with tabbed
 #super + shift + Return
 #	$TERMINAL -n "spterm" -g 120x34 #Run terminal with tabbed

@@ -7,14 +7,14 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 
 xsetroot -cursor_name left_ptr &
 
-bspc monitor LVDS1    -d  "1: " "2: " "3: " "4: " "5: " "6: " "7: " "8: " "9:" 
-bspc monitor VGA1     -d  "1: " "2: " "3: " "4: " "5: " "6: " "7: " "8: " "9:" 
-bspc monitor DP-1     -d  "1: " "2: " "3: " "4: " "5: " "6: " "7: " "8: " "9:" 
-bspc monitor DP-2     -d  "1: " "2: " "3: " "4: " "5: " "6: " "7: " "8: " "9:" 
-bspc monitor DP-3     -d  "1: " "2: " "3: " "4: " "5: " "6: " "7: " "8: " "9:" 
-bspc monitor HDMI-1   -d  "1: " "2: " "3: " "4: " "5: " "6: " "7: " "8: " "9:" 
-bspc monitor HDMI-2   -d  "1: " "2: " "3: " "4: " "5: " "6: " "7: " "8: " "9:" 
-bspc monitor eDP-1   -d  "1: " "2: " "3: " "4: " "5: " "6: " "7: " "8: " "9:" 
+bspc monitor LVDS1    -d  1 2 3 4 5 6 7 8 9 0 
+bspc monitor VGA1     -d  1 2 3 4 5 6 7 8 9 0 
+bspc monitor DP-1     -d  1 2 3 4 5 6 7 8 9 0 
+bspc monitor DP-2     -d  1 2 3 4 5 6 7 8 9 0 
+bspc monitor DP-3     -d  1 2 3 4 5 6 7 8 9 0 
+bspc monitor HDMI-1   -d  1 2 3 4 5 6 7 8 9 0 
+bspc monitor HDMI-2   -d  1 2 3 4 5 6 7 8 9 0 
+bspc monitor eDP-1    -d  1 2 3 4 5 6 7 8 9 0 
 
 bspc config border_width         2
 bspc config window_gap          12
@@ -37,8 +37,7 @@ bspc rule -a "Microsoft Teams - Preview" desktop=^8
 bspc rule -a Slack desktop=^9
 bspc rule -a TelegramDesktop desktop=^9
 
-bspc rule -a spterm sticky=on state=floating hidden=on
-[ "$(ps -x | grep -c 'spterm')" -eq "1" ] && terminal --class=spterm --title=spterm -e bsp_spterm &
+bspc rule -a spterm sticky=on state=floating hidden=off
 
 if pgrep -x "polybar" > /dev/null; then
     killall -q polybar

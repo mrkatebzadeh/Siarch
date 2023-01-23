@@ -1,0 +1,13 @@
+#!/bin/sh
+
+case "$RUNNING_WM" in
+i3)
+	i3_spterm
+	;;
+dwm)
+	dwm_spterm
+	;;
+bspwm)
+	bsp_spterm
+	;;
+esac
