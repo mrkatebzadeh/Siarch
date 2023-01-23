@@ -34,7 +34,13 @@ super + shift +{j,k}
 super + {h,l}
 	bspc node -z {left -20 0, left 20 0}
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+  bspc {desktop -f,node -d} focused:'^{1-9,10}'  
+super + shift + {Left,Down,Up,Right}
+	dir={west,south,north,east}; \
+	bspc node -s "$dir.local" --follow \
+	    || bspc node -m "$dir" --follow
+super + {Left,Right}
+  bspc monitor --focus {prev,next}
 super + r
     $TERMINAL -e lfub #File manager
 super + shift + b
@@ -84,7 +90,7 @@ XF86Touchpad{Off,On}
 	synclient TouchpadOff={1,0}
 XF86MonBrightnessDown
 	brightness down
-XF86MonBrightnessUp
+XF86MonBrightness~\cite{simfq}Up
 	brightness up
 
 # Recording
