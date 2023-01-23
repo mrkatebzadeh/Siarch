@@ -2,11 +2,6 @@
 picom &
 setbg &
 
-if pgrep -x "polybar" > /dev/null; then
-    killall -q polybar
-    while pgrep -x "polybar" > /dev/null; do sleep 1; done
-fi
-polybar &
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
@@ -16,6 +11,7 @@ bspc monitor LVDS1    -d  "1: " "2: " "3: " "4: " "5: " "6: " 
 bspc monitor VGA1     -d  "1: " "2: " "3: " "4: " "5: " "6: " "7: " "8: " "9:" 
 bspc monitor DP-1     -d  "1: " "2: " "3: " "4: " "5: " "6: " "7: " "8: " "9:" 
 bspc monitor DP-2     -d  "1: " "2: " "3: " "4: " "5: " "6: " "7: " "8: " "9:" 
+bspc monitor DP-3     -d  "1: " "2: " "3: " "4: " "5: " "6: " "7: " "8: " "9:" 
 bspc monitor HDMI-1   -d  "1: " "2: " "3: " "4: " "5: " "6: " "7: " "8: " "9:" 
 bspc monitor HDMI-2   -d  "1: " "2: " "3: " "4: " "5: " "6: " "7: " "8: " "9:" 
 bspc monitor eDP-1   -d  "1: " "2: " "3: " "4: " "5: " "6: " "7: " "8: " "9:" 
@@ -23,6 +19,7 @@ bspc monitor eDP-1   -d  "1: " "2: " "3: " "4: " "5: " "6: " "
 bspc config border_width         2
 bspc config window_gap          12
 bspc config top_padding          25
+bspc config bottom_padding          25
 
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
@@ -31,6 +28,7 @@ bspc config focus_follows_pointer true
 bspc config remove_disabled_monitors true
 bspc config remove_unplugged_monitors true
 bspc config merge_overlapping_monitors true
+bspc config focused_monitor_indicator true
 
 bspc rule -a Brave-browser desktop=^7
 bspc rule -a music desktop=^5
@@ -40,4 +38,18 @@ bspc rule -a Slack desktop=^9
 bspc rule -a TelegramDesktop desktop=^9
 
 bspc rule -a spterm sticky=on state=floating hidden=on
-[ "$(ps -x | grep -c 'spterm')" -eq "1" ] && terminal --class=spterm --title=spter -e bsp_spterm &
+[ "$(ps -x | grep -c 'spterm')" -eq "1" ] && terminal --class=spterm --title=spterm -e bsp_spterm &
+
+if pgrep -x "polybar" > /dev/null; then
+    killall -q polybar
+    while pgrep -x "polybar" > /dev/null; do sleep 1; done
+fi
+if type "xrandr"; then
+  for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+    MONITOR=$m polybar  --reload top&
+    MONITOR=$m polybar  --reload bottom&
+  done
+else
+  polybar  --reload top&
+  polybar  --reload bottom&
+fi
