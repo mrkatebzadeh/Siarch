@@ -17,7 +17,12 @@ case $BLOCK_BUTTON in
 esac
 
 # Loop through all attached batteries and format the info
-for battery in /sys/class/power_supply/BAT?*; do
+batteries=$(ls /sys/class/power_supply/ | grep BAT)
+if [ -z "$batteries" ]; then
+  echo 
+  exit 1
+fi
+for battery in "${batteries[@]}"; do
 	# If non-first battery, print a space separator.
 	[ -n "${capacity+x}" ] && printf " "
 	# Sets up the status and capacity
