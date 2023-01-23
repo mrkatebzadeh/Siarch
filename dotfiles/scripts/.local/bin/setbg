@@ -31,6 +31,6 @@ else
   [ -f "$papisconf.bak" ] && unlink "$papisconf" && mv "$papisconf.bak" "$papisconf"
 fi
 
-xwallpaper --zoom "$bgloc"
-betterlockscreen -u $HOME/.local/share/bg --blur 1.0
+xwallpaper --zoom "$bgloc" >/dev/null 2>&1
+betterlockscreen -u $HOME/.local/share/bg --blur 1.0 >/dev/null 2>&1
 
