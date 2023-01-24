@@ -76,7 +76,7 @@ XF86Touchpad{Off,On}
 	synclient TouchpadOff={1,0}
 XF86MonBrightnessDown
 	brightness down
-XF86MonBrightness~\cite{simfq}Up
+XF86MonBrightnessUp
 	brightness up
 
 # Recording
