@@ -22,8 +22,9 @@ if [ -z "$batteries" ]; then
   echo 
   exit 1
 fi
-for battery in "${batteries[@]}"; do
+for kk in "${batteries[@]}"; do
 	# If non-first battery, print a space separator.
+  battery=/sys/class/power_supply/$kk
 	[ -n "${capacity+x}" ] && printf " "
 	# Sets up the status and capacity
 	capacity=$(cat "$battery/capacity")
