@@ -19,7 +19,7 @@ simple: false
 ntimepoints: 15
 
 # Set this to false if you don't want windows to flash on focus.
-flash-on-focus: true
+flash-on-focus: false
 
 # Set this to false if you don't want fullscreen windows to flash.
 flash-fullscreen: true
