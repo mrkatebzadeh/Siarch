@@ -28,12 +28,16 @@ super + {h,l}
 	bspc node -z {left -20 0, left 20 0}
 super + {_,shift + }{1-9,0}
   bspc {desktop -f,node -d} focused:'^{1-9,10}'  
-super + shift + {Left,Down,Up,Right}
-	dir={west,south,north,east}; \
+super + shift + {Left,Right}
+	dir={west,east}; \
 	bspc node -s "$dir.local" --follow \
 	    || bspc node -m "$dir" --follow
 super + {Left,Right}
   bspc monitor --focus {prev,next}
+super + Up
+  skippy-xd -a > /dev/null 2>&1
+super + shift + {less,greater}
+  bspc desktop {prev,next}.local -f
 super + r
   terminal -e lfub 
 super + shift + b
@@ -100,9 +104,6 @@ super + shift + p
 # Changes to next/previous tracks
 super + {comma,period}
 	mpc {prev,next}
-# Restart track
-super + shift + less
-	mpc seek 0%
 # Seek foward in song
 super + {_,shift +} bracketright
 	mpc seek +{10,120}
