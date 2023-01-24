@@ -4,29 +4,22 @@ super + Return
 	terminal #Run Terminal
 super + shift + Return
   spterm
-#	tabbed -c -r 2 $TERMINAL -w "" #Run terminal with tabbed
-#super + shift + Return
-#	$TERMINAL -n "spterm" -g 120x34 #Run terminal with tabbed
 super + q
-	kill -9 `xdotool getwindowfocus getwindowpid` #Kill focused window
+	kill -9 `xdotool getwindowfocus getwindowpid`
 super + shift + q
-    sysact #Show power options
-#super + d
-#	$TERMINAL -n fzfnova2 -e fzf-nova
-#super + d
-#	dmenu_run #dmenu lanucher
+  sysact
 alt + Tab
-    switch
+  switch
 alt + shift + l
-    dmenukb
+  dmenukb
 super + shift + d
-	passmenu #Passmenu
+	passmenu 
 super + e
-    muttmails ; pkill -RTMIN+12 dwmblocks # rmdir ~/.abook #Email
+  muttmails ; pkill -RTMIN+12 dwmblocks
 super + f
   bspc node -t {tiled,fullscreen}  
 super + shift + e
-    $TERMINAL  -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook #Address book
+  terminal  -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook 
 super + {j,k}
 	bspc node -f {next,prev}.local
 super + shift +{j,k}
@@ -42,36 +35,29 @@ super + shift + {Left,Down,Up,Right}
 super + {Left,Right}
   bspc monitor --focus {prev,next}
 super + r
-    $TERMINAL -e lfub #File manager
+  terminal -e lfub 
 super + shift + b
-    $TERMINAL -e lfub ~/.local/share/backgrounds 
+  terminal -e lfub ~/.local/share/backgrounds/
 super + shift + r
-    $TERMINAL -e htop #Top
-#super + BackSpace
-#	dmenubibtex #Bibtex menu
+  terminal -e htop 
 super + shift + BackSpace
-	dc-toggle #Docker start
+	dc-toggle
 super + m
 	music
 super + n
-	$TERMINAL -e nvim -c VimwikiIndex #vimwiki
+	terminal -e nvim -c VimwikiIndex #vimwiki
 super + shift + n
-	$TERMINAL -e newsboat; pkill -RTMIN+6 dwmblocks #RSS manager
+	terminal -e newsboat; pkill -RTMIN+6 dwmblocks #RSS manager
 super + shift + c
 	siarch_i3_sticky
 super + c
 	calc
 super + space
 	launcher
-
 super + shift + space
   bspc node -t {tiled,floating}
-#super + shift + a
-#	$TERMINAL -e alsamixer || pulsemixer; pkill -RTMIN+10 $STATUSBAR
-#super + shift + c
-#	mpv --no-osc --no-input-default-bindings --input-conf=/dev/null --title='mpvfloat' /dev/video0
 super + shift + w
-	$TERMINAL -e sudo nmtui #network manager
+	terminal -e sudo nmtui #network manager
 super + w
 	$BROWSER #Broswer
 
@@ -81,7 +67,7 @@ super + grave
 super + Scroll_Lock
 	killall screenkey || screenkey
 super + Insert
-    xdotool type $(grep -v '^#' ~/.local/share/siarch/snippets | dmenu -i -l 50 | cut -d' ' -f1)
+  xdotool type $(grep -v '^#' ~/.local/share/siarch/snippets | dmenu -i -l 50 | cut -d' ' -f1)
 XF86Launch1
 	xset dpms force off
 XF86TouchpadToggle
@@ -134,9 +120,9 @@ super + shift + m
 
 # Audiokeys
 XF86AudioMute
-    volctl mute
+  volctl mute
 XF86Audio{Raise,Lower}Volume
-    volctl {up,down}
+  volctl {up,down}
 XF86Audio{Next,Prev}
 	mpc {next,prev}
 XF86Audio{Pause,Play,Stop}
@@ -146,26 +132,26 @@ XF86Audio{Rewind,Forward}
 XF86AudioRecord
 	dmenurecord
 XF86AudioMedia
-	$TERMINAL -e ncmpcpp
+	music
 
 XF86PowerOff
-    sysact
+  sysact
 XF86Calculator
 	calc
 XF86Sleep
-    sudo -A zzz
+  sudo -A zzz
 XF86WWW
 	$BROWSER
 XF86DOS
-	$TERMINAL
+	terminal
 XF86ScreenSaver
-    slock & xset dpms force off; mpc pause; pauseallmpv
+  slock & xset dpms force off; mpc pause; pauseallmpv
 XF86TaskPane
-	$TERMINAL -e htop
+	terminal -e htop
 XF86Mail
-	$TERMINAL -e neomutt; pkill -RTMIN+12 dwmblocks
+	terminal -e neomutt; pkill -RTMIN+12 dwmblocks
 XF86MyComputer
-	$TERMINAL -e lf /
+	terminal -e lf /
 
 super + F3
 	displayselect
@@ -175,19 +161,12 @@ super + F3
 
 super + F5 
   pkill -usr1 -x sxhkd; notify-send 'SXHKD' 'Reloaded config'
-
 super + F6
 	torwrap
-
-
 super + F7
 	td-toggle
-
-
 super + F8
 	mw -Y
-
-
 super + {F9,F10}
 	{dmenumount,dmenuumount}
 super + F11
