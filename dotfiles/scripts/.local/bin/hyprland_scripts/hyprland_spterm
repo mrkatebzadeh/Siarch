@@ -1,0 +1,8 @@
+#!/bin/bash
+
+spterm_name="spterm_$(hyprctl monitors -j | grep name | head -n 1| sed 's/\"//g' | sed 's/://g' | sed 's/,//g'| awk '{print $2}')"
+if [ $(ps -x | grep -c $spterm_name) -eq 1 ]; then
+	terminal --class=$spterm_name --title=spterm &
+else
+  hyprctl dispatch togglespecialworkspace ""
+fi
