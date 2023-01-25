@@ -1,13 +1,20 @@
 #!/bin/sh
 
-case "$RUNNING_WM" in
-i3)
-	i3_launcher
-	;;
-dwm)
-	dwm_launcher
-	;;
-bspwm)
-	bsp_launcher
-	;;
-esac
+if [ $XDG_SESSION_TYPE = "wayland" ]; then
+  wofi --show drun
+else
+	case "$RUNNING_WM" in
+	i3)
+		i3_launcher
+		;;
+	dwm)
+		dwm_launcher
+		;;
+	bspwm)
+		bsp_launcher
+		;;
+	*)
+		bsp_launcher
+		;;
+	esac
+fi

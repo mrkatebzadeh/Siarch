@@ -9,5 +9,8 @@ dwm)
 	;;
 bspwm)
 	bsp_spterm
+  ;;
+hyprland)
+  hyprland_spterm
 	;;
 esac

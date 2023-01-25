@@ -1,5 +1,19 @@
 #!/bin/sh
+if [ $XDG_SESSION_TYPE = "wayland" ]; then
+  cmds=( "🔒 Lock" "🚪 Logout" "♻ Renew WM" "🐻 Hibernate" "🔃 Reboot" "🖥 Shutdown" )
 
+selected=$(printf "%s\n" "${cmds[@]}"| wofi -d -l 6 -i -p "Choose an action: ")
+
+case "$selected" in
+"🔒 Lock")		swaylock;;
+"🚪 Logout")	pkill Hyprland;;
+"♻ Renew WM")	bspc wm -r;;
+"🐻 Hibernate")	slock ${hib:-systemctl suspend-then-hibernate -i} ;;
+"🔃 Reboot")	${reb:-sudo -A reboot};;
+"🖥 Shutdown")	${shut:-sudo -A shutdown -h now};;
+esac
+
+else
 case "$RUNNING_WM" in
 i3)
 	i3_sysact
@@ -10,4 +24,8 @@ dwm)
 bspwm)
   bsp_sysact
   ;;
+*)
+  hypr_sysact
+  ;;
 esac
+fi

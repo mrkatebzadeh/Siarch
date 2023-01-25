@@ -155,3 +155,7 @@ g,https://github.com/mrkatebzadeh/papis-collection,A powerful and highly extensi
 ,redshift, "Adjusts the color temperature of your screen according to your surroundings"
 A,flashfocus-git, "Flash focused window"
 A,libinput-gestures, "libinput gestures"
+A,hyprland, "Tiling window manager for wayland"
+A,waybar-hyprland-git, "Wayland bar"
+A,hyprpaper-git, "Wallpaper setter"
+A,swaylock, "Sway lock"
