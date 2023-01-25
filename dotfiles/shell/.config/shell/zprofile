@@ -16,6 +16,8 @@ case "$OSTYPE" in
     export PATH=$PATH:~/.local/bin/sb_scripts
     export PATH=$PATH:~/.local/bin/i3_scripts
     export PATH=$PATH:~/.local/bin/bsp_scripts
+    export PATH=$PATH:~/.local/bin/hypr_scripts
+    export PATH=$PATH:~/.local/bin/hyprland_scripts
     export PATH="$PATH:/opt/flutter/bin/"
     export PATH="$PATH:/opt/omnetpp/bin/"
     export PATH="$PATH:/opt/idea/bin/"
