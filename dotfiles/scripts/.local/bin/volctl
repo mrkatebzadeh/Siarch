@@ -11,18 +11,22 @@
 #  toggle mute
 #  if muting, set icon to mute, notify
 #  if unmuting, set icon to current volume level, notify, ding
-if [ $# -ne 1 ]; then
-	echo "Need 1 argument (volup, voldown, volmute)"
-	exit 1
+if [ $XDG_SESSION_TYPE = "wayland" ]; then
+  dwm_volctl "$@"
+else
+	if [ $# -ne 1 ]; then
+		echo "Need 1 argument (volup, voldown, volmute)"
+		exit 1
+	fi
+	case "$RUNNING_WM" in
+	i3)
+		i3_volctl "$@"
+		;;
+	dwm)
+		dwm_volctl "$@"
+		;;
+	bspwm)
+		bsp_volctl "$@"
+		;;
+	esac
 fi
-case "$RUNNING_WM" in
-i3)
-	i3_volctl "$@"
-	;;
-dwm)
-	dwm_volctl "$@"
-	;;
-bspwm)
-	bsp_volctl "$@"
-	;;
-esac

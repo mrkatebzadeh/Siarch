@@ -1,8 +1,16 @@
 #!/bin/sh
 # requirements: dmenu, xorg-setxkbmap
+kb="$(echo -e "us\nir\ngb" | menu -l 15 -p "keyboard layout: ")"
 
-kb="$(echo -e "us\nir\ngb" | dmenu -l 15 -p "keyboard layout: ")"
-[ ! -z "$kb" ] && setxkbmap $KEYMODEL "$kb"
-pkill -RTMIN+22 "${STATUSBAR:-dwmblocks}"
+if [ $XDG_SESSION_TYPE = "wayland" ]; then
+  hyprctl keyword input:kb_layout $kb
+else
+	if [ "$kb" != "" ]; then
+		setxkbmap $KEYMODEL "$kb"
+	fi
+fi
+if [[ $RUNNING_WM = "dwm" ]]; then
+	pkill -RTMIN+22 "${STATUSBAR:-dwmblocks}"
+fi
 notify-send "⌨  Keyboard" " $kb "
 printf $kb

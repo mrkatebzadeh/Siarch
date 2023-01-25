@@ -1,0 +1,19 @@
+#!/bin/sh
+
+if [ $XDG_SESSION_TYPE = "wayland" ]; then
+	wofi -d "$@"
+else
+	case "$RUNNING_WM" in
+	i3)
+		dir="$(dirname "$(readlink -f $0)")"/i3_scripts/rofi_theme
+		theme="style"
+		rofi -dmenu -theme "$dir/$theme" "$@"
+		;;
+	dwm)
+		dmenu "$@"
+		;;
+	bspwm)
+		dmenu "$@"
+		;;
+	esac
+fi

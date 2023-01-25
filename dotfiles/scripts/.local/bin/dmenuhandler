@@ -1,18 +1,5 @@
 #!/bin/sh
-case "$RUNNING_WM" in
-    i3)
-	dir="$(dirname "`readlink -f $0`")"/i3_scripts/rofi_theme
-	theme="style"
-
-	alias dmenu='rofi -no-lazy-grab -dmenu -theme "$dir/$theme"'
-    ;;
-    dwm)
-;;
-esac
-
-# Feed this script a link and it will give dmenu
-# some choice programs to use to open it.
-feed="${1:-$(printf "%s" | dmenu -p 'Paste URL or file path')}"
+feed="${1:-$(printf "%s" | menu -p 'Paste URL or file path')}"
 
 case "$(printf "Copy URL\\nsxiv\\nsetbg\\nPDF\\nbrowser\\nlynx\\nvim\\nmpv\\nmpv loop\\nmpv float\\nqueue download\\nqueue yt-dl\\nqueue yt-dl audio" | dmenu -i -p "Open it with?")" in
 	"copy url") echo "$feed" | xclip -selection clipboard ;;
