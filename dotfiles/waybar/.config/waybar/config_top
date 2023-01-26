@@ -15,7 +15,7 @@
     },
     "network": {
         "format-wifi": "直 {signalStrength}%",
-        "format-ethernet": "",
+        "format-ethernet": " ",
         "format-disconnected": "睊",
         "on-click": "terminal -e nmtui",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
