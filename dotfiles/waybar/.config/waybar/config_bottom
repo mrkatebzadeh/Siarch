@@ -8,7 +8,7 @@
     // "modules-left": ["custom/launcher", "wlr/workspaces", "hyprland/window"],
     // "modules-left": ["custom/launcher", "wlr/workspaces"],
     "modules-left": ["custom/launcher", "wlr/workspaces", ],
-    "modules-right": [],
+    "modules-right": ["tray"],
     "wlr/workspaces": {
      "format": "{icon}",
      "on-scroll-up": "hyprctl dispatch workspace e+1",
@@ -34,80 +34,9 @@
         "icon-size": 21,
         "spacing": 10
     },
-    "clock": {
-        // "format": "<span color='#ffffff'></span> {:%a %b %d}",
-        // "format-alt": "<span color='#ffffff'></span> {:%I:%M %p}"
-        "format": "{:%a %b %d}",
-        "format-alt": "{:%I:%M %p}"
-    },
-    // "clock": {
-    //     // "timezone": "America/New_York",
-    //     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    //     "format-alt": "{:%Y-%m-%d}"
-    // },
-    "backlight": {
-        // "device": "acpi_video1",
-        "format": "{icon} {percent}%",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
-    },
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-
-        "format-wifi": "直 {signalStrength}%",
-        // "format-ethernet": " {ifname}: {ipaddr}/{cidr}",
-        // "format-ethernet": " {ifname}",
-        // "format-ethernet": " wired",
-        "format-ethernet": "",
-        "format-disconnected": "睊",
-        // "on-click": "nmtui"
-        // "format-wifi": "{essid} ({signalStrength}%) ",
-        // "format-ethernet": "{ipaddr}/{cidr} ",
-        // "tooltip-format": "{ifname} via {gwaddr} ",
-        // "format-linked": "{ifname} (No IP) ",
-        // "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
-    },
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        // "format": "{volume}% {icon} {format_source}",
-        // "format": "{volume}% {icon}",
-        "format": "{icon} {volume}%",
-        "format-bluetooth": "{icon} {volume}% {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": "婢",
-        // "format-source": "{volume}% ",
-        // "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
-    },
     "custom/launcher": {
-        // "exec": "$HOME/.config/waybar/scripts/spotify.sh",
-        // "return-type": "json",
-        // "max-length": 40,
-        // "format": " <span color='#bf616a'> </span>",
-        // "format": "",
-        // "format": "",
         "format": "",
-        // "format": " <span color='#bf616a'> 異</span>",
-        // "format": " <span color='#bf616a'> </span>",
         "on-click": "wofi -show drun",
-    },
-    "custom/spotify": {
-        "exec": "$HOME/.config/waybar/scripts/spotify.sh",
-        // "return-type": "json",
-        "max-length": 40,
-        "format": " {}",
-        "on-click": "playerctl play-pause",
-        "on-double-click": "playerctl next",
-        "on-right-click": "on-click-right"
     },
 }
 
