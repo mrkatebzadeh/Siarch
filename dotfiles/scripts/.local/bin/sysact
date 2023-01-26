@@ -2,7 +2,7 @@
 if [ $XDG_SESSION_TYPE = "wayland" ]; then
   cmds=( "🔒 Lock" "🚪 Logout" "♻ Renew WM" "🐻 Hibernate" "🔃 Reboot" "🖥 Shutdown" )
 
-selected=$(printf "%s\n" "${cmds[@]}"| wofi -d -l 6 -i -p "Choose an action: ")
+selected=$(printf "%s\n" "${cmds[@]}"| menu  -p "Choose an action: ")
 
 case "$selected" in
 "🔒 Lock")		swaylock;;
@@ -23,9 +23,6 @@ dwm)
 	;;
 bspwm)
   bsp_sysact
-  ;;
-*)
-  hypr_sysact
   ;;
 esac
 fi

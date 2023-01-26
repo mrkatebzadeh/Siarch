@@ -27,16 +27,13 @@
         "10": "10:",
       }, 
     },
-    "hyprland/window": {
-        "format": "{}"
-    },
     "tray": {
         "icon-size": 21,
         "spacing": 10
     },
     "custom/launcher": {
         "format": "",
-        "on-click": "wofi -show drun",
+        "on-click": "launcher",
     },
 }
 
