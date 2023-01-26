@@ -6,31 +6,40 @@
 #	If given a directory, choose random file in it.
 #	If wal is installed, also generates a colorscheme.
 
-bgloc="${XDG_DATA_HOME:-$HOME/.local/share/}/bg"
-
-dunstconf="${XDG_CONFIG_HOME:-$HOME/.config}/dunst/dunstrc"
-zathuraconf="${XDG_CONFIG_HOME:-$HOME/.config}/zathura/zathurarc"
-papisconf="${XDG_CONFIG_HOME:-$HOME/.config}/papis/config"
+bgloc="${XDG_DATA_HOME:-$HOME/.local/share/}/bg.jpg"
 
 trueloc="$(readlink -f "$1")" &&
-case "$(file --mime-type -b "$trueloc")" in
-	image/* ) ln -sf "$(readlink -f "$1")" "$bgloc" && notify-send.sh -i "$bgloc" "Changing wallpaper..." ;;
-	inode/directory ) ln -sf "$(find "$trueloc" -iregex '.*.\(jpg\|jpeg\|png\|gif\)' -type f | shuf -n 1)" "$bgloc" && notify-send -i "$bgloc" "Random Wallpaper chosen." ;;
-	*) notify-send.sh "Error" "Not a valid image." ; exit 1;;
-esac
+	case "$(file --mime-type -b "$trueloc")" in
+	image/*) ln -sf "$(readlink -f "$1")" "$bgloc" && notify-send.sh -i "$bgloc" "Changing wallpaper..." ;;
+	inode/directory) ln -sf "$(find "$trueloc" -iregex '.*.\(jpg\|jpeg\|png\|gif\)' -type f | shuf -n 1)" "$bgloc" && notify-send -i "$bgloc" "Random Wallpaper chosen." ;;
+	*)
+		notify-send.sh "Error" "Not a valid image."
+		exit 1
+		;;
+	esac
 
-# If pywal is installed, use it.
-if command -v wal >/dev/null 2>&1 ; then
-  echo Using wal
-  wal -c
-	wal -n -i "$bgloc" -o "${XDG_CONFIG_HOME:-$HOME/.config}/wal/postrun" >/dev/null 2>&1 &&
-	pidof dwm >/dev/null && xdotool key super+F12
+if [ $XDG_SESSION_TYPE = "wayland" ]; then
+  hyprctl hyprpaper unload "$bgloc"
+  hyprctl hyprpaper preload "$bgloc"
+  monitors=($(hyprctl monitors | grep Monitor | awk '{print $2}' | tr "\n" " "))
+  for i in "${monitors[@]}"; do hyprctl hyprpaper wallpaper $i,$bgloc; done
 else
-  [ -f "$dunstconf.bak" ] && unlink "$dunstconf" && mv "$dunstconf.bak" "$dunstconf"
-  [ -f "$zathuraconf.bak" ] && unlink "$zathuraconf" && mv "$zathuraconf.bak" "$zathuraconf"
-  [ -f "$papisconf.bak" ] && unlink "$papisconf" && mv "$papisconf.bak" "$papisconf"
+	dunstconf="${XDG_CONFIG_HOME:-$HOME/.config}/dunst/dunstrc"
+	zathuraconf="${XDG_CONFIG_HOME:-$HOME/.config}/zathura/zathurarc"
+	papisconf="${XDG_CONFIG_HOME:-$HOME/.config}/papis/config"
+
+	# If pywal is installed, use it.
+	if command -v wal >/dev/null 2>&1; then
+		echo Using wal
+		wal -c
+		wal -n -i "$bgloc" -o "${XDG_CONFIG_HOME:-$HOME/.config}/wal/postrun" >/dev/null 2>&1 &&
+			pidof dwm >/dev/null && xdotool key super+F12
+	else
+		[ -f "$dunstconf.bak" ] && unlink "$dunstconf" && mv "$dunstconf.bak" "$dunstconf"
+		[ -f "$zathuraconf.bak" ] && unlink "$zathuraconf" && mv "$zathuraconf.bak" "$zathuraconf"
+		[ -f "$papisconf.bak" ] && unlink "$papisconf" && mv "$papisconf.bak" "$papisconf"
+	fi
+
+	xwallpaper --zoom "$bgloc" >/dev/null 2>&1 &
+	betterlockscreen -u $HOME/.local/share/bg --blur 1.0 >/dev/null 2>&1 &
 fi
-
-xwallpaper --zoom "$bgloc" >/dev/null 2>&1 &
-betterlockscreen -u $HOME/.local/share/bg --blur 1.0 >/dev/null 2>&1 &
-
