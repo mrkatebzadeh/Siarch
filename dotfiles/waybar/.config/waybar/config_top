@@ -1,12 +1,9 @@
 
 {
-  // NOTE: Icons: https://github.com/Alexays/Waybar/issues/350
     "height": 30, // Waybar height (to be removed for auto height)
     "width": 800, // Waybar height (to be removed for auto height)
     "spacing": 12, // Gaps between modules (4px)
-    // "modules-left": ["custom/launcher", "wlr/workspaces", "hyprland/window"],
-    // "modules-left": ["custom/launcher", "wlr/workspaces"],
-    "modules-center": ["backlight", "pulseaudio", "network", "clock"],
+    "modules-center": ["backlight", "pulseaudio", "battery", "network", "clock"],
     "modules-right": [],
    "clock": {
         "format-alt": " {:%a %b %d}",
@@ -49,6 +46,20 @@
         "on-click": "playerctl play-pause",
         "on-double-click": "playerctl next",
         "on-right-click": "on-click-right"
+    },
+    "battery": {
+        "format": "{icon} ",
+        "format-alt": "{icon}  {capacity}% - {time}",
+        "format-icons": ["", "", "", "", ""],
+        "format-time": "{H}h{M}m",
+        "format-charging": " {icon} ",
+        "format-full": " {icon} ",
+        "interval": 30,
+        "states": {
+            "warning": 25,
+            "critical": 10
+        },
+        "tooltip": false,
     },
 }
 

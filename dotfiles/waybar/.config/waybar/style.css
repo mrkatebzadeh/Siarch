@@ -79,6 +79,7 @@ window#waybar.hidden {
 
 #clock,
 #battery,
+#brightness,
 #cpu,
 #memory,
 #disk,
@@ -126,13 +127,13 @@ window#waybar.hidden {
 }
 
 #battery {
-  color: #a3be8c;
+  color: #ffffff;
   /* background-color: #90b1b1; */
 }
 
 #battery.charging,
 #battery.plugged {
-  color: #26a65b;
+  color: #ffaaaa;
   /* background-color: #26a65b; */
 }
 
