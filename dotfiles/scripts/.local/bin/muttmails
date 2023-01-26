@@ -1,4 +1,8 @@
 #! /bin/bash
-xid="$(tabbed -n "neomutt" -c -d -s -r 2 alacritty --embed x)"
-terminal -t "Gmail" --embed "$xid" -e neomutt -F ~/.config/mutt/muttrc &
-terminal -t "ED" --embed "$xid" -e neomutt -F ~/.config/mutt/muttrc2 &
+if [ $XDG_SESSION_TYPE = "wayland" ]; then
+	terminal -o "window.class.general='email'" -o "window.class.instance='email'" -t "Gmail" -e neomutt -F ~/.config/mutt/muttrc &
+else
+	xid="$(tabbed -n "neomutt" -c -d -s -r 2 alacritty --embed x)"
+	terminal -t "Gmail" --embed "$xid" -e neomutt -F ~/.config/mutt/muttrc &
+	terminal -t "ED" --embed "$xid" -e neomutt -F ~/.config/mutt/muttrc2 &
+fi
