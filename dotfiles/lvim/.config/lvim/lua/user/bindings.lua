@@ -70,6 +70,7 @@ M.config = function()
   lvim.builtin.which_key.mappings["t"] = {
     name = " ✔️  Toggles",
     w = { ":set wrap!<CR>", "Soft Wrap Text" },
+    z = { ":ZenMode<CR>", "ZendMode" },
   }
 
   table.insert(lvim.builtin.nvimtree.setup.view.mappings.list, { key = { "<tab>" }, action = "preview", mode = "n" })
