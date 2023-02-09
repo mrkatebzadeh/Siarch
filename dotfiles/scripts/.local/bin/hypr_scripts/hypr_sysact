@@ -7,7 +7,7 @@ case "$selected" in
 "🔒 Lock")		betterlockscreen -l;;
 "🚪 Logout")	pkill Hypr;;
 "♻ Renew WM")	bspc wm -r;;
-"🐻 Hibernate")	slock ${hib:-systemctl suspend-then-hibernate -i} ;;
+"🐻 Hibernate")	systemctl suspend-then-hibernate -i ;;
 "🔃 Reboot")	${reb:-sudo -A reboot};;
 "🖥 Shutdown")	${shut:-sudo -A shutdown -h now};;
 esac
