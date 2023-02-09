@@ -3,7 +3,7 @@
     "height": 30, // Waybar height (to be removed for auto height)
     "width": 800, // Waybar height (to be removed for auto height)
     "spacing": 12, // Gaps between modules (4px)
-    "modules-center": ["sway/language", "backlight", "pulseaudio", "battery", "network", "clock"],
+    "modules-center": ["custom/docker", "backlight", "pulseaudio", "battery", "network", "clock"],
     "modules-right": [],
    "clock": {
         "format-alt": " {:%a %b %d}",
@@ -50,6 +50,11 @@
         "on-click": "playerctl play-pause",
         "on-double-click": "playerctl next",
         "on-right-click": "on-click-right"
+    },
+    "custom/docker": {
+        "exec": "sb-docker",
+        "on-click": "dc-toggle",
+        "interval": 15,
     },
     "battery": {
         "format": "{icon} ",

@@ -1,23 +1,12 @@
 #!/bin/sh
 
 # If docker-daemon is running, will ask to kill, else will ask to start.
-case "$RUNNING_WM" in
-    i3)
-	dir="$(dirname "`readlink -f $0`")"/i3_scripts/rofi_theme
-	theme="style"
-
-	alias dmenu='rofi -no-lazy-grab -dmenu -theme "$dir/$theme"'
-    ;;
-    dwm)
-;;
-esac
-
 
 if pidof dockerd >/dev/null ;
 then
-	[ "$(printf "No\\nYes" | dmenu -i -p "Turn off docker service?")" = "Yes" ] && sudo -A systemctl stop docker && notify-send "Docker disabled."
+	[ "$(printf "No\\nYes" | menu -i -p "Turn off docker service?")" = "Yes" ] && sudo -A systemctl stop docker && notify-send "Docker disabled."
 else
 	ifinstalled docker || exit
-	[ "$(printf "No\\nYes" | dmenu -i -p "Turn on docker service?")" = "Yes" ] && sudo -A systemctl start docker && notify-send "Docker enabled."
+	[ "$(printf "No\\nYes" | menu -i -p "Turn on docker service?")" = "Yes" ] && sudo -A systemctl start docker && notify-send "Docker enabled."
 fi
 sleep 3 && pkill -RTMIN+7 "${STATUSBAR:-dwmblocks}"
