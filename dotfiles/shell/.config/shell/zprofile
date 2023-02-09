@@ -90,6 +90,11 @@ export BIBTEXERPATH=~/Dropbox/Papers
 export BIBTEXERFILE="$BIBTEXERPATH"/references.bib
 export BIBTEXERCACHE=~/.cache/bibtexer
 export BOOKPATH=~/Dropbox/Books
+export CHROME_EXECUTABLE=$(which brave)
+
+NPM_PACKAGES="${HOME}/.npm-packages"
+export PATH="$PATH:$NPM_PACKAGES/bin"
+export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 
 # This is the list for lf icons:
 export LF_ICONS="di=📁:\
