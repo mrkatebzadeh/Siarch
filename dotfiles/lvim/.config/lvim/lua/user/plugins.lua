@@ -166,8 +166,17 @@ M.config = function()
 		{
 			"folke/zen-mode.nvim",
 			config = function()
-				require("zen-mode").setup({
-				})
+				require("zen-mode").setup({})
+			end,
+		},
+		{
+			"kristijanhusak/orgmode.nvim",
+			keys = { "go", "gC" },
+			ft = { "org" },
+
+			config = function()
+        require('orgmode').setup_ts_grammar()
+				require("user.orgmode").config()
 			end,
 		},
 	}
