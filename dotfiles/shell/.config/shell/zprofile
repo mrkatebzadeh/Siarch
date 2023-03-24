@@ -9,6 +9,7 @@
 export TERMINAL="terminal"
 
 # Adds `~/.local/bin` to $PATH
+export PATH=$PATH:$HOME/.local/bin
 case "$OSTYPE" in
   linux*)
     export PATH="$PATH:${$(find ~/.local/bin/ -type d -printf %p:)%%:}"

@@ -14,7 +14,7 @@ export GPG_TTY=$(tty)
 # History in cache directory:
 HISTSIZE=10000000
 SAVEHIST=10000000
-HISTFILE=~/.cache/zsh/history
+HISTFILE=~/.config/zsh/.zsh_history
 setopt appendhistory
 
 autoload -Uz compinit
@@ -55,8 +55,18 @@ zle -N down-line-or-beginning-search
 # Colors
 autoload -Uz colors && colors
 
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+  SESSION_TYPE=remote/ssh
+# many other tests omitted
+else
+  case $(ps -o comm= -p "$PPID") in
+    sshd|*/sshd) SESSION_TYPE=remote/ssh;;
+  esac
+fi
+if [ -z "$SESSION_TYPE" ]; then
 if command -v wal >/dev/null 2>&1 ; then
   (cat ~/.cache/wal/sequences &)
+fi
 fi
 
 # >>> conda initialize >>>
@@ -74,3 +84,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

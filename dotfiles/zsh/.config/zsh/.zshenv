@@ -1,3 +1,1 @@
-#!/bin/sh
-export SHELL=/bin/zsh
 . "/Users/siavash/.local/share/cargo/env"
