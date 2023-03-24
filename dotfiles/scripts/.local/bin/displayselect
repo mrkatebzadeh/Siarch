@@ -1,15 +1,5 @@
 #!/bin/sh
 
-case "$RUNNING_WM" in
-i3)
-	dir="$(dirname "$(readlink -f $0)")"/i3_scripts/rofi_theme
-	theme="style"
-
-	alias dmenu='rofi -no-lazy-grab -dmenu -theme "$dir/$theme"'
-	;;
-dwm) ;;
-esac
-
 postrun() { # Stuff to run to clean up.
 	setbg      # Fix background if screen size/arangement has changed.
 	killall dunst >/dev/null 2>&1
@@ -23,23 +13,40 @@ postrun() { # Stuff to run to clean up.
 	kill -HUP $(pgrep -u $USER "\bdwm$")
 }
 
+
+set_mon_on() {
+  if [ $XDG_SESSION_TYPE = "wayland" ]; then
+    wlr-randr --output $1 --on
+  else
+    xrandr --output $1 --auto --primary
+  fi
+}
+
+set_mon_off() {
+  if [ $XDG_SESSION_TYPE = "wayland" ]; then
+    wlr-randr --output $1 --off
+  else
+    xrandr --output $1 --off
+  fi
+}
 # Get a list of connected monitors
-monitors=$(xrandr | grep " connected" | awk '{print $1}')
-
-# Get all connected screens.
-screens=$(echo "$monitors" | awk '/ connected/ {print $1}')
-
+if [ $XDG_SESSION_TYPE = "wayland" ]; then
+	monitors=$(wlr-randr | grep "\"" | awk '{print $1}')
+else
+	monitors=$(xrandr | grep " connected" | awk '{print $1}')
+fi
+#
 # Show a dmenu prompt with the options
-chosen=$(echo -e "List Monitors\nMirroring\nMulti-Monitor" | dmenu -i -p "Select an option:")
+chosen=$(echo -e "List Monitors\nMirroring\nMulti-Monitor" | menu -i -p "Select an option:")
 
 if [ "$chosen" = "List Monitors" ]; then
 	# Show a dmenu prompt with the list of monitors
-	monitor=$(echo "$monitors" | dmenu -i -p "Select monitor:")
+	monitor=$(echo "$monitors" | menu -i -p "Select monitor:")
 	for m in $monitors; do
 		if [ "$m" = "$monitor" ]; then
-			xrandr --output "$m" --primary --auto
+      set_mon_on "$m"
 		else
-			xrandr --output "$m" --off
+      set_mon_off "$m"
 		fi
 	done
 	notify-send "💻 Single monitor" "$chosen is on."
@@ -55,13 +62,13 @@ elif [ "$chosen" = "Mirroring" ]; then
 
 elif [ "$chosen" = "Multi-Monitor" ]; then
 	# Set the primary monitor
-	primary=$(echo "$monitors" | dmenu -i -p "Select primary monitor:")
+	primary=$(echo "$monitors" | menu -i -p "Select primary monitor:")
 	xrandr --output "$primary" --primary --auto
 
 	# Set the position for each remaining monitor
 	for monitor in $monitors; do
 		if [ "$monitor" != "$primary" ]; then
-			position=$(echo -e "left-of\nright-of\nabove\nbelow" | dmenu -i -p "Select position for $monitor:")
+			position=$(echo -e "left-of\nright-of\nabove\nbelow" | menu -i -p "Select position for $monitor:")
 			xrandr --output "$monitor" --$position "$primary" --auto
 		fi
 	done
