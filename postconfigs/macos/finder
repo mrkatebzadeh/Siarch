@@ -1,0 +1,12 @@
+#!/bin/sh
+defaults write com.apple.finder ShowMountedServerOnDesktop -boolean false
+defaults write com.apple.finder ShowHardDrivesOnDesktop -boolean false
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -boolean false
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -boolean false
+defaults write NSGlobalDomain AppleShowAllExtensions -boolean true
+defaults write com.apple.finder FXEnableExtensionChangeWarning -boolean false
+defaults write com.apple.finder _FXSortFoldersFirst -boolean true
+defaults write com.apple.finder ShowStatusBar -boolean true
+killall Finder 
+
+
