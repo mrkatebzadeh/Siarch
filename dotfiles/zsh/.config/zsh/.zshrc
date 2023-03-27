@@ -86,3 +86,6 @@ unset __conda_setup
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+. /usr/local/opt/asdf/libexec/asdf.sh
+export PATH="/usr/local/opt/gawk/libexec/gnubin:$PATH"
