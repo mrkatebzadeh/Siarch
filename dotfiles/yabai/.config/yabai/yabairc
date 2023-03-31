@@ -1,4 +1,33 @@
-yabai -m config window_animation_duration 0.5
+sudo yabai --load-sa
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+yabai -m signal --add event=window_destroyed active=yes action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null"
+yabai -m signal --add event=window_minimized active=yes action="if \$(yabai -m query --windows --window \$YABAI_WINDOW_ID | jq -r '.\"is-floating\"'); then yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null; fi"
+
+yabai -m space 1 --label code
+yabai -m space 2 --label terminal
+yabai -m space 3 --label terminal
+yabai -m space 4 --label notes
+# yabai -m space 5 --label 
+yabai -m space 5 --label media
+yabai -m space 7 --label web
+yabai -m space 8 --label mail
+yabai -m space 9 --label slack
+yabai -m space 10 --label social
+
+yabai -m rule --add app="^Mail$" space=mail
+yabai -m rule --add app="^Safari$" space=web
+yabai -m rule --add app="^Brave$" space=web
+yabai -m rule --add app="^Notes$" space=notes
+yabai -m rule --add app="^Notion$" space=notes
+yabai -m rule --add app="^Transmission$" space=media
+yabai -m rule --add app="^Spotify$" space=media
+
+yabai -m config --space mail  layout stack
+
+yabai -m config window_animation_duration   0.25
+yabai -m config window_opacity_duration     0.25
+yabai -m config normal_window_opacity       0.90
+yabai -m config window_opacity              on
 # bsp or float (default: float)
 yabai -m config layout bsp
 yabai -m config window_origin_display        default
