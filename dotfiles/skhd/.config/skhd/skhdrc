@@ -19,5 +19,5 @@ ctrl + cmd - 0 : yabai -m window --space 0; yabai -m space --focus 0
 
 ctrl - f : yabai -m window --toggle zoom-fullscreen
 
-cmd - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
-
+cmd - return : index=$(yabai -m query --displays --display | jq .index) && \
+                    /Applications/Kitty.app/Contents/MacOS/kitty --instance-group=$index --single-instance -d ~
