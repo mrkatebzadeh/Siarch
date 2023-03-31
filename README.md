@@ -24,22 +24,24 @@ cd Siarch
 ```
 
 and follow the instructions.
-Reboot after finishing the installation.
-## Installing Dot organizer
-Use the added username in the following instrcutions:
-```
-./siarch.sh -U {username} -R -C
-```
-
 Reboot and login to the new user and enter following command:
 
 ```
  startx
 ```
 
+### Adding congifs
+```
+cd Siarch
+./siarch.sh -s <app>
+```
+Config files of apps are under Siarch/dotfiles
+
+
 ## TODOs
-- ✅ Add mutt
-- ⭕ Merge AUI into Siarch
-- ✅ Add greeting page
-- ⭕ Remove unnecessary clone
-- ✅ Add option to refresh specific package
+- 🟢 Add mutt
+- 🟢 Merge AUI into Siarch
+- 🟢 Add greeting page
+- 🟢 Remove unnecessary clone
+- 🟢 Add option to refresh specific package
+- 🟡 Add MacOS support
