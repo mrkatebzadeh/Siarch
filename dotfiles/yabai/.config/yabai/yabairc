@@ -1,3 +1,4 @@
+yabai -m config window_animation_duration 0.5
 # bsp or float (default: float)
 yabai -m config layout bsp
 yabai -m config window_origin_display        default
