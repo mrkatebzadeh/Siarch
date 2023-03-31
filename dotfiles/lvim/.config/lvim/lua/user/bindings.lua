@@ -8,27 +8,27 @@ M.config = function()
     group = "", -- symbol prepended to a group
   }
   lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
-  lvim.builtin.which_key.mappings["L"].name = " 🌙 LunarVim"
-  lvim.builtin.which_key.mappings["b"].name = " 﩯 Buffers"
-  lvim.builtin.which_key.mappings["d"].name = " 飯 Debug"
-  lvim.builtin.which_key.mappings["g"].name = "   Git"
-  lvim.builtin.which_key.mappings["l"].name = "   LSP"
-  lvim.builtin.which_key.mappings["p"].name = "   Plugins"
+  lvim.builtin.which_key.mappings["L"].name = "  LunarVim"
+  lvim.builtin.which_key.mappings["b"].name = " 﩯Buffers"
+  lvim.builtin.which_key.mappings["d"].name = " 飯Debug"
+  lvim.builtin.which_key.mappings["g"].name = "  Git"
+  lvim.builtin.which_key.mappings["l"].name = "  LSP"
+  lvim.builtin.which_key.mappings["p"].name = "  Plugins"
   lvim.builtin.which_key.mappings["q"] = { "<cmd>lua require('lvim.utils.functions').smart_quit()<CR>", "   Quit" }
-  lvim.builtin.which_key.mappings["s"].name = "   Search"
+  lvim.builtin.which_key.mappings["s"].name = "  Search"
   lvim.builtin.which_key.mappings["b"].d = { ":bp<bar>sp<bar>bn<bar>bd<CR>", "Close Buffer" }
   lvim.builtin.which_key.mappings["c"] = {}
   lvim.builtin.which_key.mappings["e"] = {}
   lvim.builtin.which_key.mappings["T"] = {}
   lvim.builtin.which_key.mappings["r"] = {
-    name = " ↔️ Replace",
+    name = " ﯒ Replace",
     r = { "<cmd>lua require('spectre').open()<cr>", "Replace" },
     w = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", "Replace Word" },
     f = { "<cmd>lua require('spectre').open_file_search()<cr>", "Replace Buffer" },
   }
   lvim.builtin.which_key.mappings["f"] = {
 
-    name = " 📁 Files",
+    name = "  Files",
     f = {
       function()
         require("lvim.core.telescope.custom-finders").find_project_files({ previewer = false })
@@ -49,7 +49,7 @@ M.config = function()
     E = { ":SudoEdit", "SudoEdit" },
   }
   lvim.builtin.which_key.mappings["w"] = {
-    name = " 🪟 Window",
+    name = "  Window",
     w = { "<C-W>w", "other-window" },
     d = { "<C-W>c", "delete-window" },
     ["-"] = { "<C-W>s", "split-window-below" },
@@ -68,7 +68,7 @@ M.config = function()
     v = { "<C-W>v", "split-window-below" },
   }
   lvim.builtin.which_key.mappings["t"] = {
-    name = " ✔️  Toggles",
+    name = "  Toggles",
     w = { ":set wrap!<CR>", "Soft Wrap Text" },
     z = { ":ZenMode<CR>", "ZendMode" },
   }
