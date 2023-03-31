@@ -30,12 +30,15 @@ Reboot and login to the new user and enter following command:
  startx
 ```
 
-### Adding congifs
+### Adding configs
 ```
-cd Siarch
 ./siarch.sh -s <app>
 ```
-Config files of apps are under Siarch/dotfiles
+Config files of apps are under Siarch/dotfiles.
+To add config files for all app, run:
+```
+./siarch.sh -S
+```
 
 
 ## TODOs
