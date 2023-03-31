@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/usr/bin/env python3
 import csv
 import os
 import subprocess
@@ -14,6 +14,8 @@ def check_install_package(package, manager, install=False):
         subprocess.run([manager, "-Q", package], check=True)
     elif manager == 'yay':
         subprocess.run(["sudo", "-u", username, manager, "-Q", package], check=True)
+    elif manager == 'brew':
+        subprocess.run([manager, "list", package], check=True)
     elif manager == 'pip':
         subprocess.run([manager, "show", package], check=True)
     elif manager == 'git':
@@ -32,6 +34,8 @@ def check_install_package(package, manager, install=False):
             subprocess.run(["sudo", manager, "-S", "--noconfirm", package], check=True)
         elif manager == 'yay':
             subprocess.run(["sudo", "-u", username, manager, "-S", "--noconfirm", package], check=True)
+        elif manager == 'brew':
+            subprocess.run([manager, "install", package], check=True)
         elif manager == 'pip':
             subprocess.run([manager, "install", package], check=True)
         elif manager == 'git':
@@ -80,9 +84,9 @@ csv_file = args.file
 username = args.username
 install = args.install
 
-check_yay()
-
-subprocess.run(["yay", "-Sy"], check=True)
+if sys.platform == "linux" or sys.platform == "linux2":
+    check_yay()
+    subprocess.run(["yay", "-Sy"], check=True)
 
 # Open the CSV file
 with open(csv_file, 'r') as csvfile:
@@ -104,3 +108,5 @@ with open(csv_file, 'r') as csvfile:
       check_install_package(package, "yay", install)
     elif tag == "g" or tag == "G":
       check_install_package(package, "git", install)
+    elif tag == "b" or tag == "B":
+      check_install_package(package, "brew", install)

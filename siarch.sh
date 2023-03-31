@@ -161,7 +161,7 @@ postinstall() {
 	# Use all cores for compilation.
 	sed -i "s/-j2/-j$(nproc)/;s/^#MAKEFLAGS/MAKEFLAGS/" /etc/makepkg.conf
 
-	./packages/packer.py -u $name -f ./packages/packs.csv -i
+	./packages/packer.py -u $name -f ./packages/arch.csv -i
 
 	echo "Siarch Installation" --infobox "Finally, installing \`libxft-bgra\` to enable color emoji in suckless software without crashes."
 	yes | sudo -u "$name" $aurhelper -S libxft-bgra-git >/dev/null 2>&1

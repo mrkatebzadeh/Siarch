@@ -1,0 +1,18 @@
+tag,package,description
+b,kitty, main terminal emulator
+b,brave-browser, brave browser
+b,slack, slack
+b,tree, shows outline of a directory
+b,fzf, fzf
+b,koekeishiya/formulae/skhd, shortcut manager
+b,htop, htop
+b,lazygit, lazygit
+b,jq, jq
+b,spotify, spotify
+b,neovim, neovim
+b,stylua, stylua
+b,lazydocker, lazydocker
+b,fontconfig, fontconfig
+b,raycast, alternative to spotlight
+
+
