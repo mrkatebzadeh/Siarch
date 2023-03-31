@@ -22,6 +22,7 @@ yabai -m config auto_balance off
 yabai -m config split_ratio 0.5
 # apps to not manage (ignore)
 yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^Archive Utility$" manage=off
 yabai -m rule --add app="^Wally$" manage=off
 yabai -m rule --add app="^Pika$" manage=off
@@ -31,3 +32,6 @@ yabai -m rule --add app="^Logi Options$" manage=off
 yabai -m rule --add app="^Alfred Preferences$" manage=off
 yabai -m rule --add app="Raycast" manage=off
 yabai -m rule --add app="^Music$" manage=off
+yabai -m rule --add app="^Finder$" title="Info$|^Connect to Server$|^Connecting to|^Preparing to Copy$|^Copying" manage=off
+yabai -m rule --add app="^CleanMyMac X$" manage=off
+yabai -m rule --add app="^Installer$" manage=off
