@@ -1,5 +1,6 @@
 tag,package,description
 b,kitty, main terminal emulator
+c,iterm2, dropdown terminal emulator
 b,brave-browser, brave browser
 b,slack, slack
 b,tree, shows outline of a directory

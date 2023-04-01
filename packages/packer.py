@@ -16,6 +16,8 @@ def check_install_package(package, manager, install=False):
         subprocess.run(["sudo", "-u", username, manager, "-Q", package], check=True)
     elif manager == 'brew':
         subprocess.run([manager, "list", package], check=True)
+    elif manager == 'cask':
+        subprocess.run(["brew", "list", "--cask",package], check=True)
     elif manager == 'pip':
         subprocess.run([manager, "show", package], check=True)
     elif manager == 'git':
@@ -36,6 +38,8 @@ def check_install_package(package, manager, install=False):
             subprocess.run(["sudo", "-u", username, manager, "-S", "--noconfirm", package], check=True)
         elif manager == 'brew':
             subprocess.run([manager, "install", package], check=True)
+        elif manager == 'cask':
+            subprocess.run(["brew", "install", "--cask", package], check=True)
         elif manager == 'pip':
             subprocess.run([manager, "install", package], check=True)
         elif manager == 'git':
@@ -110,3 +114,5 @@ with open(csv_file, 'r') as csvfile:
       check_install_package(package, "git", install)
     elif tag == "b" or tag == "B":
       check_install_package(package, "brew", install)
+    elif tag == "c" or tag == "C":
+      check_install_package(package, "cask", install)
