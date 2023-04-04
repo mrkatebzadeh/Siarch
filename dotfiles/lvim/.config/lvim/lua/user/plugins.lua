@@ -178,12 +178,13 @@ M.config = function()
 				require("user.orgmode").config()
 			end,
 		},
-  {
+    {
       "iamcco/markdown-preview.nvim",
       run = function() vim.fn["mkdp#util#install"]() end,
     },
     { "iamcco/markdown-preview.nvim", run = "cd app && npm install",
-      setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, }
+      setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, 
+    },
   }
 end
 
