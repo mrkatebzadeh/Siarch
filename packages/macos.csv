@@ -1,4 +1,5 @@
 tag,package,description
+b,stow, link manager
 b,kitty, main terminal emulator
 c,iterm2, dropdown terminal emulator
 b,brave-browser, brave browser
@@ -15,5 +16,10 @@ b,stylua, stylua
 b,lazydocker, lazydocker
 b,fontconfig, fontconfig
 b,raycast, alternative to spotlight
+b,asdf, tool version manager
+b,gpg, gpg
+b,gawk, gawk
+c,telegram, telegram
+c,notion, notion
 
 
