@@ -16,11 +16,13 @@ yabai -m space 10 --label social
 
 yabai -m rule --add app="^Mail$" space=mail
 yabai -m rule --add app="^Safari$" space=web
+yabai -m rule --add app="^Slack$" space=slack
 yabai -m rule --add app="^Brave$" space=web
 yabai -m rule --add app="^Notes$" space=notes
 yabai -m rule --add app="^Notion$" space=notes
 yabai -m rule --add app="^Transmission$" space=media
 yabai -m rule --add app="^Spotify$" space=media
+yabai -m rule --add app="^Telegram$" space=social
 
 yabai -m config --space mail  layout stack
 
