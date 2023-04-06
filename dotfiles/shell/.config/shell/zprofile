@@ -12,6 +12,7 @@ export TERMINAL="terminal"
 export PATH=$PATH:$HOME/.local/bin
 case "$OSTYPE" in
   linux*)
+    . /usr/local/opt/asdf/libexec/asdf.sh
     export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
     export PATH="$PATH:${$(find ~/.local/bin/ -type d -printf %p:)%%:}"
     export PATH=$PATH:~/.local/bin/dwm_scripts
@@ -30,9 +31,12 @@ case "$OSTYPE" in
   darwin*)
     # llvm path
     # libc++ LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
+    . /opt/homebrew/opt/asdf/libexec/asdf.sh
+    export PATH="/usr/local/opt/gawk/libexec/gnubin:$PATH"
     export PATH="/usr/local/opt/llvm/bin:$PATH"
     export LDFLAGS="-L/usr/local/opt/llvm/lib"
     export CPPFLAGS="-I/usr/local/opt/llvm/include"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
       ;;
   *)        echo "unknown: $OSTYPE" ;;
 esac
