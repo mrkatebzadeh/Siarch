@@ -40,7 +40,6 @@ case "$OSTYPE" in
       ;;
   *)        echo "unknown: $OSTYPE" ;;
 esac
-
 unsetopt PROMPT_SP
 
 # Default programs:
@@ -180,6 +179,7 @@ ex=🎯:\
 *.java=♨:\
 "
 
+[ -f $CARGO_HOME/env ] && source $CARGO_HOME/env
 
 case "$OSTYPE" in
   linux*)
