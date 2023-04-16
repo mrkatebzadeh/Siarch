@@ -5,6 +5,7 @@
 # If you don't plan on reverting to bash, you can remove the link in ~/.profile
 # to clean up.
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export TERMINAL="terminal"
 
@@ -31,12 +32,13 @@ case "$OSTYPE" in
   darwin*)
     # llvm path
     # libc++ LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
-    . /opt/homebrew/opt/asdf/libexec/asdf.sh
+    [ -f /opt/homebrew/opt/asdf/libexec/asdf.sh ] && source /opt/homebrew/opt/asdf/libexec/asdf.sh
+    [ -f /usr/local/opt/asdf/libexec/asdf.sh ] && source /usr/local/opt/asdf/libexec/asdf.sh
     export PATH="/usr/local/opt/gawk/libexec/gnubin:$PATH"
     export PATH="/usr/local/opt/llvm/bin:$PATH"
     export LDFLAGS="-L/usr/local/opt/llvm/lib"
     export CPPFLAGS="-I/usr/local/opt/llvm/include"
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+    [ -f /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
       ;;
   *)        echo "unknown: $OSTYPE" ;;
 esac
