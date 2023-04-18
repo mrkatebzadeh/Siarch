@@ -8,6 +8,7 @@
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export TERMINAL="terminal"
+[ -f $HOME/.config/shell/userrc ] && . $HOME/.config/shell/userrc 
 
 # Adds `~/.local/bin` to $PATH
 export PATH=$PATH:$HOME/.local/bin
@@ -27,7 +28,6 @@ case "$OSTYPE" in
     export PATH="$PATH:/opt/idea/bin/"
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/omnetpp/lib
     [ -f $HOME/.config/shell/exportsrc ] && . $HOME/.config/shell/exportsrc 
-    [ -f $HOME/.config/shell/userrc ] && . $HOME/.config/shell/userrc 
       ;;
   darwin*)
     # llvm path
