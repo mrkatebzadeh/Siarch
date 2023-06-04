@@ -35,7 +35,17 @@ M.config = function()
           highlight = "Comment",
         },
         hover_actions = {
-          border = "rounded",
+          border = {
+            { "╭", "FloatBorder" },
+            { "─", "FloatBorder" },
+            { "╮", "FloatBorder" },
+            { "│", "FloatBorder" },
+            { "╯", "FloatBorder" },
+            { "─", "FloatBorder" },
+            { "╰", "FloatBorder" },
+            { "│", "FloatBorder" },
+          },
+          auto_focus = true,
         },
         on_initialized = function()
           vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "CursorHold", "InsertLeave" }, {
@@ -55,7 +65,6 @@ M.config = function()
           local rt = require("rust-tools")
           vim.keymap.set("n", "K", rt.hover_actions.hover_actions, { buffer = bufnr })
         end,
-
         capabilities = require("lvim.lsp").common_capabilities(),
         settings = {
           ["rust-analyzer"] = {
@@ -87,7 +96,6 @@ M.config = function()
       },
     }
   end
-
 end
 
 return M
