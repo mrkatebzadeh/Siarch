@@ -14,7 +14,8 @@ local opts = {
 
 local mappings = {
   k = {
-    name = "+Rust",
+    name = "+ Rust",
+    a = { "<cmd>RustHoverActions<Cr>", "Actions" },
     r = { "<cmd>RustRunnables<Cr>", "Runnables" },
     t = { "<cmd>lua _CARGO_TEST()<cr>", "Cargo Test" },
     m = { "<cmd>RustExpandMacro<Cr>", "Expand Macro" },
