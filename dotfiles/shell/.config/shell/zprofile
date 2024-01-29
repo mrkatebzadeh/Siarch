@@ -23,7 +23,6 @@ case "$OSTYPE" in
     export PATH=$PATH:~/.local/bin/bsp_scripts
     export PATH=$PATH:~/.local/bin/hypr_scripts
     export PATH=$PATH:~/.local/bin/hyprland_scripts
-    export PATH="$PATH:/opt/flutter/bin/"
     export PATH="$PATH:/opt/omnetpp/bin/"
     export PATH="$PATH:/opt/idea/bin/"
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/omnetpp/lib
@@ -44,6 +43,7 @@ case "$OSTYPE" in
 esac
 unsetopt PROMPT_SP
 
+export PATH="$PATH:/opt/flutter/bin/"
 # Default programs:
 export EDITOR="nvim"
 export BROWSER="brave"
