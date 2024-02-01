@@ -10,7 +10,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		lazy = false,
 		opts = {
-      ensure_installed = { "clangd", "cmake", "rust_analyzer", "lua_ls"},
+      ensure_installed = { "clangd", "cmake", "rust_analyzer", "lua_ls", "texlab"},
 			auto_install = true,
 		},
 	},
@@ -23,6 +23,9 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			local lspconfig = require("lspconfig")
+			lspconfig.texlab.setup({
+				capabilities = capabilities,
+			})
 			lspconfig.tsserver.setup({
 				capabilities = capabilities,
 			})
