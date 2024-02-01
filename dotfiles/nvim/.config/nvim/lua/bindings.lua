@@ -81,7 +81,7 @@ local opts = {
 }
 
 local mappings = {
-  a = {":Alpha<CR>", "Alpha"},
+	a = { ":Alpha<CR>", "Alpha" },
 	f = {
 		name = "Files",
 		n = { ":Neotree toggle filesystem<cr>", "NeoTree" },
