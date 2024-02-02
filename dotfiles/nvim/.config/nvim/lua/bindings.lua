@@ -100,15 +100,21 @@ local mappings = {
 		W = { ":SudoWrite<CR>", "SudoWrite" },
 		E = { ":SudoEdit", "SudoEdit" },
 	},
-	["b"] = {
-		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-		"Buffers",
+	b = {
+		name = "Buffers",
+		b = {
+			"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+			"List Buffers",
+		},
+		d = { ":bp<bar>sp<bar>bn<bar>bd<CR>", "Close Buffer" },
 	},
-	["q"] = { "<cmd>qa!<CR>", "Quit" },
-	["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
+	q = { "<cmd>qa!<CR>", "Quit" },
+	P = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
+	-- git
 	g = {
 		name = "Git",
 		s = { ":LazyGit<CR>", "Lazygit" },
+		g = { ":LazyGit<CR>", "Lazygit" },
 		j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
 		k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
 		l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
@@ -134,12 +140,21 @@ local mappings = {
 		r = { vim.lsp.buf.references, "References" },
 		a = { vim.lsp.buf.code_action, "Action" },
 	},
+	-- lsp
 	l = {
 		name = "LSP",
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
+		b = {
+			"<cmd>lua require('telescope.builtin').diagnostics({bufnr=0,layout_strategy='vertical',layout_config={width=0.9, height=0.95, preview_cutoff = 0}})<cr>",
+			"Buffer Diagnostics",
+		},
 		d = {
 			"<cmd>Telescope diagnostics bufnr=0<cr>",
 			"Document Diagnostics",
+		},
+    e = {
+			"<cmd>lua require('telescope').extensions.notify.notify({bufnr=0,layout_strategy='vertical',layout_config={width=0.9, height=0.95, preview_cutoff = 0},wrap_results=true,})<cr>",
+			"Notofication History",
 		},
 		w = {
 			"<cmd>Telescope diagnostics<cr>",
@@ -167,6 +182,7 @@ local mappings = {
 		h = { vim.lsp.buf.hover, "Help" },
 		t = { ":TroubleToggle<CR>", "Trouble" },
 	},
+	-- search
 	s = {
 		name = "Search",
 		c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
@@ -179,6 +195,14 @@ local mappings = {
 		w = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", "Replace Word" },
 		f = { "<cmd>lua require('spectre').open_file_search()<cr>", "Replace Buffer" },
 	},
+	-- session
+	S = {
+		name = "Session",
+		s = { "<cmd>:SessionManager save_current_session <cr>", "Save Session" },
+		l = { "<cmd>:SessionManager load_session<cr>", "Load Session" },
+		d = { "<cmd>:SessionManager delete_session<cr>", "Delete Session" },
+	},
+	-- terminal
 	t = {
 		name = "Terminal",
 		t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
@@ -187,7 +211,13 @@ local mappings = {
 		h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
 		v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
 	},
-	-- Window
+	-- customize
+	c = {
+		name = "Customize",
+		w = { ":set wrap!<CR>", "Soft Wrap Text" },
+		z = { ":ZenMode<CR>", "ZendMode" },
+	},
+	-- window
 	w = {
 		name = "Window",
 		w = { "<C-W>w", "other-window" },
