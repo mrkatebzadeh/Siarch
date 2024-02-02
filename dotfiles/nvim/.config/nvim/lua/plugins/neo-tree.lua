@@ -98,9 +98,42 @@ return {
 			-- that will be available in all sources (if not overridden in `opts[source_name].commands`)
 			-- see `:h neo-tree-custom-commands-global`
 			commands = {},
+			icons = {
+				show = {
+					file = true,
+					folder = true,
+					folder_arrow = true,
+					git = false,
+				},
+				glyphs = {
+					default = "󰈚",
+					symlink = "",
+					folder = {
+						default = "",
+						empty = "",
+						empty_open = "",
+						open = "",
+						symlink = "",
+						symlink_open = "",
+						arrow_open = "",
+						arrow_closed = "",
+					},
+					git = {
+						unstaged = "✗",
+						staged = "✓",
+						unmerged = "",
+						renamed = "➜",
+						untracked = "★",
+						deleted = "",
+						ignored = "◌",
+					},
+				},
+			},
 			window = {
 				position = "left",
-				width = 30,
+				adaptive_size = false,
+				preserve_window_proportions = true,
+				width = 25,
 				mapping_options = {
 					noremap = true,
 					nowait = true,

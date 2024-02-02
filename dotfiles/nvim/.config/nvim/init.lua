@@ -13,5 +13,10 @@ vim.opt.rtp:prepend(lazypath)
 
 require("vim-options")
 -- require("lsp-manager")
-require("lazy").setup("plugins")
+require("lazy").setup("plugins", {
+	ui = {
+		size = { width = 0.9, height = 0.4 },
+		border = "rounded",
+	},
+})
 require("bindings")

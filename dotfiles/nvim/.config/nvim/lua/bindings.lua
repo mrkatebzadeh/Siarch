@@ -164,6 +164,7 @@ local mappings = {
 			"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
 			"Workspace Symbols",
 		},
+		h = { vim.lsp.buf.hover, "Help" },
 	},
 	s = {
 		name = "Search",
