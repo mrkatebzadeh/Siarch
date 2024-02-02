@@ -165,6 +165,7 @@ local mappings = {
 			"Workspace Symbols",
 		},
 		h = { vim.lsp.buf.hover, "Help" },
+		t = { ":TroubleToggle<CR>", "Trouble" },
 	},
 	s = {
 		name = "Search",
