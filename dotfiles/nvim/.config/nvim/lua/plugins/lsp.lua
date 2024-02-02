@@ -31,6 +31,11 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			local lspconfig = require("lspconfig")
+
+			lspconfig.verible.setup({
+				cmd = { "verible-verilog-ls", "--rules_config_search" },
+			})
+
 			lspconfig.texlab.setup({
 				capabilities = capabilities,
 			})
