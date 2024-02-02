@@ -8,12 +8,18 @@ return {
 		init = function()
 			vim.g.barbar_auto_setup = false
 		end,
-		opts = {
-			-- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
-			-- animation = true,
-			-- insert_at_start = true,
-			-- …etc.
-		},
+		opts = {},
 		version = "^1.0.0", -- optional: only update when a new 1.x version is released
+	},
+	{
+		"hedyhli/outline.nvim",
+		config = function()
+			-- Example mapping to toggle outline
+			vim.keymap.set("n", "<leader>o", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
+
+			require("outline").setup({
+				-- Your setup opts here (leave empty to use defaults)
+			})
+		end,
 	},
 }
