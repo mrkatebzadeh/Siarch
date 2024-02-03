@@ -223,6 +223,7 @@ local mappings = {
 		name = "Customize",
 		w = { ":set wrap!<CR>", "Soft Wrap Text" },
 		z = { ":ZenMode<CR>", "ZendMode" },
+		c = { "<cmd>ColorizerToggle<CR>", "Toggle Colorizer" },
 		o = { "<cmd>Outline<CR>", "Toggle Outline" },
 	},
 	-- window
