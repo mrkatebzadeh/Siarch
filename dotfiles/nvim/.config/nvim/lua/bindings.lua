@@ -1,5 +1,3 @@
-vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-
 local status_ok, which_key = pcall(require, "which-key")
 if not status_ok then
   return
@@ -232,7 +230,7 @@ local mappings = {
   -- neorg
   n = {
     name = "Neorg",
-    n = {"<cmd>Neorg workspace notes", "Notes"}
+    n = { "<cmd>Neorg workspace notes", "Notes" },
   },
   -- customize
   c = {
@@ -241,7 +239,7 @@ local mappings = {
     z = { ":ZenMode<CR>", "ZendMode" },
     c = { "<cmd>ColorizerToggle<CR>", "Toggle Colorizer" },
     o = { "<cmd>Outline<CR>", "Toggle Outline" },
-    i = { "<cmd>IBLToggle<cr>", "Indent Hints"},
+    i = { "<cmd>IBLToggle<cr>", "Indent Hints" },
   },
   -- window
   w = {
@@ -267,3 +265,32 @@ local mappings = {
 
 which_key.setup(setup)
 which_key.register(mappings, opts)
+
+opts = {
+  mode = "v",    -- NORMAL mode
+  prefix = "<leader>",
+  buffer = nil,  -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
+  noremap = true, -- use `noremap` when creating keymaps
+  nowait = true, -- use `nowait` when creating keymaps
+}
+local K = vim.keymap.set
+K("n", "K", vim.lsp.buf.hover, {})
+
+local call = require("Comment.api").call
+
+K("n", "<leader>/", call("toggle.linewise.current", "g@$"), { expr = true, desc = "Comment toggle current line" })
+
+K(
+  "x",
+  "<leader>/",
+  '<ESC><CMD>lua require("Comment.api").locked("toggle.linewise")(vim.fn.visualmode())<CR>',
+  { desc = "Comment toggle linewise (visual)" }
+)
+
+K(
+  "x",
+  "<leader>/",
+  '<ESC><CMD>lua require("Comment.api").locked("toggle.blockwise")(vim.fn.visualmode())<CR>',
+  { desc = "Comment toggle blockwise (visual)" }
+)
