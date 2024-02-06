@@ -241,6 +241,7 @@ local mappings = {
     z = { ":ZenMode<CR>", "ZendMode" },
     c = { "<cmd>ColorizerToggle<CR>", "Toggle Colorizer" },
     o = { "<cmd>Outline<CR>", "Toggle Outline" },
+    i = { "<cmd>IBLToggle<cr>", "Indent Hints"},
   },
   -- window
   w = {
