@@ -6,12 +6,11 @@ yabai -m signal --add event=window_minimized active=yes action="if \$(yabai -m q
 
 
 yabai -m config external_bar               all:35:0   
-yabai -m config mouse_follows_focus        on          
-yabai -m config focus_follows_mouse        on          
+yabai -m config mouse_follows_focus        off
+yabai -m config focus_follows_mouse        autofocus
 yabai -m config window_zoom_persist        off          
-yabai -m config insert_feedback_color      0xff9dd274   
-yabai -m config auto_padding               on           
-yabai -m config mouse_modifier             fn           
+yabai -m config auto_padding               on
+yabai -m config mouse_modifier             fn
 yabai -m config mouse_action1              move         
 yabai -m config mouse_action2              resize     
 yabai -m config mouse_drop_action          swap         
