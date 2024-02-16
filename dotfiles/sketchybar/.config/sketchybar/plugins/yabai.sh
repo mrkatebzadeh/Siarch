@@ -26,7 +26,7 @@ window_state() {
     COLOR=$MAGENTA
   else
     ICON+=$YABAI_STACK
-    COLOR=$BLUE
+    COLOR=$BAR_BORDER_COLOR
   fi
 
   args=(--bar border_color=$COLOR --animate sin 10 --set $NAME icon.color=$COLOR)
