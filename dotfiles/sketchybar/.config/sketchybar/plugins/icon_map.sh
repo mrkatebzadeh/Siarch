@@ -12,7 +12,7 @@ function icon_map() {
     icon_result=":grammarly:"
     ;;
   "kitty")
-    icon_result=":kitty:"
+    icon_result=":terminal:"
     ;;
   "ClickUp")
     icon_result=":click_up:"
