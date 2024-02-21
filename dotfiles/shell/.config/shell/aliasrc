@@ -5,6 +5,7 @@
 
 # Verbosity and settings that you pretty much just always are going to want.
 
+
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias rm="rm -v"
@@ -15,7 +16,7 @@ alias ffmpeg="ffmpeg -hide_banne"
 
 # Colorize commands when possible.
 case "$OSTYPE" in
-  linux*)   
+  linux*)
 # alias ls="ls -hN --color=auto --group-directories-first"
 # alias ll="ls -al"
 alias ls="exa"
@@ -24,7 +25,7 @@ alias grep="grep --color=auto"
 alias diff="diff --color=auto"
 alias ccat="highlight --out-format=ans"
       ;;
-  darwin*) 
+  darwin*)
 alias ls="ls -hG"
 alias ll="ls -al"
 alias grep="grep --color=auto"
@@ -34,6 +35,8 @@ alias ccat="highlight --out-format=ans"
   *)        echo "unknown: $OSTYPE" ;;
 esac
 
+# if lsd is installed alias ls, ll and tree to use lsd
+[ -x "$(command -v lsd)" ] && alias ll="lsd -al" alias tree="lsd --tree"
 
 # These common commands are just too long! Abbreviate them.
 alias ka="killall"
