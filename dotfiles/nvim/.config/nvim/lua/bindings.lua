@@ -233,7 +233,11 @@ local mappings = {
   -- neorg
   n = {
     name = "Neorg",
-    n = { "<cmd>Neorg workspace notes", "Notes" },
+    r = { "<cmd>Neorg workspace research<cr>", "Research" },
+    h = { "<cmd>Neorg workspace home<cr>", "Home" },
+    t = { "<cmd>Neorg toggle-concealer<cr>", "Toggle" },
+    g = { "<cmd>Neorg keybind all core.looking-glass.magnify-code-block<cr>", "Glass" },
+    q = { "<cmd>Neorg return<cr>", "Quit/Return" },
   },
   -- customize
   c = {

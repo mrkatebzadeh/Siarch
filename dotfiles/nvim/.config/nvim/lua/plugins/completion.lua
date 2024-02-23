@@ -211,6 +211,7 @@ return {
 				}), ]]
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
+          { name = "neorg" },
           { name = "copilot", group_index = 2 },
           { name = "luasnip" }, -- For luasnip users.
         }, {
