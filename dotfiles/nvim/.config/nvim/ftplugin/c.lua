@@ -15,14 +15,14 @@ local opts = {
 local mappings = {
   k = {
     name = "+C/C++",
-    c = {
-      name = "CMake",
-      b = { "<cmd>CMakeBuild<Cr>", "CMakeBuild" },
-      g = { "<cmd>CMakeGenerate<Cr>", "CMakeGenerate" },
-      C = { "<cmd>CMakeClean<Cr>", "CMakeClean" },
-      c = { "<cmd>CMakeClose<Cr>", "CMakeClose" },
-      o = { "<cmd>CMakeOpen<Cr>", "CMakeOpen" },
-    },
+    c = { ":Task start cmake configure<Cr>", "Configure" },
+    t = { ":Task set_module_param cmake target<Cr>", "Set Target" },
+    p = { ":Task set_task_param cmake run ", "Set Parameters" },
+    r = { ":Task start cmake run<Cr>", "Run" },
+    d = { ":Task start cmake debug<Cr>", "Debug" },
+    b = { ":Task start cmake build<Cr>", "Build" },
+    B = { ":Task start cmake build_all<Cr>", "Build All" },
+    C = { ":Task start cmake clean<Cr>", "Clean" },
     s = { ":ClangdSwitchSourceHeader<cr>", "Header/Src" },
     h = { "<cmd>HeaderguardAdd<Cr>", "Add Headerguard" },
   },

@@ -53,9 +53,9 @@ return {
 				capabilities = capabilities,
 			})
 
-      lspconfig.bashls.setup({
-        capabilities = capabilities,
-      })
+			lspconfig.bashls.setup({
+				capabilities = capabilities,
+			})
 
 			-- Clangd
 			local clangd_flags = {
