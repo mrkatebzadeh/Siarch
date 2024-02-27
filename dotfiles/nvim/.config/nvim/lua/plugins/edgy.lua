@@ -67,7 +67,7 @@ return {
       {
         ft = "Outline",
         pinned = true,
-        open = "SymbolsOutlineOpen",
+        open = "Outline",
       },
       -- any other neo-tree windows
       "neo-tree",
