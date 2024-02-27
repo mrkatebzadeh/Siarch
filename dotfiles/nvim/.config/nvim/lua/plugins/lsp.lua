@@ -57,6 +57,10 @@ return {
 				capabilities = capabilities,
 			})
 
+			lspconfig.phpactor.setup({
+				capabilities = capabilities,
+			})
+
 			-- Clangd
 			local clangd_flags = {
 				"--all-scopes-completion",
