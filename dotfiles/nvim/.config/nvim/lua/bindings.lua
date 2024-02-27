@@ -128,8 +128,7 @@ local mappings = {
       "List Buffers",
     },
     d = { ":bp<bar>sp<bar>bn<bar>bd<CR>", "Close Buffer" },
-    c = { ":cclose<CR>", "Close Quickfix" },
-    o = { ":copen<CR>", "Open Quickfix" },
+    o = { '<cmd>%bdelete|edit #|normal`"<CR>', "Delete Others" },
     t = { "<cmd>lua toggle_qf()<CR>", "Toggle Quickfix" },
   },
   q = { "<cmd>qa!<CR>", "Quit" },
@@ -150,9 +149,9 @@ local mappings = {
       "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
       "Undo Stage Hunk",
     },
-    o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-    b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-    c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
+    o = { "<cmd>Telescope git_status<cr>", "Open Changed File" },
+    b = { "<cmd>Telescope git_branches<cr>", "Checkout Branch" },
+    c = { "<cmd>Telescope git_commits<cr>", "Checkout Commit" },
     d = {
       "<cmd>Gitsigns diffthis HEAD<cr>",
       "Diff",
@@ -292,6 +291,7 @@ local mappings = {
   -- window
   w = {
     name = "Window",
+    o = { "<C-W>o", "Close Others" },
     w = { "<C-W>w", "Other" },
     d = { "<C-W>c", "Delete" },
     ["-"] = { "<C-W>s", "Split Below" },
