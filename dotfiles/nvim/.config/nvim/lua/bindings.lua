@@ -269,13 +269,15 @@ local mappings = {
 		q = { "<cmd>Neorg return<cr>", "Quit/Return" },
 	},
 	-- customize
-	c = {
-		name = "Customize",
+	o = {
+		name = "Options",
 		w = { ":set wrap!<CR>", "Soft Wrap Text" },
-		z = { ":ZenMode<CR>", "ZendMode" },
+		z = { ":ZenMode<CR>", "Zend Mode" },
 		c = { "<cmd>ColorizerToggle<CR>", "Toggle Colorizer" },
 		o = { "<cmd>Outline<CR>", "Toggle Outline" },
 		i = { "<cmd>IBLToggle<cr>", "Indent Hints" },
+		t = { "<cmd>TodoTelescope<cr>", "TODOs" },
+		u = { "<cmd>Telescope undo<cr>", "Undo" },
 	},
 	-- ChatGPT
 	C = {
