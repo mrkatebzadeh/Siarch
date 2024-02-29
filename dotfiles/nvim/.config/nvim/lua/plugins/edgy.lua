@@ -64,13 +64,16 @@ return {
         pinned = true,
         open = "Neotree position=top buffers",
       },
+
+      -- any other neo-tree windows
+      "neo-tree",
+    },
+    right = {
       {
         ft = "Outline",
         pinned = true,
         open = "Outline",
       },
-      -- any other neo-tree windows
-      "neo-tree",
     },
   },
 }
