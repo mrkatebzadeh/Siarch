@@ -44,6 +44,7 @@ return {
 				filter = function(buf)
 					return vim.b[buf].neo_tree_source == "filesystem"
 				end,
+				pinned = true,
 				size = { height = 0.5 },
 			},
 			{
