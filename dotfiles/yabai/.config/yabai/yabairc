@@ -5,15 +5,15 @@ yabai -m signal --add event=window_destroyed active=yes action="yabai -m query -
 yabai -m signal --add event=window_minimized active=yes action="if \$(yabai -m query --windows --window \$YABAI_WINDOW_ID | jq -r '.\"is-floating\"'); then yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null; fi"
 
 
-yabai -m config external_bar               all:35:0   
+yabai -m config external_bar               all:35:0
 yabai -m config mouse_follows_focus        off
 yabai -m config focus_follows_mouse        autofocus
-yabai -m config window_zoom_persist        off          
+yabai -m config window_zoom_persist        off
 yabai -m config auto_padding               on
 yabai -m config mouse_modifier             fn
-yabai -m config mouse_action1              move         
-yabai -m config mouse_action2              resize     
-yabai -m config mouse_drop_action          swap         
+yabai -m config mouse_action1              move
+yabai -m config mouse_action2              resize
+yabai -m config mouse_drop_action          swap
 
 yabai -m space 1 --label code
 yabai -m space 2 --label terminal
@@ -31,13 +31,14 @@ yabai -m rule --add app="^Zotero$" space=research
 yabai -m rule --add app="^Safari$" space=web
 yabai -m rule --add app="^Slack$" space=slack
 yabai -m rule --add app="^Brave$" space=web
+yabai -m rule --add app="^Brave Browser$" space=web
+yabai -m rule --add app="^brave$" space=web
+yabai -m rule --add app="^brave-browser$" space=web
 yabai -m rule --add app="^Notes$" space=notes
 yabai -m rule --add app="^Notion$" space=notes
 yabai -m rule --add app="^Transmission$" space=media
 yabai -m rule --add app="^Spotify$" space=media
 yabai -m rule --add app="^Telegram$" space=social
-
-yabai -m config --space mail  layout stack
 
 yabai -m config window_animation_duration   0.3
 yabai -m config window_opacity              on
