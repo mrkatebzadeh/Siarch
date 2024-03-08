@@ -23,6 +23,10 @@ L_LSP.setup = function()
         "<cmd>lua require('telescope.builtin').diagnostics({bufnr=0,layout_strategy='vertical',layout_config={width=0.9, height=0.95, preview_cutoff = 0}})<cr>",
         "Buffer Diagnostics",
       },
+      c = {
+        "<cmd>lua vim.lsp.codelens.refresh()<cr>",
+        "Codelens Refresh",
+      },
       d = {
         "<cmd>Telescope diagnostics bufnr=0<cr>",
         "Document Diagnostics",
@@ -59,6 +63,7 @@ L_LSP.setup = function()
         "Workspace Symbols",
       },
       h = { vim.lsp.buf.hover, "Help" },
+      H = { vim.lsp.buf.signature_help, "Signature Help" },
       t = { ":TroubleToggle<CR>", "Trouble" },
     },
   }
