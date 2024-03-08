@@ -29,7 +29,6 @@ O_OPTIONS.setup = function()
 			w = { "<cmd>set wrap!<CR>", "Soft Wrap Text" },
 			z = { "<cmd>ZenMode<CR>", "Zend Mode" },
 			c = { "<cmd>ColorizerToggle<CR>", "Toggle Colorizer" },
-			h = { name = "Toggle Hints" },
 			o = { "<cmd>Outline<CR>", "Toggle Outline" },
 			i = { "<cmd>IBLToggle<cr>", "Indent Hints" },
 			t = { "<cmd>TodoTelescope<cr>", "TODOs" },
