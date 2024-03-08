@@ -18,11 +18,10 @@ T_TERMINAL.setup = function()
   local mappings = {
     T = {
       name = "Terminal",
-      t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
+      h = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
       p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
-      f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
-      h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
-      v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
+      f = { "<cmd>ToggleTerm direction=float<cr>", "Float Terminal" },
+      t = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal Terminal" },
     },
   }
 
