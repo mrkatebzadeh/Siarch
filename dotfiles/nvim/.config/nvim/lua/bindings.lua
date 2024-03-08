@@ -84,6 +84,7 @@ local mappings = {
   A = { ":Alpha<CR>", "Alpha" },
   q = { "<cmd>qa!<CR>", "Quit" },
   P = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
+  H = {"<cmd>nohlsearch<cr>", "No Highlight"},
 }
 
 which_key.setup(setup)
@@ -92,7 +93,6 @@ which_key.register(mappings, opts)
 
 
 require("bindings.C_chatgpt").setup()
-require("bindings.G_goto").setup()
 require("bindings.S_session").setup()
 require("bindings.T_terminal").setup()
 require("bindings.a_assembly").setup()
@@ -101,6 +101,7 @@ require("bindings.comment").setup()
 require("bindings.d_debug").setup()
 require("bindings.f_files").setup()
 require("bindings.g_git").setup()
+require("bindings.h_goto").setup()
 require("bindings.l_lsp").setup()
 require("bindings.n_note").setup()
 require("bindings.o_options").setup()
