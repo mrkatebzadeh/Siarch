@@ -90,7 +90,7 @@ return {
 					clangdFileStatus = true,
 					clangdSemanticHighlighting = true,
 				},
-				filetypes = { "c", "h", "cpp", "cxx", "cc", "hpp" },
+				filetypes = { "c", "h", "cpp", "cxx", "cc", "hpp", "mpp" },
 				settings = {
 					["clangd"] = {
 						["compilationDatabasePath"] = "build",
