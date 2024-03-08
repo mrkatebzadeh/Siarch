@@ -83,7 +83,7 @@ local opts = {
 local mappings = {
   A = { ":Alpha<CR>", "Alpha" },
   q = { "<cmd>qa!<CR>", "Quit" },
-  p = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
+  P = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
 }
 
 which_key.setup(setup)
