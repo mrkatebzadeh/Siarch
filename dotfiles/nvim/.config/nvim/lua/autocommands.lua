@@ -87,7 +87,18 @@ vim.diagnostic.config({
 
 local icons = require("icons")
 
-vim.fn.sign_define("DiagnosticSignError", { text = icons.DiagnosticError, texthl = "DiagnosticSignError" })
-vim.fn.sign_define("DiagnosticSignWarn", { text = icons.DiagnosticWarn, texthl = "DiagnosticSignWarn" })
-vim.fn.sign_define("DiagnosticSignInfo", { text = icons.DiagnosticInfo, texthl = "DiagnosticSignInfo" })
-vim.fn.sign_define("DiagnosticSignHint", { text = icons.DiagnosticHint, texthl = "DiagnosticSignHint" })
+-- vim.fn.sign_define("DiagnosticSignError", { text = icons.DiagnosticError, texthl = "DiagnosticSignError" })
+-- vim.fn.sign_define("DiagnosticSignWarn", { text = icons.DiagnosticWarn, texthl = "DiagnosticSignWarn" })
+-- vim.fn.sign_define("DiagnosticSignInfo", { text = icons.DiagnosticInfo, texthl = "DiagnosticSignInfo" })
+-- vim.fn.sign_define("DiagnosticSignHint", { text = icons.DiagnosticHint, texthl = "DiagnosticSignHint" })
+vim.diagnostic.config({
+  signs = {
+    --support diagnostic severity / diagnostic type name
+    text = {
+      [vim.diagnostic.severity.ERROR] = icons.DiagnosticError,
+      [vim.diagnostic.severity.WARN] = icons.DiagnosticWarn,
+      [vim.diagnostic.severity.INFO] = icons.DiagnosticInfo,
+      [vim.diagnostic.severity.HINT] = icons.DiagnosticHint,
+    },
+  },
+})
