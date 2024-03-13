@@ -3,7 +3,13 @@ alt - down : yabai -m display --focus south
 alt - up : yabai -m display --focus north
 alt - right : yabai -m display --focus east
 
+cmd - left : yabai -m window --focus west
+cmd - down : yabai -m window --focus south
+cmd - up : yabai -m window --focus north
+cmd - right : yabai -m window --focus east
+
 alt + ctrl - right : WIN_ID=$(yabai -m query --windows --window | jq '.id'); yabai -m window --swap west; [[ ! $? == 0 ]] && (yabai -m display --focus west; yabai -m window last --insert east; yabai -m window --focus $WIN_ID; yabai -m window --display prev; yabai -m window --focus $WIN_ID);
+
 alt + ctrl - left : WIN_ID=$(yabai -m query --windows --window | jq '.id'); yabai -m window --swap east; [[ ! $? == 0 ]] && (yabai -m display --focus east; yabai -m window first --insert west; yabai -m window --focus $WIN_ID; yabai -m window --display next; yabai -m window --focus $WIN_ID);
 
 ctrl + cmd - 1 : yabai -m window --space 1; yabai -m space --focus 1
