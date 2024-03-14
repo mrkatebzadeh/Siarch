@@ -93,7 +93,10 @@ return {
     }
 
     require("lualine").setup({
+      extensions = { "neo-tree", "quickfix", "nvim-dap-ui" },
       options = {
+        globalstatus = false,
+        disabled_filetypes = { "alpha", "neo-tree", "Outline", "neotest-summary" },
         theme = "catppuccin",
       },
       sections = {
