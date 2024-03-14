@@ -17,9 +17,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     -- Enable completion triggered by <c-x><c-o>
     vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
-    local function desc(description)
-      return { noremap = true, silent = true, buffer = bufnr, desc = description }
-    end
 
     if client.server_capabilities.inlayHintProvider then
       vim.lsp.inlay_hint.enable(bufnr)
@@ -87,10 +84,17 @@ vim.diagnostic.config({
 
 local icons = require("icons")
 
--- vim.fn.sign_define("DiagnosticSignError", { text = icons.DiagnosticError, texthl = "DiagnosticSignError" })
--- vim.fn.sign_define("DiagnosticSignWarn", { text = icons.DiagnosticWarn, texthl = "DiagnosticSignWarn" })
--- vim.fn.sign_define("DiagnosticSignInfo", { text = icons.DiagnosticInfo, texthl = "DiagnosticSignInfo" })
--- vim.fn.sign_define("DiagnosticSignHint", { text = icons.DiagnosticHint, texthl = "DiagnosticSignHint" })
+vim.fn.sign_define("DiagnosticSignError", { text = icons.DiagnosticError, texthl = "DiagnosticSignError" })
+vim.fn.sign_define("DiagnosticSignWarn", { text = icons.DiagnosticWarn, texthl = "DiagnosticSignWarn" })
+vim.fn.sign_define("DiagnosticSignInfo", { text = icons.DiagnosticInfo, texthl = "DiagnosticSignInfo" })
+vim.fn.sign_define("DiagnosticSignHint", { text = icons.DiagnosticHint, texthl = "DiagnosticSignHint" })
+
+vim.fn.sign_define("DapBreakpoint", { text = icons.DapBreakpoint, texthl = "DiagnosticInfo" })
+vim.fn.sign_define("DapBreakpointCondition", { text = icons.DapBreakpointCondition, texthl = "DiagnosticInfo" })
+vim.fn.sign_define("DapBreakpointRejected", { text = icons.DapBreakpointRejected, texthl = "DiagnosticError" })
+vim.fn.sign_define("DapLogPoint", { text = icons.DapLogPoint, texthl = "DiagnosticInfo" })
+vim.fn.sign_define("DapStopped", { text = icons.DapStopped, texthl = "DiagnosticWarn" })
+
 vim.diagnostic.config({
   signs = {
     --support diagnostic severity / diagnostic type name

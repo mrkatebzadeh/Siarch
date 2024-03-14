@@ -18,10 +18,12 @@ D_DEBUG.setup = function()
   local mappings = {
     d = {
       name = "Debug",
-      t = { ":DapToggleBreakpoint<CR>", "Toggle Breakpoin" },
+      b = { ":DapToggleBreakpoint<CR>", "Toggle Breakpoint" },
       c = { ":DapContinue<CR>", "Continue" },
-      x = { ":DapTerminate<CR>", "Terminate" },
-      o = { ":DapStepOver<CR>", "StepOver" },
+      o = { ":DapStepOver<CR>", "Step Over" },
+      u = { ":DapStepOut<CR>", "Step Out" },
+      i = { ":DapStepInto<CR>", "Step Into" },
+      q = { ":DapTerminate<CR>", "Terminate" },
     },
   }
 
