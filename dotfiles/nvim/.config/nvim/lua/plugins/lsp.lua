@@ -39,6 +39,9 @@ return {
 			lspconfig.texlab.setup({
 				capabilities = capabilities,
 			})
+      lspconfig.nil_ls.setup({
+				capabilities = capabilities,
+			})
 			lspconfig.tsserver.setup({
 				capabilities = capabilities,
 			})
