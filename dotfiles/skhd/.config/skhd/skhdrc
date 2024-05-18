@@ -8,6 +8,9 @@ alt + shift - down : yabai -m window --display south; yabai -m display --focus s
 alt + shift - up : yabai -m window --display north; yabai -m display --focus north
 alt + shift - right : yabai -m window --display east; yabai -m display --focus east
 
+cmd + shift - left : yabai -m space --focus prev
+cmd + shift - right : yabai -m space --focus next
+
 cmd - left : yabai -m window --focus west
 cmd - down : yabai -m window --focus south
 cmd - up : yabai -m window --focus north
@@ -28,6 +31,17 @@ ctrl + cmd - 8 : yabai -m window --space 8; yabai -m space --focus 8
 ctrl + cmd - 9 : yabai -m window --space 9; yabai -m space --focus 9
 ctrl + cmd - 0 : yabai -m window --space 10; yabai -m space --focus 10
 
+alt + ctrl + cmd - 1 : yabai -m window --space 11; yabai -m space --focus 11
+alt + ctrl + cmd - 2 : yabai -m window --space 12; yabai -m space --focus 12
+alt + ctrl + cmd - 3 : yabai -m window --space 13; yabai -m space --focus 13
+alt + ctrl + cmd - 4 : yabai -m window --space 14; yabai -m space --focus 14
+alt + ctrl + cmd - 5 : yabai -m window --space 15; yabai -m space --focus 15
+alt + ctrl + cmd - 6 : yabai -m window --space 16; yabai -m space --focus 16
+alt + ctrl + cmd - 7 : yabai -m window --space 17; yabai -m space --focus 17
+alt + ctrl + cmd - 8 : yabai -m window --space 18; yabai -m space --focus 18
+alt + ctrl + cmd - 9 : yabai -m window --space 19; yabai -m space --focus 19
+alt + ctrl + cmd - 0 : yabai -m window --space 20; yabai -m space --focus 20
+
 cmd - 1 :  yabai -m space --focus 1
 cmd - 2 :  yabai -m space --focus 2
 cmd - 3 :  yabai -m space --focus 3
@@ -38,6 +52,17 @@ cmd - 7 :  yabai -m space --focus 7
 cmd - 8 :  yabai -m space --focus 8
 cmd - 9 :  yabai -m space --focus 9
 cmd - 0 :  yabai -m space --focus 10
+
+alt + cmd - 1 :  yabai -m space --focus 11
+alt + cmd - 2 :  yabai -m space --focus 12
+alt + cmd - 3 :  yabai -m space --focus 13
+alt + cmd - 4 :  yabai -m space --focus 14
+alt + cmd - 5 :  yabai -m space --focus 15
+alt + cmd - 6 :  yabai -m space --focus 16
+alt + cmd - 7 :  yabai -m space --focus 17
+alt + cmd - 8 :  yabai -m space --focus 18
+alt + cmd - 9 :  yabai -m space --focus 19
+alt + cmd - 0 :  yabai -m space --focus 20
 
 ctrl - f : yabai -m window --toggle zoom-fullscreen
 ctrl + shift - f : $HOME/.config/skhd/scripts/yabai_float.sh
