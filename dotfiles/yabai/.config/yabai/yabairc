@@ -71,6 +71,8 @@ yabai -m config auto_balance off
 yabai -m config split_ratio 0.5
 # apps to not manage (ignore)
 yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^Lightroom Classic$" opacity=1
+yabai -m rule --add app="^Brave Browser$" opacity=1
 yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^FaceTime$" manage=off
 yabai -m rule --add app="^Archive Utility$" manage=off
