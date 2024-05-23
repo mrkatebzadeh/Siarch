@@ -10,7 +10,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		lazy = false,
 		opts = {
-			ensure_installed = { "clangd", "cmake", "rust_analyzer", "lua_ls", "texlab", "bashls" },
+			ensure_installed = { "clangd", "rust_analyzer", "lua_ls", "texlab", "bashls" },
 			auto_install = true,
 		},
 	},
