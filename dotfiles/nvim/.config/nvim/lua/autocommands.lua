@@ -19,7 +19,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 
     if client.server_capabilities.inlayHintProvider then
-      vim.lsp.inlay_hint.enable(bufnr)
+      vim.lsp.inlay_hint.enable(true, {bufnr = bufnr})
       local wk = require("which-key")
       local opts = {
         mode = "n",
@@ -33,8 +33,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         o = {
           h = {
             function()
-              local current_setting = vim.lsp.inlay_hint.is_enabled(bufnr)
-              vim.lsp.inlay_hint.enable(bufnr, not current_setting)
+              local current_setting = vim.lsp.inlay_hint.is_enabled({bufnr = bufnr})
+              vim.lsp.inlay_hint.enable(not current_setting, {bufnr = bufnr})
             end,
             "Toggle Inlay Hints",
           },
