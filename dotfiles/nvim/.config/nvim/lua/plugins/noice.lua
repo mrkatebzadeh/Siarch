@@ -1,4 +1,5 @@
 return {
+--[[
 	"folke/noice.nvim",
 	version = "v3.0.2",
 	event = "VeryLazy",
@@ -182,5 +183,5 @@ return {
 				{ filter = { find = 'for "*"' }, skip = true },
 			},
 		})
-	end,
+	end, ]]
 }

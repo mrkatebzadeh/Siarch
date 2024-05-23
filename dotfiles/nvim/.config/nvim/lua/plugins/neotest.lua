@@ -4,7 +4,7 @@ return {
     "nvim-lua/plenary.nvim",
     "antoinemadec/FixCursorHold.nvim",
     "nvim-treesitter/nvim-treesitter",
-    "alfaix/neotest-gtest",
+    -- "alfaix/neotest-gtest",
     "nvim-neotest/neotest-python",
     "nvim-neotest/neotest-plenary",
     "nvim-neotest/neotest-vim-test",
@@ -13,7 +13,7 @@ return {
   config = function()
     require("neotest").setup({
       adapters = {
-        require("neotest-gtest").setup({}),
+        -- require("neotest-gtest").setup({}),
         require("neotest-rust"),
         require("neotest-python")({
           dap = { justMyCode = false },
