@@ -42,7 +42,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       }, opts)
     end
 
-    -- Auto-refresh code lenses
+   --[[  -- Auto-refresh code lenses
     if not client then
       return
     end
@@ -62,7 +62,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         buffer = bufnr,
       })
       buf_refresh_codeLens()
-    end
+    end ]]
   end,
 })
 
