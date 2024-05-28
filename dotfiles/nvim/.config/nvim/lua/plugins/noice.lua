@@ -1,5 +1,4 @@
 return {
---[[
 	"folke/noice.nvim",
 	version = "v3.0.2",
 	event = "VeryLazy",
@@ -110,7 +109,7 @@ return {
 					["cmp.entry.get_documentation"] = true,
 				},
 				hover = { enabled = true },
-				signature = { enabled = true },
+				signature = { enabled = false },
 				documentation = {
 					opts = {
 						win_options = {
@@ -183,5 +182,5 @@ return {
 				{ filter = { find = 'for "*"' }, skip = true },
 			},
 		})
-	end, ]]
+	end,
 }
