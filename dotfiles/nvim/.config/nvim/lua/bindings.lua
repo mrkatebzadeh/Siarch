@@ -4,6 +4,23 @@ if not status_ok then
 end
 
 
+function my_quit()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local buf_windows = vim.call("win_findbuf", bufnr)
+  local modified = vim.api.nvim_get_option_value("modified", { buf = bufnr })
+  if modified and #buf_windows == 1 then
+    vim.ui.input({
+      prompt = "Unwritten changes. Do you want to quit? (y/n) ",
+    }, function(input)
+
+      if input == "y" then
+        vim.cmd("qa!")
+      end
+    end)
+  else
+    vim.cmd("qa!")
+  end
+end
 
 local setup = {
   plugins = {
@@ -82,7 +99,7 @@ local opts = {
 
 local mappings = {
   A = { ":Alpha<CR>", "Alpha" },
-  q = { "<cmd>qa!<CR>", "Quit" },
+  q = { "<cmd>lua my_quit()<CR>", "Quit" },
   P = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
   H = {"<cmd>nohlsearch<cr>", "No Highlight"},
 }
