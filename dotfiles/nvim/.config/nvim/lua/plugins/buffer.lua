@@ -167,4 +167,11 @@ return {
     tag = "v1.4.5",
     opts = {},
   },
+  {
+    "lewis6991/satellite.nvim",
+    tag = "v1.0.0",
+    config = function()
+      require("satellite").setup({})
+    end,
+  },
 }
