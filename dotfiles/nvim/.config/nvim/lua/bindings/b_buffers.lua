@@ -40,6 +40,8 @@ B_BUFFERS.setup = function()
       },
       -- d = { ":bp<bar>sp<bar>bn<bar>bd<CR>", "Close Buffer" },
       d = { "<cmd>bp | bd #<cr>", "Close Buffer" },
+      h = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Harpoon Add Buffer" },
+      l = { "<cmd>Telescope harpoon marks<cr>", "Harpoon List Files" },
       o = { '<cmd>%bdelete|edit #|normal`"<CR>', "Delete Others" },
       t = { "<cmd>lua toggle_qf()<CR>", "Toggle Quickfix" },
     },
