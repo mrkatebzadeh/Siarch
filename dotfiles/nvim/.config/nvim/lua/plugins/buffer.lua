@@ -174,4 +174,11 @@ return {
       require("satellite").setup({})
     end,
   },
+  {
+    "chentoast/marks.nvim",
+    commit = "74e8d01",
+    config = function()
+      require("marks").setup({})
+    end,
+  },
 }
