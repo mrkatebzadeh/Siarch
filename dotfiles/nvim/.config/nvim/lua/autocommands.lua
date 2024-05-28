@@ -46,6 +46,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		if not client then
 			return
 		end
+
+		if not vim.tbl_contains({ "null-ls" }, client.name) then -- blacklist lsp
+			require("lsp_signature").on_attach({
+				bind = true, -- This is mandatory, otherwise border config won't get registered.
+				handler_opts = {
+					border = "rounded",
+				},
+			}, bufnr)
+		end
+
 		local function buf_refresh_codeLens()
 			vim.schedule(function()
 				if client.server_capabilities.codeLensProvider then
@@ -63,22 +73,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			})
 			buf_refresh_codeLens()
 		end
-	end,
-})
-
-vim.api.nvim_create_autocmd("LspAttach", {
-	callback = function(args)
-		local bufnr = args.buf
-		local client = vim.lsp.get_client_by_id(args.data.client_id)
-		if vim.tbl_contains({ "null-ls" }, client.name) then -- blacklist lsp
-			return
-		end
-		require("lsp_signature").on_attach({
-			bind = true, -- This is mandatory, otherwise border config won't get registered.
-			handler_opts = {
-				border = "rounded",
-			},
-		}, bufnr)
 	end,
 })
 
