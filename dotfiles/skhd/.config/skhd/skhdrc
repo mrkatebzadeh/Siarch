@@ -68,7 +68,7 @@ ctrl - f : yabai -m window --toggle zoom-fullscreen
 ctrl + shift - f : $HOME/.config/skhd/scripts/yabai_float.sh
 
 cmd - return : index=$(yabai -m query --displays --display | jq .index) && \
-                    /Applications/Kitty.app/Contents/MacOS/kitty --instance-group=$index --single-instance -d ~
+                    $(which kitty) --instance-group=$index --single-instance -d ~
 
 
 cmd + shift - return : $HOME/.config/skhd/scripts/kitty_float.sh

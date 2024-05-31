@@ -68,17 +68,9 @@
 
         # The platform the configuration will be used on.
         nixpkgs.hostPlatform = "aarch64-darwin";
-        services = {
-          sketchybar = {
-            enable = true;
-          };
-          yabai = {
-            enable = true;
-          };
-          skhd = {
-            enable = true;
-          };
-        };
+        services.yabai.enable = true;
+        services.skhd.enable = true;
+        services.sketchybar.enable = true;
       };
     in
     {

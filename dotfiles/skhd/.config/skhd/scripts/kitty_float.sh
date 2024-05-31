@@ -4,7 +4,7 @@ WINDOW_ID=$(yabai -m query --windows | jq -e ".[] | select(.title==\"$WINDOW_TIT
 if [[ -z "$WINDOW_ID" ]]; then
     pgrep -x kitty >/dev/null &&
         kitty @ new-window --title "$WINDOW_TITLE" ||
-        open -na /Applications/Kitty.app --args --title "$WINDOW_TITLE"
+        open -na $(which kitty) --args --title "$WINDOW_TITLE"
 else
     WINDOW_QUERY=$(yabai -m query --windows --window "$WINDOW_ID")
     IS_HIDDEN=$(echo "$WINDOW_QUERY" | jq '."is-hidden"')
