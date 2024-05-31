@@ -65,7 +65,7 @@ yabai -m config top_padding    15
 yabai -m config bottom_padding 5
 yabai -m config left_padding   10
 yabai -m config right_padding  10
-yabai -m config window_gap     10
+yabai -m config window_gap     15
 
 yabai -m config auto_balance off
 yabai -m config split_ratio 0.5
@@ -87,3 +87,4 @@ yabai -m rule --add app="^Music$" manage=off
 yabai -m rule --add app="^Finder$" title="Info$|^Connect to Server$|^Connecting to|^Preparing to Copy$|^Copying" manage=off
 yabai -m rule --add app="^CleanMyMac X$" manage=off
 yabai -m rule --add app="^Installer$" manage=off
+borders &
