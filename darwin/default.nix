@@ -130,6 +130,8 @@ in {
       "brave-browser"
     ];
     taps = [ ];
-    brews = [ ];
+    brews = [
+      "gnu-sed"
+    ];
   };
 }
