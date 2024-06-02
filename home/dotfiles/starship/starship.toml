@@ -60,7 +60,7 @@ format = '[$all_status]($style)'
 style = "yellow"
 
 [git_metrics]
-format = "([ +$added]($added_style))[ -$deleted]($deleted_style)"
+format = "([ +$added]($added_style))([ -$deleted]($deleted_style))"
 added_style = "green"
 deleted_style = "red"
 disabled = false
