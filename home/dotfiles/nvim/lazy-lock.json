@@ -61,6 +61,7 @@
   "nvim-metals": { "branch": "main", "commit": "4f9bf0c821092f20dd34c1a4ea5b07b0500ff089" },
   "nvim-navic": { "branch": "master", "commit": "8649f694d3e76ee10c19255dece6411c29206a54" },
   "nvim-notify": { "branch": "master", "commit": "d333b6f167900f6d9d42a59005d82919830626bf" },
+  "nvim-nu": { "branch": "main", "commit": "64e1677db3319ec5900afa666a2c85c31adc0705" },
   "nvim-spectre": { "branch": "master", "commit": "d958cc3ea8b3fb2f0922dff6177630a40751a3a9" },
   "nvim-surround": { "branch": "main", "commit": "703ec63aa798e5e07d309b35e42def34bebe0174" },
   "nvim-treesitter": { "branch": "master", "commit": "f197a15b0d1e8d555263af20add51450e5aaa1f0" },

@@ -5,7 +5,9 @@ format = """\
 $os\
 $username\
 $hostname\
-[ ──────](bold green)\
+[ ──── ](bold green)\
+$shell\
+[────](bold green)\
 $time\
 $cmd_duration
 [│](bold green)\
@@ -16,6 +18,10 @@ $git_metrics
 [└─](bold green)\
 $character
 """
+
+[shell]
+style = 'cyan bold'
+disabled = false
 
 [username]
 format = '[$user@]($style)'
