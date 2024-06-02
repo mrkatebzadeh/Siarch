@@ -97,6 +97,7 @@ in {
       ShowStatusBar = true;
       FXEnableExtensionChangeWarning = false;
       FXDefaultSearchScope = "SCcf";
+      CreateDesktop = false;
     };
     "com.apple.mail" = {
       DisableInlineAttachmentViewing = true;

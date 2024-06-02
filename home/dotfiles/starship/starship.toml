@@ -1,13 +1,13 @@
 palette = "catppuccin_macchiato"
 
 format = """\
-[┌────── ](bold green)\
+[╭── ](bold green)\
 $os\
 $username\
 $hostname\
-[ ──── ](bold green)\
+[ ─── ](bold green)\
 $shell\
-[────](bold green)\
+[───](bold green)\
 $time\
 $cmd_duration
 [│](bold green)\
@@ -15,7 +15,7 @@ $directory\
 $git_branch\
 $git_status\
 $git_metrics
-[└─](bold green)\
+[╰─](bold green)\
 $character
 """
 
@@ -48,7 +48,7 @@ Arch = "󰣇 "
 Ubuntu = "󰕈 "
 
 [directory]
-format = "[$path ]($style)"
+format = "[ $path ]($style)"
 style = "teal"
 
 [git_branch]
