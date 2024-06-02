@@ -1,0 +1,7 @@
+#!/bin/sh
+export SHELL=/bin/zsh
+
+ZSHRC=~/.config/zsh/zshrc
+if [ -r $ZSHRC  ]; then
+    source $ZSHRC
+fi

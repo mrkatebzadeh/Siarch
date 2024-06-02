@@ -1,0 +1,15 @@
+#!/bin/sh
+
+bindkey '^ ' autosuggest-accept
+
+bindkey -s '^o' 'lfcd\n'
+
+bindkey  '^a' beginning-of-line
+
+bindkey  '^e' vi-end-of-line
+
+bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
+
+bindkey '^[[P' delete-char
+
+bindkey -s '^x' '^usource ${ZDOTDIR:-$HOME}/zshrc\n'

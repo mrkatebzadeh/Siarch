@@ -1,0 +1,39 @@
+#!/bin/sh
+
+# xinitrc runs automatically when you run startx.
+
+# There are some small but important commands that need to be run when we start
+# the graphical environment. There is a link to this file in ~/.xprofile
+# because that file is run automatically if someone uses a display manager
+# (login screen) and so they are needed there. To prevent doubling up commands,
+# I source them here with the line below.
+
+if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile" ]; then
+	. "${XDG_CONFIG_HOME:-$HOME/.config}/x11/xprofile"
+else
+	. "$HOME/.xprofile"
+fi
+
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export SSH_AUTH_SOCK
+
+export RUNNING_WM=bspwm
+export KEYLANG=$(cat /etc/siarch/xkeylang)
+export KEYMODEL=$(cat /etc/siarch/xkeymodel)
+
+case "$RUNNING_WM" in
+i3)
+	exec i3
+	;;
+dwm)
+	killall -9 dunst sxhkd deadd-notification-center picom sxhkd
+	setbg &
+	picom &
+	sxhkd &
+	dunst &
+	ssh-agent dwm
+	;;
+bspwm)
+	ssh-agent bspwm
+	;;
+esac

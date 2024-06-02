@@ -1,7 +1,0 @@
-{
-    "diagnostics.globals": [
-        "vim",
-        "toggle_qf"
-    ],
-    "workspace.checkThirdParty": false
-}
