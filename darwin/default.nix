@@ -13,6 +13,7 @@
       fzf
       gawk
       git
+      git-filter-repo
       gpg-tui
       htop
       jadx

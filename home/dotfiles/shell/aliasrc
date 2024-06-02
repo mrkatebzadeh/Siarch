@@ -1,10 +1,9 @@
 #!/bin/sh
 
 # Use neovim for vim if present.
-[ -x "$(command -v nvim)" ] && alias vim="nvim -u ~/.config/nvim/simple_init.lua" vimdiff="nvim -u ~/.config/nvim/simple_init.lua -d"
+[ -x "$(command -v nvim)" ] && alias vim="nvim -u $HOME/.config/nvim/simple_init.lua" vimdiff="nvim -u $HOME/.config/nvim/simple_init.lua -d"
 
 # Verbosity and settings that you pretty much just always are going to want.
-
 
 alias cp="cp -iv"
 alias mv="mv -iv"
@@ -14,29 +13,14 @@ alias yt="youtube-dl --add-metadata -i"
 alias yta="yt -x -f bestaudio/best"
 alias ffmpeg="ffmpeg -hide_banne"
 
-# Colorize commands when possible.
-case "$OSTYPE" in
-  linux*)
-# alias ls="ls -hN --color=auto --group-directories-first"
-# alias ll="ls -al"
-alias ls="exa"
-alias ll="exa -al"
-alias grep="grep --color=auto"
-alias diff="diff --color=auto"
-alias ccat="highlight --out-format=ans"
-      ;;
-  darwin*)
-alias ls="lsd --icon never"
-alias ll="ls -al"
-alias grep="grep --color=auto"
-alias diff="diff --color=auto"
-alias ccat="highlight --out-format=ans"
-      ;;
-  *)        echo "unknown: $OSTYPE" ;;
-esac
-
 # if lsd is installed alias ls, ll and tree to use lsd
-[ -x "$(command -v lsd)" ] && alias ll="lsd -al" alias tree="lsd --tree"
+[ -x "$(command -v lsd)" ] && alias ls="lsd --icon never" alias ll="lsd -al" alias tree="lsd --tree"
+
+alias grep="grep --color=auto"
+alias diff="diff --color=auto"
+alias ccat="highlight --out-format=ans"
+alias ll="ls -al"
+
 
 # These common commands are just too long! Abbreviate them.
 alias ka="killall"
@@ -44,15 +28,6 @@ alias g="git"
 alias trem="transmission-remote"
 alias YT="youtube-viewer"
 alias sdn="sudo shutdown -h now"
-alias f="$FILE"
-alias e="$EDITOR"
-alias v="$EDITOR"
-alias vi="$EDITOR"
-alias p="sudo pacman"
-alias xi="sudo xbps-install"
-alias xr="sudo xbps-remove -R"
-alias xq="xbps-query"
-alias z="zathur"
 alias pacfuz="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
 
 alias magit="nvim -c MagitOnly"
