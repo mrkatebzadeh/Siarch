@@ -1,0 +1,107 @@
+palette = "catppuccin_macchiato"
+
+format = """\
+[┌────── ](bold green)\
+$os\
+$username\
+$hostname\
+[ ──────](bold green)\
+$time\
+$cmd_duration
+[│](bold green)\
+$directory\
+$git_branch\
+$git_status\
+$git_metrics
+[└─](bold green)\
+$character
+"""
+
+[username]
+format = '[$user@]($style)'
+style_user = "bold green text"
+style_root = "bold red text"
+show_always = true
+
+[hostname]
+ssh_only = false
+format = "[$hostname]($style)"
+trim_at = "-"
+style = "flamingo text"
+disabled = false
+
+[os]
+format = "[$symbol]($style)"
+style = "green text"
+disabled = false
+
+[os.symbols]
+Windows = " "
+Macos = "󰀵 "
+Arch = "Arch is the best! "
+
+[directory]
+format = "[$path ]($style)"
+style = "teal"
+
+[git_branch]
+format = '[ $symbol$branch(:$remote_branch) ]($style)'
+symbol = "  "
+style = "yellow"
+
+[git_status]
+format = '[$all_status]($style)'
+style = "yellow"
+
+[git_metrics]
+format = "([ +$added]($added_style))[ -$deleted]($deleted_style)"
+added_style = "green"
+deleted_style = "red"
+disabled = false
+
+[hg_branch]
+format = "[ $symbol$branch ]($style)"
+symbol = " "
+
+[cmd_duration]
+format = "[  $duration ]($style)"
+style = "fg:bright-white "
+
+[character]
+success_symbol = '[➜](bold green)'
+vimcmd_symbol = '[➜](bold green)'
+error_symbol = '[✗](bold red)'
+
+[time]
+disabled = false
+time_format = "%R"
+style = "pink"
+format = '[[ 󱑍 $time ](pink)]($style)'
+
+[palettes.catppuccin_macchiato]
+rosewater = "#f4dbd6"
+flamingo = "#f0c6c6"
+pink = "#f5bde6"
+mauve = "#c6a0f6"
+red = "#ed8796"
+maroon = "#ee99a0"
+peach = "#f5a97f"
+yellow = "#eed49f"
+green = "#a6da95"
+teal = "#8bd5ca"
+sky = "#91d7e3"
+sapphire = "#7dc4e4"
+blue = "#8aadf4"
+lavender = "#b7bdf8"
+text = "#cad3f5"
+subtext1 = "#b8c0e0"
+subtext0 = "#a5adcb"
+overlay2 = "#939ab7"
+overlay1 = "#8087a2"
+overlay0 = "#6e738d"
+surface2 = "#5b6078"
+surface1 = "#494d64"
+surface0 = "#363a4f"
+base = "#24273a"
+mantle = "#1e2030"
+crust = "#181926"

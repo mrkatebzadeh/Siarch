@@ -1,4 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let wallpaper_path = "~/.siarch/home/dotfiles/share/backgrounds/wall.jpg";
+in {
   environment = {
     shells = with pkgs; [ bash zsh ];
     loginShell = pkgs.zsh;
@@ -64,8 +66,6 @@
   '';
   system.keyboard.enableKeyMapping = true;
   system.keyboard.remapCapsLockToEscape = true;
-  # fonts.fontDir.enable = true; # DANGER
-  # fonts.fonts = [ (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; }) ];
   services.nix-daemon.enable = true;
   system.defaults.CustomUserPreferences = {
     trackpad = {
@@ -82,6 +82,7 @@
     NSGlobalDomain = {
       WebKitDeveloperExtras = true;
       InitialKeyRepeat = 14;
+      AppleInterfaceStyle = "Dark";
       KeyRepeat = 5;
     };
     "com.apple.dock" = {
@@ -115,6 +116,7 @@
   };
   system.activationScripts.postUserActivation.text = ''
     /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+    /usr/bin/osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"${wallpaper_path}\" as POSIX file"
   '';
   system.stateVersion = 4;
   homebrew = {
