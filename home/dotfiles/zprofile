@@ -18,7 +18,6 @@ export TERMINAL="terminal"
 export PATH=$PATH:$HOME/.local/bin
 case "$OSTYPE" in
   linux*)
-    . /usr/local/opt/asdf/libexec/asdf.sh
     export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
     export PATH="$PATH:${$(find ~/.local/bin/ -type d -printf %p:)%%:}"
     export PATH=$PATH:~/.local/bin/dwm_scripts

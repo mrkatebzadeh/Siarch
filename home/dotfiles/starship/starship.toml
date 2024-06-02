@@ -44,7 +44,8 @@ disabled = false
 [os.symbols]
 Windows = " "
 Macos = "󰀵 "
-Arch = "Arch is the best! "
+Arch = "󰣇 "
+Ubuntu = "󰕈 "
 
 [directory]
 format = "[$path ]($style)"
