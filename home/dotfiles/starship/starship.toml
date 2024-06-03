@@ -31,7 +31,8 @@ show_always = true
 
 [hostname]
 ssh_only = false
-format = "[$hostname]($style)"
+format = "[$hostname$ssh_symbol]($style)"
+ssh_symbol = " 󰖟"
 trim_at = "-"
 style = "flamingo text"
 disabled = false
