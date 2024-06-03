@@ -1,5 +1,9 @@
 #!/bin/zsh
 
+if [ -r $HOME/.nix-profile/bin  ]; then
+    export PATH=$PATH:$HOME/.nix-profile/bin
+fi
+
 # profile file. Runs on login. Environmental variables are set here.
 ZSHRC=~/.config/zsh/zshrc
 if [ -r $ZSHRC  ]; then
