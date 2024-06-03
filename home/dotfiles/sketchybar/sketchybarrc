@@ -16,7 +16,7 @@ killall helper
 $CONFIG_DIR/helper/helper $HELPER > /dev/null 2>&1 &
 
 # Unload the macOS on screen indicator overlay for volume change
-launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist > /dev/null 2>&1 &
+# launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist > /dev/null 2>&1 &
 
 sketchybar -m add event window_focus
 sketchybar -m add event title_change
@@ -86,6 +86,7 @@ source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/github.sh"
 source "$ITEM_DIR/wifi.sh"
 source "$ITEM_DIR/volume.sh"
+source "$ITEM_DIR/airpods.sh"
 # source "$ITEM_DIR/cpu.sh"
 # source "$ITEM_DIR/svim.sh"
 
