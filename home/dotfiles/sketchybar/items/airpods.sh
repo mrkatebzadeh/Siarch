@@ -1,12 +1,10 @@
 #!/bin/bash
-BLUETOOTH_EVENT="com.airpodsbluetooth.status"
 POPUP_OFF='sketchybar --set airpods popup.drawing=off'
 POPUP_CLICK_SCRIPT='sketchybar --set $NAME popup.drawing=toggle'
 
 airpods_charge=(
   label="$($PLUGIN_DIR/airpods_menu.sh)"
 )
-sketchybar --add event bluetooth_update $BLUETOOTH_EVENT
 
 airpods=(
 	icon.font="$FONT:Black:16.0"
@@ -24,7 +22,6 @@ sketchybar --add item airpods right \
 	--set airpods "${airpods[@]}"\
 	--add item airpods.charge popup.airpods \
 	--set airpods.charge "${airpods_charge[@]}" \
-	--subscribe airpods bluetooth_update volume_change
+	--subscribe airpods bluetooth_change
 
-sketchybar --add bracket status brew github.bell wifi volume_icon airpods --set status "${status_bracket[@]}" \
-	--subscribe status bluetooth_update volume_change
+sketchybar --add bracket status brew github.bell wifi volume_icon airpods --set status "${status_bracket[@]}"
