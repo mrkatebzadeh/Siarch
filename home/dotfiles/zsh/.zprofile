@@ -19,7 +19,7 @@ export TERMINAL="terminal"
 [ -f $HOME/.config/shell/userrc ] && . $HOME/.config/shell/userrc
 
 # Adds `~/.local/bin` to $PATH
-export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.local/bin:$HOME/.local/bin/scripts
 case "$OSTYPE" in
   linux*)
     export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"

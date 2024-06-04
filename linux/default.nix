@@ -10,14 +10,15 @@
     abook
     asdf-vm
     atool
+    wofi
     bc
     brave
     btop
     curl
-    dmenu
+    #dmenu
     dosfstools
     dunst
-    dwm
+    #dwm
     dwmblocks
     emacs
     exfat
@@ -26,12 +27,15 @@
     fontconfig
     fzf
     gawk
+    clang
     git
     git-filter-repo
     gnome.gnome-keyring
     gpg-tui
     highlight
+		i3
     htop
+		waybar
     jadx
     kitty
     lazydocker
@@ -63,6 +67,8 @@
     slack
     slock
     st
+    libertine
+    killall
     starship
     stow
     stylua
@@ -89,7 +95,13 @@
     zathura
     zellij
     zsh
+  noto-fonts
+  noto-fonts-cjk
+  noto-fonts-emoji
+  liberation_ttf
   ];
+
+    fonts.fontconfig.enable = true;
 
   home.file = { };
   home.sessionVariables = { };
