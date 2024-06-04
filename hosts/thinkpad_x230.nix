@@ -1,5 +1,5 @@
 { config, pkgs, outputs, ... }:
-let common = import ./common_pkgs.nix {inherit pkgs;};
+let common = import ./common_pkgs.nix { inherit pkgs; };
 in
 {
   home.username = "siavash";
@@ -32,8 +32,8 @@ in
     gnome.gnome-keyring
     gpg-tui
     highlight
-		i3
-		waybar
+    i3
+    waybar
     lf
     libnotify
     lynx
@@ -76,7 +76,7 @@ in
     noto-fonts-emoji
     liberation_ttf
   ] ++
-    common.packages;
+  common.packages;
 
   fonts.fontconfig.enable = true;
 

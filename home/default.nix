@@ -13,8 +13,8 @@ in
     EDITOR = "nvim";
   };
   home.file.".profile".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/profile";
-  # home.file.".zprofile".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/zprofile";
-  # home.file.".zshrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/zshrc";
+  home.file.".zprofile".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/zsh/.zprofile";
+  home.file.".zshrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/zsh/.zshrc";
 
   xdg.configFile."alacritty".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/alacritty";
   xdg.configFile."borders".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/borders";

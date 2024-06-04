@@ -1,7 +1,17 @@
-{ pkgs, ... }:
-let wallpaper_path = "~/.siarch/home/dotfiles/share/backgrounds/wall.jpg";
-let common = import ./common_pkgs.nix {inherit pkgs;};
-in {
+{ outputs, pkgs, ... }:
+let
+  wallpaper_path = "~/.siarch/home/dotfiles/share/backgrounds/wall.jpg";
+  common = import ./common_pkgs.nix { inherit pkgs; };
+in
+{
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.unstable-packages
+    ];
+    config = {
+      allowUnfree = true;
+    };
+  };
   environment = {
     shells = with pkgs; [ bash zsh ];
     loginShell = pkgs.zsh;

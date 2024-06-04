@@ -18,7 +18,7 @@
     hardware.url = "github:nixos/nixos-hardware";
   };
 
-  outputs = inputs@{self, nixpkgs-unstable, nixpkgs, home-manager, nix-darwin, ... }:
+  outputs = inputs@{ self, nixpkgs-unstable, nixpkgs, home-manager, nix-darwin, ... }:
     let
       username = "siavash";
       inherit (self) outputs;
@@ -52,7 +52,8 @@
       overlays = import ./overlays { inherit inputs; };
 
       homeConfigurations = {
-        thinkpad = mkHome [ ./hosts/thinkpad_x230.nix
+        thinkpad = mkHome [
+          ./hosts/thinkpad_x230.nix
           ./home
           {
             home = {
@@ -75,7 +76,22 @@
             };
           };
           system = "aarch64-darwin";
-          modules = [ ./hosts/macbookair.nix ];
+          modules = [
+            ./hosts/macbookair.nix
+            home-manager.darwinModules.home-manager
+            {
+              users.users.${username} = {
+                name = username;
+                home = "/Users/${username}";
+              };
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = { };
+                users.${username}.imports = [ ./home ];
+              };
+            }
+          ];
         };
       };
 
