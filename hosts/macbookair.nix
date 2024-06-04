@@ -1,54 +1,20 @@
 { pkgs, ... }:
 let wallpaper_path = "~/.siarch/home/dotfiles/share/backgrounds/wall.jpg";
+let common = import ./common_pkgs.nix {inherit pkgs;};
 in {
   environment = {
     shells = with pkgs; [ bash zsh ];
     loginShell = pkgs.zsh;
     systemPackages = with pkgs; [
-      asdf-vm
-      btop
-      coreutils
-      curl
-      emacs
-      fd
-      fontconfig
-      fzf
-      gawk
-      git
-      git-filter-repo
-      gpg-tui
-      htop
-      jadx
-      kitty
-      lazydocker
-      lazygit
-      less
-      lsd
-      nix-search-cli
-      nushell
-      python311Packages.pynvim
-      ripgrep
-      slack
-      starship
-      stow
-      stylua
-      telegram-desktop
-      tree-sitter
       unstable.jankyborders
       unstable.jq
       unstable.neovim
       unstable.sketchybar
       unstable.skhd
       unstable.yabai
-      vim
-      wget
-      zellij
-    ];
+    ] ++ common.packages;
     systemPath = [ "/opt/homebrew/bin" ];
     pathsToLink = [ "/Applications" ];
-    variables = {
-      FONTCONFIG_PATH = "~/.config/fontconfig";
-    };
   };
   fonts.fontDir.enable = true;
   fonts.fonts = [

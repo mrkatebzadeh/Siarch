@@ -4,62 +4,55 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nix-darwin.url = "github:lnl7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
+    home-manager = {
+      url = "github:nix-community/home-manager/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-darwin = {
+      url = "github:lnl7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hardware.url = "github:nixos/nixos-hardware";
   };
 
-  outputs = inputs@{ nixpkgs-unstable, nixpkgs, home-manager, nix-darwin, ... }:
+  outputs = inputs@{self, nixpkgs-unstable, nixpkgs, home-manager, nix-darwin, ... }:
     let
       username = "siavash";
-      unstable-packages = final: _prev: {
-        unstable = import inputs.nixpkgs-unstable {
-          system = final.system;
-          config.allowUnfree = true;
+      inherit (self) outputs;
+      systems = [
+        "aarch64-linux"
+        "i686-linux"
+        "x86_64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
+
+      forAllSystems = nixpkgs.lib.genAttrs systems;
+
+      mkNixos = modules:
+        nixpkgs.lib.nixosSystem {
+          inherit modules;
+          specialArgs = { inherit inputs outputs; };
         };
-      };
+      mkHome = modules: pkgs:
+        home-manager.lib.homeManagerConfiguration {
+          inherit modules pkgs;
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
+
     in
     {
-      darwinConfigurations.SiAir = nix-darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        pkgs = import nixpkgs {
-          config = { allowUnfree = true; };
-          overlays = [
-            unstable-packages
-          ];
-          system = "aarch64-darwin";
-        };
+      packages =
+        forAllSystems (system: nixpkgs.legacyPackages.${system});
+      formatter =
+        forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt);
+      overlays = import ./overlays { inherit inputs; };
 
-        modules = [
-          ./darwin
-          home-manager.darwinModules.home-manager
-          {
-            users.users.${username} = {
-              name = username;
-              home = "/Users/${username}";
-            };
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = { };
-              users.${username}.imports = [ ./home ];
-            };
-          }
-        ];
-      };
-
-      homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
-          config = { allowUnfree = true; };
-          overlays = [
-            unstable-packages
-          ];
-          system = "x86_64-linux";
-        };
-
-        modules = [
-          ./linux
+      homeConfigurations = {
+        thinkpad = mkHome [ ./hosts/thinkpad_x230.nix
           ./home
           {
             home = {
@@ -68,9 +61,27 @@
               stateVersion = "22.11";
             };
           }
-        ];
-
+        ]
+          nixpkgs.legacyPackages."x86_64-linux";
       };
 
+      darwinConfigurations = {
+        macbookair = nix-darwin.lib.darwinSystem {
+          specialArgs = {
+            inherit inputs outputs;
+            pkgs-unstable = import nixpkgs-unstable {
+              system = "aarch64-darwin";
+              config.allowUnfree = true;
+            };
+          };
+          system = "aarch64-darwin";
+          modules = [ ./hosts/macbookair.nix ];
+        };
+      };
+
+      homeConfigurations = {
+        homelab = mkHome [ ./hosts/homelab.nix ]
+          nixpkgs.legacyPackages."x86_64-linux";
+      };
     };
 }
