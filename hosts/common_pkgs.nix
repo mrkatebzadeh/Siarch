@@ -1,5 +1,7 @@
 { pkgs, ... }: {
   packages = with pkgs; [
+    dbus
+    nerdfonts
     asdf-vm
     atuin
     btop
