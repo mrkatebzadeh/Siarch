@@ -65,7 +65,20 @@
         ]
           nixpkgs.legacyPackages."x86_64-linux";
       };
-
+      homeConfigurations = {
+        cloudlab = mkHome [
+          ./hosts/cloudlab.nix
+          ./home
+          {
+            home = {
+              username = username;
+              homeDirectory = "/users/${username}";
+              stateVersion = "22.11";
+            };
+          }
+        ]
+          nixpkgs.legacyPackages."x86_64-linux";
+      };
       darwinConfigurations = {
         macbookair = nix-darwin.lib.darwinSystem {
           specialArgs = {
