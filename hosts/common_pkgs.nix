@@ -26,6 +26,7 @@
     starship
     stow
     stylua
+    tealdeer
     telegram-desktop
     tree-sitter
     wget
