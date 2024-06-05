@@ -21,6 +21,7 @@ in
     clang
     dosfstools
     fd
+    flamegraph
     highlight
     killall
     lf
