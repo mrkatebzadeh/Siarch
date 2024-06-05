@@ -1,16 +1,24 @@
-{ config, pkgs, ... }:
-
+{ config, pkgs, outputs, ... }:
+let common = import ./common_pkgs.nix { inherit pkgs; };
+in
 {
   home.username = "siavash";
   home.homeDirectory = "/home/siavash";
 
   home.stateVersion = "22.11";
 
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.unstable-packages
+    ];
+    config = {
+      allowUnfree = true;
+    };
+  };
   home.packages = with pkgs; [
-    import ./common_pkgs.nix
-    wofi
     bc
     brave
+    clang
     dmenu
     dosfstools
     dunst
@@ -19,13 +27,13 @@
     exfat
     fd
     ffmpeg
-    clang
     gnome.gnome-keyring
     gpg-tui
     highlight
-		i3
-		waybar
+    i3
+    killall
     lf
+    liberation_ttf
     libnotify
     lynx
     maim
@@ -37,6 +45,9 @@
     mutt-wizard
     ncmpcpp
     newsboat
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
     ntfs3g
     poppler
     pulseaudio
@@ -45,12 +56,13 @@
     simple-mtpfs
     slock
     st
-    killall
     taskspooler
     unclutter
     unrar
     unstable.neovim
     unzip
+    waybar
+    wofi
     xcape
     xdotool
     xorg.xbacklight
@@ -62,13 +74,9 @@
     xwallpaper
     youtube-dl
     zathura
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    liberation_ttf
-  ];
+  ] ++ common.packages;
 
-    fonts.fontconfig.enable = true;
+  fonts.fontconfig.enable = true;
 
   home.file = { };
   home.sessionVariables = { };

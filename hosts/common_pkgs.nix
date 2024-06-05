@@ -1,32 +1,34 @@
-{pkgs, ...} : {
+{ pkgs, ... }: {
   packages = with pkgs; [
-      asdf-vm
-      btop
-      coreutils
-      curl
-      fd
-      fontconfig
-      fzf
-      gawk
-      git-filter-repo
-      gpg-tui
-      htop
-      kitty
-      lazydocker
-      lazygit
-      less
-      lsd
-      nix-search-cli
-      nushell
-      python311Packages.pynvim
-      ripgrep
-      slack
-      starship
-      stow
-      stylua
-      telegram-desktop
-      tree-sitter
-      wget
-      zellij
+    asdf-vm
+    atuin
+    btop
+    coreutils
+    curl
+    dust
+    fd
+    fontconfig
+    fzf
+    gawk
+    git-filter-repo
+    gpg-tui
+    htop
+    kitty
+    lazydocker
+    lazygit
+    less
+    lsd
+    nix-search-cli
+    nushell
+    python311Packages.pynvim
+    ripgrep
+    slack
+    starship
+    stow
+    stylua
+    telegram-desktop
+    tree-sitter
+    wget
+    zellij
   ];
 }
