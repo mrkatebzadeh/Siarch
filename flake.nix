@@ -74,6 +74,8 @@
               username = username;
               homeDirectory = "/users/${username}";
               stateVersion = "22.11";
+
+
             };
           }
         ]
@@ -93,6 +95,7 @@
             ./hosts/macbookair.nix
             home-manager.darwinModules.home-manager
             {
+              backupFileExtension = "backup";
               users.users.${username} = {
                 name = username;
                 home = "/Users/${username}";
