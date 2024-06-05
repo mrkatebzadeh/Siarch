@@ -1,7 +1,6 @@
 palette = "catppuccin_macchiato"
 
-format = """\
-[╭── ](bold green)\
+format = """[╭── ](bold green)\
 $os\
 $username\
 $hostname\
@@ -47,6 +46,7 @@ Windows = " "
 Macos = "󰀵 "
 Arch = "󰣇 "
 Ubuntu = "󰕈 "
+NixOS = " "
 
 [directory]
 format = "[ $path ]($style)"
