@@ -6,11 +6,6 @@
 let common = import ./common_pkgs.nix { inherit pkgs; };
 in
 {
-  home.username = "siavash";
-  home.homeDirectory = "/users/siavash";
-
-  home.stateVersion = "22.11";
-
   nixpkgs = {
     overlays = [
       outputs.overlays.unstable-packages
@@ -22,24 +17,27 @@ in
 
   home.packages = with pkgs; [
     bc
+    cargo
+    clang
     dosfstools
     fd
-    clang
     highlight
+    killall
     lf
+    liberation_ttf
     lynx
     man
+    nodejs
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
     poppler
+    rustc
     sc-im
-    killall
     taskspooler
     unrar
     unstable.neovim
     unzip
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    liberation_ttf
   ] ++
   common.packages;
 
@@ -47,6 +45,7 @@ in
 
   home.file = { };
   home.sessionVariables = { };
+
 
   programs.home-manager.enable = true;
 }
