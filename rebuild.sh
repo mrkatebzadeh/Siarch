@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+NIX_DAEMON=/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+
 install_nix() {
 	echo "Installing Nix..."
 	curl -L https://nixos.org/nix/install | sh -s -- --daemon --yes
@@ -8,7 +10,7 @@ install_nix() {
 		exit 1
 	fi
 
-	. '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+	. $NIX_DAEMON
 
 	echo "Configuring Nix..."
 	mkdir -p $HOME/.config/nix
@@ -18,8 +20,9 @@ install_nix() {
 }
 
 check_nix_installed() {
-	if command -v nix >/dev/null 2>&1; then
+	if [ -f $NIX_DAEMON ] ; then
 		echo "Nix is already installed."
+		. $NIX_DAEMON
 		return 0
 	else
 		return 1
