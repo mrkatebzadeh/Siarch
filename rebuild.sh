@@ -20,7 +20,7 @@ install_nix() {
 }
 
 check_nix_installed() {
-	if [ -f $NIX_DAEMON ] ; then
+	if [ -f $NIX_DAEMON ] || command -v nix &> /dev/null ; then
 		echo "Nix is already installed."
 		. $NIX_DAEMON
 		return 0

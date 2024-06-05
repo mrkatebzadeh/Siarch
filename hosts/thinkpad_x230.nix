@@ -2,11 +2,6 @@
 let common = import ./common_pkgs.nix { inherit pkgs; };
 in
 {
-  home.username = "siavash";
-  home.homeDirectory = "/home/siavash";
-
-  home.stateVersion = "22.11";
-
   nixpkgs = {
     overlays = [
       outputs.overlays.unstable-packages
@@ -17,9 +12,10 @@ in
   };
 
   home.packages = with pkgs; [
-    wofi
     bc
     brave
+    cargo
+    clang
     dmenu
     dosfstools
     dunst
@@ -28,13 +24,13 @@ in
     exfat
     fd
     ffmpeg
-    clang
     gnome.gnome-keyring
     gpg-tui
     highlight
     i3
-    waybar
+    killall
     lf
+    liberation_ttf
     libnotify
     lynx
     maim
@@ -46,20 +42,25 @@ in
     mutt-wizard
     ncmpcpp
     newsboat
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
     ntfs3g
     poppler
     pulseaudio
     pulsemixer
+    rustc
     sc-im
     simple-mtpfs
     slock
     st
-    killall
     taskspooler
     unclutter
     unrar
     unstable.neovim
     unzip
+    waybar
+    wofi
     xcape
     xdotool
     xorg.xbacklight
@@ -71,10 +72,6 @@ in
     xwallpaper
     youtube-dl
     zathura
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    liberation_ttf
   ] ++
   common.packages;
 
