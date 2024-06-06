@@ -74,6 +74,8 @@ in
     xwallpaper
     youtube-dl
     zathura
+    hyprpaper
+  ] ++ [
     (nerdfonts.override {
       fonts = [ "FiraCode" "DroidSansMono" ];
     })
