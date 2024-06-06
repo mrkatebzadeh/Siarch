@@ -12,6 +12,16 @@ in
   };
 
   home.packages = with pkgs; [
+    # LSP servers
+    nodePackages.prettier
+    jsonnet-language-server
+    nixpkgs-fmt
+    clang-tools
+    rust-analyzer
+    lua-language-server
+    texlab
+    nodePackages.bash-language-server
+    #
     bc
     bluetuith
     bluez
@@ -29,6 +39,7 @@ in
     gnome.gnome-keyring
     gpg-tui
     highlight
+    hyprpaper
     i3
     killall
     lf
@@ -52,6 +63,7 @@ in
     pulseaudio
     pulsemixer
     rofi-wayland
+    rust-analyzer
     rustc
     sc-im
     simple-mtpfs
@@ -74,7 +86,6 @@ in
     xwallpaper
     youtube-dl
     zathura
-    hyprpaper
   ] ++ [
     (nerdfonts.override {
       fonts = [ "FiraCode" "DroidSansMono" ];

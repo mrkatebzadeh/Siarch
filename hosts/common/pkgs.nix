@@ -14,7 +14,6 @@
     gawk
     git
     git-filter-repo
-    go
     gpg-tui
     htop
     kitty
@@ -24,7 +23,6 @@
     lsd
     meslo-lgs-nf
     nix-search-cli
-    nodejs
     nushell
     powerline-fonts
     powerline-symbols
