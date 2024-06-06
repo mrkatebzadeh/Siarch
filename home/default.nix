@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 let
   siarch = "${config.home.homeDirectory}/.siarch";
   dotfiles = "${siarch}/home/dotfiles";
@@ -12,6 +12,9 @@ in
     CLICLOLOR = 1;
     EDITOR = "nvim";
   };
+
+  programs.kitty = import ./nixfiles/kitty.nix {inherit pkgs;};
+
   home.file.".profile".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/profile";
   home.file.".zprofile".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/zsh/.zprofile";
   home.file.".zshrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/zsh/.zshrc";
@@ -31,7 +34,7 @@ in
   xdg.configFile."hypr".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/hypr";
   xdg.configFile."i3".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/i3";
   xdg.configFile."iterm".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/iterm";
-  xdg.configFile."kitty".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/kitty";
+  # xdg.configFile."kitty".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/kitty";
   xdg.configFile."lazygit".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/lazygit";
   xdg.configFile."lf".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/lf";
   xdg.configFile."mpd".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/mpd";

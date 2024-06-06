@@ -2,7 +2,6 @@
 {
   font = { package = pkgs.jetbrains-mono; name = "JetBrains Mono"; };
   settings = {
-    font_size = 14;
     background = "#303446";
     foreground = "#C6D0F5";
     color0 = "#51576D";

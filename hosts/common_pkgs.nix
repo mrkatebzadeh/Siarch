@@ -1,12 +1,11 @@
 { pkgs, ... }: {
   packages = with pkgs; [
-    dbus
-    nerdfonts
     asdf-vm
     atuin
     btop
     coreutils
     curl
+    dbus
     dust
     fd
     fontconfig
@@ -21,6 +20,8 @@
     lazygit
     less
     lsd
+    meslo-lgs-nf
+    nerdfonts
     nix-search-cli
     nushell
     python311Packages.pynvim

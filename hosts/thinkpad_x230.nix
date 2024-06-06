@@ -60,7 +60,7 @@ in
     unstable.neovim
     unzip
     waybar
-    wofi
+    rofi-wayland
     xcape
     xdotool
     xorg.xbacklight
@@ -81,4 +81,8 @@ in
   home.sessionVariables = { };
 
   programs.home-manager.enable = true;
+  programs.kitty = {
+    enable = true;
+    settings.font_size = 11;
+  };
 }
