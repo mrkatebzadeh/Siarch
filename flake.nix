@@ -52,8 +52,8 @@
       overlays = import ./overlays { inherit inputs; };
 
       homeConfigurations = {
-        thinkpad = mkHome [
-          ./hosts/thinkpad_x230.nix
+        x230 = mkHome [
+          ./hosts/x230/configuration.nix
           ./home
           {
             home = {
@@ -67,7 +67,7 @@
       };
       homeConfigurations = {
         cloudlab = mkHome [
-          ./hosts/cloudlab.nix
+          ./hosts/cloudlab/configuration.nix
           ./home
           {
             home = {
@@ -92,19 +92,19 @@
           };
           system = "aarch64-darwin";
           modules = [
-            ./hosts/macbookair.nix
+            ./hosts/macbookair/configuration.nix
             home-manager.darwinModules.home-manager
             {
-              backupFileExtension = "backup";
               users.users.${username} = {
                 name = username;
                 home = "/Users/${username}";
               };
               home-manager = {
+								backupFileExtension = "backup";
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 extraSpecialArgs = { };
-                users.${username}.imports = [ ./home ];
+                users.${username}.imports = [ ./home ./hosts/macbookair/home.nix ];
               };
             }
           ];
@@ -112,7 +112,7 @@
       };
 
       homeConfigurations = {
-        homelab = mkHome [ ./hosts/homelab.nix ]
+        homelab = mkHome [ ./hosts/homelab/configuration.nix ]
           nixpkgs.legacyPackages."x86_64-linux";
       };
     };

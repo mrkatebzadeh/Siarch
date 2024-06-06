@@ -1,7 +1,7 @@
 { outputs, pkgs, ... }:
 let
   wallpaper_path = "~/.siarch/home/dotfiles/share/backgrounds/wall.jpg";
-  common = import ./common_pkgs.nix { inherit pkgs; };
+  common = import ../common/pkgs.nix { inherit pkgs; };
 in
 {
   nixpkgs = {
@@ -110,11 +110,5 @@ in
     brews = [
       "gnu-sed"
     ];
-  };
-
-
-  programs.kitty = {
-    enable = true;
-    settings.font_size = 14;
   };
 }

@@ -3,7 +3,7 @@
 , outputs
 , ...
 }:
-let common = import ./common_pkgs.nix { inherit pkgs; };
+let common = import ../common/pkgs.nix { inherit pkgs; };
 in
 {
   nixpkgs = {

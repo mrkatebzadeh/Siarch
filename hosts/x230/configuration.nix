@@ -1,12 +1,7 @@
 { config, pkgs, outputs, ... }:
-let common = import ./common_pkgs.nix { inherit pkgs; };
+let common = import ../common/pkgs.nix { inherit pkgs; };
 in
 {
-  home.username = "siavash";
-  home.homeDirectory = "/home/siavash";
-
-  home.stateVersion = "22.11";
-
   nixpkgs = {
     overlays = [
       outputs.overlays.unstable-packages
@@ -15,9 +10,11 @@ in
       allowUnfree = true;
     };
   };
+
   home.packages = with pkgs; [
     bc
     brave
+    cargo
     clang
     dmenu
     dosfstools
@@ -52,6 +49,7 @@ in
     poppler
     pulseaudio
     pulsemixer
+    rustc
     sc-im
     simple-mtpfs
     slock
@@ -62,7 +60,7 @@ in
     unstable.neovim
     unzip
     waybar
-    wofi
+    rofi-wayland
     xcape
     xdotool
     xorg.xbacklight
@@ -74,7 +72,8 @@ in
     xwallpaper
     youtube-dl
     zathura
-  ] ++ common.packages;
+  ] ++
+  common.packages;
 
   fonts.fontconfig.enable = true;
 
@@ -82,4 +81,12 @@ in
   home.sessionVariables = { };
 
   programs.home-manager.enable = true;
+  programs.kitty = {
+    enable = true;
+    settings.font_size = 11;
+    keybindings = {
+      "alt+c" = "copy_to_clipboard";
+      "alt+v" = "paste_from_clipboard";
+    };
+  };
 }

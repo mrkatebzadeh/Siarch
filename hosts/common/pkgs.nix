@@ -21,7 +21,6 @@
     less
     lsd
     meslo-lgs-nf
-    nerdfonts
     nix-search-cli
     nushell
     python311Packages.pynvim
