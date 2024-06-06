@@ -1,5 +1,5 @@
 palette = "catppuccin_macchiato"
-
+add_newline = false
 format = """[╭── ](bold green)\
 $os\
 $username\
