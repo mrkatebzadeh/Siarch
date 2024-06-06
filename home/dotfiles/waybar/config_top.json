@@ -1,140 +1,133 @@
 {
-    //"height": 150, // Waybar height (to be removed for auto height)
-    //"width": auto, // Waybar height (to be removed for auto height)
-    "spacing": 3, // Gaps between modules (4px)
-   "modules-left": ["custom/launcher", "hyprland/workspaces", ],
-    "modules-center": [],
-    "modules-right": ["tray", "group/hardware", "hyprland/language", "clock"],
+  //"height": 150, // Waybar height (to be removed for auto height)
+  //"width": auto, // Waybar height (to be removed for auto height)
+  "spacing": 3, // Gaps between modules (4px)
+  "modules-left": ["custom/launcher", "hyprland/workspaces"],
+  "modules-center": [],
+  "modules-right": ["tray", "group/hardware", "hyprland/language", "clock"],
 
-    "group/hardware": {
-      "orientation": "inherit",
-      "modules": [
-        "bluetooth",
-        "group/sound",
-        "battery",
-        "network",
-      ]
-    },
-    "group/sound": {
-"orientation": "inherit",
-    "drawer": {
-        "children-class": "not-light",
-        "transition-duration": 500,
-        "transition-left-to-right": true
-      },
-      "modules": [
-        "pulseaudio",
-        "pulseaudio/slider",
-      ]
+  "group/hardware": {
+    "orientation": "inherit",
+    "modules": ["bluetooth", "group/sound", "battery", "network"]
   },
-    "pulseaudio/slider": {
+  "group/sound": {
+    "orientation": "inherit",
+    "drawer": {
+      "children-class": "not-light",
+      "transition-duration": 500,
+      "transition-left-to-right": true
+    },
+    "modules": ["pulseaudio", "pulseaudio/slider"]
+  },
+  "pulseaudio/slider": {
     "min": 0,
     "max": 100,
     "orientation": "horizontal"
-},
-    "hyprland/workspaces": {
-     "format": "{icon}",
-     "on-scroll-up": "hyprctl dispatch workspace e+1",
-     "on-scroll-down": "hyprctl dispatch workspace e-1",
-     "on-click": "activate",
-     "format-icons": {
-        "1": "1:  ",
-        "2": "2:  ",
-        "3": "3:  ",
-        "4": "4:  ",
-        "5": "5:  ",
-        "6": "6:  ",
-        "7": "7:  ",
-        "8": "8:  ",
-        "9": "9:  ",
-        "10": "10:  ",
-      },
-    },
-    "tray": {
-        "icon-size": 21,
-        "spacing": 10
-    },
-    "custom/launcher": {
-        "format": "󰀻 ",
-        "on-click": "launcher",
-    },
-   "clock": {
-        "format": "{:%a %b %d %I:%M %p}"
-    },
-    "hyprland/language" : {
-      "format": " {}",
-      "format-en": "UK",
-      "format-fa": "FA"
-   },
-    "backlight": {
-        "format": "{icon} {percent}%",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
-    },
+  },
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "on-click": "activate",
+    "format-icons": {
+      "1": "1:  ",
+      "2": "2:  ",
+      "3": "3:  ",
+      "4": "4:  ",
+      "5": "5:  ",
+      "6": "6:  ",
+      "7": "7:  ",
+      "8": "8:  ",
+      "9": "9:  ",
+      "10": "10:  "
+    }
+  },
+  "tray": {
+    "icon-size": 21,
+    "spacing": 10
+  },
+  "custom/launcher": {
+    "format": "󰀻 ",
+    "on-click": "launcher"
+  },
+  "clock": {
+    "format": "{:%a %b %d %I:%M %p}"
+  },
+  "hyprland/language": {
+    "format": " {}",
+    "format-en": "UK",
+    "format-fa": "FA"
+  },
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": ["", "", "", "", "", "", "", "", ""]
+  },
 
-    "network": {
-        "format-wifi": " ",
-        "format-ethernet": "󰈀 ",
-        "format-disconnected": "󰌙 ",
-        "on-click": "terminal -e nmtui",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
-    },
-    "sway/language": {
+  "network": {
+    "format-wifi": " ",
+    "format-ethernet": "󰈀 ",
+    "format-disconnected": "󰌙 ",
+    "on-click": "terminal -e nmtui",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}"
+  },
+  "sway/language": {
     "format": "{}",
-    "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
-    },
+    "on-click": "swaymsg input type:keyboard xkb_switch_layout next"
+  },
   "bluetooth": {
-	    "format": "",
-	    "format-disabled": "",
-	    "format-connected": " ",
-	    "tooltip-format": "{device_alias}",
-	    "tooltip-format-connected": " {device_enumerate}",
-	    "tooltip-format-enumerate-connected": "{device_alias}"
+    "format": "",
+    "format-disabled": "",
+    "format-connected": " ",
+    "tooltip-format": "{device_alias}",
+    "tooltip-format-connected": " {device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}"
+  },
+  "pulseaudio": {
+    "format": "{icon}",
+    "format-alt": "{icon} {volume}%",
+    "format-bluetooth": "󰋋",
+    "format-bluetooth-muted": "󰟎",
+    "format-muted": "󰝟",
+    // "format-source": "{volume}% ",
+    // "format-source-muted": "",
+    "format-icons": {
+      "headphone": " ",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
     },
-    "pulseaudio": {
-        "format": "{icon}",
-        "format-alt": "{icon} {volume}%",
-        "format-bluetooth": "󰋋",
-        "format-bluetooth-muted": "󰟎",
-        "format-muted": "󰝟",
-        // "format-source": "{volume}% ",
-        // "format-source-muted": "",
-        "format-icons": {
-            "headphone": " ",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "volctl mute"
+    "on-click": "volctl mute"
+  },
+  "custom/spotify": {
+    "exec": "$HOME/.config/waybar/scripts/spotify.sh",
+    // "return-type": "json",
+    "max-length": 40,
+    "format": " {}",
+    "on-click": "playerctl play-pause",
+    "on-double-click": "playerctl next",
+    "on-right-click": "on-click-right"
+  },
+  "custom/docker": {
+    "exec": "sb-docker",
+    "on-click": "dc-toggle",
+    "interval": 15
+  },
+  "battery": {
+    "format": "{icon} ",
+    "format-alt": "{icon}  {capacity}% - {time}",
+    //"format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "format-icons": [" ", " ", " ", " ", " "],
+    "format-time": "{H}h{M}m",
+    "format-charging": " {icon} ",
+    "format-full": " {icon} ",
+    "interval": 30,
+    "states": {
+      "warning": 25,
+      "critical": 10
     },
-    "custom/spotify": {
-        "exec": "$HOME/.config/waybar/scripts/spotify.sh",
-        // "return-type": "json",
-        "max-length": 40,
-        "format": " {}",
-        "on-click": "playerctl play-pause",
-        "on-double-click": "playerctl next",
-        "on-right-click": "on-click-right"
-    },
-    "custom/docker": {
-        "exec": "sb-docker",
-        "on-click": "dc-toggle",
-        "interval": 15,
-    },
-    "battery": {
-        "format": "{icon} ",
-        "format-alt": "{icon}  {capacity}% - {time}",
-    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-        "format-time": "{H}h{M}m",
-        "format-charging": " {icon} ",
-        "format-full": " {icon} ",
-        "interval": 30,
-        "states": {
-            "warning": 25,
-            "critical": 10
-        },
-        "tooltip": false,
-    },
+    "tooltip": false
+  }
 }

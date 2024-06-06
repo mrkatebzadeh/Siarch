@@ -14,6 +14,7 @@ return {
         null_ls.builtins.diagnostics.shellcheck,
         null_ls.builtins.formatting.shfmt,
         null_ls.builtins.formatting.nixpkgs_fmt,
+        null_ls.builtins.formatting.jsonnetfmt,
       },
     })
   end,

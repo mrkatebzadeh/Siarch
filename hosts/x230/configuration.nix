@@ -13,6 +13,8 @@ in
 
   home.packages = with pkgs; [
     bc
+    bluetuith
+    bluez
     brave
     cargo
     clang
@@ -49,6 +51,7 @@ in
     poppler
     pulseaudio
     pulsemixer
+    rofi-wayland
     rustc
     sc-im
     simple-mtpfs
@@ -60,7 +63,6 @@ in
     unstable.neovim
     unzip
     waybar
-    rofi-wayland
     xcape
     xdotool
     xorg.xbacklight
@@ -72,6 +74,9 @@ in
     xwallpaper
     youtube-dl
     zathura
+    (nerdfonts.override {
+      fonts = [ "FiraCode" "DroidSansMono" ];
+    })
   ] ++
   common.packages;
 
