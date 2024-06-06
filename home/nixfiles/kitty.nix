@@ -24,6 +24,5 @@
     window_padding_width = 1;
     window_margin_width = 6;
     window_border_width = 1;
-
   };
 }

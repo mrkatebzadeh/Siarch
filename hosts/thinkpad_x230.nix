@@ -84,5 +84,9 @@ in
   programs.kitty = {
     enable = true;
     settings.font_size = 11;
+    keybindings = {
+      "alt+c" = "copy_to_clipboard";
+      "alt+v" = "paste_from_clipboard";
+    };
   };
 }
