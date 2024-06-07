@@ -1,0 +1,13 @@
+enter_accept = true
+prefers_reduced_motion = true
+filter_mode = "host"
+invert = true
+style = "auto"
+
+[stats]
+
+[keys]
+
+[sync]
+
+records = true

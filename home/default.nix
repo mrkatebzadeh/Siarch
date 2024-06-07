@@ -20,6 +20,7 @@ in
   home.file.".zshrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/zsh/.zshrc";
 
   xdg.configFile."alacritty".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/alacritty";
+  xdg.configFile."atuin".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/atuin";
   xdg.configFile."borders".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/borders";
   xdg.configFile."bspwm".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/bspwm";
   xdg.configFile."btop".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/btop";
