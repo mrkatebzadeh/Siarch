@@ -33,6 +33,7 @@
     curl
     dbus
     dust
+    fastfetch
     fd
     font-awesome
     fontconfig
