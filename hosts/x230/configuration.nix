@@ -12,16 +12,6 @@ in
   };
 
   home.packages = with pkgs; [
-    # LSP servers
-    nodePackages.prettier
-    jsonnet-language-server
-    nixpkgs-fmt
-    clang-tools
-    rust-analyzer
-    lua-language-server
-    texlab
-    nodePackages.bash-language-server
-    #
     bc
     bluetuith
     bluez

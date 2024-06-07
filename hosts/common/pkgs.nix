@@ -1,5 +1,32 @@
 { pkgs, ... }: {
   packages = with pkgs; [
+    # LSP servers
+    nodePackages.prettier
+    jsonnet-language-server
+    nixpkgs-fmt
+    clang-tools
+    rust-analyzer
+    lua-language-server
+    texlab
+    nodePackages.bash-language-server
+    cmake-language-server
+    vscode-extensions.vadimcn.vscode-lldb
+    cpplint
+    vscode-extensions.ms-vscode.cpptools
+    vscode-langservers-extracted
+    dockerfile-language-server-nodejs
+    vscode-langservers-extracted
+    nodePackages.intelephense
+    lemminx
+    markdownlint-cli
+    unstable.basedpyright
+    shellcheck
+    shfmt
+    tailwindcss-language-server
+    taplo
+    nodePackages.vim-language-server
+    yaml-language-server
+    #
     asdf-vm
     atuin
     btop
