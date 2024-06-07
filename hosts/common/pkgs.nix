@@ -63,5 +63,6 @@
     tree-sitter
     wget
     zellij
+    yazi
   ];
 }

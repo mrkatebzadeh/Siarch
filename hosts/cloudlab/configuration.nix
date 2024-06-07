@@ -24,7 +24,6 @@ in
     flamegraph
     highlight
     killall
-    lf
     liberation_ttf
     lynx
     man

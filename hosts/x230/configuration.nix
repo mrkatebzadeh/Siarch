@@ -33,7 +33,6 @@ in
     hyprpaper
     i3
     killall
-    lf
     liberation_ttf
     libnotify
     lynx
