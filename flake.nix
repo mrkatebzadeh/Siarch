@@ -51,6 +51,19 @@
         forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt);
       overlays = import ./overlays { inherit inputs; };
 
+      nixosConfigurations = {
+        x231 = mkNixos [
+          ./hosts/x230/nixos/configuration.nix
+          ./home
+          {
+            home = {
+              username = username;
+              homeDirectory = "/home/${username}";
+              stateVersion = "22.11";
+            };
+          }
+        ];
+      };
       homeConfigurations = {
         x230 = mkHome [
           ./hosts/x230/configuration.nix
@@ -100,7 +113,7 @@
                 home = "/Users/${username}";
               };
               home-manager = {
-								backupFileExtension = "backup";
+                backupFileExtension = "backup";
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 extraSpecialArgs = { };
