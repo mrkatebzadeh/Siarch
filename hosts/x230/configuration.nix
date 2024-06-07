@@ -12,6 +12,7 @@ in
   };
 
   home.packages = with pkgs; [
+    vscode-extensions.ms-vscode.cpptools
     bc
     bluetuith
     bluez
