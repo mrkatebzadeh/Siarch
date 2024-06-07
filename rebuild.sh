@@ -56,10 +56,10 @@ check_home_manager_installed() {
 rebuild_configuration() {
 	if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 		echo "Rebuilding configuration with Nix on Linux..."
-		nix run home-manager -- switch --flake ".#$1"
+		nix run home-manager -- switch --flake ".#$1" "${@:2}"
 	elif [[ "$OSTYPE" == "darwin"* ]]; then
 		echo "Rebuilding configuration with Nix on macOS..."
-		nix run nix-darwin -- switch --flake ".#$1"
+		nix run nix-darwin -- switch --flake ".#$1" "${@:2}"
 	else
 		echo "Unsupported OS: $OSTYPE"
 		exit 1
@@ -70,4 +70,4 @@ check_nix_installed || install_nix
 
 check_home_manager_installed || install_home_manager
 
-rebuild_configuration $1
+rebuild_configuration $@
