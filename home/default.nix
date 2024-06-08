@@ -5,8 +5,6 @@ let
 in
 {
   home.stateVersion = "22.11";
-  # home.packages = with pkgs; [
-  # ];
   home.sessionVariables = {
     PAGER = "less";
     CLICLOLOR = 1;
@@ -14,20 +12,19 @@ in
   };
 
   programs.kitty = import ./nixfiles/kitty.nix {inherit pkgs;};
+  programs.atuin = import ./nixfiles/atuin.nix {inherit pkgs;};
 
   home.file.".profile".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/profile";
   home.file.".zprofile".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/zsh/.zprofile";
   home.file.".zshrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/zsh/.zshrc";
 
   xdg.configFile."alacritty".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/alacritty";
-  xdg.configFile."atuin".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/atuin";
   xdg.configFile."borders".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/borders";
   xdg.configFile."bspwm".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/bspwm";
   xdg.configFile."btop".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/btop";
   xdg.configFile."deadd".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/deadd";
   xdg.configFile."dunst".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/dunst";
   xdg.configFile."flashfocus".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/flashfocus";
-  # xdg.configFile."fontconfig".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/fontconfig";
   xdg.configFile."gdb".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/gdb";
   home.file.".gitconfig".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/git/.gitconfig";
   xdg.configFile."gtk-2.0".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/gtk-2.0";
@@ -36,7 +33,6 @@ in
   xdg.configFile."hypr".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/hypr";
   xdg.configFile."i3".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/i3";
   xdg.configFile."iterm".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/iterm";
-  # xdg.configFile."kitty".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/kitty";
   xdg.configFile."lazygit".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/lazygit";
   xdg.configFile."lf".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/lf";
   xdg.configFile."mpd".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/mpd";
@@ -44,7 +40,6 @@ in
   xdg.configFile."ncmpcpp".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/ncmpcpp";
   xdg.configFile."neofetch".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/neofetch";
   xdg.configFile."newsboat".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/newsboat";
- # xdg.configFile."nix".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/nix";
   xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/nvim";
   xdg.configFile."nushell".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/nushell";
   xdg.configFile."picom".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/picom";
