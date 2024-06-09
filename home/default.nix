@@ -4,7 +4,6 @@ let
   dotfiles = "${siarch}/home/dotfiles";
 in
 {
-  home.stateVersion = "22.11";
   home.sessionVariables = {
     PAGER = "less";
     CLICLOLOR = 1;
