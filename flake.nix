@@ -64,7 +64,6 @@
             home = {
               username = username;
               homeDirectory = "/home/${username}";
-              stateVersion = "22.11";
             };
           }
         ]
@@ -78,9 +77,6 @@
             home = {
               username = username;
               homeDirectory = "/users/${username}";
-              stateVersion = "22.11";
-
-
             };
           }
         ]
@@ -109,7 +105,10 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 extraSpecialArgs = { };
-                users.${username}.imports = [ ./home ./hosts/macbookair/home.nix ];
+                users.${username}.imports = [
+                  ./home
+                  ./hosts/macbookair/home.nix
+                ];
               };
             }
           ];

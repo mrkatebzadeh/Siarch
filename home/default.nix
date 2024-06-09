@@ -4,14 +4,16 @@ let
   dotfiles = "${siarch}/home/dotfiles";
 in
 {
+  stateVersion = "22.11";
+
   home.sessionVariables = {
     PAGER = "less";
     CLICLOLOR = 1;
     EDITOR = "nvim";
   };
 
-  programs.kitty = import ./nixfiles/kitty.nix {inherit pkgs;};
-  programs.atuin = import ./nixfiles/atuin.nix {inherit pkgs;};
+  programs.kitty = import ./nixfiles/kitty.nix { inherit pkgs; };
+  programs.atuin = import ./nixfiles/atuin.nix { inherit pkgs; };
 
   home.file.".profile".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/profile";
   home.file.".zprofile".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/zsh/.zprofile";
