@@ -12,9 +12,9 @@ in
     EDITOR = "nvim";
   };
 
-  programs.atuin = import ./nixfiles/atuin.nix { inherit pkgs; };
-  programs.kitty = import ./nixfiles/kitty.nix { inherit pkgs; };
-  programs.zsh = import ./nixfiles/zsh.nix { inherit pkgs; };
+  programs.atuin = import ./nixfiles/atuin { inherit pkgs; };
+  programs.kitty = import ./nixfiles/kitty { inherit pkgs; };
+  programs.zsh = import ./nixfiles/zsh { inherit pkgs; };
 
   home.file.".profile".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/profile";
   home.file.".zprofile".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/zsh/.zprofile";
@@ -46,6 +46,7 @@ in
   xdg.configFile."nushell".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/nushell";
   xdg.configFile."picom".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/picom";
   xdg.configFile."polybar".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/polybar";
+  xdg.configFile."rofi".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/rofi";
   home.file.".local/bin/scripts".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/scripts";
   home.file.".local/share/backgrounds".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/share/backgrounds";
   xdg.configFile."shell".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/shell";

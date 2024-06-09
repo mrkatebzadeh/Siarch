@@ -58,6 +58,7 @@ in
     sc-im
     simple-mtpfs
     slock
+    swaylock
     st
     taskspooler
     unclutter

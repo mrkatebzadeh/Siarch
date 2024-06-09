@@ -1,28 +1,28 @@
-#!/bin/sh
+#!/usr/bin/env bash
 if [ $XDG_SESSION_TYPE = "wayland" ]; then
-  cmds=( "🔒 Lock" "🚪 Logout" "♻ Renew WM" "🐻 Hibernate" "🔃 Reboot" "🖥 Shutdown" )
+	cmds=("󰌾 Lock" "󰗽 Logout" "󰑐 Renew WM" "󰤄 Hibernate" "󰜉 Reboot" " Shutdown")
 
-selected=$(printf "%s\n" "${cmds[@]}"| menu  -p "Choose an action: ")
+	selected=$(printf "%s\n" "${cmds[@]}" | menu -p "Choose an action: ")
 
-case "$selected" in
-"🔒 Lock")		swaylock;;
-"🚪 Logout")	pkill Hyprland;;
-"♻ Renew WM")	bspc wm -r;;
-"🐻 Hibernate")	systemctl suspend-then-hibernate -i ;;
-"🔃 Reboot")	${reb:-sudo -A reboot};;
-"🖥 Shutdown")	${shut:-sudo -A shutdown -h now};;
-esac
+	case "$selected" in
+	"󰌾 Lock") swaylock ;;
+	"󰗽 Logout") pkill Hyprland ;;
+	"󰑐 Renew WM") bspc wm -r ;;
+	"󰤄 Hibernate") systemctl suspend-then-hibernate -i ;;
+	"󰜉 Reboot") ${reb:-sudo -A reboot} ;;
+	" Shutdown") ${shut:-sudo -A shutdown -h now} ;;
+	esac
 
 else
-case "$RUNNING_WM" in
-i3)
-	i3_sysact
-	;;
-dwm)
-	dwm_sysact
-	;;
-bspwm)
-  bsp_sysact
-  ;;
-esac
+	case "$RUNNING_WM" in
+	i3)
+		i3_sysact
+		;;
+	dwm)
+		dwm_sysact
+		;;
+	bspwm)
+		bsp_sysact
+		;;
+	esac
 fi
