@@ -18,8 +18,6 @@ HISTFILE=$HOME/.zsh_history
 setopt appendhistory
 
 autoload -Uz compinit
-# zstyle ':completion:*' menu yes select
-# zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 zmodload zsh/complist
 _comp_options+=(globdots)		# Include hidden files.
 zle_highlight=('paste:none')
@@ -53,17 +51,3 @@ zle -N down-line-or-beginning-search
 
 # Colors
 autoload -Uz colors && colors
-
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-  SESSION_TYPE=remote/ssh
-# many other tests omitted
-else
-  case $(ps -o comm= -p "$PPID") in
-    sshd|*/sshd) SESSION_TYPE=remote/ssh;;
-  esac
-fi
-if [ -z "$SESSION_TYPE" ]; then
-if command -v wal >/dev/null 2>&1 ; then
-  (cat ~/.cache/wal/sequences &)
-fi
-fi

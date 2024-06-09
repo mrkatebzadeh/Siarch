@@ -12,8 +12,9 @@ in
     EDITOR = "nvim";
   };
 
-  programs.kitty = import ./nixfiles/kitty.nix { inherit pkgs; };
   programs.atuin = import ./nixfiles/atuin.nix { inherit pkgs; };
+  programs.kitty = import ./nixfiles/kitty.nix { inherit pkgs; };
+  programs.zsh = import ./nixfiles/zsh.nix { inherit pkgs; };
 
   home.file.".profile".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/profile";
   home.file.".zprofile".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/zsh/.zprofile";

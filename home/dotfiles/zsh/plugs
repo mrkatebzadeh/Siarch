@@ -61,21 +61,9 @@ _pull() {
     echo -e "\e[1A\e[K⚡ $1"
 }
 
-
 # Plugins
 # ------------------------------------------------
-plug "esc/conda-zsh-completion"
-plug "zsh-users/zsh-autosuggestions"
-plug "hlissner/zsh-autopair"
 plug "zap-zsh/vim"
-plug "zsh-users/zsh-syntax-highlighting"
 
-# Autosuggestion
-ZSH_AUTOSUGGEST_STRATEGY=(completion history)
 eval "$(starship init zsh)"
 eval "$(atuin init zsh)"
-
-if [ -n "${commands[fzf-share]}" ]; then
-  source "$(fzf-share)/key-bindings.zsh"
-  source "$(fzf-share)/completion.zsh"
-fi

@@ -4,9 +4,7 @@ format = """[╭── ](bold green)\
 $os\
 $username\
 $hostname\
-[ ─── ](bold green)\
-$shell\
-[───](bold green)\
+[ ───](bold green)\
 $time\
 $cmd_duration
 [│](bold green)\
