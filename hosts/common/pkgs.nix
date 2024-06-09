@@ -12,7 +12,6 @@
     cmake-language-server
     vscode-extensions.vadimcn.vscode-lldb
     cpplint
-    vscode-langservers-extracted
     dockerfile-language-server-nodejs
     vscode-langservers-extracted
     nodePackages.intelephense

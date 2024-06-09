@@ -3,8 +3,6 @@
 , outputs
 , ...
 }:
-let common = import ../common/pkgs.nix { inherit pkgs; };
-in
 {
   nixpkgs = {
     overlays = [
@@ -16,36 +14,42 @@ in
   };
 
   home.packages = with pkgs; [
+    nixpkgs-fmt
+    clang-tools
+    nodePackages.bash-language-server
+    cmake-language-server
+    vscode-extensions.vadimcn.vscode-lldb
+    cpplint
+    shellcheck
+    shfmt
+    atuin
+    btop
+    coreutils
+    curl
+    lazygit
+    lsd
+    meslo-lgs-nf
+    ripgrep
+    starship
+    tree-sitter
+    zellij
     bc
     cargo
     clang
+    cmake
     dosfstools
     fd
     flamegraph
     highlight
     killall
-    liberation_ttf
-    lynx
-    man
-    nodejs
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    poppler
-    rustc
-    sc-im
-    taskspooler
-    unrar
     unstable.neovim
     unzip
-  ] ++
-  common.packages;
+  ];
 
   fonts.fontconfig.enable = true;
 
   home.file = { };
   home.sessionVariables = { };
-
 
   programs.home-manager.enable = true;
 }
