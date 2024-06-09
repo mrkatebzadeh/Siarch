@@ -53,6 +53,7 @@
     nushell
     powerline-fonts
     powerline-symbols
+    python3
     python311Packages.pynvim
     ripgrep
     slack
