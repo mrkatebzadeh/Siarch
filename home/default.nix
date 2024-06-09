@@ -4,7 +4,7 @@ let
   dotfiles = "${siarch}/home/dotfiles";
 in
 {
-  stateVersion = "22.11";
+  home.stateVersion = "22.11";
 
   home.sessionVariables = {
     PAGER = "less";
