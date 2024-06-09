@@ -97,7 +97,6 @@ in
   fonts.fontconfig.enable = true;
 
   home.file = { };
-  environment.etc."nixos".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.siarch/hosts/x230/nixos";
   home.sessionVariables = { };
 
   programs.home-manager.enable = true;

@@ -52,16 +52,8 @@
       overlays = import ./overlays { inherit inputs; };
 
       nixosConfigurations = {
-        x231 = mkNixos [
+        x230 = mkNixos [
           ./hosts/x230/nixos/configuration.nix
-          ./home
-          {
-            home = {
-              username = username;
-              homeDirectory = "/home/${username}";
-              stateVersion = "22.11";
-            };
-          }
         ];
       };
       homeConfigurations = {
