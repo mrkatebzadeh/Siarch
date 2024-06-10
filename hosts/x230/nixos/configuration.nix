@@ -49,6 +49,8 @@
   };
   programs.hyprland.enable = true;
 
+  services.kmscon.enable = true;
+
   # services.printing.enable = true;
 
   # Enable sound.

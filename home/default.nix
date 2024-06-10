@@ -12,6 +12,10 @@ in
     EDITOR = "nvim";
   };
 
+  home.sessionPath = [
+    "$HOME/.local/bin"
+    "$HOME/.local/bin/scripts"
+  ];
   home.shellAliases = import ./nixfiles/aliases.nix;
   programs.atuin = import ./nixfiles/atuin.nix { inherit pkgs; };
   programs.bat = import ./nixfiles/bat.nix { inherit pkgs; };
