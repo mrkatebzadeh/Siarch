@@ -47,7 +47,7 @@
     "spacing": 10
   },
   "custom/launcher": {
-    "format": "󰀻 ",
+    "format": " ",
     "on-click": "launcher"
   },
   "clock": {
@@ -75,7 +75,7 @@
     "on-click": "swaymsg input type:keyboard xkb_switch_layout next"
   },
   "bluetooth": {
-    "format": "",
+    "format": " ",
     "format-disabled": "",
     "format-connected": " ",
     "tooltip-format": "{device_alias}",
@@ -83,7 +83,7 @@
     "tooltip-format-enumerate-connected": "{device_alias}"
   },
   "pulseaudio": {
-    "format": "{icon}",
+    "format": "{icon} ",
     "format-alt": "{icon} {volume}%",
     "format-bluetooth": "󰋋",
     "format-bluetooth-muted": "󰟎",
@@ -116,8 +116,8 @@
     "interval": 15
   },
   "battery": {
-    "format": "{icon} ",
-    "format-alt": "{icon}  {capacity}% - {time}",
+    "format": "{icon}",
+    "format-alt": "{icon} {capacity}% - {time}",
     //"format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     "format-icons": [" ", " ", " ", " ", " "],
     "format-time": "{H}h{M}m",
