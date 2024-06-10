@@ -12,14 +12,15 @@ in
     EDITOR = "nvim";
   };
 
+  home.shellAliases = import ./nixfiles/aliases.nix;
   programs.atuin = import ./nixfiles/atuin.nix { inherit pkgs; };
   programs.bat = import ./nixfiles/bat.nix { inherit pkgs; };
   programs.kitty = import ./nixfiles/kitty.nix { inherit pkgs; };
   programs.zsh = import ./nixfiles/zsh.nix { inherit pkgs; };
 
   home.file.".profile".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/profile";
-  home.file.".zprofile".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/zsh/.zprofile";
-  home.file.".zshrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/zsh/.zshrc";
+  # home.file.".zprofile".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/zsh/.zprofile";
+  # home.file.".zshrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/zsh/.zshrc";
 
   xdg.configFile."alacritty".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/alacritty";
   xdg.configFile."borders".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/borders";
@@ -61,5 +62,5 @@ in
   xdg.configFile."wget".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/wget";
   xdg.configFile."waybar".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/waybar";
   xdg.configFile."zellij".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/zellij";
-  xdg.configFile."zsh".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/zsh";
+  # xdg.configFile."zsh".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/zsh";
 }
