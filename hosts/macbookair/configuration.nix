@@ -16,6 +16,8 @@ in
     shells = with pkgs; [ bash zsh ];
     loginShell = pkgs.zsh;
     systemPackages = with pkgs; [
+      cargo
+      rustc
       unstable.jankyborders
       unstable.jq
       unstable.neovim
