@@ -1,5 +1,6 @@
 return {
 	{
+    enabled = false,
 		"Shatur/neovim-session-manager",
 		config = function()
 			local Path = require("plenary.path")
@@ -18,7 +19,7 @@ return {
 			})
 
 			session_manager.setup({
-				sessions_dir = Path:new(vim.fn.stdpath("data"), "sessions"), 
+				sessions_dir = Path:new(vim.fn.stdpath("data"), "sessions"),
 				session_filename_to_dir = session_filename_to_dir,
 				dir_to_session_filename = dir_to_session_filename,
 				autoload_mode = config.AutoloadMode.CurrentDir,
