@@ -51,7 +51,29 @@
     "on-click": "launcher"
   },
   "clock": {
-    "format": "{:%a %b %d %I:%M %p}"
+    "format": "{:%H:%M}  ",
+    "format-alt": "{:%A, %B %d, %Y (%R)}  ",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#ffffff'><b>{}</b></span>",
+        "days": "<span color='#494d64'><b>{}</b></span>",
+        "weeks": "<span color='#1e1e2e'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffffff'><b>{}</b></span>",
+        "today": "<span color='#a6da95'><big><b><u>{}</u></b></big></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
   },
   "hyprland/language": {
     "format": " {}",
@@ -85,9 +107,9 @@
   "pulseaudio": {
     "format": "{icon} ",
     "format-alt": "{icon} {volume}%",
-    "format-bluetooth": "󰋋",
+    "format-bluetooth": "􀲌􀲋",
     "format-bluetooth-muted": "󰟎",
-    "format-muted": "󰝟",
+    "format-muted": "􀊢",
     // "format-source": "{volume}% ",
     // "format-source-muted": "",
     "format-icons": {
@@ -97,7 +119,7 @@
       "phone": "",
       "portable": "",
       "car": "",
-      "default": ["", "", ""]
+      "default": ["􀊣", "􀊡", "􀊥", "􀊧", "􀊩"]
     },
     "on-click": "volctl mute"
   },
@@ -119,9 +141,9 @@
     "format": "{icon}",
     "format-alt": "{icon} {capacity}% - {time}",
     //"format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-    "format-icons": [" ", " ", " ", " ", " "],
+    "format-icons": ["􀛪", "􀛩", "􀺶", "􀺸", "􀛨"],
     "format-time": "{H}h{M}m",
-    "format-charging": " {icon} ",
+    "format-charging": "􀢋",
     "format-full": " {icon} ",
     "interval": 30,
     "states": {

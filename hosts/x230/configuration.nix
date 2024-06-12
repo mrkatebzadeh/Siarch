@@ -1,4 +1,4 @@
-{ config, pkgs, outputs, ... }:
+{ config, pkgs, outputs, inputs, ... }:
 let common = import ../common/pkgs.nix { inherit pkgs; };
 in
 {
@@ -45,9 +45,6 @@ in
     mutt-wizard
     ncmpcpp
     newsboat
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
     ntfs3g
     poppler
     pulseaudio
@@ -83,7 +80,7 @@ in
       fonts = [ "FiraCode" "DroidSansMono" ];
     })
   ] ++
-  common.packages;
+  common.packages ++ [ inputs.sf-fonts.packages."x86_64-linux".sf-pro ];
 
   fonts.fontconfig.enable = true;
 

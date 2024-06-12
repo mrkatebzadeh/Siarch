@@ -1,6 +1,7 @@
 * {
-  /* `otf-font-awesome` is required to be installed for icons */
-  font-family: Meslo LG L DZ for Powerline;
+  /* font-family: Meslo LG L DZ for Powerline; */
+  /* font-family: Liga SFMono Nerd Font; */
+  font-family: SF Pro Display;
   font-size: 15;
   padding: 0;
   margin: 0;

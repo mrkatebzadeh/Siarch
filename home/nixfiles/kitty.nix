@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
-  font = { package = pkgs.jetbrains-mono; name = "Meslo LG M DZ for Powerline"; };
+  # font = { package = pkgs.jetbrains-mono; name = "Meslo LG M DZ for Powerline"; };
+  font = { name = "SF Pro Display"; };
   settings = {
     background = "#303446";
     foreground = "#C6D0F5";
