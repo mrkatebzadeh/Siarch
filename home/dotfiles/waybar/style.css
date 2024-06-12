@@ -5,7 +5,7 @@
   font-size: 15;
   padding: 0;
   margin: 0;
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
 }
 
 window#waybar {
@@ -18,12 +18,12 @@ window#waybar {
 }
 
 tooltip {
-  border-color: #1e1e2e;
+  border-color: #494d64;
   border-radius: 10px;
   border-width: 1.5px;
   border-style: solid;
-  background-color: #11111b;
-  transition: 0.3s;
+  background-color: #3c3e4f;
+  transition: 0.1s;
 }
 
 window#waybar.hidden {
@@ -37,7 +37,7 @@ window#waybar.hidden {
 
 #workspaces button {
   padding: 2px 20px 2px 10px;
-  margin: 5px 2px ;
+  margin: 5px 2px;
   background-color: #3c3e4f;
   color: #a9a9a9;
   border: 2px solid #494d64;
@@ -46,10 +46,18 @@ window#waybar.hidden {
 
 #workspaces button:hover {
   color: #3c3e4f;
+  background-color: #3c3e4f;
+}
+
+#workspaces button.active:hover {
+  color: #3c3e4f;
+  background-color: #3c3e4f;
+  border: 2px solid #8aadf4;
 }
 
 #workspaces button.active {
   color: #ffffff;
+  border: 2px solid #8aadf4;
 }
 
 #workspaces button.urgent {
@@ -81,8 +89,7 @@ window#waybar.hidden {
 #language,
 #custom-media,
 #tray,
-#bluetooth
-#mode,
+#bluetooth #mode,
 #idle_inhibitor,
 #mpd {
   padding: 0 10px;
@@ -175,7 +182,7 @@ label:focus {
 }
 
 #custom-launcher {
-  color: #a6da95;
+  color: #ffffff;
   margin-left: 20px;
 }
 
@@ -199,24 +206,26 @@ label:focus {
 }
 
 #pulseaudio-slider slider {
-    min-height: 10px;
-    min-width: 10px;
-    opacity: 1;
-    /* background-image: none; */
-    border: 1px solid black;
-    border-radius: 10px;
-    /* box-shadow: none; */
+  min-height: 10px;
+  min-width: 10px;
+  opacity: 1;
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 10px;
+  /* box-shadow: none; */
 }
+
 #pulseaudio-slider trough {
-    /* min-height: 80px; */
-    min-width: 100px;
-    border-radius: 5px;
-    background-color: black;
+  margin: 0px 10px;
+  min-width: 100px;
+  border: 2px solid #494d64;
+  background-color: #383c53;
+  border-radius: 10px;
 }
 #pulseaudio-slider highlight {
-    min-width: 100px;
-    border-radius: 5px;
-    background-color: #8aadf4;
+  border: none;
+  background-color: #8aadf4;
+  border-radius: 10px;
 }
 
 #custom-media {

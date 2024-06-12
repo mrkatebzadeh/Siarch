@@ -25,21 +25,33 @@
     "orientation": "horizontal"
   },
   "hyprland/workspaces": {
-    "format": "{icon}",
+    "format": "{id}:  {windows}",
     "on-scroll-up": "hyprctl dispatch workspace e+1",
     "on-scroll-down": "hyprctl dispatch workspace e-1",
     "on-click": "activate",
     "format-icons": {
-      "1": "1:  ",
-      "2": "2:  ",
-      "3": "3:  ",
-      "4": "4:  ",
-      "5": "5:  ",
-      "6": "6:  ",
-      "7": "7:  ",
-      "8": "8:  ",
-      "9": "9:  ",
-      "10": "10:  "
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": "",
+      "7": "",
+      "8": "",
+      "9": "",
+      "10": ""
+    },
+    "window-rewrite-default": "",
+    "window-rewrite": {
+      "class<firefox>": " ",
+      "brave": " ",
+      "telegram": " 􀋖",
+      "zotero": " 􀤩",
+      "spotify": " 􀱝",
+      "kitty": " ",
+      "code": " 󰨞",
+      "slack": " ",
+      "neomutt": " "
     }
   },
   "tray": {
@@ -51,9 +63,9 @@
     "on-click": "launcher"
   },
   "clock": {
-    "format": "{:%H:%M}  ",
-    "format-alt": "{:%A, %B %d, %Y (%R)}  ",
-    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "format": "{:%H:%M}",
+    "format-alt": "{:%A, %B %d, %Y (%R)}",
+    "tooltip-format": "<tt>{calendar}</tt>",
     "calendar": {
       "mode": "month",
       "mode-mon-col": 3,
@@ -61,10 +73,9 @@
       "on-scroll": 1,
       "format": {
         "months": "<span color='#ffffff'><b>{}</b></span>",
-        "days": "<span color='#494d64'><b>{}</b></span>",
-        "weeks": "<span color='#1e1e2e'><b>W{}</b></span>",
+        "days": "<span color='#aaaaaa'><b>{}</b></span>",
         "weekdays": "<span color='#ffffff'><b>{}</b></span>",
-        "today": "<span color='#a6da95'><big><b><u>{}</u></b></big></span>"
+        "today": "<span color='#a6da95'><b><u>{}</u></b></span>"
       }
     },
     "actions": {
@@ -90,7 +101,7 @@
     "format-ethernet": "󰈀 ",
     "format-disconnected": "󰌙 ",
     "on-click": "terminal -e nmtui",
-    "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    "tooltip-format": "{ifname}: {ipaddr}/{cidr}"
   },
   "sway/language": {
     "format": "{}",
@@ -105,7 +116,7 @@
     "tooltip-format-enumerate-connected": "{device_alias}"
   },
   "pulseaudio": {
-    "format": "{icon} ",
+    "format": "{icon}",
     "format-alt": "{icon} {volume}%",
     "format-bluetooth": "􀲌􀲋",
     "format-bluetooth-muted": "󰟎",
@@ -119,7 +130,7 @@
       "phone": "",
       "portable": "",
       "car": "",
-      "default": ["􀊣", "􀊡", "􀊥", "􀊧", "􀊩"]
+      "default": ["􀊡", "􀊥", "􀊧", "􀊩"]
     },
     "on-click": "volctl mute"
   },
