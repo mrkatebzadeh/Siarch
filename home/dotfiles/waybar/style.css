@@ -1,3 +1,4 @@
+@import "themes/frappe.css";
 * {
   /* font-family: Meslo LG L DZ for Powerline; */
   /* font-family: Liga SFMono Nerd Font; */
@@ -5,24 +6,24 @@
   font-size: 15;
   padding: 0;
   margin: 0;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: transparent;
 }
 
 window#waybar {
-  background-color: #1e1e2e;
-  color: #ffffff;
+  background-color: @crust;
+  color: @text;
   transition-property: background-color;
   transition-duration: 0.5s;
   border-radius: 20px;
-  border: 2px solid #494d64;
+  border: 2px solid @surface2;
 }
 
 tooltip {
-  border-color: #494d64;
+  border-color: @surface2;
   border-radius: 10px;
-  border-width: 1.5px;
+  border-width: 2px;
   border-style: solid;
-  background-color: #3c3e4f;
+  background-color: alpha(@crust, 0.9);
   transition: 0.1s;
 }
 
@@ -38,42 +39,34 @@ window#waybar.hidden {
 #workspaces button {
   padding: 2px 20px 2px 10px;
   margin: 5px 2px;
-  background-color: #3c3e4f;
-  color: #a9a9a9;
-  border: 2px solid #494d64;
+  background-color: @surface0;
+  color: @subtext0;
+  border: 2px solid @surface1;
   border-radius: 12px;
 }
 
 #workspaces button:hover {
-  color: #3c3e4f;
-  background-color: #3c3e4f;
+  color: alpha(@surface0, 0.8);
+  background-color: @surface0;
 }
 
 #workspaces button.active:hover {
-  color: #3c3e4f;
-  background-color: #3c3e4f;
-  border: 2px solid #8aadf4;
+  color: @surface0;
+  background-color: @surface0;
+  border: 2px solid @blue;
 }
 
 #workspaces button.active {
   color: #ffffff;
-  border: 2px solid #8aadf4;
+  border: 1.5px solid @blue;
 }
 
 #workspaces button.urgent {
-  background-color: #eb4d4b;
+  color: @pink;
+  border: 2px solid @pink;
 }
 
-/* #mode { */
-/*   background-color: #64727d; */
-/*   border-bottom: 3px solid #ffffff; */
-/* } */
-
 #window {
-  /* border-radius: 20px; */
-  /* padding-left: 10px; */
-  /* padding-right: 10px; */
-  /* color: #64727d; */
 }
 
 #clock,
@@ -92,7 +85,7 @@ window#waybar.hidden {
 #bluetooth #mode,
 #idle_inhibitor,
 #mpd {
-  padding: 0 10px;
+  padding: 0 8px;
   color: #ffffff;
   opacity: 0.8;
   background: transparent;
@@ -100,7 +93,7 @@ window#waybar.hidden {
 
 #window,
 #workspaces {
-  margin: 0 14px;
+  margin: 0px 14px;
 }
 
 .modules-left > widget:first-child > #workspaces {
@@ -113,7 +106,6 @@ window#waybar.hidden {
 
 #clock {
   margin-right: 3px;
-  color: #ffffff;
 }
 
 #clock:hover {
@@ -123,19 +115,19 @@ window#waybar.hidden {
 
 #battery.charging,
 #battery.plugged {
-  color: #ffaaaa;
+  color: @red;
 }
 
 @keyframes blink {
   to {
-    background-color: rgba(30, 34, 42, 0.5);
-    color: #abb2bf;
+    background-color: @crust;
+    color: @red;
   }
 }
 
 #battery.critical:not(.charging) {
-  background-color: #f53c3c;
-  color: #abb2bf;
+  background-color: @red;
+  color: @crust;
   animation-name: blink;
   animation-duration: 0.5s;
   animation-timing-function: linear;
@@ -167,50 +159,49 @@ label:focus {
 
 #network {
   padding: 2.5px;
-  color: #ffffff;
 }
 
 #bluetooth.connected {
-  color: #8aadf4;
+  color: @blue;
 }
 
 #bluetooth.disble {
-  color: #494d64;
+  color: @red;
 }
 
 #network:hover {
 }
 
 #custom-launcher {
-  color: #ffffff;
   margin-left: 20px;
+  color: #ffffff;
 }
 
 #custom-launcher:hover {
   font-weight: bolder;
+  color: @blue;
 }
 
 #network.disconnected {
-  color: #ffaaaa;
+  color: @red;
 }
 
 #pulseaudio {
-  color: #ffffff;
 }
 
 #pulseaudio:hover {
 }
 
 #pulseaudio.muted {
-  color: #ed8796;
+  color: @red;
 }
 
 #pulseaudio-slider slider {
   min-height: 10px;
   min-width: 10px;
   opacity: 1;
-  background-color: #ffffff;
-  border: 1px solid #ffffff;
+  background-color: @lavender;
+  border: 1px solid @lavender;
   border-radius: 10px;
   /* box-shadow: none; */
 }
@@ -218,13 +209,13 @@ label:focus {
 #pulseaudio-slider trough {
   margin: 0px 10px;
   min-width: 100px;
-  border: 2px solid #494d64;
-  background-color: #383c53;
+  border: 2px solid @surface0;
+  background-color: @base;
   border-radius: 10px;
 }
 #pulseaudio-slider highlight {
   border: none;
-  background-color: #8aadf4;
+  background-color: @blue;
   border-radius: 10px;
 }
 
@@ -310,8 +301,8 @@ label:focus {
 #hardware {
   padding: 2px 10px 2px 10px;
   margin: 5px;
-  background-color: #3c3e4f;
-  color: #a9a9a9;
-  border: 2px solid #494d64;
+  background-color: @surface0;
+  color: #ffffff;
+  border: 2px solid @surface1;
   border-radius: 12px;
 }
