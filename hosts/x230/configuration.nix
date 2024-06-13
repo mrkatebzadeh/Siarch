@@ -51,6 +51,7 @@ in
     pulsemixer
     rofi-wayland
     rust-analyzer
+    rustfmt
     rustc
     sc-im
     simple-mtpfs

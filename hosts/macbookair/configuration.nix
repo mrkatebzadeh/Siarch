@@ -18,6 +18,7 @@ in
     systemPackages = with pkgs; [
       cargo
       rustc
+      rustfmt
       unstable.jankyborders
       unstable.jq
       unstable.neovim
