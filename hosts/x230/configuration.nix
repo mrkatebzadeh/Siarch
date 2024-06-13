@@ -76,6 +76,13 @@ in
     youtube-dl
     zathura
     zotero
+    neomutt
+    isync
+    msmtp
+    pass
+    cacert
+    gettext
+    mutt-wizard
   ] ++ [
     (nerdfonts.override {
       fonts = [ "FiraCode" "DroidSansMono" ];
