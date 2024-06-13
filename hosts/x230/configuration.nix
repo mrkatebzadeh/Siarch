@@ -98,4 +98,11 @@ in
       "alt+v" = "paste_from_clipboard";
     };
   };
+
+  programs.thunderbird = {
+    enable = true;
+    profiles.x230 = {
+      isDefault = true;
+    };
+  };
 }
