@@ -47,6 +47,7 @@
     lazygit
     less
     lsd
+    jq
     meslo-lgs-nf
     nix-search-cli
     nushell
