@@ -12,6 +12,11 @@ in
     EDITOR = "nvim";
   };
 
+  fonts.fontconfig = import ./nixfiles/fonts.nix { inherit pkgs; };
+  home.packages = with pkgs; [
+    fira-code-nerdfont
+  ];
+
   home.sessionPath = [
     "$HOME/.local/bin"
     "$HOME/.local/bin/scripts"

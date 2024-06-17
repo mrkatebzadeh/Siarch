@@ -26,6 +26,7 @@
     yaml-language-server
     #
     asdf-vm
+    bat
     atuin
     btop
     coreutils
@@ -34,7 +35,6 @@
     dust
     fastfetch
     fd
-    font-awesome
     fontconfig
     fzf
     gawk
@@ -48,20 +48,15 @@
     less
     lsd
     jq
-    meslo-lgs-nf
     nix-search-cli
     nushell
-    powerline-fonts
-    powerline-symbols
     python3
     python311Packages.pynvim
     ripgrep
-    slack
     starship
     stow
     stylua
     tealdeer
-    telegram-desktop
     tree-sitter
     wget
     zellij

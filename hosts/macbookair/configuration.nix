@@ -1,4 +1,4 @@
-{ outputs, pkgs, ... }:
+{ outputs, pkgs, inputs, ... }:
 let
   wallpaper_path = "~/.siarch/home/dotfiles/share/backgrounds/wall.jpg";
   common = import ../common/pkgs.nix { inherit pkgs; };
@@ -29,9 +29,9 @@ in
     systemPath = [ "/opt/homebrew/bin" ];
     pathsToLink = [ "/Applications" ];
   };
-  fonts.fontDir.enable = true;
-  fonts.fonts = [
-    pkgs.libertine
+  # fonts.fontDir.enable = true;
+  fonts.fonts = with pkgs;[
+    (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 
   services.yabai = {
@@ -108,6 +108,8 @@ in
     casks = [
       "raycast"
       "brave-browser"
+      "slack"
+      "telegram"
     ];
     taps = [ ];
     brews = [

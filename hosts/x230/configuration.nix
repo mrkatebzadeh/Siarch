@@ -83,17 +83,20 @@ in
     cacert
     gettext
     mutt-wizard
-  ] ++ [
-    (nerdfonts.override {
-      fonts = [ "FiraCode" "DroidSansMono" ];
-    })
+    telegram-desktop
+    slack
   ] ++
-  common.packages ++ [ inputs.sf-fonts.packages."x86_64-linux".sf-pro ];
-
-  fonts.fontconfig.enable = true;
+  common.packages ++
+  [ inputs.sf-fonts.packages."x86_64-linux".sf-pro ];
 
   home.file = { };
   home.sessionVariables = { };
+
+  home.fonts.packages = with pkgs; [
+    (nerdfonts.override {
+      fonts = [ "FiraCode" ];
+    })
+  ];
 
   programs.home-manager.enable = true;
   programs.kitty = {
