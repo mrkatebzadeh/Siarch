@@ -32,7 +32,6 @@ in
     highlight
     i3
     killall
-    liberation_ttf
     libnotify
     lynx
     maim
@@ -44,9 +43,6 @@ in
     mutt-wizard
     ncmpcpp
     newsboat
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
     ntfs3g
     poppler
     pulseaudio

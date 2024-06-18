@@ -28,7 +28,6 @@
     curl
     lazygit
     lsd
-    meslo-lgs-nf
     ripgrep
     starship
     tree-sitter

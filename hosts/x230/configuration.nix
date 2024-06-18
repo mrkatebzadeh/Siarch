@@ -34,7 +34,6 @@ in
     hyprpaper
     i3
     killall
-    liberation_ttf
     libnotify
     lynx
     maim
@@ -93,11 +92,7 @@ in
   home.file = { };
   home.sessionVariables = { };
 
-  home.fonts.packages = with pkgs; [
-    (nerdfonts.override {
-      fonts = [ "FiraCode" ];
-    })
-  ];
+  fonts.fontconfig.enable = true;
 
   programs.home-manager.enable = true;
   programs.kitty = {

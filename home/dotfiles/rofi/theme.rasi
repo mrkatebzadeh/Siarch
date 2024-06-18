@@ -9,7 +9,7 @@
     grey: #737994;
 
     width: 600;
-    font: "Meslo LG L DZ for Powerline 14";
+    font: "SF Pro";
 }
 
 element-text, element-icon , mode-switcher {
