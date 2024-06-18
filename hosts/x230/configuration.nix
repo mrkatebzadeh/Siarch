@@ -43,7 +43,7 @@ in
     mpd
     mpv
     mutt-wizard
-    ncmpcpp
+    termusic
     newsboat
     ntfs3g
     poppler
@@ -73,7 +73,7 @@ in
     xorg.xprop
     xorg.xwininfo
     xwallpaper
-    youtube-dl
+    yt-dlp
     zathura
     zotero
     neomutt
