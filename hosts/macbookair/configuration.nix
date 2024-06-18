@@ -7,6 +7,7 @@ in
   nixpkgs = {
     overlays = [
       outputs.overlays.unstable-packages
+      outputs.overlays.local
     ];
     config = {
       allowUnfree = true;

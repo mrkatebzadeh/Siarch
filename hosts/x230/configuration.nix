@@ -1,10 +1,11 @@
-{ config, pkgs, outputs, inputs, ... }:
+{ config, pkgs, outputs, ... }:
 let common = import ../common/pkgs.nix { inherit pkgs; };
 in
 {
   nixpkgs = {
     overlays = [
       outputs.overlays.unstable-packages
+      outputs.overlays.local
     ];
     config = {
       allowUnfree = true;
@@ -85,9 +86,9 @@ in
     mutt-wizard
     telegram-desktop
     slack
+    fonts.sf-pro
   ] ++
-  common.packages ++
-  [ inputs.sf-fonts.packages."x86_64-linux".sf-pro ];
+  common.packages;
 
   home.file = { };
   home.sessionVariables = { };

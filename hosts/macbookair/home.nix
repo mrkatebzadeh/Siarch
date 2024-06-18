@@ -1,5 +1,16 @@
-{ ... }: {
-
+{ pkgs, outputs, ... }: {
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.unstable-packages
+    ];
+    config = {
+      allowUnfree = true;
+    };
+  };
+  home.packages = with pkgs; [
+    unstable.sketchybar-app-font
+    fonts.sf-pro
+  ];
   programs.kitty = {
     enable = true;
     settings = {

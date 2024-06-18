@@ -16,14 +16,16 @@
     };
 
     hardware.url = "github:nixos/nixos-hardware";
-
-    sf-fonts = {
-      url = "path:fonts";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = inputs@{ self, nixpkgs-unstable, nixpkgs, home-manager, nix-darwin, ... }:
+  outputs =
+    inputs@{ self
+    , nixpkgs-unstable
+    , nixpkgs
+    , home-manager
+    , nix-darwin
+    , ...
+    }:
     let
       username = "siavash";
       inherit (self) outputs;
@@ -67,7 +69,7 @@
           ./home
           {
             home = {
-              username = username;
+              inherit username;
               homeDirectory = "/home/${username}";
             };
           }
@@ -80,7 +82,7 @@
           ./home
           {
             home = {
-              username = username;
+              inherit username;
               homeDirectory = "/users/${username}";
             };
           }
@@ -107,9 +109,9 @@
               };
               home-manager = {
                 backupFileExtension = "backup";
-                useGlobalPkgs = true;
+                useGlobalPkgs = false;
                 useUserPackages = true;
-                extraSpecialArgs = { };
+                extraSpecialArgs = { inherit outputs;};
                 users.${username}.imports = [
                   ./home
                   ./hosts/macbookair/home.nix
