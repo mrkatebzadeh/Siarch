@@ -6,11 +6,7 @@ in
 {
   home.stateVersion = "22.11";
 
-  home.sessionVariables = {
-    PAGER = "less";
-    CLICLOLOR = 1;
-    EDITOR = "nvim";
-  };
+  home.sessionVariables = import ./nixfiles/variables.nix;
 
   fonts.fontconfig = import ./nixfiles/fonts.nix { inherit pkgs; };
   home.packages = with pkgs; [
