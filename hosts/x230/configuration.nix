@@ -90,7 +90,6 @@ in
     telegram-desktop
     slack
     fonts.sf-pro
-    whitesur-cursors
   ] ++
   common.packages;
 
@@ -115,5 +114,10 @@ in
     profiles.x230 = {
       isDefault = true;
     };
+  };
+
+  home.pointerCursor = {
+    name = "Catppuccin-Frappe-Dark-Cursors";
+    package = pkgs.catppuccin-cursors.frappeDark;
   };
 }
