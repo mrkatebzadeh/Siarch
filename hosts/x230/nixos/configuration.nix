@@ -46,6 +46,15 @@
     videoDrivers = [ "intel" ];
     autorun = true;
     displayManager.lightdm.enable = false;
+    libinput = {
+      enable = true;
+      mouse = {
+        accelProfile = "flat";
+      };
+      touchpad = {
+        naturalScrolling = true;
+      };
+    };
   };
   programs.hyprland.enable = true;
 
