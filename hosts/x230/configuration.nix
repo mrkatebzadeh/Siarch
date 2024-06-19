@@ -12,6 +12,10 @@ in
     };
   };
 
+  imports = [
+    ./jobs/email.nix
+  ];
+
   home.packages = with pkgs; [
     vscode-extensions.ms-vscode.cpptools
     bc
@@ -86,6 +90,7 @@ in
     telegram-desktop
     slack
     fonts.sf-pro
+    whitesur-cursors
   ] ++
   common.packages;
 
