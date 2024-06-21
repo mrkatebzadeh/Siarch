@@ -1,5 +1,8 @@
 { config, pkgs, outputs, ... }:
-let common = import ../common/pkgs.nix { inherit pkgs; };
+let
+  common = import ../common/pkgs.nix { inherit pkgs; };
+  siarch = "${config.home.homeDirectory}/.siarch";
+  dotfiles = "${siarch}/home/dotfiles";
 in
 {
   nixpkgs = {
@@ -68,6 +71,7 @@ in
     unstable.neovim
     unzip
     waybar
+    wl-clipboard
     xcape
     xdotool
     xorg.xbacklight
