@@ -13,7 +13,7 @@ vim.cmd([[
 vim.o.number = true
 vim.o.relativenumber = true
 
-vim.api.nvim_set_option("clipboard", "unnamed")
+vim.api.nvim_set_option("clipboard", "unnamedplus")
 vim.api.nvim_set_keymap("", "<Space>", "<Nop>", { noremap = true, silent = true })
 vim.g.mapleader = " "
 vim.opt.swapfile = false
