@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-if [ $XDG_SESSION_TYPE = "wayland" ]; then
-	terminal -T "email" -e neomutt -F ~/.config/mutt/muttrc &
-else
-	xid="$(tabbed -n "neomutt" -c -d -s -r 2 alacritty --embed x)"
-	terminal -T "Gmail" --embed "$xid" -e neomutt -F ~/.config/mutt/muttrc &
-	terminal -T "ED" --embed "$xid" -e neomutt -F ~/.config/mutt/muttrc2 &
-fi

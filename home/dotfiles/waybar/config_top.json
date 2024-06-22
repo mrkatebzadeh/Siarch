@@ -52,7 +52,7 @@
       "code": " 󰨞",
       "slack": " ",
       "thunderbird": " ",
-      "neomutt": " ",
+      "title<email": " ",
     }
   },
   "tray": {
@@ -88,7 +88,7 @@
     }
   },
   "hyprland/language": {
-    "format": " {}",
+    "format": "  {}",
     "format-en": "UK",
     "format-fa": "FA"
   },

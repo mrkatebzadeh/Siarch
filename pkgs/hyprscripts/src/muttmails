@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+terminal -T "email" -e neomutt -F $HOME/.config/mutt/muttrc

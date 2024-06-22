@@ -94,6 +94,7 @@ in
     telegram-desktop
     slack
     fonts.sf-pro
+    hyprscripts
   ] ++
   common.packages;
 

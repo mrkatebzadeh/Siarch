@@ -1,6 +1,0 @@
-#!/bin/sh
-# setsid -f $TERMINAL -o "window.class.general='music'" -o "window.class.instance='music'" -e tmux new-session "tmux source-file ~/.config/ncmpcpp/tmux_session"
-# terminal -o "window.class.general='music'" -o "window.class.instance='music'" -e cava&
-# terminal -o "window.class.general='music'" -o "window.class.instance='music'" -e tclock&
-# terminal -o "window.class.general='music'" -o "window.class.instance='music'" -e ncmpcpp&
-terminal -e termusic &

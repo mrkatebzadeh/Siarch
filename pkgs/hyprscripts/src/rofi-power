@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+cmds=("󰌾  Lock" "󰗽  Logout" "󰑐  Renew WM" "󰤄  Hibernate" "󰜉  Reboot" "  Shutdown")
+
+selected=$(printf "%s\n" "${cmds[@]}" | menu -p "Choose an action: ")
+
+case "$selected" in
+"󰌾  Lock") swaylock ;;
+"󰗽  Logout") pkill Hyprland ;;
+"󰑐  Renew WM") bspc wm -r ;;
+"󰤄  Hibernate") systemctl suspend-then-hibernate -i ;;
+"󰜉  Reboot") reboot ;;
+"  Shutdown") shutdown -h now ;;
+esac
