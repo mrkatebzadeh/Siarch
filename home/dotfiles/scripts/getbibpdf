@@ -1,5 +1,0 @@
-#! /bin/bash
-
-pdf=$(echo $1 | grep -oh "file = {[^{}]*}" | grep -oh "{[^{}]*}" | awk -F':' '{print $2}')
-year=$(echo $1 | grep -oh "year = {[^{}]*}" | grep -oh "{[^{}]*}"| tr -d '{}')
-echo $year/$pdf

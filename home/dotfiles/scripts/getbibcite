@@ -1,4 +1,0 @@
-#!/bin/sh
-
-id=$(echo $1 | awk -F'[{,]' '{print $2}')
-echo "\cite{"$id"}"

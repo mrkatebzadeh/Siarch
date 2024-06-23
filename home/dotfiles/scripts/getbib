@@ -1,5 +1,0 @@
-#! /bin/bash
-
-infile=$BIBTEXERFILE
-
-cat "$infile" | sed ':a;N;$!ba;s/},\n/},/g' | sed ':a;N;$!ba;s/\n}/}/g'| sed ':a;N;$!ba;s/,\n/,/g' | sed ':a;N;$!ba;s/\n\n/\n/g'| fzf --preview  'getbibpreview {}' --preview-window wrap

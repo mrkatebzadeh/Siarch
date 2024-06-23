@@ -1,5 +1,0 @@
-#!/bin/sh
-
-abstract=$(echo "$1" | grep -oh "abstract = {[^{}]*}" | grep -oh "{[^{}]*}" | tr -d '{}' )
-title=$(getbibtitle "$1" | tr -d '{}')
-printf "Title:\n %s\n\nAbstract:\n %s\n" "$title" "$abstract"

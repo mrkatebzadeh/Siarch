@@ -16,6 +16,7 @@ in
   home.packages = with pkgs; [
     unstable.sketchybar-app-font
     fonts.sf-pro
+    scripts.common
     scripts.macos
   ];
   programs.kitty = {
