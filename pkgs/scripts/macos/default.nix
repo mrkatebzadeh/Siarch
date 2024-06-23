@@ -1,6 +1,6 @@
 { pkgs, ... }:
 pkgs.stdenv.mkDerivation {
-  pname = "hyprscripts";
+  pname = "macos";
   version = "1.0.0";
 
   src = ./src;
@@ -11,7 +11,7 @@ pkgs.stdenv.mkDerivation {
   '';
 
   meta = with pkgs.lib; {
-    description = "My scripts for Hyprland";
+    description = "My scripts for MacOS";
     license = licenses.mit;
     maintainers = [ maintainers.mrkatebzadeh ];
   };
