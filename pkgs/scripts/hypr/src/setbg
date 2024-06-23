@@ -1,18 +1,17 @@
 #!/usr/bin/env bash
 
-bgloc="${XDG_DATA_HOME:-$HOME/.local/share/}/bg.jpg"
+DEFAULT_WALLPAPER="${XDG_DATA_HOME:-$HOME/.local/share/}bg.jpg"
+TEMP_WALLPAPER=$(mktemp --suffix=.jpg)
 
-trueloc="$(readlink -f "$1")" &&
-	case "$(file --mime-type -b "$trueloc")" in
-	image/*) ln -sf "$(readlink -f "$1")" "$bgloc" && notify-send -i "$bgloc" "Changing wallpaper..." ;;
-	inode/directory) ln -sf "$(find "$trueloc" -iregex '.*.\(jpg\|jpeg\|png\|gif\)' -type f | shuf -n 1)" "$bgloc" && notify-send -i "$bgloc" "Random Wallpaper chosen." ;;
-	*)
-		notify-send.sh "Error" "Not a valid image."
-		exit 1
-		;;
-	esac
+if [ $# -eq 1 ]; then
+	WALLPAPER=$1
+else
+	WALLPAPER=$DEFAULT_WALLPAPER
+fi
 
-hyprctl hyprpaper unload "$bgloc"
-hyprctl hyprpaper preload "$bgloc"
+cp $WALLPAPER $TEMP_WALLPAPER
+
+hyprctl hyprpaper unload "$TEMP_WALLPAPER"
+hyprctl hyprpaper preload "$TEMP_WALLPAPER"
 monitors=($(hyprctl monitors | grep Monitor | awk '{print $2}' | tr "\n" " "))
-for i in "${monitors[@]}"; do hyprctl hyprpaper wallpaper $i,$bgloc; done
+for i in "${monitors[@]}"; do hyprctl hyprpaper wallpaper $i,$TEMP_WALLPAPER; done

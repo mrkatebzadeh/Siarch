@@ -20,5 +20,5 @@ git clone https://github.com/mrkatebzadeh/Siarch.git
 
 ```
 cd Siarch
-./rebuild.sh
+./rebuild.sh <config>
 ```
