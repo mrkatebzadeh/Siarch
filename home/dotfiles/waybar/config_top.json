@@ -1,7 +1,7 @@
 {
-  //"height": 150, // Waybar height (to be removed for auto height)
-  //"width": auto, // Waybar height (to be removed for auto height)
-  "spacing": 3, // Gaps between modules (4px)
+  //"height": 15,
+  //"width": auto,
+  "spacing": 4,
   "modules-left": ["custom/launcher", "hyprland/workspaces"],
   "modules-center": [],
   "modules-right": ["tray", "group/hardware", "hyprland/language", "clock"],
@@ -25,7 +25,7 @@
     "orientation": "horizontal"
   },
   "hyprland/workspaces": {
-    "format": "{id}:  {windows}",
+    "format": "{id}    {windows}",
     "on-scroll-up": "hyprctl dispatch workspace e+1",
     "on-scroll-down": "hyprctl dispatch workspace e-1",
     "on-click": "activate",
