@@ -24,4 +24,4 @@ sketchybar --add item airpods right \
 	--set airpods.charge "${airpods_charge[@]}" \
 	--subscribe airpods bluetooth_change
 
-sketchybar --add bracket status brew github.bell wifi volume_icon airpods --set status "${status_bracket[@]}"
+sketchybar --add bracket status battery wifi volume_icon airpods --set status "${status_bracket[@]}"
