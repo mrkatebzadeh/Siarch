@@ -14,15 +14,30 @@
       "$cmd_duration"
       "$line_break"
       "[│](bold green)"
+      "$shlvl"
+      "$nix_shell"
       "$directory"
       "$git_branch"
       "$git_status"
       "$git_metrics"
       "$line_break"
-      "[╰─](bold green)"
+      "[╰──](bold green)"
       "$character"
     ];
 
+    nix_shell = {
+      disabled = false;
+      impure_msg = "";
+      style = "yellow";
+      symbol = "❄";
+      format = "[$symbol$state]($style) ";
+    };
+
+    shlvl = {
+      disabled = false;
+      style = "blue";
+      symbol = "󰓍 ";
+    };
 
     shell = {
       style = "cyan bold";
@@ -89,7 +104,7 @@
       success_symbol = "[  ](bold green)";
       vimcmd_symbol = "[  ](bold green)";
       error_symbol = "[ ✗ ](bold red)";
-    } ;
+    };
 
     time = {
       disabled = false;
