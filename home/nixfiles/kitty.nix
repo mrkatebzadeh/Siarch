@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  font = { name = "Fira Code"; };
+  font = { name = "FiraCode Nerd Font"; };
   settings = {
     background = "#303446";
     foreground = "#C6D0F5";
