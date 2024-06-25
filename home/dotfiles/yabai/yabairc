@@ -53,9 +53,9 @@ yabai -m config active_window_opacity        0.98
 yabai -m config normal_window_opacity        0.80
 
 
-yabai -m rule --add app="^kitty$" opacity=0.85
+yabai -m rule --add app="^kitty$" opacity=0.95
 yabai -m rule --add title="ddterm" manage=off grid="10:1:0:0:1:4"
-yabai -m rule --add title="ddterm" opacity=0.95
+yabai -m rule --add title="ddterm" opacity=1
 
 
 # Override default layout for space 2 only

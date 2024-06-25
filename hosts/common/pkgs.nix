@@ -53,7 +53,6 @@
     python3
     python311Packages.pynvim
     ripgrep
-    starship
     stow
     stylua
     tealdeer

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 let
   siarch = "${config.home.homeDirectory}/.siarch";
   dotfiles = "${siarch}/home/dotfiles";
@@ -25,6 +25,9 @@ in
   };
   programs.bat = import ./nixfiles/bat.nix { inherit pkgs; };
   programs.kitty = import ./nixfiles/kitty.nix { inherit pkgs; };
+  programs.starship = import ./nixfiles/starship.nix {
+    inherit pkgs lib;
+  };
   programs.zsh = import ./nixfiles/zsh.nix { inherit pkgs; };
 
   home.file.".profile".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/profile";
@@ -43,7 +46,6 @@ in
   home.file.".local/share/backgrounds".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/share/backgrounds";
   home.file.".local/share/siarch".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/share/siarch";
   xdg.configFile."shell".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/shell";
-  xdg.configFile."starship.toml".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/starship/starship.toml";
   xdg.configFile."tmux".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/tmux";
   xdg.configFile."vim".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/vim";
   xdg.configFile."wget".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/wget";
