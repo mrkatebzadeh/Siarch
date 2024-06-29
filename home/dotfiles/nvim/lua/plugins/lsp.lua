@@ -141,11 +141,7 @@ return {
 	},
 	{
 		"rmagatti/goto-preview",
-		config = function()
-			require("goto-preview").setup({
-				border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-        dismiss_on_move = true,
-			})
-		end,
+		event = "BufEnter",
+		config = true,
 	},
 }
