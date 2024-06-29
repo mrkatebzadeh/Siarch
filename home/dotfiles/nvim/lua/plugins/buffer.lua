@@ -35,6 +35,12 @@ return {
 		"utilyre/barbecue.nvim",
 		version = "v1.*",
 		lazy = true,
+		opts = {
+			show_modified = true,
+			symbols = {
+				modified = "󰽃",
+			},
+		},
 		event = "BufReadPre",
 		dependencies = {
 			"SmiteshP/nvim-navic",
@@ -113,7 +119,7 @@ return {
 	},
 	{
 		"akinsho/bufferline.nvim",
-    enabled = false,
+		enabled = false,
 		version = "v4.6",
 		opts = function()
 			local Offset = require("bufferline.offset")
