@@ -3,7 +3,6 @@ if not status_ok then
   return
 end
 
-
 function my_quit()
   local bufnr = vim.api.nvim_get_current_buf()
   local buf_windows = vim.call("win_findbuf", bufnr)
@@ -49,7 +48,7 @@ local setup = {
   },
   icons = {
     breadcrumb = "»",
-    separator = "➜",
+    separator = "->",
     group = "+",
   },
   popup_mappings = {

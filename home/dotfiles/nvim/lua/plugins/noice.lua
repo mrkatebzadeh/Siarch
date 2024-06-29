@@ -52,6 +52,7 @@ return {
 		local cmdline_opts = {
 			border = {
 				style = "rounded",
+				padding = { 1, 2 },
 				text = { top = "" },
 			},
 		}
@@ -59,22 +60,22 @@ return {
 			cmdline = {
 				view = "cmdline_popup",
 				format = {
-					cmdline = { pattern = "^:", icon = "", opts = cmdline_opts },
-					search_down = { view = "cmdline", kind = "Search", pattern = "^/", icon = "🔎 ", ft = "regex" },
-					search_up = { view = "cmdline", kind = "Search", pattern = "^%?", icon = "🔎 ", ft = "regex" },
+					cmdline = { pattern = "^:", icon = " ", opts = cmdline_opts },
+					search_down = { view = "cmdline", kind = "Search", pattern = "^/", icon = " ", ft = "regex" },
+					search_up = { view = "cmdline", kind = "Search", pattern = "^%?", icon = " ", ft = "regex" },
 					input = { icon = "✏️ ", ft = "text", opts = cmdline_opts },
 					calculator = { pattern = "^=", icon = "", lang = "vimnormal", opts = cmdline_opts },
 					substitute = {
 						pattern = "^:%%?s/",
-						icon = "🔁",
+						icon = "󰛔 ",
 						ft = "regex",
-						opts = { border = { text = { top = " sub (old/new/) " } } },
+						opts = cmdline_opts,
 					},
 					filter = { pattern = "^:%s*!", icon = "$", ft = "sh", opts = cmdline_opts },
 					filefilter = {
 						kind = "Filter",
 						pattern = "^:%s*%%%s*!",
-						icon = "📄 $",
+						icon = "󰵃 $",
 						ft = "sh",
 						opts = cmdline_opts,
 					},
@@ -88,7 +89,7 @@ return {
 					lua = { pattern = "^:%s*lua%s+", icon = "", conceal = true, ft = "lua", opts = cmdline_opts },
 					rename = {
 						pattern = "^:%s*IncRename%s+",
-						icon = "✏️ ",
+						icon = "󰑕",
 						conceal = true,
 						opts = {
 							relative = "cursor",
@@ -98,7 +99,7 @@ return {
 							border = { text = { top = " rename " } },
 						},
 					},
-					help = { pattern = "^:%s*h%s+", icon = "💡", opts = cmdline_opts },
+					help = { pattern = "^:%s*h%s+", icon = "󰘥 ", opts = cmdline_opts },
 				},
 			},
 			messages = { view_search = false },
@@ -144,18 +145,18 @@ return {
 						width = 60,
 						height = 10,
 					},
-					border = {
-						style = "rounded",
-						padding = { 0, 1 },
-					},
 					win_options = {
 						winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
+					},
+					border = {
+						style = "rounded",
+						padding = { 0, 0 },
 					},
 				},
 			},
 			presets = {
 				long_message_to_split = true,
-				lsp_doc_border = true,
+				-- lsp_doc_border = true,
 			},
 			routes = {
 				{ filter = { find = "E162" }, view = "mini" },

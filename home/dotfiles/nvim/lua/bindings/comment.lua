@@ -7,7 +7,7 @@ COMMENT.setup = function()
   end
 
   local K = vim.keymap.set
-  K("n", "K", vim.lsp.buf.hover, {})
+  -- K("n", "K", vim.lsp.buf.hover, {})
 
   local call = require("Comment.api").call
 
