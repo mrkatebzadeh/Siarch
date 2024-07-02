@@ -1,2 +1,2 @@
 #!/bin/sh
-export SHELL=/bin/zsh
+export SHELL=$(which zsh)

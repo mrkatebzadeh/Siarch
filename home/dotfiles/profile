@@ -1,5 +1,5 @@
 #!/bin/sh
-export SHELL=/bin/zsh
+export SHELL=$(which zsh)
 
 ZSHRC=~/.config/zsh/zshrc
 if [ -r $ZSHRC  ]; then
