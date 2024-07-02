@@ -16,6 +16,7 @@
     };
 
     hardware.url = "github:nixos/nixos-hardware";
+    nixgl.url = "github:nix-community/nixGL";
   };
 
   outputs =
@@ -24,6 +25,7 @@
     , nixpkgs
     , home-manager
     , nix-darwin
+    , nixgl
     , ...
     }:
     let
@@ -77,6 +79,19 @@
           nixpkgs.legacyPackages."x86_64-linux";
       };
       homeConfigurations = {
+        hpz2 = mkHome [
+          ./hosts/hpz2/configuration.nix
+          ./home
+          {
+            home = {
+              inherit username;
+              homeDirectory = "/home/${username}";
+            };
+          }
+        ]
+          nixpkgs.legacyPackages."x86_64-linux";
+      };
+      homeConfigurations = {
         cloudlab = mkHome [
           ./hosts/cloudlab/configuration.nix
           ./home
@@ -111,7 +126,7 @@
                 backupFileExtension = "backup";
                 useGlobalPkgs = false;
                 useUserPackages = true;
-                extraSpecialArgs = { inherit outputs;};
+                extraSpecialArgs = { inherit outputs; };
                 users.${username}.imports = [
                   ./home
                   ./hosts/macbookair/home.nix
