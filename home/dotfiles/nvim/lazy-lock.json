@@ -12,6 +12,7 @@
   "cmp_luasnip": { "branch": "master", "commit": "05a9ab28b53f71d1aece421ef32fee2cb857a843" },
   "copilot-cmp": { "branch": "master", "commit": "72fbaa03695779f8349be3ac54fa8bd77eed3ee3" },
   "copilot.lua": { "branch": "master", "commit": "03f825956ec49e550d07875d867ea6e7c4dc8c00" },
+  "cppman.nvim": { "branch": "main", "commit": "d52248494affdad266732a8601077ba0e9a337cc" },
   "crates.nvim": { "branch": "main", "commit": "8437522d12a8c523da2aee9db2979d070b2ecc33" },
   "distant.nvim": { "branch": "v0.2", "commit": "de7288b1af6fdb2d2e7a8aa00f07a236261c2491" },
   "edgy.nvim": { "branch": "main", "commit": "0b35dc6da4cae6cc2f724bc610eadf955cd2319b" },
@@ -85,5 +86,6 @@
   "vim-illuminate": { "branch": "master", "commit": "305bf07b919ac526deb5193280379e2f8b599926" },
   "vimtex": { "branch": "master", "commit": "930db4889d36527c90b1e41cc605ae863578b72f" },
   "which-key.nvim": { "branch": "main", "commit": "4433e5ec9a507e5097571ed55c02ea9658fb268a" },
+  "window-picker": { "branch": "main", "commit": "41cfaa428577c53552200a404ae9b3a0b5719706" },
   "zen-mode.nvim": { "branch": "main", "commit": "78557d972b4bfbb7488e17b5703d25164ae64e6a" }
 }

@@ -98,6 +98,10 @@ return {
 				"--offset-encoding=utf-16", --temporary fix for null-ls
 				"--header-insertion-decorators",
 				"--clang-tidy-checks=-*,llvm-*,clang-analyzer-*,modernize-*,-modernize-use-trailing-return-type,performance-*,bugprone-*",
+        '--header-insertion=iwyu',
+        '--header-insertion-decorators',
+        '--suggest-missing-includes',
+
 				-- "--fallback-style=Google",
 				-- "--header-insertion=never",
 				-- "--query-driver=<list-of-white-listed-complers>"
