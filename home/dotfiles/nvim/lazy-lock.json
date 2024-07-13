@@ -24,9 +24,9 @@
   "hop.nvim": { "branch": "master", "commit": "1a1eceafe54b5081eae4cb91c723abd1d450f34b" },
   "hover.nvim": { "branch": "main", "commit": "4339cbbcb572b1934c53dcb66ad4bf6a0abb7918" },
   "indent-blankline.nvim": { "branch": "master", "commit": "12e92044d313c54c438bd786d11684c88f6f78cd" },
-  "lazy.nvim": { "branch": "main", "commit": "c882227f1fdc4580d14212df8f814a0772951e3d" },
+  "lazy.nvim": { "branch": "main", "commit": "24fa2a97085ca8a7220b5b078916f81e316036fd" },
   "lazygit.nvim": { "branch": "main", "commit": "1e08e3f5ac1152339690140e61a4a32b3bdc7de5" },
-  "leap.nvim": { "branch": "main", "commit": "5d10692be460f9e8a42d34cf98a012e3e18b23bf" },
+  "leap.nvim": { "branch": "main", "commit": "c099aecaf858574909bd38cbadb8543c4dd16611" },
   "lsp_signature.nvim": { "branch": "master", "commit": "529e8861d0410389f0163a5e5c2199d4a4ef5bf6" },
   "lspkind.nvim": { "branch": "master", "commit": "1735dd5a5054c1fb7feaf8e8658dbab925f4f0cf" },
   "lualine.nvim": { "branch": "master", "commit": "7d131a8d3ba5016229e8a1d08bf8782acea98852" },
@@ -71,7 +71,7 @@
   "project.nvim": { "branch": "main", "commit": "8c6bad7d22eef1b71144b401c9f74ed01526a4fb" },
   "rainbow-delimiters.nvim": { "branch": "master", "commit": "ca8d5ee2b4ee1eec491040a7601d366ddc8a2e02" },
   "refactoring.nvim": { "branch": "master", "commit": "1b593e7203b31c7bde3fa638e6869144698df3b6" },
-  "rustaceanvim": { "branch": "master", "commit": "66466d4fe0b8988ba9e2932d3c41782c2efb683b" },
+  "rustaceanvim": { "branch": "master", "commit": "f16c6eacfb7556c69ffc229e220b8555378245f0" },
   "satellite.nvim": { "branch": "main", "commit": "34cdb017ebb239bdba5a5ac23c6307837b5e3b7e" },
   "telescope-file-browser.nvim": { "branch": "master", "commit": "a7ab9a957b17199183388c6f357d614fcaa508e5" },
   "telescope-ui-select.nvim": { "branch": "master", "commit": "6e51d7da30bd139a6950adf2a47fda6df9fa06d2" },
@@ -86,6 +86,5 @@
   "vim-illuminate": { "branch": "master", "commit": "305bf07b919ac526deb5193280379e2f8b599926" },
   "vimtex": { "branch": "master", "commit": "930db4889d36527c90b1e41cc605ae863578b72f" },
   "which-key.nvim": { "branch": "main", "commit": "4433e5ec9a507e5097571ed55c02ea9658fb268a" },
-  "window-picker": { "branch": "main", "commit": "41cfaa428577c53552200a404ae9b3a0b5719706" },
   "zen-mode.nvim": { "branch": "main", "commit": "78557d972b4bfbb7488e17b5703d25164ae64e6a" }
 }

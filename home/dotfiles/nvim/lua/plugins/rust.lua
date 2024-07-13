@@ -6,7 +6,7 @@ return {
       -- "ray-x/lsp_signature.nvim",
       -- opts = {},
     },
-    version = "4.23.2", -- Recommended
+    version = "4.26.2", -- Recommended
     ft = { "rust" },
     config = function()
       local mason_registry = require("mason-registry")
