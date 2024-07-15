@@ -42,7 +42,7 @@
     bindkey  '^e' vi-end-of-line
     bindkey '^[[P' delete-char
 
-    eval "$(starship init zsh)"
+    # eval "$(starship init zsh)"
   '';
   dotDir = ".config/zsh";
 }
