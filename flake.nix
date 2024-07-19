@@ -79,8 +79,8 @@
           nixpkgs.legacyPackages."x86_64-linux";
       };
       homeConfigurations = {
-        hpz2 = mkHome [
-          ./hosts/hpz2/configuration.nix
+        shiraz = mkHome [
+          ./hosts/shiraz/configuration.nix
           ./home
           {
             home = {

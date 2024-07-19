@@ -20,7 +20,10 @@ in
   ];
 
   home.packages = with pkgs; [
+    firefox
     hyprland
+    slurp
+    grim
     vscode-extensions.ms-vscode.cpptools
     bc
     bluetuith
@@ -81,6 +84,7 @@ in
     fonts.sf-pro
     scripts.common
     scripts.hypr
+    teams-for-linux
   ] ++
   common.packages;
 
@@ -93,7 +97,7 @@ in
   programs.kitty = {
     enable = true;
     settings.font_size = 11;
-    settings.background_opacity = "0.8";
+    settings.background_opacity = "0.9";
     keybindings = {
       "alt+c" = "copy_to_clipboard";
       "alt+v" = "paste_from_clipboard";
