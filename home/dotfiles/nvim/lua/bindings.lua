@@ -100,6 +100,7 @@ which_key.register(mappings, opts)
 
 
 require("bindings.C_chatgpt").setup()
+require("bindings.G_generate").setup()
 require("bindings.S_session").setup()
 require("bindings.T_terminal").setup()
 require("bindings.a_assembly").setup()
