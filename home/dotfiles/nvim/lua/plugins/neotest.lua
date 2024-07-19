@@ -14,6 +14,7 @@ return {
     require("neotest").setup({
       adapters = {
         -- require("neotest-gtest").setup({}),
+        -- require("rustaceanvim.neotest"),
         require("neotest-rust"),
         require("neotest-python")({
           dap = { justMyCode = false },
@@ -22,6 +23,13 @@ return {
         require("neotest-vim-test")({
           ignore_file_types = { "python", "vim", "lua" },
         }),
+      },
+      status = { virtual_text = true },
+      output = { open_on_run = true },
+      quickfix = {
+        open = function()
+          require("trouble").open({ mode = "quickfix", focus = false })
+        end,
       },
     })
   end,

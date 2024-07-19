@@ -24,7 +24,16 @@ return {
     },
     bottom = {
       {
+        ft = "neotest-output-panel",
+        title = "NeoTest",
+        size = { height = 0.4 },
+        filter = function(buf, win)
+          return vim.api.nvim_win_get_config(win).relative == ""
+        end,
+      },
+      {
         ft = "toggleterm",
+        title = "LazyTerm",
         size = { height = 0.4 },
         filter = function(buf, win)
           return vim.api.nvim_win_get_config(win).relative == ""
@@ -39,10 +48,13 @@ return {
         end,
       },
       "Trouble",
-      { ft = "qf",            title = "QuickFix" },
+      {
+        ft = "qf",
+        title = "QuickFix",
+      },
       {
         ft = "help",
-        size = { height = 20 },
+        size = { height = 40 },
         filter = function(buf)
           return vim.bo[buf].buftype == "help"
         end,

@@ -18,12 +18,13 @@ T_TEST.setup = function()
   local mappings = {
     t = {
       name = "Test",
-      o = { "<cmd>Neotest output<cr>", "Output" },
-      s = { "<cmd>Neotest summary<cr>", "Summary" },
-      l = { "<cmd>Neotest run last<cr>", "Run Last" },
-      f = { "<cmd>Neotest run file<cr>", "Run File" },
-      c = { "<cmd>ConfigureGtest<cr>", "Configure" },
-      S = { "<cmd>Neotest stop<cr>", "Stop" },
+      o = { "<cmd>lua require('neotest').output.open({ enter = true, auto_close = true })<cr>", "Output" },
+      s = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Summary" },
+      l = { "<cmd>lua require('neotest').run.run_last()<cr>", "Run Last" },
+      f = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", "Run File" },
+      c = { "<cmd>lua require('neotest').run.run()<cr>", "Run Current Test" },
+      S = { "<cmd>lua require('neotest').run.stop()<cr>", "Stop" },
+      t = { "<cmd>lua require('neotest').output_panel.toggle()<cr>", "Toggle" },
     },
   }
 
