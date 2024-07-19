@@ -1,6 +1,6 @@
-G_GENERATE = {}
+J_GENERATE = {}
 
-G_GENERATE.setup = function()
+J_GENERATE.setup = function()
   local status_ok, which_key = pcall(require, "which-key")
   if not status_ok then
     return
@@ -16,7 +16,7 @@ G_GENERATE.setup = function()
   }
 
   local mappings = {
-    G = {
+    j = {
       name = "Generate",
       a = { "<cmd>lua require('neogen').generate()<CR>", "Annotations" },
     },
@@ -36,4 +36,4 @@ G_GENERATE.setup = function()
   which_key.register(mappings, opts)
 end
 
-return G_GENERATE
+return J_GENERATE
