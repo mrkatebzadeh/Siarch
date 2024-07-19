@@ -54,12 +54,16 @@ return {
       },
       {
         ft = "help",
+        title = "Help",
         size = { height = 40 },
         filter = function(buf)
           return vim.bo[buf].buftype == "help"
         end,
       },
-      { ft = "spectre_panel", size = { height = 0.4 } },
+      {
+        ft = "spectre_panel",
+        size = { height = 0.4 },
+      },
     },
     left = {
       {
@@ -70,15 +74,6 @@ return {
         end,
         pinned = true,
         size = { height = 0.5 },
-      },
-      {
-        title = "Buffers",
-        ft = "neo-tree",
-        filter = function(buf)
-          return vim.b[buf].neo_tree_source == "buffers"
-        end,
-        pinned = true,
-        open = "Neotree position=top buffers",
       },
     },
     right = {

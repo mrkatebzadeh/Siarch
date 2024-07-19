@@ -114,10 +114,7 @@ return {
             nowait = true,
           },
           mappings = {
-            ["<space>"] = {
-              "none",
-              nowait = false,
-            },
+            ["<space>"] = "noop",
             ["<2-LeftMouse>"] = "open",
             ["<cr>"] = "open",
             ["<esc>"] = "cancel",
