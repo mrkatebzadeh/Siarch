@@ -149,4 +149,10 @@ return {
     event = "BufEnter",
     config = true,
   },
+  {
+    "j-hui/fidget.nvim",
+    opts = {
+      -- options
+    },
+  },
 }

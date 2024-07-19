@@ -125,7 +125,7 @@
               home-manager = {
                 backupFileExtension = "backup";
                 useGlobalPkgs = false;
-                useUserPackages = true;
+                useUserPackages = false;
                 extraSpecialArgs = { inherit outputs; };
                 users.${username}.imports = [
                   ./home
