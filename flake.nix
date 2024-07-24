@@ -104,6 +104,19 @@
         ]
           nixpkgs.legacyPackages."x86_64-linux";
       };
+      homeConfigurations = {
+        duck = mkHome [
+          ./hosts/duck/configuration.nix
+          ./home
+          {
+            home = {
+              username = "root";
+              homeDirectory = "/root";
+            };
+          }
+        ]
+          nixpkgs.legacyPackages."x86_64-linux";
+      };
       darwinConfigurations = {
         macbookair = nix-darwin.lib.darwinSystem {
           specialArgs = {
