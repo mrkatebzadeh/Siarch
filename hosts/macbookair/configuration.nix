@@ -20,6 +20,7 @@ in
       cargo
       rustc
       rustfmt
+      emacs-macport
       unstable.jankyborders
       unstable.jq
       unstable.neovim
