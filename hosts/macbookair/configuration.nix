@@ -111,6 +111,7 @@ in
       "brave-browser"
       "slack"
       "telegram"
+      "spotify"
     ];
     taps = [ ];
     brews = [
