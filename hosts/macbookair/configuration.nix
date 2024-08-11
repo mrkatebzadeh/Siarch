@@ -20,7 +20,6 @@ in
       cargo
       rustc
       rustfmt
-      emacs-macport
       unstable.jankyborders
       unstable.jq
       unstable.neovim
@@ -32,10 +31,12 @@ in
     pathsToLink = [ "/Applications" ];
   };
   # fonts.fontDir.enable = true;
+
   fonts.fonts = with pkgs;[
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 
+  # services.emacs.enable = true;
   services.yabai = {
     enable = true;
     # enableScriptingAddition = true;
