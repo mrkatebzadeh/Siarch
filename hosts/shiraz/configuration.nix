@@ -62,7 +62,7 @@ in
     simple-mtpfs
     slock
     swaylock
-    st
+    # st
     taskspooler
     unclutter
     unrar
@@ -86,6 +86,7 @@ in
     scripts.common
     scripts.hypr
     teams-for-linux
+    emacs
   ] ++
   common.packages;
 
@@ -134,5 +135,6 @@ in
   xdg.configFile."rofi".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/rofi";
   # xdg.configFile."sxkhd".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/sxkhd";
   xdg.configFile."waybar".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/waybar";
+  xdg.configFile."emacs".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/emacs.d";
 
 }

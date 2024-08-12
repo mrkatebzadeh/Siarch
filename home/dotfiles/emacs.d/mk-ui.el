@@ -55,7 +55,7 @@
   ;; Font
   (set-face-attribute 'default nil
                       :family "FiraCode Nerd Font"
-                      :height 160
+                      :height 120
                       :weight 'normal
                       :width 'normal)
 
