@@ -26,6 +26,7 @@
 ;;; Code:
 
 (use-package helm
+  :disabled
   :defer t
   :commands (helm-find-files
 	     helm-show-kill-ring

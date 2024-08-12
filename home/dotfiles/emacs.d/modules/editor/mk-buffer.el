@@ -25,6 +25,10 @@
 
 ;;; Code:
 
+(use-package solaire-mode
+  :init
+  (solaire-global-mode +1))
+
 (use-package avy
   :defer t)
 

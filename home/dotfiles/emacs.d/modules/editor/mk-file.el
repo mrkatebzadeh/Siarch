@@ -561,6 +561,7 @@ Compare them on count first,and in case of tie sort them alphabetically."
  :prefix "SPC f"
  :states '(normal visual motion)
  :keymaps 'override
+ "f" 'find-file
  "e" 'treemacs
  "r" '(:ignore t :which-key "rename")
  "rf" 'mk-rename-file
