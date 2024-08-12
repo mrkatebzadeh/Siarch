@@ -38,7 +38,8 @@
 	     helm-projectile-recentf
 	     helm-projectile-ag)
   :config
-  (helm-projectile-on))
+  (helm-projectile-on)
+  (setq projectile-use-git-grep t))
 
 (use-package recentf
   :defer t
@@ -128,13 +129,13 @@
   :config
   (evil-define-key 'normal treemacs-mode-map
     (kbd "d") 'treemacs-delete-file
+    (kbd "a") 'treemacs-create-file
     (kbd "<") 'treemacs-decrement-width
     (kbd ">") 'treemacs-increment-width
     (kbd ".") 'treemacs-toggle-show-dotfiles
     (kbd "<tab>") 'treemacs-RET-action
     (kbd "RET") 'treemacs-rename-file
-    (kbd "r") 'treemacs-rename-file
-    )
+    (kbd "r") 'treemacs-rename-file)
   (treemacs-project-follow-mode 1)
   (treemacs-peek-mode 1)
   (treemacs-load-all-the-icons-with-workaround-font "FiraCode Nerd Font")
@@ -166,6 +167,10 @@
 (use-package treemacs-magit
   :after (treemacs magit)
   :defer t)
+
+(use-package direnv
+  :config
+  (direnv-mode))
 
 ;;; config
 (with-eval-after-load 'projectile
@@ -561,7 +566,7 @@ Compare them on count first,and in case of tie sort them alphabetically."
  :prefix "SPC f"
  :states '(normal visual motion)
  :keymaps 'override
- "f" 'find-file
+ "f" 'helm-find-files
  "e" 'treemacs
  "r" '(:ignore t :which-key "rename")
  "rf" 'mk-rename-file
