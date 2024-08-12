@@ -144,7 +144,7 @@
 (use-package telephone-line
   :ensure t
   :init
-  (telephone-line-mode 1))
+  (telephone-line-mode t))
 
 (provide 'mk-ui)
 ;;; mk-ui.el ends here

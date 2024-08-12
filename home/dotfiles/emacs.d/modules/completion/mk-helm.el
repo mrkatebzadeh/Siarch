@@ -37,18 +37,25 @@
   (helm-mode 1)
   (setq helm-ff-skip-boring-files t))
 
+
+(with-eval-after-load 'helm
+(customize-set-variable 'helm-ff-lynx-style-map t)
+(add-to-list 'display-buffer-alist
+	     `(,(rx bos "*helm" (* not-newline) "*" eos)
+	       (display-buffer-in-side-window)
+	       (inhibit-same-window . t)
+	       (window-height . 0.35)))
+(define-key helm-map (kbd "TAB") #'helm-execute-persistent-action)
+(define-key helm-map (kbd "<tab>") #'helm-execute-persistent-action)
+(define-key helm-map (kbd "C-z") #'helm-select-action))
+
+
+
+
 ;;; helm-tramp
 (use-package helm-tramp
   :after helm
   :defer t)
-
-(with-eval-after-load 'helm
-  (customize-set-variable 'helm-ff-lynx-style-map t)
-  (add-to-list 'display-buffer-alist
-	       `(,(rx bos "*helm" (* not-newline) "*" eos)
-		 (display-buffer-in-side-window)
-		 (inhibit-same-window . t)
-		 (window-height . 0.35))))
 
 ;;; Files
 (general-define-key
@@ -60,12 +67,6 @@
  "t" 'helm-tramp
  "T" 'helm-tramp-quit
  "f" 'helm-find-files)
-
-(with-eval-after-load 'helm
-  (define-key helm-map (kbd "TAB") #'helm-execute-persistent-action)
-  (define-key helm-map (kbd "<tab>") #'helm-execute-persistent-action)
-  (define-key helm-map (kbd "C-z") #'helm-select-action))
-
 
 (provide 'mk-helm)
 ;;; mk-helm.el ends here
