@@ -172,6 +172,7 @@
   :config
   (direnv-mode))
 
+(use-package inheritenv)
 ;;; config
 (with-eval-after-load 'projectile
   (setq projectile-globally-ignored-directories
@@ -210,7 +211,7 @@
 	treemacs-display-in-side-window        t
 	treemacs-eldoc-display                 t
 	treemacs-file-event-delay              5000
-	treemacs-file-follow-delay             0.2
+	treemacs-file-follow-delay             0.1
 	treemacs-follow-after-init             t
 	treemacs-git-command-pipe              ""
 	treemacs-goto-tag-strategy             'refetch-index
@@ -229,10 +230,10 @@
 	treemacs-recenter-after-project-jump   'always
 	treemacs-recenter-after-project-expand 'on-distance
 	treemacs-show-cursor                   nil
-	treemacs-show-hidden-files             t
+	treemacs-show-hidden-files             nil
 	treemacs-silent-filewatch              nil
 	treemacs-silent-refresh                nil
-	treemacs-sorting                       'alphabetic-desc
+	treemacs-sorting                       'alphabetic-asc
 	treemacs-space-between-root-nodes      t
 	treemacs-tag-follow-cleanup            t
 	treemacs-tag-follow-delay              1.5
