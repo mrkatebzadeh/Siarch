@@ -45,7 +45,8 @@ window#waybar.hidden {
 }
 
 #workspaces button:hover {
-  color: alpha(@surface0, 0.8);
+  border: 2px solid @red;
+  color: @red;
   background-color: @surface0;
 }
 
