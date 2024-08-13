@@ -130,17 +130,11 @@
 (with-eval-after-load 'magit
   (evil-collection-init 'magit))
 
-(general-define-key
- :prefix "SPC g"
- :states '(normal visual motion)
- :keymaps 'override
- "s" 'magit-status)
+(leader
+  "gs" 'magit-status)
 
-(general-define-key
- :prefix "SPC t"
- :states '(normal visual motion)
- :keymaps 'override
- "g" 'git-gutter+-mode)
+(leader
+  "tg" 'git-gutter+-mode)
 
 
 (provide 'mk-git)

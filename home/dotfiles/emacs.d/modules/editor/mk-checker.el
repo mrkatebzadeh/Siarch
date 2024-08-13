@@ -55,13 +55,10 @@
   (langtool-mother-tongue "en-US"))
 
 ;;; bindings
-(general-define-key
- :prefix "SPC t"
- :states '(normal visual motion)
- :keymaps 'override
- "s" 'flyspell-mode
- "l" 'langtool-check
- "c" 'global-flycheck-mode)
+(leader
+  "ts" 'flyspell-mode
+  "tl" 'langtool-check
+  "tc" 'global-flycheck-mode)
 
 
 (provide 'mk-checker)

@@ -61,28 +61,17 @@
     "http://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
     :docstring "Searchin' the wikis."))
 
-
-(general-define-key
- :prefix "SPC"
- :states '(normal visual motion)
- :keymaps 'override
- "s" '(:ignore t :which-key "Search")
- )
-
-
-(general-define-key
- :prefix "SPC s"
- :states '(normal visual motion)
- :keymaps 'override
- "t" 'google-translate-at-point
- "A" 'engine/search-amazon
- "i" 'engine/search-google-images
- "m" 'engine/search-google-maps
- "s" 'engine/search-stack-overflow
- "y" 'engine/search-youtube
- "w" 'engine/search-wikipedia
- "d" 'engine/search-duckduckgo
- "h" 'engine/search-github)
+(leader
+  "s" '(:ignore t :which-key "Search")
+  "st" 'google-translate-at-point
+  "sA" 'engine/search-amazon
+  "si" 'engine/search-google-images
+  "sm" 'engine/search-google-maps
+  "ss" 'engine/search-stack-overflow
+  "sy" 'engine/search-youtube
+  "sw" 'engine/search-wikipedia
+  "sd" 'engine/search-duckduckgo
+  "sh" 'engine/search-github)
 
 
 

@@ -332,7 +332,7 @@
 ;;; bindings
 
 (general-define-key
- :prefix "SPC l"
+ :prefix "SPC k"
  :states '(normal visual motion)
  :keymaps '(c-mode-map c++-mode-map)
  "g" '(:ignore t :which-key "goto")

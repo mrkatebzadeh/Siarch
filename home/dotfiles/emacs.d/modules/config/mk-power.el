@@ -42,11 +42,8 @@
   (helm :sources '(helm-power-source)))
 
 ;;; bindigs
-(general-define-key
- :prefix "SPC q"
- :states '(normal visual motion)
- :keymaps 'override
- "z" 'helm-power)
+(leader
+  "qz" 'helm-power)
 
 (provide 'mk-power)
 ;;; mk-power.el ends here

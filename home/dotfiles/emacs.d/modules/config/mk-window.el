@@ -69,27 +69,21 @@
 
 ;;; bindings
 
-(general-define-key
- :prefix "SPC w"
- :states '(normal visual motion)
- :keymaps 'override
- "v" 'evil-window-vsplit
- "s" 'evil-window-split
- "d" 'evil-window-delete
- "h" 'evil-window-left
- "j" 'evil-window-down
- "k" 'evil-window-up
- "l" 'evil-window-right)
+(leader
+  "wv" 'evil-window-vsplit
+  "ws" 'evil-window-split
+  "wd" 'evil-window-delete
+  "wh" 'evil-window-left
+  "wj" 'evil-window-down
+  "wk" 'evil-window-up
+  "wl" 'evil-window-right)
 
-(general-define-key
- :prefix "SPC t"
- :states '(normal visual motion)
- :keymaps 'override
- "i" 'imenu-list
- "I" 'helm-imenu
- "d" 'darkroom-mode
- "t" 'mk-toggle-transparency
- "z" 'zoom-mode)
+(leader
+  "ti" 'imenu-list
+  "tI" 'helm-imenu
+  "td" 'darkroom-mode
+  "tt" 'mk-toggle-transparency
+  "tz" 'zoom-mode)
 
 (provide 'mk-window)
 ;;; mk-window.el ends here

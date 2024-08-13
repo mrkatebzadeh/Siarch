@@ -34,12 +34,9 @@
   (find-file (concat mk-emacs-dir "init.el")))
 
 ;;; bindigs
-(general-define-key
- :prefix "SPC c"
- :states '(normal visual motion)
- :keymaps 'override
- "c" 'mk-init-file
- "t" 'try)
+(leader
+  "cc" 'mk-init-file
+  "ct" 'try)
 
 
 (provide 'mk-config)
