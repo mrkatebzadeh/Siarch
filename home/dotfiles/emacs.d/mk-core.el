@@ -65,19 +65,6 @@
   (load bootstrap-file nil 'nomessage))
 (setq package-enable-at-startup nil)
 (straight-use-package 'use-package)
-;; Bootstrap `use-package'
-;; (setq-default use-package-always-ensure t ; Auto-download package if not exists
-;;               use-package-always-defer t ; Always defer load package to speed up startup
-;;               use-package-verbose nil ; Don't report loading details
-;;               use-package-expand-minimally t  ; make the expanded code as minimal as possible
-;;               use-package-enable-imenu-support t) ; Let imenu finds use-package definitions
-;; (unless (package-installed-p 'use-package)
-;;   (package-refresh-contents)
-;;   (package-install 'use-package))
-;; (eval-when-compile
-;;   (require 'use-package))
-;; (require 'use-package-ensure)
-;; (setq use-package-always-ensure t)
 
 ;; gcmh
 (use-package gcmh
@@ -92,6 +79,7 @@
 
 ;; general
 (use-package general
+  :ensure t
   :config
   (setq general-override-states '(insert
                                   emacs
@@ -138,9 +126,23 @@
   :init
   (evil-collection-init))
 
+;; Display visual hint on evil edit operations
+(use-package evil-goggles
+  :ensure t
+  :config
+  (evil-goggles-mode)
+
+  ;; optionally use diff-mode's faces; as a result, deleted text
+  ;; will be highlighed with `diff-removed` face which is typically
+  ;; some red color (as defined by the color theme)
+  ;; other faces such as `diff-added` will be used for other actions
+  (evil-goggles-use-diff-faces))
+
 ;; esup
 (use-package esup
+  :ensure t
   :defer t)
+
 (general-create-definer leader
   :states '(normal visual emacs)
   :keymaps 'override
