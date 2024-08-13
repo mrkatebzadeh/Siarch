@@ -110,6 +110,10 @@
 	image-dired-temp-image-file (concat image-dired-dir "temp-image")
 	image-dired-temp-rotate-image-file (concat image-dired-dir "temp-rotate-image")))
 
+(use-package diredfl
+  :config
+  (diredfl-global-mode))
+
 (use-package peep-dired
   :after dired
   :defer t
@@ -539,7 +543,6 @@ Compare them on count first,and in case of tie sort them alphabetically."
     "pa" 'helm-projectile-find-other-file
     "pb" 'helm-projectile-switch-to-buffer
     "pd" 'helm-projectile-find-dir
-    "pe" 'helm-projectile-recentf
     "pf" 'helm-projectile-find-file
     "pF" 'helm-projectile-find-file-in-known-projects
     "pg" 'helm-projectile-find-file-dwim
@@ -558,9 +561,9 @@ Compare them on count first,and in case of tie sort them alphabetically."
 
 (leader
   "fe" 'treemacs
-  "fr" '(:ignore t :which-key "rename")
-  "frf" 'mk-rename-file
-  "frb" 'mk-rename-current-buffer-file
+  "fR" '(:ignore t :which-key "rename")
+  "fRf" 'mk-rename-file
+  "fRb" 'mk-rename-current-buffer-file
   "fd" '(:ignore t :which-key "delete")
   "fdf" 'mk-delete-file-confirm
   "fdb" 'mk-delete-current-buffer-file
