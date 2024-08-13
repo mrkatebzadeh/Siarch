@@ -46,7 +46,7 @@
 ;;; Files
   (leader
     "fK" 'consult-yank-kill-ring
-    "fR" 'consult-recent-file
+    "fr" 'consult-recent-file
     "ft" 'consult-tramp
     "ff" 'find-file)
 

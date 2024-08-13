@@ -61,7 +61,7 @@
 ;;; Files
 (leader
   "fK" 'helm-show-kill-ring
-  "fR" 'helm-recentf
+  "fr" 'helm-recentf
   "ft" 'helm-tramp
   "fT" 'helm-tramp-quit
   "ff" 'helm-find-files)
