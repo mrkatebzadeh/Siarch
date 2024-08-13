@@ -47,19 +47,37 @@
       '(("melpa" . -1)
 	("gnu" . -3)))
 (package-initialize)
+
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+(setq package-enable-at-startup nil)
+(straight-use-package 'use-package)
 ;; Bootstrap `use-package'
-(setq-default use-package-always-ensure t ; Auto-download package if not exists
-              use-package-always-defer t ; Always defer load package to speed up startup
-              use-package-verbose nil ; Don't report loading details
-              use-package-expand-minimally t  ; make the expanded code as minimal as possible
-              use-package-enable-imenu-support t) ; Let imenu finds use-package definitions
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(eval-when-compile
-  (require 'use-package))
-(require 'use-package-ensure)
-(setq use-package-always-ensure t)
+;; (setq-default use-package-always-ensure t ; Auto-download package if not exists
+;;               use-package-always-defer t ; Always defer load package to speed up startup
+;;               use-package-verbose nil ; Don't report loading details
+;;               use-package-expand-minimally t  ; make the expanded code as minimal as possible
+;;               use-package-enable-imenu-support t) ; Let imenu finds use-package definitions
+;; (unless (package-installed-p 'use-package)
+;;   (package-refresh-contents)
+;;   (package-install 'use-package))
+;; (eval-when-compile
+;;   (require 'use-package))
+;; (require 'use-package-ensure)
+;; (setq use-package-always-ensure t)
 
 ;; gcmh
 (use-package gcmh
