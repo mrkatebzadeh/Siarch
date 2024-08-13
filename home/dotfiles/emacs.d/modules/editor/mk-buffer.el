@@ -102,12 +102,12 @@
 (use-package highlight-indent-guides
   :defer t
   :config
-  (set-face-background 'highlight-indent-guides-odd-face "dimgray")
-  (set-face-background 'highlight-indent-guides-even-face "dimgray")
-  (set-face-foreground 'highlight-indent-guides-character-face "dimgray"))
-
+  (setq highlight-indent-guides-responsive 'stack)
+  (setq highlight-indent-guides-method 'character)
+  )
 
 ;;; config
+
 (defalias 'list-buffers 'ibuffer-other-window)
 
 (defvar *protected-buffers* '("*scratch*" "*Messages*")
@@ -179,29 +179,26 @@
 ;; highlight matches
 (show-paren-mode 1)
 
-;; highlight-indent-guides
-(with-eval-after-load 'highlight-indent-guides
-  (setq highlight-indent-guides-method 'character))
-
-
 ;;; bindings
-(general-define-key
- :prefix "SPC b"
- :states '(normal visual motion)
- :keymaps 'override
- "d" 'kill-current-buffer
- "D" 'kill-buffer
- "b" 'helm-buffers-list
- "B" 'ibuffer
- "w" 'evil-write
- "u" 'undo-tree-visualize)
+(leader
+  "bd" 'kill-current-buffer
+  "bD" 'kill-buffer
+  "bB" 'ibuffer
+  "bw" 'evil-write
+  "bu" 'undo-tree-visualize)
 
-(general-define-key
- :prefix "SPC /"
- :states '(normal visual motion)
- :keymaps 'override
- "e" 'er/expand-region
- "a" 'avy-goto-char)
+(when (string= mk-completion "light")
+  (leader
+    "bb" 'consult-buffer
+    ))
+(when (string= mk-completion "featured")
+  (leader
+    "bb" 'helm-buffers-list
+    ))
+
+(leader
+  "se" 'er/expand-region
+  "sa" 'avy-goto-char)
 
 (with-eval-after-load 'smart-hungry-delete
   (general-define-key
@@ -210,22 +207,16 @@
    :keymaps 'override
    "" 'smart-hungry-delete-backward-char))
 
-(general-define-key
- :prefix "SPC h"
- :states '(normal visual motion)
- :keymaps 'override
- "g" 'google-this
- "G" 'google-this-search
- "m" 'mk-man)
+(leader
+  "hg" 'google-this
+  "hG" 'google-this-search
+  "hm" 'mk-man)
 
-(general-define-key
- :prefix "SPC t"
- :states '(normal visual motion)
- :keymaps 'override
- "h" 'highlight-indent-guides-mode
- "p" 'smartparens-mode
- "n" 'nlinum-relative-toggle
- "r" 'rainbow-delimiters-mode)
+(leader
+  "th" 'highlight-indent-guides-mode
+  "tp" 'smartparens-mode
+  "tn" 'nlinum-relative-toggle
+  "tr" 'rainbow-delimiters-mode)
 
 
 (provide 'mk-buffer)
