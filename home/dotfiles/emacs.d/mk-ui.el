@@ -59,22 +59,40 @@
                       :weight 'normal
                       :width 'normal)
 
+  (use-package ligature
+    :config
+    ;; Enable the www ligature in every possible major mode
+    (ligature-set-ligatures 't '("www"))
+
+    ;; Enable ligatures in programming modes
+    (ligature-set-ligatures 'prog-mode '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\" "{-" "::"
+					 ":::" ":=" "!!" "!=" "!==" "-}" "----" "-->" "->" "->>"
+					 "-<" "-<<" "-~" "#{" "#[" "##" "###" "####" "#(" "#?" "#_"
+					 "#_(" ".-" ".=" ".." "..<" "..." "?=" "??" ";;" "/*" "/**"
+					 "/=" "/==" "/>" "//" "///" "&&" "||" "||=" "|=" "|>" "^=" "$>"
+					 "++" "+++" "+>" "=:=" "==" "===" "==>" "=>" "=>>" "<="
+					 "=<<" "=/=" ">-" ">=" ">=>" ">>" ">>-" ">>=" ">>>" "<*"
+					 "<*>" "<|" "<|>" "<$" "<$>" "<!--" "<-" "<--" "<->" "<+"
+					 "<+>" "<=" "<==" "<=>" "<=<" "<>" "<<" "<<-" "<<=" "<<<"
+					 "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%"))
+    (global-ligature-mode t)
+    )
   ;; highlight current line
   (global-hl-line-mode +1))
 
 
-(use-package vertico
-  :general
-  (:keymaps 'vertico-map
-	    "<left>" #'vertico-directory-delete-char
-	    "DEL" #'vertico-directory-delete-char)
-  :custom
-  ;; (vertico-scroll-margin 0) ;; Different scroll margin
-  (vertico-count 10) ;; Show more candidates
-  ;; (vertico-resize t) ;; Grow and shrink the Vertico minibuffer
-  ;; (vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
-  :init
-  (vertico-mode))
+  (use-package vertico
+    :general
+    (:keymaps 'vertico-map
+	      "<left>" #'vertico-directory-delete-char
+	      "DEL" #'vertico-directory-delete-char)
+    :custom
+    ;; (vertico-scroll-margin 0) ;; Different scroll margin
+    (vertico-count 10) ;; Show more candidates
+    ;; (vertico-resize t) ;; Grow and shrink the Vertico minibuffer
+    ;; (vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
+    :init
+    (vertico-mode))
 
 ;; `orderless' completion style.
 (use-package orderless
@@ -123,7 +141,7 @@
   :init
   (dashboard-setup-startup-hook)
   (setq dashboard-banner-logo-title "[-< True happiness can be found when two contrary powers cooperate together >-]"
-	dashboard-startup-banner (concat mk-emacs-dir "logo.png")
+	dashboard-startup-banner (concat mk-emacs-dir "logo.txt")
 	dashboard-center-content t
 	dashboard-set-heading-icons t)
   (setq dashboard-items '((bookmarks . 1)))
