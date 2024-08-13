@@ -82,6 +82,7 @@
 (use-package dired
   :ensure nil
   :config
+  (setq dired-kill-when-opening-new-dired-buffer t)
   (evil-collection-init 'dired)
   (let ((args (list "-aBhl" "--group-directories-first")))
     (setq dired-listing-switches (string-join args " ")))
