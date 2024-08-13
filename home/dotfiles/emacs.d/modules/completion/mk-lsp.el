@@ -73,32 +73,43 @@
 	lsp-ui-doc-show-with-mouse t
 	lsp-ui-sideline-show-hover nil))
 
-;; (use-package company-lsp
-;;   :defer t
-;;   :after (company lsp-mode)
-;;   :init
-;;   (defvar company-lsp-enable-recompletion t)
-;;   (defvar company-lsp-async t)
-;;   :config
-;;   (setq company-backends '(company-lsp company-yasnippet)))
+(when (string= mk-completion "featured")
+  (use-package company-lsp
+    :defer t
+    :after (company lsp-mode)
+    :init
+    (defvar company-lsp-enable-recompletion t)
+    (defvar company-lsp-async t)
+    :config
+    (setq company-backends '(company-lsp company-yasnippet)))
+  )
 
-(use-package dap-mode
-  :defer t
-  :after lsp-mode
-  :config
-  (dap-mode -1)
-  (dap-ui-mode -1)
-  :bind
-  (:map dap-mode-map
-	(("<f12>" . dap-debug)
-	 ("<f6>" . dap-breakpoint-condition)
-	 ("<f8>" . dap-continue)
-	 ("<f9>" . dap-next)
-	 ("<M-f11>" . dap-step-in)
-	 ("C-M-<f11>" . dap-step-out)
-	 ("<f7>" . dap-breakpoint-toggle))))
+  (use-package dap-mode
+    :defer t
+    :after lsp-mode
+    :config
+    (dap-mode -1)
+    (dap-ui-mode -1)
+    :bind
+    (:map dap-mode-map
+	  (("<f12>" . dap-debug)
+	   ("<f6>" . dap-breakpoint-condition)
+	   ("<f8>" . dap-continue)
+	   ("<f9>" . dap-next)
+	   ("<M-f11>" . dap-step-in)
+	   ("C-M-<f11>" . dap-step-out)
+	   ("<f7>" . dap-breakpoint-toggle))))
 
-
+(leader
+  "d" '(:ignore t :which-key "Debug")
+  "dd" 'dap-debug
+  "dB" 'dap-breakpoint-condition
+  "dc" 'dap-continue
+  "dn" 'dap-next
+  "di" 'dap-step-in
+  "do" 'dap-step-out
+  "db" 'dap-breakpoint-toggle
+  )
 
 
 (provide 'mk-lsp)

@@ -25,6 +25,7 @@
 
 ;;; Code:
 
+(when (string= mk-completion "featured")
 (use-package company
   :defer t
   :config
@@ -117,12 +118,9 @@
  "" 'company-complete-common-or-cycle)
 
 ;;; Toggles
-(general-define-key
- :prefix "SPC t"
- :states '(normal visual motion)
- :keymaps 'override
- "a" 'global-company-mode)
-
+(leader
+  "ta" 'global-company-mode)
+)
 
 
 (provide 'mk-company)

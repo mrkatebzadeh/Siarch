@@ -25,6 +25,7 @@
 
 ;;; Code:
 
+(when (string= mk-completion "featured")
 (use-package pacman
   :defer t
   :ensure nil
@@ -53,12 +54,9 @@
 
 ;;; bindings
 
-(general-define-key
- :prefix "SPC a"
- :states '(normal visual motion)
- :keymaps 'override
- "p" 'mk-helm-pacman
- )
+(leader
+  "ap" 'mk-helm-pacman
+  )
 
 (general-define-key
  :prefix "SPC l"
@@ -72,7 +70,7 @@
  "r" 'pacman-mode-remove
  "l" 'pacman-mode-list-installed-packages
  "q" 'pacman-mode-kill-buffer)
+)
 
-
- (provide 'mk-pacman)
+(provide 'mk-pacman)
 ;;; mk-pacman.el ends here
