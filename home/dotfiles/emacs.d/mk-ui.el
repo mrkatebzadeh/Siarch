@@ -64,6 +64,10 @@
 
 
 (use-package vertico
+  :general
+  (:keymaps 'vertico-map
+	    "<left>" #'vertico-directory-delete-char
+	    "DEL" #'vertico-directory-delete-char)
   :custom
   ;; (vertico-scroll-margin 0) ;; Different scroll margin
   (vertico-count 10) ;; Show more candidates
