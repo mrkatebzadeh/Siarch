@@ -74,7 +74,6 @@
 
 ;; general
 (use-package general
-  :defer t
   :config
   (setq general-override-states '(insert
                                   emacs
@@ -85,7 +84,9 @@
                                   operator
                                   replace))
   (general-override-mode)
-  (general-auto-unbind-keys))
+  (general-auto-unbind-keys)
+  )
+
 
 ;; which-key
 (use-package which-key
@@ -122,41 +123,39 @@
 ;; esup
 (use-package esup
   :defer t)
-
+(general-create-definer leader
+  :states '(normal visual emacs)
+  :keymaps 'override
+  :prefix "SPC"
+  :global-prefix "A-SPC")
 
 ;; Esc
 (global-set-key [escape] 'keyboard-escape-quit)
 
 ;; leader file
-(general-define-key
- :prefix "SPC"
- :states '(normal visual motion)
- :keymaps 'override
- "" '(nil :which-key "My lieutenant general prefix")
- "f" '(:ignore t :which-key "Files")
- "c" '(:ignore t :which-key "Config Files")
- "o" '(:ignore t :which-key "Org")
- "a" '(:ignore t :which-key "Applications")
- "g" '(:ignore t :which-key "Magit")
- "m" '(:ignore t :which-key "EMMS")
- "l" '(:ignore t :which-key "Local Bindings")
- "b" '(:ignore t :which-key "Buffers")
- "h" '(:ignore t :which-key "Help!")
- "v" '(:ignore t :which-key "Volume")
- "w" '(:ignore t :which-key "Windows")
- "q" '(:ignore t :which-key "Quit")
- "t" '(:ignore t :which-key "Toggles")
+(leader
+  "" '(nil :which-key "My lieutenant general prefix")
+  "f" '(:ignore t :which-key "Files")
+  "c" '(:ignore t :which-key "Config Files")
+  "o" '(:ignore t :which-key "Org")
+  "a" '(:ignore t :which-key "Applications")
+  "g" '(:ignore t :which-key "Magit")
+  "m" '(:ignore t :which-key "EMMS")
+  "l" '(:ignore t :which-key "Local Bindings")
+  "b" '(:ignore t :which-key "Buffers")
+  "h" '(:ignore t :which-key "Help!")
+  "v" '(:ignore t :which-key "Volume")
+  "w" '(:ignore t :which-key "Windows")
+  "q" '(:ignore t :which-key "Quit")
+  "t" '(:ignore t :which-key "Toggles")
 
- "x" 'helm-M-x
- )
+  "x" 'execute-extended-command
+  )
 
 ;; Exit/restart/reboot/shutdown
-(general-define-key
- :prefix "SPC q"
- :states '(normal visual motion)
- :keymaps 'override
- "q" 'kill-emacs
- "Q" 'delete-frame)
+(leader
+  "qq" 'kill-emacs
+  "qQ" 'delete-frame)
 
 (provide 'mk-core)
 ;;; mk-core.el ends here

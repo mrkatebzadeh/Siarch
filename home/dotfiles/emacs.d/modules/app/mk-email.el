@@ -274,12 +274,12 @@
   (evil-collection-init 'mu4e)
   (evil-define-key 'normal mu4e-headers-mode-map (kbd "/") 'helm-mu)
   (evil-define-key 'normal mu4e-headers-mode-map (kbd "C") 'helm-mu-contacts))
-(general-define-key
- :prefix "SPC a"
- :states '(normal visual motion)
- :keymaps 'override
- "m" 'mk-mu4e
- "n" 'notmuch)
+(leader
+  :prefix "SPC a"
+  :states '(normal visual motion)
+  :keymaps 'override
+  "am" 'mk-mu4e
+  "an" 'notmuch)
 
 
 (provide 'mk-email)

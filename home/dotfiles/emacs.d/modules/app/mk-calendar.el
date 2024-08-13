@@ -74,12 +74,9 @@
 
 
 
-(general-define-key
- :prefix "SPC a"
- :states '(normal visual motion)
- :keymaps 'override
- "C" 'mk-calendar
- "h" 'mk-holidays)
+(leader
+  "aC" 'mk-calendar
+  "ah" 'mk-holidays)
 
 (provide 'mk-calendar)
 ;;; mk-calendar.el ends here

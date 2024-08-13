@@ -41,11 +41,8 @@
 				(b "B / 8" "Bit"))
 	math-units-table nil))
 
-(general-define-key
- :prefix "SPC a"
- :states '(normal visual motion)
- :keymaps 'override
- "c" 'calc)
+(leader
+  "ac" 'calc)
 
 
 
