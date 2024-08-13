@@ -63,6 +63,9 @@
 (defvar mk-eshell-dir (concat mk-emacs-dir ".eshell/")
   "The root directory of MK's eshell files. Must end with a slash.")
 
+(defvar mk-completion "light"
+  "Completion frameworks: light -> vertico/consult/corf, featured -> helm/company ")
+
 (setq org-directory     "~/Dropbox/org")
 
 (message "Starting MK")

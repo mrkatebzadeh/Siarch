@@ -25,17 +25,18 @@
 
 ;;; Code:
 
-(use-package helm
-  :disabled
-  :defer t
-  :commands (helm-find-files
-	     helm-show-kill-ring
-	     helm-recentf
-	     helm-tramp
-	     helm-tramp-quit)
-  :config
-  (helm-mode 1)
-  (setq helm-ff-skip-boring-files t))
+(when (string= mk-completion "featured")
+  (use-package helm
+    :disabled
+    :defer t
+    :commands (helm-find-files
+	       helm-show-kill-ring
+	       helm-recentf
+	       helm-tramp
+	       helm-tramp-quit)
+    :config
+    (helm-mode 1)
+    (setq helm-ff-skip-boring-files t))
 
 
 (with-eval-after-load 'helm
@@ -58,15 +59,14 @@
   :defer t)
 
 ;;; Files
-(general-define-key
- :prefix "SPC f"
- :states '(normal visual motion)
- :keymaps 'override
- "K" 'helm-show-kill-ring
- "R" 'helm-recentf
- "t" 'helm-tramp
- "T" 'helm-tramp-quit
- "f" 'helm-find-files)
+(leader
+  "fK" 'helm-show-kill-ring
+  "fR" 'helm-recentf
+  "ft" 'helm-tramp
+  "fT" 'helm-tramp-quit
+  "ff" 'helm-find-files)
+
+)
 
 (provide 'mk-helm)
 ;;; mk-helm.el ends here

@@ -25,21 +25,27 @@
 
 ;;; Code:
 
-(use-package projectile
-  :defer t
-  :commands (projectile-project-root)
-  :config (add-to-list 'projectile-globally-ignored-directories ".ccls-cache"))
+(when (string= mk-completion "featured")
+  (use-package projectile
+    :defer t
+    :commands (projectile-project-root)
+    :config (add-to-list 'projectile-globally-ignored-directories ".ccls-cache"))
 
-(use-package helm-projectile
-  :defer t
-  :commands (helm-projectile-switch-project
-	     helm-projectile-find-file
-	     helm-projectile-find-file-in-known-projects
-	     helm-projectile-recentf
-	     helm-projectile-ag)
-  :config
-  (helm-projectile-on)
-  (setq projectile-use-git-grep t))
+  (use-package helm-projectile
+    :defer t
+    :commands (helm-projectile-switch-project
+	       helm-projectile-find-file
+	       helm-projectile-find-file-in-known-projects
+	       helm-projectile-recentf
+	       helm-projectile-ag)
+    :config
+    (helm-projectile-on)
+    (setq projectile-use-git-grep t))
+  )
+
+(when (string= mk-completion "light")
+  (use-package consult-project-extra
+    :ensure t))
 
 (use-package recentf
   :defer t
@@ -125,13 +131,12 @@
   :hook (dired-mode . all-the-icons-dired-mode))
 
 (use-package treemacs
-  :defer t
   :config
   (evil-define-key 'normal treemacs-mode-map
     (kbd "d") 'treemacs-delete-file
     (kbd "a") 'treemacs-create-file
-    (kbd "<") 'treemacs-decrement-width
-    (kbd ">") 'treemacs-increment-width
+    (kbd "<") 'treemacs-decrease-width
+    (kbd ">") 'treemacs-increase-width
     (kbd ".") 'treemacs-toggle-show-dotfiles
     (kbd "<tab>") 'treemacs-RET-action
     (kbd "RET") 'treemacs-rename-file
@@ -151,9 +156,10 @@
   :defer t
   )
 
-(use-package treemacs-projectile
-  :after (treemacs projectile)
-  :defer t)
+(when (string= mk-completion "featured")
+  (use-package treemacs-projectile
+    :after (treemacs projectile)
+    :defer t))
 
 (use-package lsp-treemacs
   :after (lsp-mode treemacs)
@@ -511,87 +517,70 @@ Compare them on count first,and in case of tie sort them alphabetically."
     words))
 
 ;;; bindings
-(general-define-key
- :prefix "SPC"
- :states '(normal visual motion)
- :keymaps 'override
- "p" '(:ignore t :which-key "Projects"))
+(leader
+  "p" '(:ignore t :which-key "Projects"))
 
-(general-define-key
- :prefix "SPC p"
- :states '(normal visual motion)
- :keymaps 'override
- "s" '(:ignore t :which-key "Search"))
+(when (string= mk-completion "light")
+  (leader
+    "pa" 'consult-project-extra-find-other-window
+    "pf" 'project-find-file
+    "pF" 'consult-project-extra-find
+    "pb" 'project-switch-to-buffer
+    "pd" 'project-find-dir
+    "pp" 'project-switch-project
+    "ps" '(:ignore t :which-key "Search")
+    "psg" 'consult-grep
+    ))
 
-(general-define-key
- :prefix "SPC s"
- :states '(normal visual motion)
- :keymaps 'override
- "g" 'helm-projectile-grep
- "a" 'helm-projectile-ack
- "/" 'helm-projectile-ag)
+(when (string= mk-completion "featured")
+  (leader
+    "pi" 'projectile-invalidate-cache
+    "pz" 'projectile-cache-current-file
+    "pa" 'helm-projectile-find-other-file
+    "pb" 'helm-projectile-switch-to-buffer
+    "pd" 'helm-projectile-find-dir
+    "pe" 'helm-projectile-recentf
+    "pf" 'helm-projectile-find-file
+    "pF" 'helm-projectile-find-file-in-known-projects
+    "pg" 'helm-projectile-find-file-dwim
+    "pp" 'helm-projectile-switch-project
+    "pr" 'helm-projectile-recentf
+    "ps" '(:ignore t :which-key "Search")
+    "psg" 'helm-projectile-grep
+    "psa" 'helm-projectile-ack
+    "pss" 'helm-projectile-ag))
 
+(leader
+  "ad" 'dired)
 
-(general-define-key
- :prefix "SPC p"
- :states '(normal visual motion)
- :keymaps 'override
- "a" 'helm-projectile-find-other-file
- "b" 'helm-projectile-switch-to-buffer
- "d" 'helm-projectile-find-dir
- "e" 'helm-projectile-recentf
- "f" 'helm-projectile-find-file
- "F" 'helm-projectile-find-file-in-known-projects
- "g" 'helm-projectile-find-file-dwim
- "i" 'projectile-invalidate-cache
- "p" 'helm-projectile-switch-project
- "r" 'helm-projectile-recentf
- "z" 'projectile-cache-current-file
- "sg" 'helm-projectile-grep
- "sa" 'helm-projectile-ack
- "ss" 'helm-projectile-ag)
+(leader
+  "tf" 'treemacs)
 
-(general-define-key
- :prefix "SPC a"
- :states '(normal visual motion)
- :keymaps 'override
- "d" 'dired)
-
-(general-define-key
- :prefix "SPC t"
- :states '(normal visual motion)
- :keymaps 'override
- "f" 'treemacs)
-
-(general-define-key
- :prefix "SPC f"
- :states '(normal visual motion)
- :keymaps 'override
- "f" 'helm-find-files
- "e" 'treemacs
- "r" '(:ignore t :which-key "rename")
- "rf" 'mk-rename-file
- "rb" 'mk-rename-current-buffer-file
- "d" '(:ignore t :which-key "delete")
- "df" 'mk-delete-file-confirm
- "db" 'mk-delete-current-buffer-file
- "dw" 'mk-delete-window
- "da" 'mk-ace-delete-window
- "k" '(:ignore t :which-key "kill")
- "kb" 'mk-kill-this-buffer
- "ka" 'mk-ace-kill-this-buffer
- "ko" 'mk-kill-other-buffers
- "D" 'mk-toggle-current-window-dedication
- "s" 'mk-sudo-edit
- "F" 'mk-show-and-copy-buffer-filename
- "n" 'mk-new-empty-buffer
- "y" 'mk-copy-whole-buffer-to-clipboard
- "p" 'mk-copy-clipboard-to-whole-buffer
- "C" '(:ignore t :which-key "convert")
- "Cu" 'mk-dos2unix
- "Cd" 'mk-unix2dos
- "c" 'mk-copy-file
- "a" 'mk-count-words-analysis)
+(leader
+  "fe" 'treemacs
+  "fr" '(:ignore t :which-key "rename")
+  "frf" 'mk-rename-file
+  "frb" 'mk-rename-current-buffer-file
+  "fd" '(:ignore t :which-key "delete")
+  "fdf" 'mk-delete-file-confirm
+  "fdb" 'mk-delete-current-buffer-file
+  "fdw" 'mk-delete-window
+  "fda" 'mk-ace-delete-window
+  "fk" '(:ignore t :which-key "kill")
+  "fkb" 'mk-kill-this-buffer
+  "fka" 'mk-ace-kill-this-buffer
+  "fko" 'mk-kill-other-buffers
+  "fD" 'mk-toggle-current-window-dedication
+  "fs" 'mk-sudo-edit
+  "fF" 'mk-show-and-copy-buffer-filename
+  "fn" 'mk-new-empty-buffer
+  "fy" 'mk-copy-whole-buffer-to-clipboard
+  "fp" 'mk-copy-clipboard-to-whole-buffer
+  "fC" '(:ignore t :which-key "convert")
+  "fCu" 'mk-dos2unix
+  "fCd" 'mk-unix2dos
+  "fc" 'mk-copy-file
+  "fa" 'mk-count-words-analysis)
 
 
 (provide 'mk-file)

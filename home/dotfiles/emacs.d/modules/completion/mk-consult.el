@@ -1,4 +1,4 @@
-;;; mk-consult.el --- <TITLE> -*- lexical-binding: t; -*-
+;;; mk-consult.el --- Consult -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2019  M.R. Siavash Katebzadeh
 
@@ -25,17 +25,31 @@
 
 ;;; Code:
 
-					;<CODE>
-(use-package consult
-  :ensure t
-  :defer t
-  :commands
-  (consult-grep
-   consult-find
-   consult-outline
-   consult-line
-   consult-buffer
-   ))
+(when (string= mk-completion "light")
 
+  (use-package consult
+    :ensure t
+    :defer t
+    :commands
+    (consult-grep
+     consult-find
+     consult-outline
+     consult-line
+     consult-buffer
+     ))
+
+  (use-package consult-tramp
+    :ensure nil
+    :defer t
+    :commands (consult-tramp))
+
+;;; Files
+  (leader
+    "fK" 'consult-yank-kill-ring
+    "fR" 'consult-recent-file
+    "ft" 'consult-tramp
+    "ff" 'find-file)
+
+  )
 (provide 'mk-consult)
 ;;; mk-consult.el ends here
