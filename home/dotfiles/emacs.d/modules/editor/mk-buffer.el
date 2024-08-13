@@ -26,13 +26,16 @@
 ;;; Code:
 
 (use-package solaire-mode
+  :ensure t
   :init
   (solaire-global-mode +1))
 
 (use-package avy
+  :ensure t
   :defer t)
 
 (use-package undo-tree
+  :ensure t
   :defer t)
 
 (use-package smart-hungry-delete
@@ -40,34 +43,42 @@
   :defer nil)
 
 (use-package expand-region
+  :ensure t
   :defer t)
 
 (use-package paren-face
+  :ensure t
   :defer t)
 
 (use-package evil-surround
+  :ensure t
   :defer t
   :config
   (global-evil-surround-mode 1))
 
 (use-package nlinum-relative
+  :ensure t
   :defer t
   :init
   (nlinum-relative-setup-evil))
 
 (use-package emojify
+  :ensure t
   :defer t)
 
 (use-package google-this
+  :ensure t
   :defer t)
 
 (use-package fixmee
+  :ensure t
   :defer t
   :after button-lock
   :init
   (global-fixmee-mode 1))
 
 (use-package aggressive-indent
+  :ensure t
   :defer t
   :hook ((css-mode . aggressive-indent-mode)
          (emacs-lisp-mode . aggressive-indent-mode)
@@ -75,11 +86,13 @@
          (lisp-mode . aggressive-indent-mode)))
 
 (use-package electric-operator
+  :ensure t
   :defer t
   :delight
   :hook (python-mode . electric-operator-mode))
 
 (use-package rainbow-mode
+  :ensure t
   :defer t
   :delight
   :hook (prog-mode))
@@ -89,17 +102,21 @@
   :hook (before-save . delete-trailing-whitespace))
 
 (use-package format-all
+  :ensure t
   :defer t)
 
 (use-package hl-todo
+  :ensure t
   :defer t
   :init
   (add-hook 'prog-mode-hook 'hl-todo-mode))
 
 (use-package rainbow-delimiters
+  :ensure t
   :defer t)
 
 (use-package highlight-indent-guides
+  :ensure t
   :config
   (setq highlight-indent-guides-responsive 'stack)
   (setq highlight-indent-guides-method 'character)
@@ -217,6 +234,8 @@
   "tn" 'nlinum-relative-toggle
   "tr" 'rainbow-delimiters-mode)
 
+(leader
+  "/" 'comment-line)
 
 (provide 'mk-buffer)
 ;;; mk-buffer.el ends here
