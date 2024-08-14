@@ -133,6 +133,9 @@
 	'()))
 
 (use-package spacious-padding
+  :ensure t
+  :defer t
+  :disabled
   :hook
   (after-init .  spacious-padding-mode))
 

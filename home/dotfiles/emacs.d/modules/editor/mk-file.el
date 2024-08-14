@@ -27,11 +27,13 @@
 
 (when (string= mk-completion "featured")
   (use-package projectile
+    :ensure t
     :defer t
     :commands (projectile-project-root)
     :config (add-to-list 'projectile-globally-ignored-directories ".ccls-cache"))
 
   (use-package helm-projectile
+    :ensure t
     :defer t
     :commands (helm-projectile-switch-project
 	       helm-projectile-find-file
@@ -45,9 +47,11 @@
 
 (when (string= mk-completion "light")
   (use-package consult-project-extra
+    :ensure t
     :ensure t))
 
 (use-package recentf
+  :ensure t
   :defer t
   :init
   (add-hook 'find-file-hook (lambda () (unless recentf-mode
@@ -70,6 +74,7 @@
   :config (run-at-time nil (* 5 60) 'recentf-save-list))
 
 (use-package docker-tramp
+  :ensure t
   :defer t)
 
 (defun mk-kill-dired-buffers ()
@@ -81,6 +86,7 @@
 
 (use-package dired
   :ensure nil
+  :defer t
   :config
   (setq dired-kill-when-opening-new-dired-buffer t)
   (evil-collection-init 'dired)
@@ -112,10 +118,14 @@
 	image-dired-temp-rotate-image-file (concat image-dired-dir "temp-rotate-image")))
 
 (use-package diredfl
+  :ensure t
+  :defer t
+  :after dired
   :config
   (diredfl-global-mode))
 
 (use-package peep-dired
+  :ensure t
   :after dired
   :defer t
   :init
@@ -125,17 +135,22 @@
 	peep-dired-ignored-extensions '("mkv" "iso" "mp4")))
 
 (use-package dired-narrow
+  :ensure t
   :after dired
   :defer t)
 
 (use-package dired-subtree
+  :ensure t
   :after dired
   :defer t)
 
 (use-package all-the-icons-dired
+  :ensure t
   :hook (dired-mode . all-the-icons-dired-mode))
 
 (use-package treemacs
+  :ensure t
+  :defer t
   :config
   (evil-define-key 'normal treemacs-mode-map
     (kbd "d") 'treemacs-delete-file
@@ -152,11 +167,13 @@
   )
 
 (use-package treemacs-all-the-icons
+  :ensure t
   :after (treemacs all-the-icons)
   :defer t
   )
 
 (use-package treemacs-evil
+  :ensure t
   :after (treemacs evil)
   :defer t
   )
@@ -167,23 +184,32 @@
     :defer t))
 
 (use-package lsp-treemacs
+  :ensure t
   :after (lsp-mode treemacs)
   :defer t)
 
 (use-package treemacs-icons-dired
+  :ensure t
   :after (treemacs dired)
   :defer t
   :config (treemacs-icons-dired-mode))
 
 (use-package treemacs-magit
+  :ensure t
   :after (treemacs magit)
   :defer t)
+
+(use-package lsp-treemacs
+  :ensure t
+  :after (treemacs lsp))
 
 (use-package direnv
   :config
   (direnv-mode))
 
-(use-package inheritenv)
+(use-package inheritenv
+  :ensure t
+  )
 ;;; config
 (with-eval-after-load 'projectile
   (setq projectile-globally-ignored-directories

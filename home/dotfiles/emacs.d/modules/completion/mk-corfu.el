@@ -27,6 +27,7 @@
 
 (when (string= mk-completion "light")
   (use-package corfu
+    :ensure t
     :hook (lsp-completion-mode . kb/corfu-setup-lsp) ; Use corfu for lsp completion
     :general
     (:keymaps 'corfu-map
@@ -96,6 +97,7 @@ default lsp-passthrough."
             '(orderless))))
 
   (use-package kind-icon
+    :ensure t
     :after corfu
     :custom
     (kind-icon-use-icons t)
