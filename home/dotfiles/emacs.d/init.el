@@ -63,6 +63,9 @@
 (defvar mk-eshell-dir (concat mk-emacs-dir ".eshell/")
   "The root directory of MK's eshell files. Must end with a slash.")
 
+(defvar mk-desktop-dir (concat mk-emacs-dir ".desktop/")
+  "Directory to save desktop sessions.")
+
 (defvar mk-completion "light"
   "Completion frameworks: light -> vertico/consult/corf, featured -> helm/company ")
 
@@ -78,9 +81,9 @@
               (let ((elapsed (float-time (time-subtract (current-time) emacs-start-time))))
                 (message "[Emacs initialized in %.3fs]" elapsed)))))
 
-(let ((gc-cons-threshold (* 256 1024 1024))
-      (gc-cons-percentage 0.6)
-      (file-name-handler-alist nil)))
+;; increase gc threshold to speedup starting up
+(setq gc-cons-percentage 0.6)
+(setq gc-cons-threshold most-positive-fixnum)
 
 ;;; Basic configs
 (setq warning-minimum-level :emergency)
@@ -148,6 +151,15 @@
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/texlive/2019basic/bin/x86_64-darwin/"))
 (setenv "PATH" (concat (getenv "PATH") ":/Library/TeX/texbin/"))
 (setenv "PATH" (concat (getenv "PATH") ":/run/current-system/sw/bin"))
+
+
+;; after started up, reset GC threshold to normal.
+(run-with-idle-timer 4 nil
+                     (lambda ()
+                       "Clean up gc."
+                       (setq gc-cons-threshold  67108864) ; 64M
+                       (setq gc-cons-percentage 0.1) ; original value
+                       (garbage-collect)))
 (provide 'init)
 
 ;;; init.el ends here
