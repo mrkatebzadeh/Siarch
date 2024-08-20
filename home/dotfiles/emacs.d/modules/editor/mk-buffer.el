@@ -56,12 +56,6 @@
   :config
   (global-evil-surround-mode 1))
 
-(use-package nlinum-relative
-  :ensure t
-  :defer t
-  :init
-  (nlinum-relative-setup-evil))
-
 (use-package emojify
   :ensure t
   :defer t)
@@ -195,6 +189,24 @@
 ;; highlight matches
 (show-paren-mode 1)
 
+;; cycle through line-numbering modes
+(defun mk-toggle-line-numbers ()
+  "Cycle through absolute, relative, and no line numbers."
+  (interactive)
+  (cond
+   ;; If line numbers are off, turn on absolute line numbers
+   ((not display-line-numbers)
+    (setq display-line-numbers 't)
+    (message "Absolute line numbers"))
+   ;; If absolute line numbers are on, turn on relative line numbers
+   ((eq display-line-numbers 't)
+    (setq display-line-numbers 'relative)
+    (message "Relative line numbers"))
+   ;; If relative line numbers are on, turn them off
+   ((eq display-line-numbers 'relative)
+    (setq display-line-numbers nil)
+    (message "Line numbers off"))))
+
 ;;; bindings
 (leader
   "bd" 'kill-current-buffer
@@ -231,7 +243,7 @@
 (leader
   "th" 'highlight-indent-guides-mode
   "tp" 'smartparens-mode
-  "tn" 'nlinum-relative-toggle
+  "tn" 'mk-toggle-line-numbers
   "tr" 'rainbow-delimiters-mode)
 
 (leader
