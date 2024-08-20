@@ -25,7 +25,7 @@
 
 ;;; Code:
 
-;${0:<CODE>}
+;;${0:<CODE>}
 
 
 (provide '`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`)
