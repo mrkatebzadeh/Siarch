@@ -48,7 +48,30 @@
 (when (string= mk-completion "light")
   (use-package consult-project-extra
     :ensure t
-    :ensure t))
+    :ensure t)
+
+  (use-package project-x
+    :after project
+    :config
+    (add-hook 'project-find-functions 'project-x-try-local 90)
+    (add-hook 'kill-emacs-hook 'project-x--window-state-write)
+    (setq project-switch-commands #'project-x-windows)
+    )
+
+  (defun mk-project-close ()
+    "Close all buffers associated with the current project."
+    (interactive)
+    (let ((project (project-current t)))
+      (if project
+          (let* ((project-root (project-root project))
+		 (buffers (project-buffers project)))
+            (dolist (buffer buffers)
+              (when (string-prefix-p project-root (or (buffer-file-name buffer) ""))
+		(kill-buffer buffer)))
+            (message "Closed all buffers for project: %s" project-root))
+	(message "No project found."))))
+
+  )
 
 (use-package recentf
   :ensure t
@@ -248,7 +271,7 @@
 	treemacs-display-in-side-window        t
 	treemacs-eldoc-display                 t
 	treemacs-file-event-delay              5000
-	treemacs-file-follow-delay             0.1
+	treemacs-file-follow-delay             0.01
 	treemacs-follow-after-init             t
 	treemacs-git-command-pipe              ""
 	treemacs-goto-tag-strategy             'refetch-index
@@ -272,8 +295,8 @@
 	treemacs-silent-refresh                nil
 	treemacs-sorting                       'alphabetic-asc
 	treemacs-space-between-root-nodes      t
-	treemacs-tag-follow-cleanup            t
-	treemacs-tag-follow-delay              1.5
+	treemacs-tag-follow-cleanup            nil
+	treemacs-tag-follow-delay              0.05
 	treemacs-width                         28)
 
   (treemacs-follow-mode t)
@@ -553,17 +576,25 @@ Compare them on count first,and in case of tie sort them alphabetically."
 
 (when (string= mk-completion "light")
   (leader
+    "fg" 'consult-git-grep
+    )
+  (leader
     "pa" 'consult-project-extra-find-other-window
+    "pc" 'mk-project-close
     "pf" 'project-find-file
     "pF" 'consult-project-extra-find
     "pb" 'project-switch-to-buffer
     "pd" 'project-find-dir
     "pp" 'project-switch-project
-    "ps" '(:ignore t :which-key "Search")
-    "psg" 'consult-grep
-    ))
+    "ps" 'project-x-window-state-save
+    "pl" 'project-x-window-state-load
+    )
+  )
 
 (when (string= mk-completion "featured")
+  (leader
+    "fg" 'helm-projectile-grep
+    )
   (leader
     "pi" 'projectile-invalidate-cache
     "pz" 'projectile-cache-current-file
@@ -575,10 +606,7 @@ Compare them on count first,and in case of tie sort them alphabetically."
     "pg" 'helm-projectile-find-file-dwim
     "pp" 'helm-projectile-switch-project
     "pr" 'helm-projectile-recentf
-    "ps" '(:ignore t :which-key "Search")
-    "psg" 'helm-projectile-grep
-    "psa" 'helm-projectile-ack
-    "pss" 'helm-projectile-ag))
+    ))
 
 (leader
   "ad" 'dired)
