@@ -180,7 +180,7 @@
     (kbd "a") 'treemacs-create-file
     (kbd "<") 'treemacs-decrease-width
     (kbd ">") 'treemacs-increase-width
-    (kbd ".") 'treemacs-toggle-show-dotfiles
+    (kbd "H") 'treemacs-toggle-show-dotfiles
     (kbd "<tab>") 'treemacs-RET-action
     (kbd "RET") 'treemacs-rename-file
     (kbd "r") 'treemacs-rename-file)
