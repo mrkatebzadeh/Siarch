@@ -25,11 +25,6 @@
 ;; in org style) to navigate through sections, and "imenu" to locate individual
 ;; use-package definition.
 
-;; bars
-(menu-bar-mode -1)
-(toggle-scroll-bar -1)
-(tool-bar-mode -1)
-
 ;;; Path vars
 ;;(setq user-emacs-directory (file-name-directory load-file-name))
 (defvar mk-emacs-dir

@@ -34,11 +34,9 @@
 (setq inhibit-startup-message t)
 
 ;; no menu bar, toolbar, scroll bar
-(setq default-frame-alist
-      '((menu-bar-lines . 0)
-        (tool-bar-lines . 0)
-        (horizontal-scroll-bars)
-        (vertical-scroll-bars)))
+(menu-bar-mode -1)
+(toggle-scroll-bar -1)
+(tool-bar-mode -1)
 
 (setq native-comp-async-report-warnings-errors 'silent)
 
