@@ -241,6 +241,7 @@
   "hm" 'mk-man)
 
 (leader
+  "tb" 'tool-bar-mode
   "th" 'highlight-indent-guides-mode
   "tp" 'smartparens-mode
   "tn" 'mk-toggle-line-numbers
