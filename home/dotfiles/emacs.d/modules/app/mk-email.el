@@ -165,7 +165,7 @@
                               (:from          .   22)
                               (:subject       .   nil)))
   (setq mu4e-maildir "~/.local/share/maildir"
-	mu4e-get-mail-command "mbsync -a --verbose"
+	mu4e-get-mail-command (concat (executable-find "mbsync" ) " -a --verbose")
 	mu4e-update-interval 300
 	mu4e-view-show-images t
 	mu4e-view-show-addresses t
