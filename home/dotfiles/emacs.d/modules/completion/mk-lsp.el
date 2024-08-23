@@ -111,6 +111,19 @@
   "db" 'dap-breakpoint-toggle
   )
 
+(use-package format-all
+  :defer t
+  :commands format-all-mode
+  :hook (prog-mode . format-all-mode)
+  :config
+  (setq-default format-all-formatters
+                '(("C"     (astyle "--mode=c"))
+		  ("Rust"     (rustfmt))
+		  ("Nix"     (nixpkgs-fmt))
+                  ("Shell" (shfmt "-i" "4" "-ci")))))
+
+(leader
+  "lf" 'format-all-mode)
 
 (provide 'mk-lsp)
 ;;; mk-lsp.el ends here

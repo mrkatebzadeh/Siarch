@@ -95,10 +95,6 @@
   :ensure nil
   :hook (before-save . delete-trailing-whitespace))
 
-(use-package format-all
-  :ensure t
-  :defer t)
-
 (use-package hl-todo
   :ensure t
   :defer t

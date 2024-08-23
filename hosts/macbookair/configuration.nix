@@ -37,6 +37,7 @@ in
   ];
 
   # services.emacs.enable = true;
+
   services.yabai = {
     enable = true;
     # enableScriptingAddition = true;
@@ -114,6 +115,7 @@ in
       "slack"
       "telegram"
       "spotify"
+      "vlc"
     ];
     taps = [ ];
     brews = [

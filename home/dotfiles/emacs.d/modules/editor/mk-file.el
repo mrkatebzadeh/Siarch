@@ -178,6 +178,7 @@
   (evil-define-key 'normal treemacs-mode-map
     (kbd "d") 'treemacs-delete-file
     (kbd "a") 'treemacs-create-file
+    (kbd "A") 'treemacs-create-dir
     (kbd "<") 'treemacs-decrease-width
     (kbd ">") 'treemacs-increase-width
     (kbd "H") 'treemacs-toggle-show-dotfiles
