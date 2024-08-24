@@ -33,6 +33,7 @@
     (:keymaps 'corfu-map
 	      :states 'insert
 	      "C-n" #'corfu-next
+	      "<tab>" #'corfu-next
 	      "C-p" #'corfu-previous
 	      "<escape>" #'corfu-quit
 	      "<return>" #'corfu-insert
