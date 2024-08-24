@@ -228,6 +228,7 @@
   :after (treemacs lsp))
 
 (use-package direnv
+  :ensure t
   :config
   (direnv-mode))
 
@@ -267,6 +268,11 @@
   (projectile-global-mode))
 
 (with-eval-after-load 'treemacs
+  (defun mk-treemacs-disable-line-numbers ()
+    "Disable line numbers in Treemacs mode."
+    (display-line-numbers-mode -1))
+
+  (add-hook 'treemacs-mode-hook 'mk-treemacs-disable-line-numbers)
   (setq treemacs-collapse-dirs                 (if (executable-find "python3") 3 0)
 	treemacs-deferred-git-apply-delay      0.5
 	treemacs-display-in-side-window        t
@@ -616,6 +622,7 @@ Compare them on count first,and in case of tie sort them alphabetically."
   "tf" 'treemacs)
 
 (leader
+  "fb" 'bookmark-jump
   "fe" 'treemacs
   "fR" '(:ignore t :which-key "rename")
   "fRf" 'mk-rename-file
