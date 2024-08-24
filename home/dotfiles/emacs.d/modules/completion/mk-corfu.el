@@ -27,6 +27,7 @@
 
 (when (string= mk-completion "light")
   (use-package corfu
+    :defer t
     :ensure t
     :hook (lsp-completion-mode . kb/corfu-setup-lsp) ; Use corfu for lsp completion
     :general
@@ -98,6 +99,7 @@ default lsp-passthrough."
             '(orderless))))
 
   (use-package kind-icon
+    :defer t
     :ensure t
     :after corfu
     :custom
@@ -119,6 +121,7 @@ default lsp-passthrough."
     )
 
   (use-package cape
+    :defer t
     :ensure t
     ;; Bind prefix keymap providing all Cape commands under a mnemonic key.
     ;; Press C-c p ? to for help.

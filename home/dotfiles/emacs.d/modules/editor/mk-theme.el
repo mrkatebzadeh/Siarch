@@ -28,6 +28,7 @@
 
 ;; catppuccin-theme
 (use-package catppuccin-theme
+  :defer t
   :ensure t
   )
 

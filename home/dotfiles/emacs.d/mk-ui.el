@@ -69,9 +69,11 @@
   (setq scroll-step 1
 	scroll-conservatively 10000
 	auto-window-vscroll nil)
+  (setq tab-width 4)
   )
 
 (use-package ligature
+  :defer t
   :ensure t
   :config
   ;; Enable the www ligature in every possible major mode
@@ -95,6 +97,7 @@
 
 
 (use-package vertico
+  :defer t
   :ensure t
   :general
   (:keymaps 'vertico-map
@@ -110,6 +113,7 @@
 
 ;; `orderless' completion style.
 (use-package orderless
+  :defer t
   :ensure t
   :custom
   ;; Configure a custom style dispatcher (see the Consult wiki)
@@ -127,7 +131,7 @@
 
 (use-package embark
   :ensure t
-
+  :defer t
   :bind
   (("C-." . embark-act)         ;; pick some comfortable binding
    ("C-;" . embark-dwim)        ;; good alternative: M-.
@@ -157,11 +161,13 @@
 
 ;; Consult users will also want the embark-consult package.
 (use-package embark-consult
+  :defer t
   :ensure t ; only need to install it, embark loads it after consult if found
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 ;; Enable rich annotations using the Marginalia package
 (use-package marginalia
+  :defer t
   :ensure t
   ;; Bind `marginalia-cycle' locally in the minibuffer.  To make the binding
   ;; available in the *Completions* buffer, add it to the
@@ -174,6 +180,7 @@
   (marginalia-mode))
 
 (use-package vertico-multiform
+  :defer t
   :ensure nil
   :hook (after-init . vertico-multiform-mode)
   :init
@@ -189,10 +196,12 @@
 
 ;; SVG tags, progress bars & icons
 (use-package svg-lib
+  :defer t
   :ensure nil)
 
 ;; Replace keywords with SVG tags
 (use-package svg-tag-mode
+  :defer t
   :ensure nil)
 
 (use-package page-break-lines
@@ -200,6 +209,7 @@
 
 ;; all-the-icons
 (use-package all-the-icons
+  :defer t
   :ensure t)
 
 (use-package telephone-line

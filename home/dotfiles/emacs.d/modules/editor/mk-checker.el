@@ -26,6 +26,7 @@
 ;;; Code:
 
 (use-package flymake
+  :defer t
   :ensure nil
   :config ; (Optional) For fix bad icon display (Only for left margin)
   (advice-add #'flymake--indicator-overlay-spec

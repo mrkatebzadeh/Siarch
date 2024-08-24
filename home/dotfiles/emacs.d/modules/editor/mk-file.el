@@ -47,10 +47,11 @@
 
 (when (string= mk-completion "light")
   (use-package consult-project-extra
-    :ensure t
+    :defer t
     :ensure t)
 
   (use-package project-x
+    :defer t
     :after project
     :config
     (add-hook 'project-find-functions 'project-x-try-local 90)
@@ -168,6 +169,7 @@
   :defer t)
 
 (use-package all-the-icons-dired
+  :defer t
   :ensure t
   :hook (dired-mode . all-the-icons-dired-mode))
 
@@ -224,15 +226,18 @@
   :defer t)
 
 (use-package lsp-treemacs
+  :defer t
   :ensure t
   :after (treemacs lsp))
 
 (use-package direnv
+  :defer t
   :ensure t
   :config
   (direnv-mode))
 
 (use-package inheritenv
+  :defer t
   :ensure t
   )
 ;;; config
