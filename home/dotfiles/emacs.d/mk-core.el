@@ -27,25 +27,47 @@
 
 ;; Initialize package.el
 (require 'package)
+
+(setq use-package-expand-minimally t
+      ;; use-package is a macro. Don't let the macro expands into
+      ;; codes with too much of irrelevant checks.
+      ;; Straight is my package manager, don't let package.el get
+      ;; involved.
+      ;; use-package-always-defer t
+      ;; This is a useful trick to speed up your startup time. Only
+      ;; use `require' when it's necessary. By setting the
+      ;; `use-package-always-defer' option to t, use-package won't
+      ;; call `require' in all cases unless you explicitly include
+      ;; :demand t'. This will prevent unnecessary package loading and
+      ;; speed up your Emacs startup time.
+      straight-check-for-modifications nil ;;'(find-at-startup)
+      ;; This is a useful trick to further optimize your startup
+      ;; time. Instead of using `straight-check-for-modifications' to
+      ;; check if a package has been modified, you can manually
+      ;; rebuild the package by `straight-rebuild-package' when you
+      ;; know its source code has changed. This avoids the overhead of
+      ;; the check. Make sure you know what you are doing here when
+      ;; setting this option.
+      debug-on-error nil)
+
 (setq package--init-file-ensured t
       initial-scratch-message ""
       frame-inhibit-implied-resize t
       initial-major-mode 'fundamental-mode
-      tab-width 4
       select-enable-clipboard t
       user-full-name "M.R. Siavash Katebzadeh"
       user-mail-address "mr.katebzadeh@gmail.com"
       package-user-dir (expand-file-name "elpa" mk-packages-dir)
       package-gnupghome-dir (expand-file-name "gpg" mk-packages-dir)
-      package-enable-at-startup nil
       help-window-select t
-      package-archives
-      `(("gnu"          . "https://elpa.gnu.org/packages/")
-        ("melpa"        . "https://melpa.org/packages/")
-        ("org"          . "https://orgmode.org/elpa/"))
-      package-archive-priorities
-      '(("melpa" . -1)
-	("gnu" . -3)))
+      ;; package-archives
+      ;; `(("gnu"          . "https://elpa.gnu.org/packages/")
+      ;; ("melpa"        . "https://melpa.org/packages/")
+      ;; )
+      ;; package-archive-priorities
+      ;; '(("melpa" . -1)
+      ;; ("gnu" . -3))
+      )
 (package-initialize)
 
 (defvar bootstrap-version)
@@ -64,7 +86,10 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 (setq package-enable-at-startup nil)
+
 (straight-use-package 'use-package)
+
+(setq use-package-compute-statistics t)
 
 ;; gcmh
 (use-package gcmh
@@ -77,105 +102,11 @@
   :config
   (gcmh-mode))
 
-;; general
-(use-package general
-  :ensure t
-  :config
-  (setq general-override-states '(insert
-                                  emacs
-                                  hybrid
-                                  normal
-                                  visual
-                                  motion
-                                  operator
-                                  replace))
-  (general-override-mode)
-  (general-auto-unbind-keys)
-  )
-
-
-;; which-key
-(use-package which-key
-  :defer t
-  :init
-  (setq which-key-idle-delay 0.1)
-  (which-key-mode))
-
-;; evil
-(use-package evil
-  :ensure t
-  :init
-  (setq evil-search-module 'evil-search
-	evil-ex-complete-emacs-commands nil
-	evil-vsplit-window-right t
-	evil-split-window-below t
-	evil-shift-round nil
-	evil-want-C-u-scroll t
-	evil-default-cursor t
-	evil-want-integration nil
-	evil-want-keybinding nil)
-  ;; This has to be before we invoke evil-mode due to:
-  ;; https://github.com/cofi/evil-leader/issues/10
-  (use-package evil-leader
-    :init (global-evil-leader-mode))
-  (evil-mode 1))
-
-;; evil-collection
-(use-package evil-collection
-  :ensure t
-  :init
-  (evil-collection-init))
-
-;; Display visual hint on evil edit operations
-(use-package evil-goggles
-  :ensure t
-  :config
-  (evil-goggles-mode)
-
-  ;; optionally use diff-mode's faces; as a result, deleted text
-  ;; will be highlighed with `diff-removed` face which is typically
-  ;; some red color (as defined by the color theme)
-  ;; other faces such as `diff-added` will be used for other actions
-  (evil-goggles-use-diff-faces))
-
 ;; esup
 (use-package esup
+  :defer t
   :ensure t
   :defer t)
-
-(general-create-definer leader
-  :states '(normal visual emacs)
-  :keymaps 'override
-  :prefix "SPC"
-  :global-prefix "A-SPC")
-
-;; Esc
-(global-set-key [escape] 'keyboard-escape-quit)
-
-;; leader file
-(leader
-  "" '(nil :which-key "My lieutenant general prefix")
-  "f" '(:ignore t :which-key "Files")
-  "c" '(:ignore t :which-key "Config Files")
-  "o" '(:ignore t :which-key "Org")
-  "a" '(:ignore t :which-key "Applications")
-  "g" '(:ignore t :which-key "Magit")
-  "m" '(:ignore t :which-key "EMMS")
-  "l" '(:ignore t :which-key "Local Bindings")
-  "b" '(:ignore t :which-key "Buffers")
-  "h" '(:ignore t :which-key "Help!")
-  "v" '(:ignore t :which-key "Volume")
-  "w" '(:ignore t :which-key "Windows")
-  "q" '(:ignore t :which-key "Quit")
-  "t" '(:ignore t :which-key "Toggles")
-
-  "x" 'execute-extended-command
-  )
-
-;; Exit/restart/reboot/shutdown
-(leader
-  "qq" 'kill-emacs
-  "qQ" 'delete-frame)
 
 (provide 'mk-core)
 ;;; mk-core.el ends here

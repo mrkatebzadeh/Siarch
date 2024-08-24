@@ -37,6 +37,9 @@
 (defvar mk-core-file (concat mk-emacs-dir "mk-core.el")
   "The root directory of MK's core files. Must end with a slash.")
 
+(defvar mk-key-file (concat mk-emacs-dir "mk-key.el")
+  "The root directory of MK's key configs. Must end with a slash.")
+
 (defvar mk-modules-dir (concat mk-emacs-dir "modules/")
   "The root directory for MK's modules. Must end with a slash.")
 
@@ -128,6 +131,9 @@
 
 (load mk-core-file)
 (message "Core has been loaded.")
+
+(load mk-key-file)
+(message "Key has been loaded.")
 
 ;;; Load Theme
 (load mk-ui-file)
