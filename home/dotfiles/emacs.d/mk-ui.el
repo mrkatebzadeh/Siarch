@@ -195,30 +195,8 @@
 (use-package svg-tag-mode
   :ensure nil)
 
-
-
-(use-package dashboard
-  :ensure t
-  :init
-  (dashboard-setup-startup-hook)
-  (setq dashboard-banner-logo-title "[-< True happiness can be found when two contrary powers cooperate together >-]"
-	dashboard-startup-banner (concat mk-emacs-dir "logo.txt")
-	dashboard-center-content t
-	dashboard-set-heading-icons t)
-  (setq dashboard-items '((bookmarks . 1)))
-  (setq initial-scratch-message nil)
-  (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*"))))
-
-
 (use-package page-break-lines
   :ensure t)
-
-;; catppuccin-theme
-(use-package catppuccin-theme
-  :ensure t
-  :init
-  (setq catppuccin-flavor 'frappe)
-  (load-theme 'catppuccin :no-confirm))
 
 ;; all-the-icons
 (use-package all-the-icons
