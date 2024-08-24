@@ -31,6 +31,7 @@
   :init
   (setq lsp-auto-guess-root t)
   (setq lsp-keep-workspace-alive nil)
+  (setq read-process-output-max (* 1024 1024))
   :custom
   (lsp-prefer-flymake nil)
   (lsp-session-file (concat mk-backup-dir "lsp-session-v1"))
