@@ -2,7 +2,23 @@
 let
   siarch = "${config.home.homeDirectory}/.siarch";
   dotfiles = "${siarch}/home/dotfiles";
-  emacsPackage = pkgs.emacs29-macport;
+
+  emacs = pkgs.emacs-macport.override {
+    # withXwidgets = true;
+    withNativeCompilation = true;
+    withSQLite3 = true;
+    withTreeSitter = true;
+    withWebP = true;
+  };
+
+  emacs-with-packages = (pkgs.emacsPackagesFor emacs).emacsWithPackages (epkgs: with epkgs; [
+    epkgs.mu4e
+    pkgs.mu
+    vterm
+    multi-vterm
+    pdf-tools
+    treesit-grammars.with-all-grammars
+  ]);
 in
 {
 
@@ -38,10 +54,7 @@ in
 
   programs.emacs = {
     enable = true;
-    package = emacsPackage;
-    extraPackages = epkgs: [
-      epkgs.mu4e
-    ];
+    package = emacs-with-packages;
   };
 
   xdg.configFile."borders".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/borders";
