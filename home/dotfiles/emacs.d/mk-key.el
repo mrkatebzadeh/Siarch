@@ -92,6 +92,8 @@
   :prefix "SPC"
   :global-prefix "A-SPC")
 
+;; Redo
+(evil-set-undo-system 'undo-redo)
 ;; Esc
 ;;;(global-set-key [escape] 'keyboard-quit)
 (defun minibuffer-keyboard-quit ()
