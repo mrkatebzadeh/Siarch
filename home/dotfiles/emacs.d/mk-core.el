@@ -60,13 +60,13 @@
       package-user-dir (expand-file-name "elpa" mk-packages-dir)
       package-gnupghome-dir (expand-file-name "gpg" mk-packages-dir)
       help-window-select t
-      ;; package-archives
-      ;; `(("gnu"          . "https://elpa.gnu.org/packages/")
-      ;; ("melpa"        . "https://melpa.org/packages/")
-      ;; )
-      ;; package-archive-priorities
-      ;; '(("melpa" . -1)
-      ;; ("gnu" . -3))
+      package-archives
+      `(("gnu"          . "https://elpa.gnu.org/packages/")
+	("melpa"        . "https://melpa.org/packages/")
+	)
+      package-archive-priorities
+      '(("melpa" . -1)
+	("gnu" . -3))
       )
 (package-initialize)
 

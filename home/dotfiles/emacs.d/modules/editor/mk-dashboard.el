@@ -33,7 +33,7 @@
   (dashboard-center-content t)
   (dashboard-set-heading-icons t)
   (dashboard-set-file-icons t)
-  (dashboard-icon-type 'all-the-icons)
+  (dashboard-icon-type 'nerd-icons)
   (dashboard-items '(projects bookmarks recents))
   (initial-scratch-message nil)
   (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
@@ -97,7 +97,7 @@ Possible values for list-type are: `recents', `bookmarks', `projects',
   (let* ((fn (alist-get 'projects mk-dashboard-shortmenu-functions))
          (fn-keymap (format "\\[%s]" fn))
          (icon-name (alist-get 'projects dashboard-heading-icons))
-         (icon (all-the-icons-octicon icon-name :face 'dashboard-heading))
+         (icon (nerd-icons-octicon icon-name :face 'dashboard-heading))
 	 )
     (if dashboard-display-icons-p
         (insert (format "%-3s" icon)))
@@ -121,7 +121,7 @@ Possible values for list-type are: `recents', `bookmarks', `projects',
   (let* ((fn (alist-get 'agenda mk-dashboard-shortmenu-functions))
          (fn-keymap (format "\\[%s]" fn))
          (icon-name (alist-get 'agenda dashboard-heading-icons))
-         (icon (all-the-icons-octicon icon-name :face 'dashboard-heading))
+         (icon (nerd-icons-octicon icon-name :face 'dashboard-heading))
 	 )
     (if dashboard-display-icons-p
         (insert (format "%-3s" icon)))
@@ -145,7 +145,7 @@ Possible values for list-type are: `recents', `bookmarks', `projects',
   (let* ((fn (alist-get 'bookmarks mk-dashboard-shortmenu-functions))
          (fn-keymap (format "\\[%s]" fn))
          (icon-name (alist-get 'bookmarks dashboard-heading-icons))
-         (icon (all-the-icons-octicon icon-name :face 'dashboard-heading))
+         (icon (nerd-icons-octicon icon-name :face 'dashboard-heading))
 	 )
     (if dashboard-display-icons-p
         (insert (format "%-3s" icon)))
@@ -169,7 +169,7 @@ Possible values for list-type are: `recents', `bookmarks', `projects',
   (let* ((fn (alist-get 'recents mk-dashboard-shortmenu-functions))
          (fn-keymap (format "\\[%s]" fn))
          (icon-name (alist-get 'recents dashboard-heading-icons))
-         (icon (all-the-icons-octicon icon-name :face 'dashboard-heading))
+         (icon (nerd-icons-octicon icon-name :face 'dashboard-heading))
 	 )
     (if dashboard-display-icons-p
 	(insert (format "%-3s" icon)))

@@ -207,10 +207,11 @@
 (use-package page-break-lines
   :ensure t)
 
-;; all-the-icons
-(use-package all-the-icons
+;; nerd-icons
+(use-package nerd-icons
   :defer t
-  :ensure t)
+  :ensure t
+  )
 
 (use-package telephone-line
   :ensure t

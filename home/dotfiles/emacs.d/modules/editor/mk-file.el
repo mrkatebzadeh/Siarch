@@ -168,10 +168,11 @@
   :after dired
   :defer t)
 
-(use-package all-the-icons-dired
+(use-package nerd-icons-dired
   :defer t
   :ensure t
-  :hook (dired-mode . all-the-icons-dired-mode))
+  :hook (dired-mode . nerd-icons-dired-mode))
+
 
 (use-package treemacs
   :ensure t
@@ -189,12 +190,11 @@
     (kbd "r") 'treemacs-rename-file)
   (treemacs-project-follow-mode 1)
   (treemacs-peek-mode 1)
-  (treemacs-load-all-the-icons-with-workaround-font "FiraCode Nerd Font")
   )
 
-(use-package treemacs-all-the-icons
+(use-package treemacs-nerd-icons
   :ensure t
-  :after (treemacs all-the-icons)
+  :after (treemacs nerd-icons)
   :defer t
   )
 
@@ -287,7 +287,7 @@
 	treemacs-follow-after-init             t
 	treemacs-git-command-pipe              ""
 	treemacs-goto-tag-strategy             'refetch-index
-	treemacs-indentation                   2
+	treemacs-indentation                   1
 	treemacs-indentation-string            " "
 	treemacs-is-never-other-window         nil
 	treemacs-max-git-entries               5000
