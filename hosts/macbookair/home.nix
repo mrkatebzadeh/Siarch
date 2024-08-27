@@ -33,6 +33,7 @@ in
   };
 
   home.packages = with pkgs; [
+    nil
     pkg-config
     mu
     isync
