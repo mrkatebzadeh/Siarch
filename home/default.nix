@@ -25,10 +25,6 @@ in
   };
   programs.bat = import ./nixfiles/bat.nix { inherit pkgs; };
   programs.kitty = import ./nixfiles/kitty.nix { inherit pkgs; };
-  programs.starship = import ./nixfiles/starship.nix {
-    inherit pkgs lib;
-  };
-  programs.zsh = import ./nixfiles/zsh.nix { inherit config pkgs; };
 
   home.file.".profile".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/profile";
 

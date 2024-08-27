@@ -77,4 +77,10 @@ in
   home.sessionVariables = { };
 
   programs.home-manager.enable = true;
+  programs.starship = import ../home/nixfiles/starship.nix {
+    inherit pkgs lib;
+  };
+  programs.zsh = import ../home/nixfiles/zsh.nix { inherit config pkgs; };
+
+
 }

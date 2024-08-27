@@ -26,6 +26,7 @@
     nodePackages.vim-language-server
     yaml-language-server
     #
+    patchelf
     asdf-vm
     bat
     atuin

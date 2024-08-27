@@ -10,7 +10,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     lazy = false,
     opts = {
-      ensure_installed = {},
+      ensure_installed = { codelldb },
       auto_install = true,
     },
   },

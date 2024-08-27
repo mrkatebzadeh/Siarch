@@ -127,6 +127,12 @@ in
     package = pkgs.catppuccin-cursors.frappeDark;
   };
 
+  programs.starship = import ../home/nixfiles/starship.nix {
+    inherit pkgs lib;
+  };
+  programs.zsh = import ../home/nixfiles/zsh.nix { inherit config pkgs; };
+
+
   xdg.configFile."bspwm".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/bspwm";
   xdg.configFile."deadd".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/deadd";
   xdg.configFile."dunst".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/dunst";

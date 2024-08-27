@@ -33,10 +33,10 @@
     starship
     tree-sitter
     zellij
+    rustup
     bc
-    cargo
-    clang
     cmake
+    patchelf
     dosfstools
     fd
     flamegraph

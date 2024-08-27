@@ -58,6 +58,11 @@ in
     package = emacs-with-packages;
   };
 
+  programs.starship = import ../home/nixfiles/starship.nix {
+    inherit pkgs lib;
+  };
+  programs.zsh = import ../home/nixfiles/zsh.nix { inherit config pkgs; };
+
   xdg.configFile."borders".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/borders";
   xdg.configFile."sketchybar".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/sketchybar";
   xdg.configFile."skhd".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/skhd";

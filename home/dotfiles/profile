@@ -1,4 +1,14 @@
 #!/bin/sh
+
+NIX_DAEMON=/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+if [ -f $NIX_DAEMON ] || command -v nix &> /dev/null ; then
+	echo "Nix is already installed."
+	. $NIX_DAEMON
+	return 0
+else
+	return 1
+fi
+export PATH=$PATH:$HOME/.nix-profile/bin/
 export SHELL=$(which zsh)
 
 ZSHRC=~/.config/zsh/zshrc

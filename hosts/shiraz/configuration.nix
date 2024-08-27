@@ -112,6 +112,11 @@ in
       isDefault = true;
     };
   };
+  programs.starship = import ../home/nixfiles/starship.nix {
+    inherit pkgs lib;
+  };
+  programs.zsh = import ../home/nixfiles/zsh.nix { inherit config pkgs; };
+
 
   home.pointerCursor = {
     name = "Catppuccin-Frappe-Dark-Cursors";
