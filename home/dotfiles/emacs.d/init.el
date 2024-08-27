@@ -71,9 +71,9 @@
 
 (message "Starting MK")
 ;;; Speed up startup
-(eval-when-compile (require 'cl))
+(eval-when-compile (require 'cl-lib))
 
-(lexical-let ((emacs-start-time (current-time)))
+(let ((emacs-start-time (current-time)))
   (add-hook 'emacs-startup-hook
             (lambda ()
               (let ((elapsed (float-time (time-subtract (current-time) emacs-start-time))))
