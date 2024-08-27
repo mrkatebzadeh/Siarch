@@ -186,16 +186,15 @@
     (kbd ">") 'treemacs-increase-width
     (kbd "H") 'treemacs-toggle-show-dotfiles
     (kbd "<tab>") 'treemacs-RET-action
-    (kbd "RET") 'treemacs-rename-file
     (kbd "r") 'treemacs-rename-file)
   (treemacs-project-follow-mode 1)
-  (treemacs-peek-mode 1)
   )
 
 (use-package treemacs-nerd-icons
   :ensure t
   :after (treemacs nerd-icons)
-  :defer t
+  :config
+  (treemacs-load-theme "nerd-icons")
   )
 
 (use-package treemacs-evil
@@ -212,7 +211,16 @@
 (use-package lsp-treemacs
   :ensure t
   :after (lsp-mode treemacs)
-  :defer t)
+  :defer t
+  :custom
+  (lsp-treemacs-theme "nerd-icons-ext"))
+
+(use-package lsp-treemacs-nerd-icons
+  :ensure nil
+  :defer t
+  ;; HACK: Load after the `lsp-treemacs' created default themes
+  :init (with-eval-after-load 'lsp-treemacs
+	  (require 'lsp-treemacs-nerd-icons)))
 
 (use-package treemacs-icons-dired
   :ensure t
@@ -224,11 +232,6 @@
   :ensure t
   :after (treemacs magit)
   :defer t)
-
-(use-package lsp-treemacs
-  :defer t
-  :ensure t
-  :after (treemacs lsp))
 
 (use-package direnv
   :defer t
@@ -314,6 +317,8 @@
   (treemacs-follow-mode t)
   (treemacs-filewatch-mode t)
   (treemacs-fringe-indicator-mode t)
+  (treemacs-define-RET-action 'file-node-closed #'treemacs-visit-node-ace)
+  (treemacs-define-RET-action 'file-node-open #'treemacs-visit-node-ace)
   (pcase (cons (not (null (executable-find "git")))
 	       (not (null (executable-find "python3"))))
     (`(t . t)
