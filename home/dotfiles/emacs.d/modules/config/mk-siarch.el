@@ -30,6 +30,12 @@
 (defvar siarch-dir (expand-file-name ".siarch" (getenv "HOME"))
   "Directory where the siarch script is located.")
 
+(defun mk-siarch-nix-file ()
+  "Open flake.nix file."
+  (interactive)
+  (find-file (concat siarch-dir "/flake.nix")))
+
+
 (defvar siarch-hostname-params
   '((SiAir . "macbookair")
     (shiraz . "shiraz"))
@@ -76,6 +82,7 @@
       (message "Buffer *Siarch-output* does not exist."))))
 
 (leader
+  "cso" 'mk-siarch-nix-file
   "csb" 'mk-siarch-rebuild
   "csc" 'mk-siarch-cancel)
 
