@@ -26,6 +26,7 @@
 ;;; Code:
 
 (use-package outshine
+  :ensure t
   ;; Easier navigation for source files, especially this one.
   :bind (:map outshine-mode-map
 	      ("<S-iso-lefttab>" . outshine-cycle-buffer))

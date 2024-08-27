@@ -26,12 +26,14 @@
 ;;; Code:
 
 (use-package markdown-mode
+  :ensure t
   :defer t
   :delight "μ "
   :mode ("\\.markdown\\'" "\\.md\\'")
   :custom (markdown-command "/usr/bin/pandoc"))
 
 (use-package markdown-preview-mode
+  :ensure t
   :defer t
   :after markdown-mode
   :custom
@@ -64,11 +66,13 @@
           </style>")))
 
 (use-package nov
+  :ensure t
   :defer t
   :mode ("\\.epub\\'" . nov-mode)
   :custom (nov-text-width 75))
 
 (use-package csv-mode
+  :ensure t
   :defer t)
 
 (use-package elisp-mode
@@ -77,14 +81,17 @@
   :delight "ξ ")
 
 (use-package eldoc
+  :ensure t
   :defer t
   :delight
   :hook (emacs-lisp-mode . eldoc-mode))
 
 (use-package toml-mode
+  :ensure t
   :defer t)
 
 (use-package systemd
+  :ensure t
   :defer t
   :mode
   ("\\.service\\'" "\\.timer\\'" "\\.target\\'" "\\.mount\\'"
@@ -92,6 +99,7 @@
    "\\.netdev\\'" "\\.network\\'" "\\.link\\'"))
 
 (use-package pdf-tools
+  :ensure t
   :defer t
   :mode ("\\.pdf\\'" . pdf-tools-install)
   :config

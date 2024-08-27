@@ -35,10 +35,12 @@
 ;;   )
 
 (use-package cargo
+  :ensure t
   :defer t
   :hook (rust-mode . cargo-minor-mode))
 
 (use-package flycheck-rust
+  :ensure t
   :after (flycheck rust)
   :defer t
   :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))

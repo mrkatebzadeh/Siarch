@@ -26,6 +26,7 @@
 ;;; Code:
 
 (use-package sh-script
+  :ensure t
   :defer t
   :hook (after-save . executable-make-buffer-file-executable-if-script-p))
 

@@ -26,11 +26,13 @@
 ;;; Code:
 
 (use-package srefactor
+  :ensure t
   :defer t
   :config
   (semantic-mode 1))
 
 (use-package ccls
+  :ensure t
   :defer t
   :after projectile
   :preface
@@ -97,14 +99,17 @@
 	   projectile-project-root-files-top-down-recurring)))
 
 (use-package google-c-style
+  :ensure t
   :hook ((c++-mode) . google-set-c-style))
 					;  (c-mode-common . google-make-newline-indent))
 
 (use-package cmake-mode
+  :ensure t
   :defer t
   :mode ("CMakeLists\\.txt\\'" "\\.cmake\\'"))
 
 (use-package cmake-font-lock
+  :ensure t
   :defer t
   :after (cmake-mode)
   :hook (cmake-mode . cmake-font-lock-activate))
@@ -117,19 +122,23 @@
   "Add auto-save hook for clang-format-buffer-smart."
   (add-hook 'before-save-hook 'clang-format-buffer-smart nil t))
 (use-package clang-format
+  :ensure t
   :defer t
   :hook ((c-mode cc-mode c-common-mode c++-mode) . clang-format-buffer-smart-on-save))
 
 (use-package disaster
+  :ensure t
   :defer t
   :commands (disaster disaster-objdump))
 
 (use-package makefile-executor
+  :ensure t
   :defer t
   :config
   (add-hook 'makefile-mode-hook 'makefile-executor-mode))
 
 (use-package company-c-headers
+  :ensure t
   :defer t
   :config
   (push 'company-c-headers company-backends))

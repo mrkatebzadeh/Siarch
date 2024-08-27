@@ -3,6 +3,27 @@
 , outputs
 , ...
 }:
+let
+  siarch = "${config.home.homeDirectory}/.siarch";
+  dotfiles = "${siarch}/home/dotfiles";
+
+  emacs = pkgs.emacs.override {
+    # withXwidgets = true;
+    withNativeCompilation = true;
+    withSQLite3 = true;
+    withTreeSitter = true;
+    withWebP = true;
+  };
+
+  emacs-with-packages = (pkgs.emacsPackagesFor emacs).emacsWithPackages (epkgs: with epkgs; [
+    epkgs.mu4e
+    pkgs.mu
+    vterm
+    multi-vterm
+    pdf-tools
+    treesit-grammars.with-all-grammars
+  ]);
+in
 {
   nixpkgs = {
     overlays = [
@@ -46,10 +67,18 @@
     unzip
   ];
 
+  programs.emacs = {
+    enable = true;
+    package = emacs-with-packages;
+  };
+
+
   fonts.fontconfig.enable = true;
 
   home.file = { };
   home.sessionVariables = { };
 
   programs.home-manager.enable = true;
+
+  xdg.configFile."emacs".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/emacs.d";
 }

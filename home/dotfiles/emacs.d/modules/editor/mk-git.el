@@ -26,11 +26,13 @@
 ;;; Code:
 
 (use-package magit
+  :ensure t
   :defer t
   :init
   (add-hook 'with-editor-mode-hook 'evil-insert-state))
 
 (use-package git-gutter
+  :ensure t
   :hook (prog-mode . git-gutter-mode)
   :config
   (setq git-gutter:update-interval 0.02))

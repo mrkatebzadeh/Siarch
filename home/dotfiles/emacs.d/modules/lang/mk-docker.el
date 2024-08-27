@@ -26,11 +26,13 @@
 ;;; Code:
 
 (use-package dockerfile-mode
+  :ensure t
   :defer t
   :delight "δ "
   :mode "Dockerfile\\'")
 
 (use-package docker
+  :ensure t
   :defer t
   :commands (docker))
 

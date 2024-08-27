@@ -186,6 +186,7 @@
     (kbd ">") 'treemacs-increase-width
     (kbd "H") 'treemacs-toggle-show-dotfiles
     (kbd "<tab>") 'treemacs-RET-action
+    (kbd "<ret>") 'treemacs-RET-action
     (kbd "r") 'treemacs-rename-file)
   (treemacs-project-follow-mode 1)
   )

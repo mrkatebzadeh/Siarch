@@ -26,6 +26,7 @@
 ;;; Code:
 
 (use-package python
+  :ensure t
   :defer t)
 
 

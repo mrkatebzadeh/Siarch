@@ -26,6 +26,7 @@
 ;;; Code:
 
 (use-package auctex
+  :ensure t
   :defer t
   :mode ("\\.tex\\'" . latex-mode)
   :init
@@ -52,20 +53,25 @@
 		    ))))
 
 (use-package latex-preview-pane
+  :ensure t
   :defer t)
 
 (use-package reftex
+  :ensure t
   :defer t)
 
 (use-package helm-bibtex
+  :ensure t
   :defer t)
 
 (use-package auctex-latexmk
+  :ensure t
   :defer t
   :init
   (setq auctex-latexmk-inherit-TeX-PDF-mode t))
 
 (use-package company-auctex
+  :ensure t
   :defer t
   :after (auctex company))
 

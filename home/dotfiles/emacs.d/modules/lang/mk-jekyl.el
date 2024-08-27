@@ -26,6 +26,7 @@
 ;;; Code:
 
 (use-package hyde
+  :ensure t
   :commands (hyde)
   :init
   (defun mk-hyde ()

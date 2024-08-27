@@ -48,7 +48,7 @@
       ;; know its source code has changed. This avoids the overhead of
       ;; the check. Make sure you know what you are doing here when
       ;; setting this option.
-      debug-on-error nil)
+      debug-on-error t)
 
 (setq package--init-file-ensured t
       initial-scratch-message ""

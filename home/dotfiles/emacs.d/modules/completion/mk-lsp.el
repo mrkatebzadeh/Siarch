@@ -27,6 +27,7 @@
 
 ;;; lsp-mode
 (use-package lsp-mode
+  :ensure t
   :defer t
   :init
   (setq lsp-auto-guess-root t)
@@ -60,6 +61,7 @@
 		    :server-id 'pyls)))
 
 (use-package lsp-ui
+  :ensure t
   :demand t
   :after lsp-mode
   :commands (lsp-ui-peek-find-definitions
@@ -76,6 +78,7 @@
 
 (when (string= mk-completion "featured")
   (use-package company-lsp
+    :ensure t
     :defer t
     :after (company lsp-mode)
     :init
@@ -85,7 +88,8 @@
     (setq company-backends '(company-lsp company-yasnippet)))
   )
 
-  (use-package dap-mode
+(use-package dap-mode
+    :ensure t
     :defer t
     :after lsp-mode
     :config
@@ -113,6 +117,7 @@
   )
 
 (use-package format-all
+  :ensure t
   :defer t
   :commands format-all-mode
   :hook (prog-mode . format-all-mode)
@@ -127,4 +132,4 @@
   "lf" 'format-all-mode)
 
 (provide 'mk-lsp)
-;;; mk-lsp.el ends here
+;;; mk-lsp.el ends

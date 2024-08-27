@@ -26,9 +26,11 @@
 ;;; Code:
 
 (use-package web-mode
+  :ensure t
   :defer t)
 
 (use-package company-web
+  :ensure t
   :defer t)
 
 ;;; config
