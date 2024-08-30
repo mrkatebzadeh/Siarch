@@ -33,6 +33,7 @@ in
   };
 
   home.packages = with pkgs; [
+    direnv
     nil
     pkg-config
     mu
