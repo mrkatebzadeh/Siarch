@@ -1,4 +1,4 @@
-;;; `(insert (buffer-name))` --- ${1:<TITLE>} -*- lexical-binding: t; -*-
+;;; early-init.el --- Early Init -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2019  M.R. Siavash Katebzadeh
 
@@ -25,8 +25,26 @@
 
 ;;; Code:
 
-;;${0:<CODE>}
+(setq package-enable-at-startup nil)
 
+;; increase gc threshold to speedup starting up
+(setq gc-cons-percentage 0.6)
+(setq gc-cons-threshold most-positive-fixnum)
 
-(provide '`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`)
-;;; `(insert (buffer-name))` ends here
+(setq inhibit-startup-message t)
+
+;; no menu bar, toolbar, scroll bar
+(setq default-frame-alist
+      '((menu-bar-lines . 0)
+        (tool-bar-lines . 0)
+        (horizontal-scroll-bars)
+        (vertical-scroll-bars)))
+
+(setq menu-bar-mode nil
+      tool-bar-mode nil
+      scroll-bar-mode nil)
+
+(setq native-comp-async-report-warnings-errors 'silent)
+
+(provide 'early-init)
+;;; early-init.el ends here

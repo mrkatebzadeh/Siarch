@@ -1,3 +1,7 @@
+.desktop
+.emacs.desktop
+project-window-list
+elpa/
 straight/
 projects
 el-get/

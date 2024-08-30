@@ -3,6 +3,23 @@ let
   common = import ../common/pkgs.nix { inherit pkgs; };
   siarch = "${config.home.homeDirectory}/.siarch";
   dotfiles = "${siarch}/home/dotfiles";
+
+  emacs = pkgs.emacs.override {
+    # withXwidgets = true;
+    withNativeCompilation = true;
+    withSQLite3 = true;
+    withTreeSitter = true;
+    withWebP = true;
+  };
+
+  emacs-with-packages = (pkgs.emacsPackagesFor emacs).emacsWithPackages (epkgs: with epkgs; [
+    epkgs.mu4e
+    pkgs.mu
+    vterm
+    multi-vterm
+    pdf-tools
+    treesit-grammars.with-all-grammars
+  ]);
 in
 {
   nixpkgs = {
@@ -96,7 +113,6 @@ in
     fonts.sf-pro
     scripts.common
     scripts.hypr
-    emacs
     git
   ] ++
   common.packages;
@@ -105,6 +121,11 @@ in
   home.sessionVariables = { };
 
   fonts.fontconfig.enable = true;
+
+  programs.emacs = {
+    enable = true;
+    package = emacs-with-packages;
+  };
 
   programs.home-manager.enable = true;
   programs.kitty = {

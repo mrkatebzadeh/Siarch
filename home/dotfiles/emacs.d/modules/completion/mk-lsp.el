@@ -31,6 +31,7 @@
   :init
   (setq lsp-auto-guess-root t)
   (setq lsp-keep-workspace-alive nil)
+  (setq read-process-output-max (* 1024 1024))
   :custom
   (lsp-prefer-flymake nil)
   (lsp-session-file (concat mk-backup-dir "lsp-session-v1"))
@@ -111,6 +112,20 @@
   "db" 'dap-breakpoint-toggle
   )
 
+(use-package format-all
+  :ensure t
+  :defer t
+  :commands format-all-mode
+  :hook (prog-mode . format-all-mode)
+  :config
+  (setq-default format-all-formatters
+                '(("C"     (astyle "--mode=c"))
+		  ("Rust"     (rustfmt))
+		  ("Nix"     (nixpkgs-fmt))
+                  ("Shell" (shfmt "-i" "4" "-ci")))))
+
+(leader
+  "lf" 'format-all-mode)
 
 (provide 'mk-lsp)
 ;;; mk-lsp.el ends here

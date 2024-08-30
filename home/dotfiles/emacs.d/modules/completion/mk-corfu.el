@@ -27,11 +27,14 @@
 
 (when (string= mk-completion "light")
   (use-package corfu
+    :defer t
+    :ensure t
     :hook (lsp-completion-mode . kb/corfu-setup-lsp) ; Use corfu for lsp completion
     :general
     (:keymaps 'corfu-map
 	      :states 'insert
 	      "C-n" #'corfu-next
+	      "<tab>" #'corfu-next
 	      "C-p" #'corfu-previous
 	      "<escape>" #'corfu-quit
 	      "<return>" #'corfu-insert
@@ -95,27 +98,20 @@ default lsp-passthrough."
       (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
             '(orderless))))
 
-  (use-package kind-icon
+  (use-package nerd-icons-corfu
+    :ensure t
     :after corfu
-    :custom
-    (kind-icon-use-icons t)
-    (kind-icon-default-face 'corfu-default) ; Have background color be the same as `corfu' face background
-    (kind-icon-blend-background nil)  ; Use midpoint color between foreground and background colors ("blended")?
-    (kind-icon-blend-frac 0.08)
-
     :config
-    (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter) ; Enable `kind-icon'
-
-    ;; Add hook to reset cache so the icon colors match my theme
-    ;; NOTE 2022-02-05: This is a hook which resets the cache whenever I switch
-    ;; the theme using my custom defined command for switching themes. If I don't
-    ;; do this, then the backgound color will remain the same, meaning it will not
-    ;; match the background color corresponding to the current theme. Important
-    ;; since I have a light theme and dark theme I switch between. This has no
-    ;; function unless you use something similar
-    )
+    (setq erd-icons-corfu-mapping
+	  '((array :style "cod" :icon "symbol_array" :face font-lock-type-face)
+	    (boolean :style "cod" :icon "symbol_boolean" :face font-lock-builtin-face)
+	    ;; ...
+	    (t :style "cod" :icon "code" :face font-lock-warning-face)))
+    ;; Remember to add an entry for `t', the library uses that as default.
+    (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
 
   (use-package cape
+    :defer t
     :ensure t
     ;; Bind prefix keymap providing all Cape commands under a mnemonic key.
     ;; Press C-c p ? to for help.

@@ -52,6 +52,9 @@
   (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
   (setq inhibit-startup-message t)
 
+  ;; linenumber
+  (global-display-line-numbers-mode 1)
+  (setq display-line-numbers 'relative)
   ;; Font
   (set-face-attribute 'default nil
                       :family "FiraCode Nerd Font"
@@ -59,43 +62,59 @@
                       :weight 'normal
                       :width 'normal)
 
-  (use-package ligature
-    :config
-    ;; Enable the www ligature in every possible major mode
-    (ligature-set-ligatures 't '("www"))
 
-    ;; Enable ligatures in programming modes
-    (ligature-set-ligatures 'prog-mode '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\" "{-" "::"
-					 ":::" ":=" "!!" "!=" "!==" "-}" "----" "-->" "->" "->>"
-					 "-<" "-<<" "-~" "#{" "#[" "##" "###" "####" "#(" "#?" "#_"
-					 "#_(" ".-" ".=" ".." "..<" "..." "?=" "??" ";;" "/*" "/**"
-					 "/=" "/==" "/>" "//" "///" "&&" "||" "||=" "|=" "|>" "^=" "$>"
-					 "++" "+++" "+>" "=:=" "==" "===" "==>" "=>" "=>>" "<="
-					 "=<<" "=/=" ">-" ">=" ">=>" ">>" ">>-" ">>=" ">>>" "<*"
-					 "<*>" "<|" "<|>" "<$" "<$>" "<!--" "<-" "<--" "<->" "<+"
-					 "<+>" "<=" "<==" "<=>" "<=<" "<>" "<<" "<<-" "<<=" "<<<"
-					 "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%"))
-    )
-  (global-ligature-mode t)
   ;; highlight current line
-  (global-hl-line-mode +1))
+  (global-hl-line-mode +1)
+  ;; smooth scroll
+  (setq scroll-step 1
+	scroll-conservatively 10000
+	auto-window-vscroll nil)
+  (setq tab-width 4)
+  )
+
+(use-package ligature
+  :defer t
+  :ensure t
+  :config
+  ;; Enable the www ligature in every possible major mode
+  (ligature-set-ligatures 't '("www"))
+
+  ;; Enable ligatures in programming modes
+  (ligature-set-ligatures 'prog-mode '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\" "{-" "::"
+				       ":::" ":=" "!!" "!=" "!==" "-}" "----" "-->" "->" "->>"
+				       "-<" "-<<" "-~" "#{" "#[" "##" "###" "####" "#(" "#?" "#_"
+				       "#_(" ".-" ".=" ".." "..<" "..." "?=" "??" ";;" "/*" "/**"
+				       "/=" "/==" "/>" "//" "///" "&&" "||" "||=" "|=" "|>" "^=" "$>"
+				       "++" "+++" "+>" "=:=" "==" "===" "==>" "=>" "=>>" "<="
+				       "=<<" "=/=" ">-" ">=" ">=>" ">>" ">>-" ">>=" ">>>" "<*"
+				       "<*>" "<|" "<|>" "<$" "<$>" "<!--" "<-" "<--" "<->" "<+"
+				       "<+>" "<=" "<==" "<=>" "<=<" "<>" "<<" "<<-" "<<=" "<<<"
+				       "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%"))
+  :init
+  (global-ligature-mode t)
+  )
 
 
-  (use-package vertico
-    :general
-    (:keymaps 'vertico-map
-	      "<left>" #'vertico-directory-delete-char
-	      "DEL" #'vertico-directory-delete-char)
-    :custom
-    ;; (vertico-scroll-margin 0) ;; Different scroll margin
-    (vertico-count 10) ;; Show more candidates
-    ;; (vertico-resize t) ;; Grow and shrink the Vertico minibuffer
-    ;; (vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
-    :init
-    (vertico-mode))
+
+(use-package vertico
+  :defer t
+  :ensure t
+  :general
+  (:keymaps 'vertico-map
+	    "<left>" #'vertico-directory-delete-char
+	    "DEL" #'vertico-directory-delete-char)
+  :custom
+  ;; (vertico-scroll-margin 0) ;; Different scroll margin
+  (vertico-count 10) ;; Show more candidates
+  ;; (vertico-resize t) ;; Grow and shrink the Vertico minibuffer
+  ;; (vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
+  :init
+  (vertico-mode))
 
 ;; `orderless' completion style.
 (use-package orderless
+  :defer t
+  :ensure t
   :custom
   ;; Configure a custom style dispatcher (see the Consult wiki)
   ;; (orderless-style-dispatchers '(+orderless-consult-dispatch orderless-affix-dispatch))
@@ -106,26 +125,62 @@
 
 ;; Persist history over Emacs restarts. Vertico sorts by history position.
 (use-package savehist
+  :ensure t
   :init
   (savehist-mode))
 
+(use-package embark
+  :ensure t
+  :defer t
+  :bind
+  (("C-." . embark-act)         ;; pick some comfortable binding
+   ("C-;" . embark-dwim)        ;; good alternative: M-.
+   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+
+  :init
+
+  ;; Optionally replace the key help with a completing-read interface
+  (setq prefix-help-command #'embark-prefix-help-command)
+
+  ;; Show the Embark target at point via Eldoc. You may adjust the
+  ;; Eldoc strategy, if you want to see the documentation from
+  ;; multiple providers. Beware that using this can be a little
+  ;; jarring since the message shown in the minibuffer can be more
+  ;; than one line, causing the modeline to move up and down:
+
+  ;; (add-hook 'eldoc-documentation-functions #'embark-eldoc-first-target)
+  ;; (setq eldoc-documentation-strategy #'eldoc-documentation-compose-eagerly)
+
+  :config
+
+  ;; Hide the mode line of the Embark live/completions buffers
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none)))))
+
+;; Consult users will also want the embark-consult package.
+(use-package embark-consult
+  :defer t
+  :ensure t ; only need to install it, embark loads it after consult if found
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
 ;; Enable rich annotations using the Marginalia package
 (use-package marginalia
+  :defer t
+  :ensure t
   ;; Bind `marginalia-cycle' locally in the minibuffer.  To make the binding
   ;; available in the *Completions* buffer, add it to the
   ;; `completion-list-mode-map'.
   :bind (:map minibuffer-local-map
               ("M-A" . marginalia-cycle))
 
-  ;; The :init section is always executed.
   :init
 
-  ;; Marginalia must be activated in the :init section of use-package such that
-  ;; the mode gets enabled right away. Note that this forces loading the
-  ;; package.
   (marginalia-mode))
 
 (use-package vertico-multiform
+  :defer t
   :ensure nil
   :hook (after-init . vertico-multiform-mode)
   :init
@@ -133,35 +188,30 @@
 	'()))
 
 (use-package spacious-padding
+  :ensure t
+  :defer t
+  :disabled
   :hook
   (after-init .  spacious-padding-mode))
 
-(use-package dashboard
-  :ensure t
-  :init
-  (dashboard-setup-startup-hook)
-  (setq dashboard-banner-logo-title "[-< True happiness can be found when two contrary powers cooperate together >-]"
-	dashboard-startup-banner (concat mk-emacs-dir "logo.txt")
-	dashboard-center-content t
-	dashboard-set-heading-icons t)
-  (setq dashboard-items '((bookmarks . 1)))
-  (setq initial-scratch-message nil)
-  (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*"))))
+;; SVG tags, progress bars & icons
+(use-package svg-lib
+  :defer t
+  :ensure nil)
 
+;; Replace keywords with SVG tags
+(use-package svg-tag-mode
+  :defer t
+  :ensure nil)
 
 (use-package page-break-lines
   :ensure t)
 
-;; catppuccin-theme
-(use-package catppuccin-theme
+;; nerd-icons
+(use-package nerd-icons
+  :defer t
   :ensure t
-  :init
-  (setq catppuccin-flavor 'frappe)
-  (load-theme 'catppuccin :no-confirm))
-
-;; all-the-icons
-(use-package all-the-icons
-  :ensure t)
+  )
 
 (use-package telephone-line
   :ensure t

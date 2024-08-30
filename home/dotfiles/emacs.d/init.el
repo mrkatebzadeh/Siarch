@@ -25,11 +25,6 @@
 ;; in org style) to navigate through sections, and "imenu" to locate individual
 ;; use-package definition.
 
-;; bars
-(menu-bar-mode -1)
-(toggle-scroll-bar -1)
-(tool-bar-mode -1)
-
 ;;; Path vars
 ;;(setq user-emacs-directory (file-name-directory load-file-name))
 (defvar mk-emacs-dir
@@ -41,6 +36,9 @@
 
 (defvar mk-core-file (concat mk-emacs-dir "mk-core.el")
   "The root directory of MK's core files. Must end with a slash.")
+
+(defvar mk-key-file (concat mk-emacs-dir "mk-key.el")
+  "The root directory of MK's key configs. Must end with a slash.")
 
 (defvar mk-modules-dir (concat mk-emacs-dir "modules/")
   "The root directory for MK's modules. Must end with a slash.")
@@ -63,6 +61,9 @@
 (defvar mk-eshell-dir (concat mk-emacs-dir ".eshell/")
   "The root directory of MK's eshell files. Must end with a slash.")
 
+(defvar mk-desktop-dir (concat mk-emacs-dir ".desktop/")
+  "Directory to save desktop sessions.")
+
 (defvar mk-completion "light"
   "Completion frameworks: light -> vertico/consult/corf, featured -> helm/company ")
 
@@ -70,17 +71,17 @@
 
 (message "Starting MK")
 ;;; Speed up startup
-(eval-when-compile (require 'cl))
+(eval-when-compile (require 'cl-lib))
 
-(lexical-let ((emacs-start-time (current-time)))
+(let ((emacs-start-time (current-time)))
   (add-hook 'emacs-startup-hook
             (lambda ()
               (let ((elapsed (float-time (time-subtract (current-time) emacs-start-time))))
                 (message "[Emacs initialized in %.3fs]" elapsed)))))
 
-(let ((gc-cons-threshold (* 256 1024 1024))
-      (gc-cons-percentage 0.6)
-      (file-name-handler-alist nil)))
+;; increase gc threshold to speedup starting up
+(setq gc-cons-percentage 0.6)
+(setq gc-cons-threshold most-positive-fixnum)
 
 ;;; Basic configs
 (setq warning-minimum-level :emergency)
@@ -131,6 +132,9 @@
 (load mk-core-file)
 (message "Core has been loaded.")
 
+(load mk-key-file)
+(message "Key has been loaded.")
+
 ;;; Load Theme
 (load mk-ui-file)
 ;;; Load modules
@@ -143,11 +147,22 @@
 (add-to-list 'exec-path "/usr/local/texlive/2019basic/bin/x86_64-darwin/")
 (add-to-list 'exec-path "/Library/TeX/texbin/")
 (add-to-list 'exec-path "/run/current-system/sw/bin")
+(add-to-list 'exec-path "~/.nix-profile/bin/")
 
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin/"))
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/texlive/2019basic/bin/x86_64-darwin/"))
 (setenv "PATH" (concat (getenv "PATH") ":/Library/TeX/texbin/"))
 (setenv "PATH" (concat (getenv "PATH") ":/run/current-system/sw/bin"))
+(setenv "PATH" (concat (getenv "PATH") ":~/.nix-profile/bin/"))
+
+
+;; after started up, reset GC threshold to normal.
+(run-with-idle-timer 4 nil
+                     (lambda ()
+                       "Clean up gc."
+                       (setq gc-cons-threshold  67108864) ; 64M
+                       (setq gc-cons-percentage 0.1) ; original value
+                       (garbage-collect)))
 (provide 'init)
 
 ;;; init.el ends here

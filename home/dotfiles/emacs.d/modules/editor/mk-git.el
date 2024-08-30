@@ -26,105 +26,28 @@
 ;;; Code:
 
 (use-package magit
+  :ensure t
   :defer t
   :init
   (add-hook 'with-editor-mode-hook 'evil-insert-state))
 
-(use-package git-gutter-fringe+
-  :defer t)
+(use-package git-gutter
+  :ensure t
+  :hook (prog-mode . git-gutter-mode)
+  :config
+  (setq git-gutter:update-interval 0.02))
 
-;; (use-package evil-magit
-;;   :after (evil magit)
-;;   :defer t)
+(use-package git-gutter-fringe
+  :ensure t
+  :config
+  (define-fringe-bitmap 'git-gutter-fr:added [224] nil nil '(center repeated))
+  (define-fringe-bitmap 'git-gutter-fr:modified [224] nil nil '(center repeated))
+  (define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240] nil nil 'bottom))
 
 ;;; config
-
 (with-eval-after-load 'magit
   (setq magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1))
 ;; (evil-magit-init))
-
-(with-eval-after-load 'git-gutter-fringe+
-  (custom-set-variables '(git-gutter:update-interval 2))
-  (set-face-foreground 'git-gutter-fr+-modified "purple")
-  (set-face-foreground 'git-gutter-fr+-added "green")
-  (set-face-foreground 'git-gutter-fr+-deleted "red")
-  (setq-default left-fringe-width  20
-		right-fringe-width 10)
-
-  (fringe-helper-define 'git-gutter-fr+-added nil
-			".XX....."
-			".XX....."
-			".XX....."
-			".XX....."
-			".XX....."
-			".XX....."
-			".XX....."
-			".XX....."
-			".XX....."
-			".XX....."
-			".XX....."
-			".XX....."
-			".XX....."
-			".XX....."
-			".XX....."
-			".XX....."
-			".XX....."
-			".XX....."
-			".XX....."
-			".XX....."
-			".XX....."
-			".XX....."
-			".XX.....")
-
-  (fringe-helper-define 'git-gutter-fr+-deleted nil
-			".XXXXXX."
-			".XXXXXX."
-			".XXXXXX."
-			".XXXXXX."
-			".XXXXXX."
-			".XXXXXX."
-			".XXXXXX."
-			".XXXXXX."
-			".XXXXXX."
-			".XXXXXX."
-			".XXXXXX."
-			".XXXXXX."
-			".XXXXXX."
-			".XXXXXX."
-			".XXXXXX."
-			".XXXXXX."
-			".XXXXXX."
-			".XXXXXX."
-			".XXXXXX."
-			".XXXXXX."
-			".XXXXXX."
-			".XXXXXX."
-			".XXXXXX.")
-
-  (fringe-helper-define 'git-gutter-fr+-modified nil
-			".XXXX..."
-			".XXXX..."
-			".XXXX..."
-			".XXXX..."
-			".XXXX..."
-			".XXXX..."
-			".XXXX..."
-			".XXXX..."
-			".XXXX..."
-			".XXXX..."
-			".XXXX..."
-			".XXXX..."
-			".XXXX..."
-			".XXXX..."
-			".XXXX..."
-			".XXXX..."
-			".XXXX..."
-			".XXXX..."
-			".XXXX..."
-			".XXXX..."
-			".XXXX..."
-			".XXXX..."
-			".XXXX..."))
 
 ;;; bindings
 (with-eval-after-load 'magit
@@ -134,7 +57,7 @@
   "gs" 'magit-status)
 
 (leader
-  "tg" 'git-gutter+-mode)
+  "tg" 'git-gutter-mode)
 
 
 (provide 'mk-git)
