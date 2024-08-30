@@ -1,6 +1,5 @@
 { pkgs, ... }: {
   packages = with pkgs; [
-    direnv
     # LSP servers
     nodePackages.prettier
     jsonnet-language-server

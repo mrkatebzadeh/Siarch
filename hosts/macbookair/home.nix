@@ -35,5 +35,4 @@ in
   xdg.configFile."yabai".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/yabai";
   xdg.configFile."iterm".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/iterm";
   xdg.configFile."emacs".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/emacs.d";
-  # programs.emacs = import ../../home/nixfiles/emacs { inherit pkgs lib; };
 }
