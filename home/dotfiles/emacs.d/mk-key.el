@@ -41,6 +41,7 @@
   ;; This has to be before we invoke evil-mode due to:
   ;; https://github.com/cofi/evil-leader/issues/10
   (use-package evil-leader
+    :ensure t
     :init (global-evil-leader-mode))
   (evil-mode 1))
 
@@ -81,6 +82,7 @@
 
 ;; which-key
 (use-package which-key
+  :ensure t
   :defer t
   :init
   (setq which-key-idle-delay 0.1)

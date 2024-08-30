@@ -27,12 +27,14 @@
 
 (use-package solaire-mode
   :ensure t
-  :init
+  :config
   (solaire-global-mode +1))
 
 (use-package avy
   :ensure t
-  :defer t)
+  :defer t
+  :config
+  (avy-setup-default))
 
 (use-package undo-tree
   :ensure t
@@ -150,7 +152,7 @@
 (setq ibuffer-show-empty-filter-groups nil)
 (setq ibuffer-expert t)
 
-(avy-setup-default)
+
 
 (with-eval-after-load 'undo-tree
   (global-undo-tree-mode))

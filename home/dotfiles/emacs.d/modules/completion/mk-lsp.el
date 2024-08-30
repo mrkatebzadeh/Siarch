@@ -113,6 +113,7 @@
   )
 
 (use-package format-all
+  :ensure t
   :defer t
   :commands format-all-mode
   :hook (prog-mode . format-all-mode)
