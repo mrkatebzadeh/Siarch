@@ -100,7 +100,7 @@ default lsp-passthrough."
 
   (use-package nerd-icons-corfu
     :ensure t
-    :after corfu
+    :after (corfu nerd-icons)
     :config
     (setq erd-icons-corfu-mapping
 	  '((array :style "cod" :icon "symbol_array" :face font-lock-type-face)
