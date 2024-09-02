@@ -70,8 +70,8 @@
 	     lsp-ui-peek-find-references)
   :config
   (setq lsp-prefer-flymake nil
-        ;; lsp-ui-doc-max-height 8
-        lsp-ui-doc-max-width 35
+        lsp-ui-doc-max-height 15
+	lsp-ui-doc-max-width 150
         lsp-ui-sideline-ignore-duplicate t
 	lsp-ui-doc-enable t
 	lsp-ui-doc-show-with-mouse t

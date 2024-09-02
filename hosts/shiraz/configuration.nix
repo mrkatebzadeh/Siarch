@@ -1,8 +1,26 @@
-{ config, pkgs, outputs, ... }:
+{ config, pkgs, outputs, lib, ... }:
 let
   common = import ../common/pkgs.nix { inherit pkgs; };
   siarch = "${config.home.homeDirectory}/.siarch";
   dotfiles = "${siarch}/home/dotfiles";
+
+  emacs = pkgs.emacs.override {
+    withXwidgets = true;
+    withGTK3 = true;
+    withNativeCompilation = true;
+    withSQLite3 = true;
+    withTreeSitter = true;
+    withWebP = true;
+  };
+
+  emacs-with-packages = (pkgs.emacsPackagesFor emacs).emacsWithPackages (epkgs: with epkgs; [
+    epkgs.mu4e
+    pkgs.mu
+    vterm
+    multi-vterm
+    pdf-tools
+    treesit-grammars.with-all-grammars
+  ]);
 in
 {
   nixpkgs = {
@@ -86,9 +104,13 @@ in
     scripts.common
     scripts.hypr
     teams-for-linux
-    emacs
   ] ++
   common.packages;
+
+  programs.emacs = {
+    enable = true;
+    package = emacs-with-packages;
+  };
 
   home.file = { };
   home.sessionVariables = { };
@@ -112,10 +134,10 @@ in
       isDefault = true;
     };
   };
-  programs.starship = import ../home/nixfiles/starship.nix {
+  programs.starship = import ../../home/nixfiles/starship.nix {
     inherit pkgs lib;
   };
-  programs.zsh = import ../home/nixfiles/zsh.nix { inherit config pkgs; };
+  programs.zsh = import ../../home/nixfiles/zsh.nix { inherit config pkgs; };
 
 
   home.pointerCursor = {
