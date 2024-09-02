@@ -58,7 +58,8 @@
   (lsp-register-client
    (make-lsp-client :new-connection (lsp-stdio-connection "pyls")
 		    :major-modes '(python-mode)
-		    :server-id 'pyls)))
+		    :server-id 'pyls))
+  )
 
 (use-package lsp-ui
   :ensure t
@@ -69,12 +70,15 @@
 	     lsp-ui-peek-find-references)
   :config
   (setq lsp-prefer-flymake nil
-        lsp-ui-doc-max-height 8
+        ;; lsp-ui-doc-max-height 8
         lsp-ui-doc-max-width 35
         lsp-ui-sideline-ignore-duplicate t
 	lsp-ui-doc-enable t
 	lsp-ui-doc-show-with-mouse t
-	lsp-ui-sideline-show-hover nil))
+	lsp-ui-sideline-show-diagnostics t
+	lsp-ui-sideline-update-mode "line"
+	lsp-ui-sideline-show-hover nil)
+  )
 
 (when (string= mk-completion "featured")
   (use-package company-lsp
@@ -129,7 +133,11 @@
                   ("Shell" (shfmt "-i" "4" "-ci")))))
 
 (leader
-  "lf" 'format-all-mode)
+  "ld" 'lsp-ui-peek-find-definitions
+  "lD" 'lsp-ui-peek-find-implementation
+  "lr" 'lsp-ui-peek-find-references
+  "lf" 'format-all-mode
+  "lk" 'lsp-ui-doc-glance)
 
 (provide 'mk-lsp)
 ;;; mk-lsp.el ends

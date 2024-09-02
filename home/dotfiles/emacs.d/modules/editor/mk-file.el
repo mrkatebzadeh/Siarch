@@ -659,6 +659,8 @@ Compare them on count first,and in case of tie sort them alphabetically."
   "fc" 'mk-copy-file
   "fa" 'mk-count-words-analysis)
 
+(leader
+  "lt" 'lsp-treemacs-errors-list)
 
 (provide 'mk-file)
 ;;; mk-file.el ends here

@@ -27,6 +27,7 @@
 
 					;<CODE>
 (use-package lsp-nix
+  :disabled t
   :ensure lsp-mode
   :after (lsp-mode)
   :demand t
@@ -35,7 +36,7 @@
 
 (use-package nix-mode
   :mode "\\.nix\\'"
-  :hook (nix-mode . lsp-deferred)
+  ;; :hook (nix-mode . lsp-deferred)
   :ensure t)
 
 (provide 'mk-nix)
