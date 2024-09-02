@@ -40,6 +40,8 @@
         (horizontal-scroll-bars)
         (vertical-scroll-bars)))
 
+(add-to-list 'default-frame-alist '(undecorated-round . t))
+
 (setq menu-bar-mode nil
       tool-bar-mode nil
       scroll-bar-mode nil)

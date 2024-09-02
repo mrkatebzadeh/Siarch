@@ -190,9 +190,10 @@
 (use-package spacious-padding
   :ensure t
   :defer t
-  :disabled
   :hook
-  (after-init .  spacious-padding-mode))
+  (after-init .  spacious-padding-mode)
+  :init
+  (setq spacious-padding-subtle-mode-line t))
 
 ;; SVG tags, progress bars & icons
 (use-package svg-lib
