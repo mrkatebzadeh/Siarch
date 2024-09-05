@@ -16,6 +16,8 @@ in
   home.sessionPath = [
     "$HOME/.local/bin"
     "$HOME/.local/bin/scripts"
+    "/run/current-system/sw/bin"
+    "/opt/homebrew/bin"
   ];
   home.shellAliases = import ./nixfiles/aliases.nix;
   programs.atuin = import ./nixfiles/atuin.nix { inherit pkgs; };
