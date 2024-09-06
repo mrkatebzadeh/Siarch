@@ -1,3 +1,6 @@
 [submodule "home/dotfiles/emacs.d"]
 	path = home/dotfiles/emacs.d
 	url = git@github.com:mrkatebzadeh/emacs.d
+[submodule "home/dotfiles/nvim.lua"]
+	path = home/dotfiles/nvim.lua
+	url = git@github.com:mrkatebzadeh/nvim.lua.git

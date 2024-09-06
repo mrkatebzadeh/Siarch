@@ -175,5 +175,4 @@ in
   xdg.configFile."waybar".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/waybar";
   xdg.configFile."emacs".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/emacs.d";
   xdg.configFile."nixpkgs".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/nixpkgs";
-
 }
