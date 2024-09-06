@@ -48,4 +48,5 @@ in
   xdg.configFile."vim".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/vim";
   xdg.configFile."wget".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/wget";
   xdg.configFile."zellij".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/zellij";
+  xdg.configFile."emacs".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/emacs.d";
 }
