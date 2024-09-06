@@ -64,6 +64,15 @@
   (setq rustic-format-on-save t)
   (add-hook 'rustic-mode-hook 'rk/rustic-mode-hook))
 
+(straight-use-package
+ '(crates :type git :host github :repo "mrkatebzadeh/crates.el")
+ )
+(use-package crates
+  :ensure nil
+  :custom
+  (crates-checkmark-symbol " ")
+  (crates-warning-symbol " "))
+
 (defun rk/rustic-mode-hook ()
   ;; so that run C-c C-c C-r works without having to confirm, but don't try to
   ;; save rust buffers that are not file visiting. Once
@@ -94,8 +103,6 @@
  "a" 'lsp-execute-code-action
  "r" 'lsp-rename
  )
-
-
 
 (provide 'mk-rust)
 ;;; mk-rust.el ends here
