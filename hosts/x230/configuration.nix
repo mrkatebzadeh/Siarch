@@ -1,4 +1,4 @@
-{ config, pkgs, outputs, ... }:
+{ config, pkgs, outputs, lib, ... }:
 let
   common = import ../common/pkgs.nix { inherit pkgs; };
   siarch = "${config.home.homeDirectory}/.siarch";
@@ -37,6 +37,7 @@ in
   ];
 
   home.packages = with pkgs; [
+    hyprland
     vscode-extensions.ms-vscode.cpptools
     bc
     bluetuith
@@ -150,10 +151,10 @@ in
     package = pkgs.catppuccin-cursors.frappeDark;
   };
 
-  programs.starship = import ../home/nixfiles/starship.nix {
+  programs.starship = import ../../home/nixfiles/starship.nix {
     inherit pkgs lib;
   };
-  programs.zsh = import ../home/nixfiles/zsh.nix { inherit config pkgs; };
+  programs.zsh = import ../../home/nixfiles/zsh.nix { inherit config pkgs; };
 
   # xdg.configFile."bspwm".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/bspwm";
   # xdg.configFile."deadd".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/deadd";
