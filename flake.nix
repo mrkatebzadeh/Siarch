@@ -64,6 +64,9 @@
         x230 = mkNixos [
           ./hosts/x230/nixos/configuration.nix
         ];
+        homelab = mkNixos [
+          ./hosts/homelab/nixos/configuration.nix
+        ];
       };
       homeConfigurations = {
         x230 = mkHome [
@@ -151,8 +154,18 @@
       };
 
       homeConfigurations = {
-        homelab = mkHome [ ./hosts/homelab/configuration.nix ]
+        homelab = mkHome [
+          ./hosts/homelab/configuration.nix
+          ./home
+          {
+            home = {
+              inherit username;
+              homeDirectory = "/home/${username}";
+            };
+          }
+        ]
           nixpkgs.legacyPackages."x86_64-linux";
+
       };
     };
 }
