@@ -8,7 +8,7 @@
   imports =
     [
       # Include the results of the hardware scan.
-      <nixos-hardware/common/cpu/intel>
+      # <nixos-hardware/common/cpu/intel>
       <home-manager/nixos>
       ./hardware-configuration.nix
     ];
@@ -38,7 +38,7 @@
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
-
+  hardware.opentabletdriver.enable = true;
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;

@@ -67,7 +67,6 @@
         ];
         homelab = mkNixos [
           ./hosts/homelab/nixos/configuration.nix
-          hardware.nixosModules.common.intel
         ];
       };
       homeConfigurations = {
