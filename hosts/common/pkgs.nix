@@ -7,6 +7,7 @@
     nixpkgs-fmt
     clang-tools
     rust-analyzer
+    cargo-nextest
     lua-language-server
     texlab
     nodePackages.bash-language-server
@@ -60,12 +61,14 @@
     wget
     zellij
     yazi
-    (python3.withPackages (python-pkgs: [
-      python-pkgs.matplotlib
-      python-pkgs.pynvim
-      python-pkgs.requests
-      python-pkgs.seaborn
+    (python3.withPackages (ps: with ps; with python3Packages; [
+      jupyter
+      ipython
+      pynvim
+      pandas
+      numpy
+      matplotlib
+      seaborn
     ]))
-
   ];
 }

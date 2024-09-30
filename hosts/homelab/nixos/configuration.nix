@@ -8,12 +8,13 @@
   imports =
     [
       # Include the results of the hardware scan.
+      <nixos-hardware/common/cpu/intel>
       <home-manager/nixos>
       ./hardware-configuration.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
-
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   networking.hostName = "nixos"; # Define your hostname.
   nixpkgs.config.allowUnfree = true;
   networking.networkmanager = {

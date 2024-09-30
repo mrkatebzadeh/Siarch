@@ -116,6 +116,7 @@ in
     scripts.common
     scripts.hypr
     git
+    firefox
   ] ++
   common.packages;
 

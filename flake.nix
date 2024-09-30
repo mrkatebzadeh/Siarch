@@ -26,6 +26,7 @@
     , home-manager
     , nix-darwin
     , nixgl
+    , hardware
     , ...
     }:
     let
@@ -66,6 +67,7 @@
         ];
         homelab = mkNixos [
           ./hosts/homelab/nixos/configuration.nix
+          hardware.nixosModules.common.intel
         ];
       };
       homeConfigurations = {
