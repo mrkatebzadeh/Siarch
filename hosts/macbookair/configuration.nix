@@ -17,6 +17,7 @@ in
     shells = with pkgs; [ bash zsh ];
     loginShell = pkgs.zsh;
     systemPackages = with pkgs; [
+      unstable.neovim
       cargo
       rustc
       rustfmt
@@ -24,8 +25,8 @@ in
       unstable.jq
       unstable.neovim
       unstable.sketchybar
-      unstable.skhd
-      unstable.yabai
+      # unstable.skhd
+      # unstable.yabai
     ] ++ common.packages;
     systemPath = [ "/opt/homebrew/bin" ];
     pathsToLink = [ "/Applications" ];
@@ -38,12 +39,12 @@ in
 
   # services.emacs.enable = true;
 
-  services.yabai = {
-    enable = true;
-    # enableScriptingAddition = true;
-  };
-  services.skhd.enable = true;
-  services.sketchybar.enable = true;
+  # services.yabai = {
+  # enable = true;
+  # enableScriptingAddition = true;
+  # };
+  # services.skhd.enable = true;
+  # services.sketchybar.enable = true;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
@@ -116,6 +117,7 @@ in
       "telegram"
       "spotify"
       "vlc"
+      "nikitabobko/tap/aerospace"
     ];
     taps = [ ];
     brews = [

@@ -16,6 +16,8 @@ in
   home.sessionPath = [
     "$HOME/.local/bin"
     "$HOME/.local/bin/scripts"
+    "/run/current-system/sw/bin"
+    "/opt/homebrew/bin"
   ];
   home.shellAliases = import ./nixfiles/aliases.nix;
   programs.atuin = import ./nixfiles/atuin.nix { inherit pkgs; };
@@ -46,4 +48,5 @@ in
   xdg.configFile."vim".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/vim";
   xdg.configFile."wget".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/wget";
   xdg.configFile."zellij".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/zellij";
+  xdg.configFile."emacs".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/emacs.d";
 }
