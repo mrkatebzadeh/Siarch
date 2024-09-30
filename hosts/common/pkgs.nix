@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   packages = with pkgs; [
+    gnuplot
     # LSP servers
     nodePackages.prettier
     jsonnet-language-server
@@ -51,8 +52,6 @@
     jq
     nix-search-cli
     nushell
-    python3
-    python311Packages.pynvim
     ripgrep
     stow
     stylua
@@ -61,5 +60,12 @@
     wget
     zellij
     yazi
+    (python3.withPackages (python-pkgs: [
+      python-pkgs.matplotlib
+      python-pkgs.pynvim
+      python-pkgs.requests
+      python-pkgs.seaborn
+    ]))
+
   ];
 }

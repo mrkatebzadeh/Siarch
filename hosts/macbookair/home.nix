@@ -73,6 +73,7 @@ in
     fonts.sf-pro
     scripts.common
     scripts.macos
+    neovide
   ];
 
   programs.kitty = {
