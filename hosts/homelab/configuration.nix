@@ -38,6 +38,7 @@ in
   ];
 
   home.packages = with pkgs; [
+    neovide
     texliveFull
     hyprland
     vscode-extensions.ms-vscode.cpptools
