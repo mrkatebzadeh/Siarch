@@ -38,6 +38,7 @@ in
   ];
 
   home.packages = with pkgs; [
+    texliveFull
     hyprland
     vscode-extensions.ms-vscode.cpptools
     bc
@@ -117,6 +118,7 @@ in
     scripts.hypr
     git
     firefox
+    mpg123
   ] ++
   common.packages;
 
