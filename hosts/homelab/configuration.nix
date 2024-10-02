@@ -38,6 +38,8 @@ in
   ];
 
   home.packages = with pkgs; [
+    direnv
+    vscode
     neovide
     texliveFull
     hyprland
