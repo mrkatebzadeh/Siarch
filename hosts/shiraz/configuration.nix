@@ -128,6 +128,11 @@ in
     };
   };
 
+  programs.emacs = {
+    enable = true;
+    package = emacs-with-packages;
+  };
+
   programs.thunderbird = {
     enable = true;
     profiles.hpz2 = {
