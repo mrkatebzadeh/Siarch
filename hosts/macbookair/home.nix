@@ -60,6 +60,8 @@ in
   };
 
   home.packages = with pkgs; [
+    vscode
+    texliveFull
     yt-dlp
     direnv
     nil
