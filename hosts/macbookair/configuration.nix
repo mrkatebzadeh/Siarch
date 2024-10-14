@@ -1,6 +1,6 @@
 { outputs, pkgs, inputs, ... }:
 let
-  wallpaper_path = "~/.siarch/home/dotfiles/share/backgrounds/loki1.jpg";
+  wallpaper_path = "~/.siarch/home/dotfiles/share/backgrounds/drdoom2.jpg";
   common = import ../common/pkgs.nix { inherit pkgs; };
 in
 {

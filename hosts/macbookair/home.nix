@@ -76,6 +76,7 @@ in
     scripts.common
     scripts.macos
     neovide
+    svls
   ];
 
   programs.kitty = {

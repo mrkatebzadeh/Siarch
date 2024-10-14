@@ -19,7 +19,7 @@
     nodePackages.intelephense
     lemminx
     markdownlint-cli
-    unstable.basedpyright
+    pyright
     shellcheck
     shfmt
     tailwindcss-language-server
@@ -27,6 +27,7 @@
     nodePackages.vim-language-server
     yaml-language-server
     #
+    pdf2svg
     patchelf
     asdf-vm
     bat
