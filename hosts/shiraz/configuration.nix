@@ -38,6 +38,7 @@ in
   ];
 
   home.packages = with pkgs; [
+    vscode
     cinnamon.nemo
     firefox
     hyprland
@@ -126,11 +127,6 @@ in
       "alt+c" = "copy_to_clipboard";
       "alt+v" = "paste_from_clipboard";
     };
-  };
-
-  programs.emacs = {
-    enable = true;
-    package = emacs-with-packages;
   };
 
   programs.thunderbird = {
