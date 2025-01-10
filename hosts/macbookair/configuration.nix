@@ -25,26 +25,27 @@ in
       unstable.jq
       unstable.neovim
       unstable.sketchybar
-      # unstable.skhd
-      # unstable.yabai
+      unstable.skhd
+      unstable.yabai
     ] ++ common.packages;
     systemPath = [ "/opt/homebrew/bin" ];
     pathsToLink = [ "/Applications" ];
+    variables = {
+      JAVA_HOME = "${pkgs.jre_minimal}";
+    };
   };
-  # fonts.fontDir.enable = true;
 
   fonts.fonts = with pkgs;[
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 
-  # services.emacs.enable = true;
 
-  # services.yabai = {
-  # enable = true;
-  # enableScriptingAddition = true;
-  # };
-  # services.skhd.enable = true;
-  # services.sketchybar.enable = true;
+  services.yabai = {
+    enable = true;
+    # enableScriptingAddition = true;
+  };
+  services.skhd.enable = true;
+  services.sketchybar.enable = true;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
@@ -117,7 +118,7 @@ in
       "telegram"
       "spotify"
       "vlc"
-      "nikitabobko/tap/aerospace"
+      # "nikitabobko/tap/aerospace"
     ];
     taps = [ ];
     brews = [

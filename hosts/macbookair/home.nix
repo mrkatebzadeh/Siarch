@@ -37,6 +37,8 @@ let
       ];
   });
 
+  emacs-macport = pkgs.emacs-macport;
+
 
   emacs-with-packages = (pkgs.emacsPackagesFor emacs-patched).emacsWithPackages (epkgs: with epkgs; [
     epkgs.mu4e
@@ -45,6 +47,7 @@ let
     multi-vterm
     pdf-tools
     treesit-grammars.with-all-grammars
+    jedi
   ]);
 in
 {
@@ -77,6 +80,7 @@ in
     scripts.macos
     neovide
     svls
+    rustfilt
   ];
 
   programs.kitty = {
@@ -90,6 +94,7 @@ in
   programs.emacs = {
     enable = true;
     package = emacs-with-packages;
+    extraConfig = ''(setq org-ditaa-jar-path "${pkgs.ditaa}/lib/ditaa.jar")'';
   };
 
   programs.starship = import ../../home/nixfiles/starship.nix {

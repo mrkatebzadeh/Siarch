@@ -6,7 +6,7 @@ in
 {
   home.stateVersion = "22.11";
 
-  home.sessionVariables = import ./nixfiles/variables.nix;
+  home.sessionVariables = import ./nixfiles/variables.nix { inherit pkgs; };
 
   fonts.fontconfig = import ./nixfiles/fonts.nix { inherit pkgs; };
   home.packages = with pkgs; [

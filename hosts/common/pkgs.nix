@@ -27,6 +27,9 @@
     nodePackages.vim-language-server
     yaml-language-server
     #
+    virtualenv
+    ditaa
+    jre
     pdf2svg
     patchelf
     asdf-vm
@@ -70,6 +73,13 @@
       numpy
       matplotlib
       seaborn
+      epc
+      orjson
+      sexpdata
+      six
+      setuptools
+      rapidfuzz
+      watchdog
     ]))
   ];
 }
