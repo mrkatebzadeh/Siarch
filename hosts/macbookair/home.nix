@@ -2,7 +2,7 @@
 let
   siarch = "${config.home.homeDirectory}/.siarch";
   dotfiles = "${siarch}/home/dotfiles";
-
+  aspellWithDicts = pkgs.aspellWithDicts (d: [ d.en ]);
   emacs = pkgs.emacs29-pgtk.override {
     withNativeCompilation = true;
     withSQLite3 = true;
@@ -48,6 +48,7 @@ let
     pdf-tools
     treesit-grammars.with-all-grammars
     jedi
+    flymake-grammarly
   ]);
 in
 {
@@ -63,6 +64,7 @@ in
   };
 
   home.packages = with pkgs; [
+    aspellWithDicts
     vscode
     texliveFull
     yt-dlp
