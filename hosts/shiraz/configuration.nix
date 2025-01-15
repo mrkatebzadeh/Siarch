@@ -38,6 +38,7 @@ in
   ];
 
   home.packages = with pkgs; [
+    dropbox
     vscode
     cinnamon.nemo
     firefox
