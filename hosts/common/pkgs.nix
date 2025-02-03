@@ -64,6 +64,8 @@
     tree-sitter
     wget
     zellij
+    zig
+    zls
     yazi
     (python3.withPackages (ps: with ps; with python3Packages; [
       jupyter

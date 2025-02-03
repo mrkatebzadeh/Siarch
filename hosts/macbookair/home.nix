@@ -83,6 +83,7 @@ in
     neovide
     svls
     rustfilt
+    zig
   ];
 
   programs.kitty = {
