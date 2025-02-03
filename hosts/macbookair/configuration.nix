@@ -26,7 +26,7 @@ in
       unstable.neovim
       unstable.sketchybar
       unstable.skhd
-      unstable.yabai
+      # unstable.yabai
     ] ++ common.packages;
     systemPath = [ "/opt/homebrew/bin" ];
     pathsToLink = [ "/Applications" ];
@@ -40,10 +40,10 @@ in
   ];
 
 
-  services.yabai = {
-    enable = true;
+  # services.yabai = {
+    # enable = true;
     # enableScriptingAddition = true;
-  };
+  # };
   services.skhd.enable = true;
   services.sketchybar.enable = true;
   nix.extraOptions = ''
@@ -123,6 +123,7 @@ in
     taps = [ ];
     brews = [
       "gnu-sed"
+      "koekeishiya/formulae/yabai"
     ];
   };
 }
