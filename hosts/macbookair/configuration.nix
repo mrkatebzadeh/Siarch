@@ -22,9 +22,9 @@ in
       rustc
       rustfmt
       unstable.jankyborders
-      unstable.jq
+      # unstable.jq
       unstable.neovim
-      unstable.sketchybar
+      # unstable.sketchybar
       unstable.skhd
       # unstable.yabai
     ] ++ common.packages;
