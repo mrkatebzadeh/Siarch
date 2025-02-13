@@ -35,6 +35,7 @@ in
   };
 
   home.packages = with pkgs; [
+    helix
     nixpkgs-fmt
     clang-tools
     nodePackages.bash-language-server
@@ -81,4 +82,5 @@ in
   programs.home-manager.enable = true;
 
   xdg.configFile."emacs".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/emacs.d";
+  xdg.configFile."helix".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/helix";
 }

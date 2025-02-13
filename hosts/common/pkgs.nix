@@ -1,5 +1,7 @@
 { pkgs, ... }: {
   packages = with pkgs; [
+    helix
+    alacritty
     gnuplot
     # LSP servers
     nodePackages.prettier
