@@ -75,3 +75,5 @@ cmd - return : index=$(yabai -m query --displays --display | jq .index) && \
 
 
 cmd + shift - return : $HOME/.config/skhd/scripts/kitty_float.sh
+
+cmd - e : ~/.nix-profile/bin/emacsc

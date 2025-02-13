@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+BIN_PATH=$HOME/.nix-profile/bin
+$BIN_PATH/emacsclient -c -n || ($BIN_PATH/emacs --daemon && $BIN_PATH/emacsclient -c -n)
