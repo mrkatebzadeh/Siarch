@@ -38,6 +38,7 @@ in
   ];
 
   home.packages = with pkgs; [
+    texliveFull
     dropbox
     vscode
     cinnamon.nemo
