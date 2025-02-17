@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   packages = with pkgs; [
+    emacs-lsp-booster
     helix
     alacritty
     gnuplot
