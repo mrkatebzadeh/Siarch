@@ -52,7 +52,6 @@ in
     bluez
     brave
     cargo
-    clang
     dmenu
     dosfstools
     dunst

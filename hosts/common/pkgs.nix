@@ -8,7 +8,7 @@
     nodePackages.prettier
     jsonnet-language-server
     nixpkgs-fmt
-    clang-tools
+    # clang-tools
     rust-analyzer
     cargo-nextest
     lua-language-server
