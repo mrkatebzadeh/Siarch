@@ -50,6 +50,18 @@ let
     jedi
     flymake-grammarly
   ]);
+
+
+  isync-oauth2 = with pkgs; buildEnv {
+    name = "isync-oauth2";
+    paths = [ isync ];
+    pathsToLink = [ "/bin" ];
+    nativeBuildInputs = [ makeWrapper ];
+    postBuild = ''
+      wrapProgram "$out/bin/mbsync" \
+        --prefix SASL_PATH : "${cyrus_sasl}/lib/sasl2:${cyrus-sasl-xoauth2}/lib/sasl2"
+    '';
+  };
 in
 {
 
@@ -63,6 +75,7 @@ in
     };
   };
 
+
   home.packages = with pkgs; [
     aspellWithDicts
     vscode
@@ -72,7 +85,7 @@ in
     nil
     pkg-config
     mu
-    isync
+    isync-oauth2
     msmtp
     pass
     meson

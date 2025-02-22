@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   packages = with pkgs; [
+    gnupg1
     emacs-lsp-booster
     helix
     alacritty

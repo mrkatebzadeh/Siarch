@@ -30,3 +30,31 @@ SyncState *
 
 
 # =====================================================================
+IMAPAccount uoe
+Host outlook.office365.com
+User kmohamma@ed.ac.uk
+PassCmd "mail_oauth2 ~/.email_token"
+AuthMechs XOAUTH2
+SSLType IMAPS
+SSLVersions TLSv1.2
+
+IMAPStore uoe-remote
+Account uoe
+
+MaildirStore uoe-local
+SubFolders Verbatim
+Path ~/.local/share/maildir/uoe/
+Inbox ~/.local/share/maildir/uoe/INBOX
+
+Channel uoe
+Far :uoe-remote:
+Near :uoe-local:
+Patterns *
+Create Near
+Sync All
+Expunge Both
+SyncState *
+
+Group all
+Channel gmail
+Channel uoe
