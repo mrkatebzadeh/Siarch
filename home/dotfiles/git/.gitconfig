@@ -166,3 +166,5 @@
 	directory = /opt/flutter
 [credential]
 	helper = store
+[url "git@github.com:"]
+	insteadOf = https://github.com/]
