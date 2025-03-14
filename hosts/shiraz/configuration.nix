@@ -3,10 +3,11 @@ let
   common = import ../common/pkgs.nix { inherit pkgs; };
   siarch = "${config.home.homeDirectory}/.siarch";
   dotfiles = "${siarch}/home/dotfiles";
+  wallpaper_path = "${dotfiles}/share/backgrounds/drdoom2.jpg";
 
-  emacs = pkgs.emacs.override {
-    withXwidgets = true;
-    withGTK3 = true;
+  emacs = pkgs.emacs30.override {
+    # withXwidgets = true;
+    # withGTK3 = true;
     withNativeCompilation = true;
     withSQLite3 = true;
     withTreeSitter = true;
