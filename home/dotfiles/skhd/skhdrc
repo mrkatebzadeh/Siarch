@@ -70,9 +70,10 @@ ctrl + shift - f : yabai -m window --toggle zoom-fullscreen
 # ctrl - b : sketchybar --bar hidden=off
 ctrl + shift - b : sketchybar --bar hidden=on
 
-cmd - return : index=$(yabai -m query --displays --display | jq .index) && \
-                    $(which kitty) --instance-group=$index --single-instance -d ~
+#cmd - return : index=$(yabai -m query --displays --display | jq .index) && \
+#                    $(which kitty) --instance-group=$index --single-instance -d ~
 
+cmd - return : wezterm
 
 cmd + shift - return : $HOME/.config/skhd/scripts/kitty_float.sh
 
