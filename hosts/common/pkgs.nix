@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   packages = with pkgs; [
+    wezterm
     gnupg1
     emacs-lsp-booster
     helix
