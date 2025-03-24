@@ -98,5 +98,17 @@ $env.NU_PLUGIN_DIRS = [
 
 # To load from a custom file you can use:
 # source ($nu.default-config-dir | path join 'custom.nu')
-mkdir ~/.cache/starship
-starship init nu | save -f ~/.cache/starship/init.nu
+
+
+$env.PATH = ($env.PATH | append ~/.nix-profile/bin)
+
+
+if not ($"~/.local/share/atuin/init.nu" | path exists) {
+  mkdir ~/.local/share/atuin/
+  atuin init nu | save ~/.local/share/atuin/init.nu
+}
+
+if not ($"~/.cache/starship" | path exists) {
+  mkdir ~/.cache/starship
+  starship init nu | save ~/.cache/starship/init.nu
+}
