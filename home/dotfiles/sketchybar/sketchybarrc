@@ -24,9 +24,9 @@ sketchybar --add event aerospace_workspace_change
 
 # Setting up the general bar appearance of the bar
 bar=(
-    height=40
+    height=30
     color=$BAR_COLOR
-    border_width=2
+    border_width=0
     border_color=$BAR_BORDER_COLOR
     shadow=off
     position=top
