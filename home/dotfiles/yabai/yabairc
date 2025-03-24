@@ -5,7 +5,7 @@ yabai -m signal --add event=window_destroyed active=yes action="yabai -m query -
 yabai -m signal --add event=window_minimized active=yes action="if \$(yabai -m query --windows --window \$YABAI_WINDOW_ID | jq -r '.\"is-floating\"'); then yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null; fi"
 
 
-yabai -m config external_bar               all:35:0
+yabai -m config external_bar               all:30:0
 yabai -m config mouse_follows_focus        off
 yabai -m config focus_follows_mouse        autofocus
 yabai -m config window_zoom_persist        off
@@ -51,10 +51,10 @@ yabai -m config window_topmost               off
 yabai -m config window_shadow                float
 yabai -m config window_opacity_duration      0.2
 yabai -m config active_window_opacity        1
-yabai -m config normal_window_opacity        0.95
+yabai -m config normal_window_opacity        0.65
 
 
-yabai -m rule --add app="^kitty$" opacity=0.99
+yabai -m rule --add app="^kitty$" opacity=0.9
 yabai -m rule --add title="ddterm" manage=off grid="10:1:0:0:1:4"
 yabai -m rule --add title="ddterm" opacity=1
 
