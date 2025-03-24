@@ -166,5 +166,6 @@ in
   # xdg.configFile."sxkhd".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/sxkhd";
   xdg.configFile."waybar".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/waybar";
   xdg.configFile."emacs".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/emacs.d";
+  home.file.".wezterm.lua".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/wezterm/wezterm.lua";
 
 }

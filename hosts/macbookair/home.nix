@@ -130,5 +130,6 @@ in
   home.file.".local/share/maildir".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/share/maildir";
   home.file.".mbsyncrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/email/mbsyncrc";
   home.file.".msmtprc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/email/msmtprc";
+  home.file.".wezterm.lua".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/wezterm/wezterm.lua";
   home.file."Library/Application Support/nushell".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/nushell";
 }
