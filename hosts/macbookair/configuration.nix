@@ -15,15 +15,15 @@ in
   };
   environment = {
     shells = with pkgs; [ bash zsh ];
-    loginShell = pkgs.zsh;
+    /* loginShell = pkgs.zsh; */
     systemPackages = with pkgs; [
-      unstable.neovim
       cargo
       rustc
       rustfmt
       unstable.jankyborders
       # unstable.jq
       unstable.neovim
+      #neovim
       # unstable.sketchybar
       unstable.skhd
       # unstable.yabai
@@ -35,7 +35,7 @@ in
     };
   };
 
-  fonts.fonts = with pkgs;[
+  fonts.packages = with pkgs;[
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 

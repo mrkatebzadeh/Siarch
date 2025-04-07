@@ -29,7 +29,7 @@
     shfmt
     tailwindcss-language-server
     taplo
-    nodePackages.vim-language-server
+    #nodePackages.vim-language-server
     yaml-language-server
     #
     virtualenv

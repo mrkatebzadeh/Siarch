@@ -1,7 +1,3 @@
-source ~/.cache/starship/init.nu
-source ~/.local/share/atuin/init.nu
-
-
 $env.config = {
     show_banner: false # true or false to enable or disable the welcome banner at startup
 
@@ -716,3 +712,6 @@ $env.config = {
         }
     ]
 }
+
+source ~/.cache/starship/init.nu
+source ~/.local/share/atuin/init.nu
