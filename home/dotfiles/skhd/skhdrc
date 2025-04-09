@@ -77,4 +77,4 @@ cmd - return : wezterm
 
 cmd + shift - return : $HOME/.config/skhd/scripts/kitty_float.sh
 
-cmd - e : ~/.nix-profile/bin/emacsc
+cmd - e : ~/.nix-profile/bin/nvide
