@@ -1,0 +1,56 @@
+#!/bin/sh
+
+# Adapted from a script by lukesmithxyz, checkout github.com/lukesmithxyz/voidrice
+
+wall_desk=$HOME/.local/share/bg
+lightdm_desk=$HOME/.local/share/lightdm
+wall_lock=$HOME/.local/share/lock
+
+case "$1" in
+  lightdm) trueloc="$(readlink -f "$2")" &&
+      case "$(file --mime-type -b "$trueloc")" in
+          image/* ) sudo cp "$(readlink -f "$2")" "$lightdm_desk" && notify-send -i "$lightdm_desk" "LightDM wallpaper has been changed." ;;
+          inode/directory ) sudo cp "$(find "$trueloc" -iregex '.*.\(jpg\|jpeg\|png\|gif\)' -type f | shuf -n 1)" "$lightdm_desk" && notify-send -i "$lightdm_desk" "Random LightDM wallpaper chosen." ;;
+          *) notify-send "🖼️ Error" "Not a valid image or directory." ; exit 1;;
+      esac
+      xwallpaper --stretch "$wall_desk" ;;
+  desktop) trueloc="$(readlink -f "$2")" &&
+      case "$(file --mime-type -b "$trueloc")" in
+          image/* ) ln -f "$(readlink -f "$2")" "$wall_desk" && notify-send -i "$wall_desk" "Desktop wallpaper has been changed." ;;
+          inode/directory ) ln -f "$(find "$trueloc" -iregex '.*.\(jpg\|jpeg\|png\|gif\)' -type f | shuf -n 1)" "$wall_desk" && notify-send -i "$wall_desk" "Random desktop wallpaper chosen." ;;
+          *) notify-send "🖼️ Error" "Not a valid image or directory." ; exit 1;;
+      esac
+      xwallpaper --stretch "$wall_desk" ;;
+  lock) trueloc="$(readlink -f "$2")" &&
+      case "$(file --mime-type -b "$trueloc")" in
+          image/* ) ln -f "$(readlink -f "$2")" "$wall_lock" && notify-send -i "$wall_lock" "Lock screen wallpaper has been changed." ;;
+          inode/directory ) ln -f "$(find "$trueloc" -iregex '.*.\(jpg\|jpeg\|png\|gif\)' -type f | shuf -n 1)" "$wall_lock" && notify-send -i "$wall_lock" "Random lock screen wallpaper chosen." ;;
+          *) notify-send "🖼️ Error" "Not a valid image or directory." ; exit 1;;
+      esac ;;
+  all) wallpaper lightdm "$2" &&
+        wallpaper lock "$2" &&
+        wallpaper desktop "$2";;
+  *) cat << EOF
+wallpaper: cli script to set and reset the wallpaper of the desktop and lock
+           screen.
+
+Allowed options:
+
+  desktop [PATH]    Set the wallpaper of the desktop to the specified path.
+                    If no path is given reset it.
+
+  lock [PATH]       Set the wallpaper of the lock screen to the specified path.
+                    If no path is given reset it.
+
+  lightdm [PATH]    Set the wallpaper of the lightdm screen to the specified
+                    path.
+                    If no path is given reset it.
+
+  all [PATH]        Set wallpaper for both lock screen, the dektop and the
+                    lightdm screen to a specified path.
+                    If no path is given reset it.
+
+  all else          Print this message
+
+EOF
+esac
