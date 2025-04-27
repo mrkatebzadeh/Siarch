@@ -3,7 +3,8 @@
 IMAPAccount gmail
 Host imap.gmail.com
 User mr.katebzadeh@gmail.com
-PassCmd "security find-generic-password -s mu4e-gmail -a mr.katebzadeh@gmail.com -w"
+# PassCmd "security find-generic-password -s mu4e-gmail -a mr.katebzadeh@gmail.com -w"
+PassCmd "pass gmail/mr.katebzadeh@gmail.com"
 Port 993
 SSLType IMAPS
 SSLVersions TLSv1.2
