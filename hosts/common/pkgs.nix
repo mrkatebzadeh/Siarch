@@ -3,48 +3,16 @@
     wezterm
     gnupg1
     emacs-lsp-booster
-    helix
-    alacritty
-    gnuplot
-    # LSP servers
-    nodePackages.prettier
-    jsonnet-language-server
-    nixpkgs-fmt
-    # clang-tools
-    rust-analyzer
-    cargo-nextest
-    lua-language-server
-    texlab
-    nodePackages.bash-language-server
-    cmake-language-server
-    vscode-extensions.vadimcn.vscode-lldb
-    cpplint
-    dockerfile-language-server-nodejs
-    vscode-langservers-extracted
-    nodePackages.intelephense
-    lemminx
-    markdownlint-cli
-    pyright
-    shellcheck
-    shfmt
-    tailwindcss-language-server
-    taplo
-    #nodePackages.vim-language-server
-    yaml-language-server
     #
     virtualenv
-    ditaa
-    jre
     pdf2svg
     patchelf
-    asdf-vm
     bat
     atuin
     btop
     coreutils
     curl
     dbus
-    dust
     fastfetch
     fd
     fontconfig
@@ -54,7 +22,6 @@
     git-filter-repo
     gpg-tui
     htop
-    kitty
     lazydocker
     lazygit
     less
@@ -64,14 +31,9 @@
     nushell
     ripgrep
     stow
-    stylua
     tealdeer
     tree-sitter
     wget
-    zellij
-    zig
-    zls
-    yazi
     (python3.withPackages (ps: with ps; with python3Packages; [
       jupyter
       ipython
