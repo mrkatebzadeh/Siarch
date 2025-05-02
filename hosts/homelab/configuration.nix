@@ -38,6 +38,30 @@ in
   ];
 
   home.packages = with pkgs; [
+    nodePackages.prettier
+    jsonnet-language-server
+    nixpkgs-fmt
+    # clang-tools
+    stylua
+    rust-analyzer
+    cargo-nextest
+    lua-language-server
+    nodePackages.bash-language-server
+    cmake-language-server
+    vscode-extensions.vadimcn.vscode-lldb
+    cpplint
+    dockerfile-language-server-nodejs
+    vscode-langservers-extracted
+    nodePackages.intelephense
+    lemminx
+    markdownlint-cli
+    pyright
+    shellcheck
+    shfmt
+    tailwindcss-language-server
+    taplo
+    #nodePackages.vim-language-server
+    yaml-language-server
     direnv
     vscode
     neovide
