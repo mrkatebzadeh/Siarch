@@ -78,8 +78,8 @@ in
 
   home.packages = with pkgs; [
     aspellWithDicts
-    vscode
-    texliveFull
+    ani-cli
+    iina
     yt-dlp
     direnv
     nil
@@ -94,9 +94,6 @@ in
     scripts.common
     scripts.macos
     neovide
-    svls
-    rustfilt
-    zig
   ];
 
   programs.kitty = {
@@ -119,14 +116,14 @@ in
   };
   programs.zsh = import ../../home/nixfiles/zsh.nix { inherit config pkgs; };
 
-  xdg.configFile."alacritty".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/alacritty";
-  xdg.configFile."helix".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/helix";
+  # xdg.configFile."alacritty".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/alacritty";
+  # xdg.configFile."helix".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/helix";
   xdg.configFile."borders".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/borders";
   xdg.configFile."sketchybar".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/sketchybar";
   xdg.configFile."skhd".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/skhd";
   xdg.configFile."yabai".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/yabai";
   xdg.configFile."iterm".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/iterm";
-  xdg.configFile."aerospace".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/aerospace";
+  # xdg.configFile."aerospace".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/aerospace";
   home.file.".local/share/maildir".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/share/maildir";
   home.file.".mbsyncrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/email/mbsyncrc";
   home.file.".msmtprc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/email/msmtprc";
