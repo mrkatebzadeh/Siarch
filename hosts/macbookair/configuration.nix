@@ -24,7 +24,7 @@ in
       # unstable.jq
       unstable.neovim
       #neovim
-      # unstable.sketchybar
+      unstable.sketchybar
       unstable.skhd
       # unstable.yabai
     ] ++ common.packages;
