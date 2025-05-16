@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
-config.default_prog = { 'bash' }
+config.default_prog = { 'nu' }
 
 config.color_scheme = 'Gruvbox Material (Gogh)'
 config.colors = {
