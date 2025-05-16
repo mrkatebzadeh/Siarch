@@ -1,4 +1,56 @@
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
+auto_layout true
+default_layout "compact"
+mirror_session false
+mouse_mode true
+pane_frames false
+scroll_buffer_size 10000
+scrollback_editor "nvim"
+scrollback_lines_to_serialize 10000
+serialize_pane_viewport true
+session_serialization true
+simplified_ui true
+styled_underlines true
+theme "mytheme"
+
+ui {
+    pane_frames {
+        rounded_corners false
+    }
+}
+
+plugins {
+    tab-bar location="zellij:tab-bar"
+    status-bar location="zellij:status-bar"
+    strider location="zellij:strider"
+    compact-bar location="zellij:compact-bar"
+    session-manager location="zellij:session-manager"
+    room location="file:~/.config/zellij/plugins/room.wasm"
+    zellij_forgot location="file:~/.config/zellij/plugins/zellij_forgot.wasm"
+    zjstatus location="file:~/.config/zellij/plugins/zjstatus.wasm"
+    welcome-screen location="zellij:session-manager" {
+        welcome_screen true
+    }
+    filepicker location="zellij:strider" {
+        cwd "/"
+    }
+}
+
+themes {
+    mytheme {
+        bg "#11111b"
+        fg "#313244"
+        red "#991b1b"
+        green "#89B4FA"
+        blue "#1e40af"
+        yellow "#d97706"
+        magenta "#9f1239"
+        orange "#c2410c"
+        cyan "#0e7490"
+        black "#181825"
+        white "#cdd6f4"
+    }
+}
 keybinds {
     normal {
         // uncomment this and adjust key if using copy_on_select=false
