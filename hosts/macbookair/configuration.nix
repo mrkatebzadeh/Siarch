@@ -17,6 +17,8 @@ in
     shells = with pkgs; [ bash zsh ];
     /* loginShell = pkgs.zsh; */
     systemPackages = with pkgs; [
+      zellij
+      vscode
       cargo
       rustc
       rustfmt
