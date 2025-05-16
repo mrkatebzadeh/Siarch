@@ -35,15 +35,7 @@ in
   };
 
   home.packages = with pkgs; [
-    helix
-    nixpkgs-fmt
     clang-tools
-    nodePackages.bash-language-server
-    cmake-language-server
-    vscode-extensions.vadimcn.vscode-lldb
-    cpplint
-    shellcheck
-    shfmt
     atuin
     pciutils
     btop
