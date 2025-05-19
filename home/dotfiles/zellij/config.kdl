@@ -1,6 +1,6 @@
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
 auto_layout true
-default_layout "compact"
+default_layout "default"
 mirror_session false
 mouse_mode true
 pane_frames false
@@ -11,6 +11,7 @@ serialize_pane_viewport true
 session_serialization true
 simplified_ui true
 styled_underlines true
+default_shell "nu"
 theme "mytheme"
 
 ui {
