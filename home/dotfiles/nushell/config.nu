@@ -71,11 +71,6 @@ $env.config = {
         use_ls_colors: true # set this to true to enable file/path/directory completions using LS_COLORS
     }
 
-    filesize: {
-        metric: false # true => KB, MB, GB (ISO standard), false => KiB, MiB, GiB (Windows standard)
-        format: "auto" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, auto
-    }
-
     # use_grid_icons: true
     footer_mode: "always" # always, never, number_of_rows, auto
     float_precision: 2 # the precision for displaying floats in tables
@@ -713,5 +708,20 @@ $env.config = {
     ]
 }
 
-source ~/.cache/starship/init.nu
-source ~/.local/share/atuin/init.nu
+let init_path = "~/.local/share/atuin/init.nu"
+
+if not ($init_path | path exists) {
+    mkdir ~/.local/share/atuin/
+    atuin init nu | save --force $init_path
+}
+
+source ~/.local/share/atuin/init.nu 
+
+
+let starship_path = ($nu.data-dir | path join "vendor/autoload/starship.nu")
+
+if not ($starship_path | path exists) {
+    mkdir ($nu.data-dir | path join "vendor/autoload")
+    starship init nu | save --force $starship_path
+}
+
