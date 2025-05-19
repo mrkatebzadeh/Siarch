@@ -3,7 +3,7 @@
 # version = "0.93.0"
 
 def create_left_prompt [] {
-    let dir = match (do --ignore-shell-errors { $env.PWD | path relative-to $nu.home-path }) {
+    let dir = match (do { $env.PWD | path relative-to $nu.home-path }) {
         null => $env.PWD
         '' => '~'
         $relative_pwd => ([~ $relative_pwd] | path join)
@@ -101,6 +101,7 @@ $env.NU_PLUGIN_DIRS = [
 
 
 $env.PATH = ($env.PATH | append ~/.nix-profile/bin)
+$env.PATH = ($env.PATH | append ~/.local/scripts)
 
 
 if not ($"~/.local/share/atuin/init.nu" | path exists) {
