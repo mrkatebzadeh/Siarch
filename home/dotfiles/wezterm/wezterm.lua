@@ -4,14 +4,8 @@ local config = wezterm.config_builder()
 
 config.default_prog = { 'nu' }
 
-config.color_scheme = 'Gruvbox Material (Gogh)'
-config.colors = {
-	      background = '#23282b',
-	      scrollbar_thumb = '#23282b',
- 	      cursor_bg = '#359b75',
-  	      cursor_fg = 'black',
-  	      cursor_border = '#52ad70',
-}
+config.color_scheme = "Catppuccin Frappe"
+
 config.font = wezterm.font("FiraCode Nerd Font")
 config.font_size = 14.0
 config.window_decorations = "RESIZE"
@@ -38,5 +32,6 @@ config.visual_bell = {
 	fade_out_duration_ms = 250,
 	target = "CursorColor",
 }
+config.enable_wayland = false
 
 return config
