@@ -17,8 +17,10 @@ in
     shells = with pkgs; [ bash zsh ];
     /* loginShell = pkgs.zsh; */
     systemPackages = with pkgs; [
+      aerospace
+      lua
+      karabiner-elements
       zellij
-      vscode
       cargo
       rustc
       rustfmt
@@ -48,8 +50,8 @@ in
     # enable = true;
     # enableScriptingAddition = true;
   # };
-  services.skhd.enable = true;
-  services.sketchybar.enable = true;
+  services.skhd.enable = false;
+  services.sketchybar.enable = false;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
@@ -122,12 +124,11 @@ in
       "telegram"
       "spotify"
       "vlc"
-      # "nikitabobko/tap/aerospace"
     ];
     taps = [ ];
     brews = [
       "gnu-sed"
-      "koekeishiya/formulae/yabai"
+      # "koekeishiya/formulae/yabai"
     ];
   };
 }
