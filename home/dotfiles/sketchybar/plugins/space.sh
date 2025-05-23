@@ -1,14 +1,18 @@
 #!/bin/bash
 
+
 update() {
-  source "$CONFIG_DIR/colors.sh"
-  COLOR=$BACKGROUND_2
-  if [ "$SELECTED" = "true" ]; then
-    COLOR=$GREY
+  if [ "$SENDER" = "space_change" ]; then
+    source "$CONFIG_DIR/colors.sh"
+    COLOR=$BACKGROUND_2
+    if [ "$SELECTED" = "true" ]; then
+      COLOR=$GREY
+    fi
+
+    sketchybar --set space.$(aerospace list-workspaces --focused) icon.highlight=true \
+                      label.highlight=true \
+                      background.border_color=$GREY
   fi
-  sketchybar --set $NAME icon.highlight=$SELECTED \
-                         label.highlight=$SELECTED \
-                         background.border_color=$COLOR
 }
 
 set_space_label() {
@@ -17,7 +21,7 @@ set_space_label() {
 
 mouse_clicked() {
   if [ "$BUTTON" = "right" ]; then
-    yabai -m space --destroy $SID
+    echo ''
   else
     if [ "$MODIFIER" = "shift" ]; then
       SPACE_LABEL="$(osascript -e "return (text returned of (display dialog \"Give a name to space $NAME:\" default answer \"\" with icon note buttons {\"Cancel\", \"Continue\"} default button \"Continue\"))")"
@@ -29,11 +33,12 @@ mouse_clicked() {
         fi
       fi
     else
-      yabai -m space --focus $SID 2>/dev/null
+      aerospace workspace ${NAME#*.}
     fi
   fi
 }
 
+# echo plugin_space.sh $SENDER >> ~/aaaa
 case "$SENDER" in
   "mouse.clicked") mouse_clicked
   ;;
