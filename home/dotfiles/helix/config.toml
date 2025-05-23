@@ -4,11 +4,77 @@ theme = "catppuccin_frappe"
 line-number = "relative"
 cursorline = true
 color-modes = true
+auto-format = true
+cursorcolumn = false
+bufferline = "multiple"
+evil = true
+
+[editor.lsp] 
+display-messages = true
+display-inlay-hints = true
 
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
 select = "underline"
 
-[editor.file-picker]
-hidden = false
+[editor.indent-guides]
+render = true
+character = "▏" # Some characters that work well: "▏", "┆", "┊", "╎"
+skip-levels = 0
+
+[editor.statusline] 
+left = [
+        "mode",
+        "spacer",
+        "version-control",
+        "file-name",
+        "file-modification-indicator"
+      ]
+right = [
+        "diagnostics",
+        "workspace-diagnostics",
+        "selections",
+        "position",
+        "file-encoding",
+        "file-type"
+      ]
+
+[keys.normal]
+K = "hover"
+
+[keys.normal.space]
+q = ":qa"
+"/" = "toggle_comments"
+
+[keys.normal.space.f]
+f = "file_picker"
+g = "global_search"
+e = ":sh zellij run -n Yazi -c -f -x 10% -y 10% --width 80% --height 80% -- bash ~/.config/helix/yazi-picker.sh open ."
+
+[keys.normal.space.b]
+b = "buffer_picker"
+d = ":buffer-close"
+
+[keys.normal.space.g]
+g = [
+    ":new", 
+    ":insert-output lazygit", 
+    ":buffer-close!", 
+    ":redraw", 
+    ":reload-all"
+]
+
+[keys.normal.space.l]
+a = "code_action"
+f = ":format"
+r = "rename_symbol"
+t = "workspace_diagnostics_picker"
+T = "diagnostics_picker"
+s = "symbol_picker"
+
+[keys.normal.space.w]
+v = "vsplit"
+s = "hsplit"
+d = "wclose"
+

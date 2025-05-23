@@ -1,0 +1,34 @@
+[[language]]
+name = "toml"
+auto-format = true
+# https://github.com/bd82/toml-tools/tree/master/packages/prettier-plugin-toml
+formatter = { command = "prettier", args = ["--parser", "toml"] }
+
+[[language]]
+name = "json"
+formatter = { command = "prettier", args = ["--parser", "json"] }
+
+[[language]]
+name = "javascript"
+auto-format = true
+
+[[language]]
+name = "typescript"
+auto-format = true
+
+[[language]]
+name = "markdown"
+# https://github.com/executablebooks/mdformat
+formatter = { command = "mdformat", args = ["-"] }
+
+[[language]]
+name = "rust"
+
+[language-server.rust-analyzer.config]
+checkOnSave = {command = "clippy", extraArgs = ["--", "-W", "clippy::pedantic"]}
+cargo = {allFeatures = true}
+procMacro = {enable = true }
+
+[[language]]
+name = "yaml"
+formatter = { command = "prettier", args = ["--parser", "yaml"] }
