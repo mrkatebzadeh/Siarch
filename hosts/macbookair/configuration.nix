@@ -21,9 +21,7 @@ in
       lua
       karabiner-elements
       zellij
-      cargo
-      rustc
-      rustfmt
+      rustup
       unstable.jankyborders
       # unstable.jq
       unstable.neovim
@@ -40,15 +38,16 @@ in
   };
 
   fonts.packages = with pkgs;[
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
+    pkgs.nerd-fonts.fira-code
   ];
 
 
-  services.emacs.enable = true;
+  services.emacs.enable = false;
+  ids.gids.nixbld = 350;
 
   # services.yabai = {
-    # enable = true;
-    # enableScriptingAddition = true;
+  # enable = true;
+  # enableScriptingAddition = true;
   # };
   services.skhd.enable = false;
   services.sketchybar.enable = false;
@@ -57,7 +56,7 @@ in
   '';
   system.keyboard.enableKeyMapping = true;
   system.keyboard.remapCapsLockToEscape = true;
-  services.nix-daemon.enable = true;
+  nix.enable = true;
   system.defaults.CustomUserPreferences = {
     trackpad = {
       Clicking = true;
@@ -106,10 +105,10 @@ in
       CriticalUpdateInstall = 1;
     };
   };
-  system.activationScripts.postUserActivation.text = ''
-    /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-    /usr/bin/osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"${wallpaper_path}\" as POSIX file"
-  '';
+
+
+  system.primaryUser = "siavash";
+
   system.stateVersion = 4;
   homebrew = {
     onActivation.cleanup = "uninstall";

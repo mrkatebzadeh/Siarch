@@ -77,6 +77,10 @@ in
 
 
   home.packages = with pkgs; [
+    texliveFull
+    vscode-extensions.vadimcn.vscode-lldb
+    nodejs
+    pyright
     aspellWithDicts
     ani-cli
     iina

@@ -10,7 +10,7 @@ in
 
   fonts.fontconfig = import ./nixfiles/fonts.nix { inherit pkgs; };
   home.packages = with pkgs; [
-    fira-code-nerdfont
+    nerd-fonts.fira-code
     iosevka
   ];
 
