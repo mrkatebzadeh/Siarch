@@ -13,10 +13,10 @@ config.window_decorations = "RESIZE"
 config.send_composed_key_when_left_alt_is_pressed = true
 config.hide_tab_bar_if_only_one_tab = true
 
-config.window_background_opacity = 0.9
+config.window_background_opacity = 0.97
 config.macos_window_background_blur = 20
 
-config.enable_scroll_bar = true
+config.enable_scroll_bar = false
 
 config.max_fps = 120
 config.animation_fps = 120
@@ -33,5 +33,8 @@ config.visual_bell = {
 	target = "CursorColor",
 }
 config.enable_wayland = false
+config.set_environment_variables = {
+    PATH = "/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:" .. os.getenv("PATH"),
+}
 
 return config

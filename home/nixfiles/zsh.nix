@@ -23,7 +23,7 @@
     size = 100000;
     save = 100000;
   };
-  initExtra = ''
+  initContent = ''
     unsetopt BEEP
     setopt AUTO_CD
     setopt GLOB_DOTS
