@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   packages = with pkgs; [
-    evil-helix
-    yazi
+    drawio
+    luarocks
     wezterm
     gnupg1
     emacs-lsp-booster
@@ -36,7 +36,7 @@
     tealdeer
     tree-sitter
     wget
-    (python3.withPackages (ps: with ps; with python3Packages; [
+    (python3.withPackages (ps: with ps; [
       jupyter
       ipython
       pynvim
@@ -44,6 +44,8 @@
       numpy
       matplotlib
       seaborn
+      paramiko
+      packaging
       epc
       orjson
       sexpdata
@@ -52,5 +54,6 @@
       rapidfuzz
       watchdog
     ]))
+
   ];
 }
