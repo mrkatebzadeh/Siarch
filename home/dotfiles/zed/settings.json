@@ -1,37 +1,68 @@
 {
-  "git_panel": {
-    "dock": "right",
+  "context_servers": {
+    "serena-context-server": {
+      "enabled": true,
+      "remote": false,
+      "settings": {
+        "python_executable": "python3",
+      },
+    },
   },
-  "features": {
-    "edit_prediction_provider": "zed",
+  "agent_servers": {
+    "opencode": {
+      "type": "registry",
+    },
   },
-  "base_keymap": "VSCode",
-  "theme": "Catppuccin Frappé",
-  "ui_font_size": 15,
-  "buffer_font_size": 15,
-  // Finder model width
-  "file_finder": {
-    "modal_max_width": "medium",
-  },
-  // Vim mode settings
   "vim_mode": true,
   "vim": {
     "use_system_clipboard": "always",
-    "enable_vim_sneak": true,
   },
-  // use relative line numbers
-  "relative_line_numbers": "enabled",
-  "tab_bar": {
-    "show": true,
+  "base_keymap": "Emacs",
+  "icon_theme": "Catppuccin Frappé",
+  "ui_font_size": 14,
+  "buffer_font_size": 12,
+  "agent_buffer_font_size": 11,
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "Catppuccin Frappé (Blue Blur+)",
+  },
+  "terminal": {
+    "shell": {
+      "program": "/opt/homebrew/bin/nu",
+    },
+    "env": {
+      "EDITOR": "zed --wait",
+    },
+  },
+  "gutter": {
+    "folds": false,
   },
   "scrollbar": {
     "show": "never",
+    "git_diff": true,
   },
-  // Only show error on tab
+  "tab_bar": {
+    "show_nav_history_buttons": false,
+    "show_tab_bar_buttons": false,
+    "show_pinned_tabs_in_separate_row": false,
+  },
+  "active_pane_modifiers": {
+    "border_size": 0.0,
+    "inactive_opacity": 0.7,
+  },
+  "title_bar": {
+    "show_onboarding_banner": false,
+    "show_user_picture": false,
+    "show_sign_in": false,
+  },
+  "git_panel": {
+    "dock": "right",
+  },
+  "relative_line_numbers": "enabled",
   "tabs": {
     "show_diagnostics": "errors",
   },
-  // Indentation, rainbow indentation
   "indent_guides": {
     "enabled": true,
     "coloring": "indent_aware",
@@ -40,23 +71,9 @@
     "left_padding": 0.1,
     "right_padding": 0.1,
   },
-  "assistant": {
-    "default_model": {
-      "provider": "copilot_chat",
-      "model": "claude-3-7-sonnet",
-    },
-    "version": "2",
-  },
-  "language_models": {
-    "ollama": {
-      "api_url": "http://localhost:11434",
-    },
-  },
-  // Inlay hints preconfigured by Zed: Go, Rust, Typescript and Svelte
   "inlay_hints": {
     "enabled": true,
   },
-  // LSP
   "lsp": {
     "tailwindcss-language-server": {
       "settings": {
@@ -65,9 +82,7 @@
     },
   },
   "languages": {
-    // Refer https://zed.dev/docs/languages/javascript and https://zed.dev/docs/languages/typescript for more info
     "TypeScript": {
-      // Refer https://github.com/jellydn/ts-inlay-hints for how to setup for Neovim and VSCode
       "inlay_hints": {
         "enabled": true,
         "show_parameter_hints": false,
@@ -77,22 +92,18 @@
     },
     "Python": {
       "format_on_save": "off",
-      "formatter": { "language_server": { "name": "ruff" } },
+      "formatter": {
+        "language_server": {
+          "name": "ruff",
+        },
+      },
       "language_servers": ["pyright", "ruff"],
     },
   },
-  // Use zed commit editor
-  "terminal": {
-    "env": {
-      "EDITOR": "zed --wait",
-    },
-  },
-  // File syntax highlighting
   "file_types": {
     "Dockerfile": ["Dockerfile", "Dockerfile.*"],
     "JSON": ["json", "jsonc", "*.code-snippets"],
   },
-  // File scan exclusions, hide on the file explorer and search
   "file_scan_exclusions": [
     "**/.git",
     "**/.svn",
@@ -102,7 +113,6 @@
     "**/Thumbs.db",
     "**/.classpath",
     "**/.settings",
-    // above is default from Zed
     "**/out",
     "**/dist",
     "**/.husky",
@@ -116,12 +126,10 @@
     "**/report",
     "**/node_modules",
   ],
-  // Turn off telemetry
   "telemetry": {
     "diagnostics": false,
     "metrics": false,
   },
-  // Move all panel to the right
   "project_panel": {
     "button": true,
     "dock": "left",
@@ -134,7 +142,6 @@
     "dock": "right",
     "button": false,
   },
-  // Move some unnecessary panels to the left
   "notification_panel": {
     "dock": "left",
   },
