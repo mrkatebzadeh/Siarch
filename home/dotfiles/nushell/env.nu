@@ -102,6 +102,9 @@ $env.NU_PLUGIN_DIRS = [
 
 $env.PATH = ($env.PATH | append ~/.nix-profile/bin)
 $env.PATH = ($env.PATH | append ~/.local/scripts)
+$env.PATH = ($env.PATH | append ~/.opencode/bin)
+$env.PATH = ($env.PATH | append ~/.local/bin)
+$env.PATH = ($env.PATH | append /opt/homebrew/bin/)
 
 
 if not ($"~/.local/share/atuin/init.nu" | path exists) {
