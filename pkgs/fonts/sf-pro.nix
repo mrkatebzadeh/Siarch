@@ -6,8 +6,7 @@ pkgs.stdenv.mkDerivation {
   src = pkgs.fetchurl {
     url =
       "https://devimages-cdn.apple.com/design/resources/download/SF-Pro.dmg";
-    # sha256 = "0ycxhncd6if94w5n8cpdwr8rhrqdhgi913plbr2q8fia2266bk07";
-    sha256 = "sha256-090HwtgILtK/KGoOzcwz1iAtoiShKAVjiNhUDQtO+gQ=";
+      sha256 = "sha256-W0sZkipBtrduInk0oocbFAXX1qy0Z+yk2xUyFfDWx4s=";
   };
 
   nativeBuildInputs = [ pkgs.p7zip ];
