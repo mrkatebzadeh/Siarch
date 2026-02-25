@@ -59,7 +59,7 @@ rebuild_configuration() {
 		nix run home-manager -- switch --flake ".#$1" "${@:2}"
 	elif [[ "$OSTYPE" == "darwin"* ]]; then
 		echo "Rebuilding configuration with Nix on macOS..."
-		nix run nix-darwin -- switch --flake ".#$1" "${@:2}"
+		sudo nix run --extra-experimental-features "nix-command flakes" nix-darwin -- switch --flake ".#$1" "${@:2}"
 	else
 		echo "Unsupported OS: $OSTYPE"
 		exit 1
