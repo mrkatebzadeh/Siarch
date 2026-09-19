@@ -1,0 +1,81 @@
+#!/bin/sh
+
+postrun() { # Stuff to run to clean up.
+	setbg      # Fix background if screen size/arangement has changed.
+	killall dunst >/dev/null 2>&1
+	setsid -f dunst >/dev/null 2>&1
+	# dwm uses the Xinerama extension to manage multi-monitor setups,
+	# which is independent of the monitor layout set by xrandr.
+	# When you use the script to configure the monitor layout, it changes
+	# the layout as seen by the X server, but dwm is not aware of this change
+	# and continues to use the old layout.
+	# You can use the following command to synchronize dwm with the new layout:
+	kill -HUP $(pgrep -u $USER "\bdwm$")
+}
+
+
+set_mon_on() {
+  if [ $XDG_SESSION_TYPE = "wayland" ]; then
+    wlr-randr --output $1 --on
+  else
+    xrandr --output $1 --auto --primary
+  fi
+}
+
+set_mon_off() {
+  if [ $XDG_SESSION_TYPE = "wayland" ]; then
+    wlr-randr --output $1 --off
+  else
+    xrandr --output $1 --off
+  fi
+}
+# Get a list of connected monitors
+if [ $XDG_SESSION_TYPE = "wayland" ]; then
+	monitors=$(wlr-randr | grep "\"" | awk '{print $1}')
+else
+	monitors=$(xrandr | grep " connected" | awk '{print $1}')
+fi
+#
+# Show a dmenu prompt with the options
+chosen=$(echo -e "List Monitors\nMirroring\nMulti-Monitor" | menu -i -p "Select an option:")
+
+if [ "$chosen" = "List Monitors" ]; then
+	# Show a dmenu prompt with the list of monitors
+	monitor=$(echo "$monitors" | menu -i -p "Select monitor:")
+	for m in $monitors; do
+		if [ "$m" = "$monitor" ]; then
+      set_mon_on "$m"
+		else
+      set_mon_off "$m"
+		fi
+	done
+	notify-send "💻 Single monitor" "$chosen is on."
+
+elif [ "$chosen" = "Mirroring" ]; then
+	# Enable mirroring on all monitors
+	primary=$(echo "$monitors" | head -n1)
+	others=$(echo "$monitors" | tail -n+2)
+	for monitor in $others; do
+		xrandr --output "$monitor" --auto --same-as "$primary"
+	done
+	notify-send "💻 Mirroring monitors" "$primary is the primary monitor in mirroring mode."
+
+elif [ "$chosen" = "Multi-Monitor" ]; then
+	# Set the primary monitor
+	primary=$(echo "$monitors" | menu -i -p "Select primary monitor:")
+	xrandr --output "$primary" --primary --auto
+
+	# Set the position for each remaining monitor
+	for monitor in $monitors; do
+		if [ "$monitor" != "$primary" ]; then
+			position=$(echo -e "left-of\nright-of\nabove\nbelow" | menu -i -p "Select position for $monitor:")
+			xrandr --output "$monitor" --$position "$primary" --auto
+		fi
+	done
+	notify-send "💻 Multi monitors" "$primary is the primary monitor in multi-monitor mode."
+
+else
+	echo "Invalid option selected"
+fi
+
+postrun
