@@ -104,7 +104,11 @@ $env.PATH = ($env.PATH | append ~/.nix-profile/bin)
 $env.PATH = ($env.PATH | append ~/.local/scripts)
 $env.PATH = ($env.PATH | append ~/.opencode/bin)
 $env.PATH = ($env.PATH | append ~/.local/bin)
+$env.PATH = ($env.PATH | append ~/.npm-global/bin)
 $env.PATH = ($env.PATH | append /opt/homebrew/bin/)
+
+# Required for OpenCode web search in research-style skills.
+$env.OPENCODE_ENABLE_EXA = "1"
 
 
 if not ($"~/.local/share/atuin/init.nu" | path exists) {

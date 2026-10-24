@@ -715,7 +715,7 @@ if not ($init_path | path exists) {
     atuin init nu | save --force $init_path
 }
 
-source ~/.local/share/atuin/init.nu 
+source ~/.local/share/atuin/init.nu
 
 
 let starship_path = ($nu.data-dir | path join "vendor/autoload/starship.nu")
@@ -724,4 +724,15 @@ if not ($starship_path | path exists) {
     mkdir ($nu.data-dir | path join "vendor/autoload")
     starship init nu | save --force $starship_path
 }
+
+# >>> cheshmak >>>
+# Adds cheshmak summary when changing directories
+def --env cheshmak_cd [path?] {
+  if $path == null { cd } else { cd $path }
+  if (which cheshmak | is-not-empty) { cheshmak }
+}
+alias cd = cheshmak_cd
+# <<< cheshmak <<<
+
+
 
