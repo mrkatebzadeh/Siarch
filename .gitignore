@@ -10,3 +10,7 @@
 tmp/*
 dots/*
 repos/*
+
+# ponytail: retain retired editor checkouts as ignored local backups.
+/home/dotfiles/emacs.d/
+/home/dotfiles/nvim.lua/
