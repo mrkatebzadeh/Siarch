@@ -201,10 +201,8 @@ $env.config = {
 
 let init_path = "~/.local/share/atuin/init.nu"
 
-if not ($init_path | path exists) {
-    mkdir ~/.local/share/atuin/
-    atuin init nu | save --force $init_path
-}
+mkdir ~/.local/share/atuin/
+atuin init nu | save --force $init_path
 
 source ~/.local/share/atuin/init.nu
 
