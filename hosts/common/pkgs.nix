@@ -3,6 +3,7 @@
     drawio
     luarocks
     wezterm
+    unstable.tuios
     gnupg1
     # emacs-lsp-booster
     #

@@ -97,6 +97,18 @@ in
   home.file.".local/bin/scripts".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/scripts";
   home.file.".local/share/backgrounds".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/share/backgrounds";
   home.file.".local/share/siarch".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/share/siarch";
+  home.file."Library/Application Support/tuios/config.d/look.toml" = lib.mkIf pkgs.stdenv.isDarwin {
+    source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/tuios/config.d/look.toml";
+  };
+  home.file."Library/Application Support/tuios/themes/look-everforest-moss.json" = lib.mkIf pkgs.stdenv.isDarwin {
+    source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/tuios/themes/look-everforest-moss.json";
+  };
+  xdg.configFile."tuios/config.d/look.toml" = lib.mkIf pkgs.stdenv.isLinux {
+    source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/tuios/config.d/look.toml";
+  };
+  xdg.configFile."tuios/themes/look-everforest-moss.json" = lib.mkIf pkgs.stdenv.isLinux {
+    source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/tuios/themes/look-everforest-moss.json";
+  };
   xdg.configFile."shell".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/shell";
   xdg.configFile."tmux".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/tmux";
   xdg.configFile."vim".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/vim";

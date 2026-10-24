@@ -1,0 +1,41 @@
+{
+  "id": "look-everforest-moss",
+  "display_name": "Everforest Moss",
+  "dark": true,
+  "fg": "#d3c6aa",
+  "bg": "#2d353b",
+  "cursor": "#d3c6aa",
+  "black": "#343f44",
+  "red": "#e67e80",
+  "green": "#a7c080",
+  "yellow": "#dbbc7f",
+  "blue": "#7fbbb3",
+  "purple": "#d699b6",
+  "cyan": "#83c092",
+  "white": "#d3c6aa",
+  "bright_black": "#859289",
+  "bright_red": "#e67e80",
+  "bright_green": "#a7c080",
+  "bright_yellow": "#dbbc7f",
+  "bright_blue": "#7fbbb3",
+  "bright_purple": "#d699b6",
+  "bright_cyan": "#83c092",
+  "bright_white": "#f2efdf",
+  "chrome": {
+    "accent": "#a7c080",
+    "accent_bright": "#83c092",
+    "success": "#a7c080",
+    "warning": "#dbbc7f",
+    "surface": "#343f44",
+    "border": {
+      "unfocused": "#475258"
+    },
+    "rule": "#3d484d",
+    "dock": {
+      "ground": "#232a2e"
+    },
+    "rail": {
+      "ground": "#232a2e"
+    }
+  }
+}

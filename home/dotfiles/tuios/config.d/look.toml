@@ -1,0 +1,56 @@
+# A tuios look. "tuios look apply" wrote this file.
+# "tuios look remove" deletes it. The next apply replaces it.
+# config.toml wins over this file. Change settings there.
+# look: Forest
+# source: https://tuios.dev/r/19000281.toml
+# theme: look-everforest-moss
+
+[appearance]
+background = 'theme'
+border_focused_gradient = '#a7c080 #83c092'
+border_gradient_angle = 90
+border_style = 'rounded'
+border_unfocused_color = '#475258'
+desktop_background = '#232a2e'
+dim_unfocused = 15
+dock_background = '#232a2e'
+dock_compact = true
+dock_mode_icon_terminal = '󰹦'
+dock_mode_icon_tiling = '󰹦'
+dock_mode_icon_window = '󰹦'
+dock_pill_caps = false
+dock_workspace_tab_format = ' {icon} {name} '
+dockbar_position = 'top'
+gap = 1
+hide_window_buttons = true
+master_position = 'center'
+master_ratio = 46
+show_clock = true
+theme = 'look-everforest-moss'
+window_title_align = 'center'
+window_title_style = 'tab'
+
+[appearance.sidebar]
+enabled = false
+
+[dock]
+center = []
+left = ['workspaces']
+right = ['clock']
+
+[dock.clock]
+format = '15:04'
+
+[dock.tabs]
+active_bg = '#a7c080'
+active_bold = true
+active_fg = '#272e33'
+inactive_fg = '#859289'
+number_glyphs = ['I', 'II', 'III', 'IV']
+separator = ' • '
+separator_fg = '#4f5b58'
+style = 'flat'
+
+[startup]
+layout = 'master-stack'
+tiled = true
