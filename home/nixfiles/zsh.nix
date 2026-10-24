@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 {
   enable = true;
+  sessionVariables = {
+    PATH = "$PATH:$HOME/.opencode/bin:$HOME/.npm-global/bin:$PATH";
+  };
   enableCompletion = true;
   autosuggestion.enable = true;
   syntaxHighlighting.enable = true;
