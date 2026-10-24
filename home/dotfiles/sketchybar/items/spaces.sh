@@ -1,6 +1,7 @@
 #!/bin/bash
 
 sketchybar --add event aerospace_workspace_change
+sketchybar --add event update_windows
 
 sid=0
 spaces=()
@@ -30,6 +31,8 @@ for m in $(aerospace list-monitors | awk '{print $1}'); do
   sketchybar --add space space.$sid left \
                --set space.$sid "${space[@]}" \
                --subscribe space.$sid mouse.clicked
+
+  apps=$(aerospace list-windows --workspace "$sid" | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
   icon_strip=" "
     if [ "${apps}" != "" ]; then
       while read -r app
@@ -60,4 +63,4 @@ space_creator=(
 
 sketchybar --add item space_creator left               \
            --set space_creator "${space_creator[@]}"   \
-           --subscribe space_creator aerospace_workspace_change
+           --subscribe space_creator aerospace_workspace_change update_windows

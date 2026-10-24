@@ -473,8 +473,11 @@ function icon_map() {
   "Firefox")
     icon_result=":firefox:"
     ;;
-  "WezTerm")
+  "WezTerm" | "wezterm-gui")
     icon_result=":wezterm:"
+    ;;
+  "Raycast")
+    icon_result=":raycast:"
     ;;
   *)
     icon_result=":default:"

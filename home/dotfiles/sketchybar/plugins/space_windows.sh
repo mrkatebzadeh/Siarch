@@ -23,7 +23,12 @@ reload_workspace_icon() {
   sketchybar --animate sin 10 --set space.$@ label="$icon_strip"
 }
 
-if [ "$SENDER" = "aerospace_workspace_change" ]; then
+if [ "$SENDER" = "update_windows" ]; then
+  focused_workspace=$(aerospace list-workspaces --focused)
+  if [ -n "$focused_workspace" ]; then
+    reload_workspace_icon "$focused_workspace"
+  fi
+elif [ "$SENDER" = "aerospace_workspace_change" ]; then
 
   reload_workspace_icon "$AEROSPACE_PREV_WORKSPACE"
   reload_workspace_icon "$AEROSPACE_FOCUSED_WORKSPACE"
