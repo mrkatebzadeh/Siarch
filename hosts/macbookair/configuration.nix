@@ -89,9 +89,6 @@ in
       FXDefaultSearchScope = "SCcf";
       CreateDesktop = false;
     };
-    "com.apple.mail" = {
-      DisableInlineAttachmentViewing = true;
-    };
     "com.apple.AdLib" = {
       allowApplePersonalizedAdvertising = false;
     };

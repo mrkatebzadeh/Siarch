@@ -39,8 +39,15 @@
         "aarch64-darwin"
         "x86_64-darwin"
       ];
+      linuxSystems = [
+        "aarch64-linux"
+        "i686-linux"
+        "x86_64-linux"
+      ];
 
       forAllSystems = nixpkgs.lib.genAttrs systems;
+      lib = nixpkgs.lib;
+      baseHomePkgs = nixpkgs.legacyPackages."x86_64-linux";
 
       mkNixos = modules:
         nixpkgs.lib.nixosSystem {
@@ -52,11 +59,49 @@
           inherit modules pkgs;
           extraSpecialArgs = { inherit inputs outputs; };
         };
+      homeHosts = {
+        x230 = {
+          modules = [ ./hosts/x230/configuration.nix ];
+          username = username;
+          homeDirectory = "/home/${username}";
+        };
+        shiraz = {
+          modules = [ ./hosts/shiraz/configuration.nix ];
+          username = username;
+          homeDirectory = "/home/${username}";
+        };
+        cloudlab = {
+          modules = [ ./hosts/cloudlab/configuration.nix ];
+          username = username;
+          homeDirectory = "/users/${username}";
+        };
+        duck = {
+          modules = [ ./hosts/duck/configuration.nix ];
+          username = "root";
+          homeDirectory = "/root";
+        };
+        homelab = {
+          modules = [ ./hosts/homelab/configuration.nix ];
+          username = username;
+          homeDirectory = "/home/${username}";
+        };
+      };
+      mkHomeModules = host:
+        host.modules
+          ++ [
+            ./home
+            {
+              home = {
+                inherit (host) username homeDirectory;
+              };
+            }
+          ]
+          ++ (host.extraModules or []);
 
     in
     {
       packages =
-        forAllSystems (system: nixpkgs.legacyPackages.${system});
+        lib.genAttrs linuxSystems (system: nixpkgs.legacyPackages.${system}.hello);
       formatter =
         forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt);
       overlays = import ./overlays { inherit inputs; };
@@ -69,58 +114,11 @@
           ./hosts/homelab/nixos/configuration.nix
         ];
       };
-      homeConfigurations = {
-        x230 = mkHome [
-          ./hosts/x230/configuration.nix
-          ./home
-          {
-            home = {
-              inherit username;
-              homeDirectory = "/home/${username}";
-            };
-          }
-        ]
-          nixpkgs.legacyPackages."x86_64-linux";
-      };
-      homeConfigurations = {
-        shiraz = mkHome [
-          ./hosts/shiraz/configuration.nix
-          ./home
-          {
-            home = {
-              inherit username;
-              homeDirectory = "/home/${username}";
-            };
-          }
-        ]
-          nixpkgs.legacyPackages."x86_64-linux";
-      };
-      homeConfigurations = {
-        cloudlab = mkHome [
-          ./hosts/cloudlab/configuration.nix
-          ./home
-          {
-            home = {
-              inherit username;
-              homeDirectory = "/users/${username}";
-            };
-          }
-        ]
-          nixpkgs.legacyPackages."x86_64-linux";
-      };
-      homeConfigurations = {
-        duck = mkHome [
-          ./hosts/duck/configuration.nix
-          ./home
-          {
-            home = {
-              username = "root";
-              homeDirectory = "/root";
-            };
-          }
-        ]
-          nixpkgs.legacyPackages."x86_64-linux";
-      };
+      homeConfigurations = lib.mapAttrs
+        (name: host:
+          mkHome (mkHomeModules host) (host.pkgs or baseHomePkgs)
+        )
+        homeHosts;
       darwinConfigurations = {
         macbookair = nix-darwin.lib.darwinSystem {
           specialArgs = {
@@ -154,19 +152,5 @@
         };
       };
 
-      homeConfigurations = {
-        homelab = mkHome [
-          ./hosts/homelab/configuration.nix
-          ./home
-          {
-            home = {
-              inherit username;
-              homeDirectory = "/home/${username}";
-            };
-          }
-        ]
-          nixpkgs.legacyPackages."x86_64-linux";
-
-      };
     };
 }

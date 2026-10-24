@@ -2,14 +2,13 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports =
     [
       # Include the results of the hardware scan.
-      <nixos-hardware/lenovo/thinkpad/x230>
-      <home-manager/nixos>
+      inputs.home-manager.nixosModules.home-manager
       ./hardware-configuration.nix
     ];
 
@@ -46,14 +45,14 @@
     videoDrivers = [ "intel" ];
     autorun = true;
     displayManager.lightdm.enable = false;
-    libinput = {
-      enable = true;
-      mouse = {
-        accelProfile = "flat";
-      };
-      touchpad = {
-        naturalScrolling = true;
-      };
+  };
+  services.libinput = {
+    enable = true;
+    mouse = {
+      accelProfile = "flat";
+    };
+    touchpad = {
+      naturalScrolling = true;
     };
   };
   programs.hyprland.enable = true;
@@ -64,16 +63,6 @@
 
   # Enable sound.
   hardware.enableRedistributableFirmware = true;
-  sound = {
-    enable = true;
-    mediaKeys = {
-      enable = true;
-      volumeStep = "5%";
-    };
-  };
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.support32Bit = true; ## If compatibility with 32-bit applications is desired.
-  hardware.pulseaudio.package = pkgs.pulseaudioFull;
 
   users.users.siavash = {
     isSystemUser = true;
