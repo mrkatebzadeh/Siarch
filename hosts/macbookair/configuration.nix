@@ -42,7 +42,7 @@ in
   ];
 
 
-  services.emacs.enable = false;
+  # services.emacs.enable = false;
   ids.gids.nixbld = 350;
 
   # services.yabai = {

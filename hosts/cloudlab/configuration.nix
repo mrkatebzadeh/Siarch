@@ -16,7 +16,7 @@
   home.packages = with pkgs; [
     nixpkgs-fmt
     clang-tools
-    nodePackages.bash-language-server
+    bash-language-server
     cmake-language-server
     vscode-extensions.vadimcn.vscode-lldb
     cpplint
@@ -41,6 +41,7 @@
     flamegraph
     highlight
     killall
+    evil-helix
     unstable.neovim
     unzip
   ];

@@ -4,22 +4,23 @@ let
   siarch = "${config.home.homeDirectory}/.siarch";
   dotfiles = "${siarch}/home/dotfiles";
 
-  emacs = pkgs.emacs.override {
-    # withXwidgets = true;
-    withNativeCompilation = true;
-    withSQLite3 = true;
-    withTreeSitter = true;
-    withWebP = true;
-  };
-
-  emacs-with-packages = (pkgs.emacsPackagesFor emacs).emacsWithPackages (epkgs: with epkgs; [
-    epkgs.mu4e
-    pkgs.mu
-    vterm
-    multi-vterm
-    pdf-tools
-    treesit-grammars.with-all-grammars
-  ]);
+  # Emacs is retired; keep its configuration for reference.
+  # emacs = pkgs.emacs.override {
+  #   # withXwidgets = true;
+  #   withNativeCompilation = true;
+  #   withSQLite3 = true;
+  #   withTreeSitter = true;
+  #   withWebP = true;
+  # };
+  #
+  # emacs-with-packages = (pkgs.emacsPackagesFor emacs).emacsWithPackages (epkgs: with epkgs; [
+  #   epkgs.mu4e
+  #   pkgs.mu
+  #   vterm
+  #   multi-vterm
+  #   pdf-tools
+  #   treesit-grammars.with-all-grammars
+  # ]);
 in
 {
   nixpkgs = {
@@ -53,7 +54,7 @@ in
     exfat
     fd
     ffmpeg
-    gnome.gnome-keyring
+    gnome-keyring
     gpg-tui
     highlight
     hyprpaper
@@ -64,7 +65,7 @@ in
     maim
     man
     mediainfo
-    mpc-cli
+    mpc
     mpd
     mpv
     mutt-wizard
@@ -74,7 +75,7 @@ in
     poppler
     pulseaudio
     pulsemixer
-    rofi-wayland
+    rofi
     rust-analyzer
     rustfmt
     rustc
@@ -112,8 +113,8 @@ in
     telegram-desktop
     slack
     fonts.sf-pro
-    scripts.common
-    scripts.hypr
+    siarch-scripts.common
+    siarch-scripts.hypr
     git
   ] ++
   common.packages;
@@ -123,10 +124,10 @@ in
 
   fonts.fontconfig.enable = true;
 
-  programs.emacs = {
-    enable = true;
-    package = emacs-with-packages;
-  };
+  # programs.emacs = {
+  #   enable = true;
+  #   package = emacs-with-packages;
+  # };
 
   programs.home-manager.enable = true;
   programs.kitty = {
@@ -172,6 +173,6 @@ in
   xdg.configFile."rofi".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/rofi";
   xdg.configFile."sxkhd".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/sxkhd";
   xdg.configFile."waybar".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/waybar";
-  xdg.configFile."emacs".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/emacs.d";
+  # xdg.configFile."emacs".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/emacs.d";
 
 }

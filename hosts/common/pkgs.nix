@@ -5,7 +5,7 @@
     wezterm
     evil-helix
     gnupg1
-    emacs-lsp-booster
+    # emacs-lsp-booster
     #
     virtualenv
     pdf2svg

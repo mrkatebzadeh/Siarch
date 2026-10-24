@@ -5,23 +5,23 @@ let
   dotfiles = "${siarch}/home/dotfiles";
   wallpaper_path = "${dotfiles}/share/backgrounds/drdoom2.jpg";
 
-  emacs = pkgs.emacs30.override {
-    # withXwidgets = true;
-    # withGTK3 = true;
-    withNativeCompilation = true;
-    withSQLite3 = true;
-    withTreeSitter = true;
-    withWebP = true;
-  };
-
-  emacs-with-packages = (pkgs.emacsPackagesFor emacs).emacsWithPackages (epkgs: with epkgs; [
-    epkgs.mu4e
-    pkgs.mu
-    vterm
-    multi-vterm
-    pdf-tools
-    treesit-grammars.with-all-grammars
-  ]);
+  # emacs = pkgs.emacs30.override {
+  #   # withXwidgets = true;
+  #   # withGTK3 = true;
+  #   withNativeCompilation = true;
+  #   withSQLite3 = true;
+  #   withTreeSitter = true;
+  #   withWebP = true;
+  # };
+  #
+  # emacs-with-packages = (pkgs.emacsPackagesFor emacs).emacsWithPackages (epkgs: with epkgs; [
+  #   epkgs.mu4e
+  #   pkgs.mu
+  #   vterm
+  #   multi-vterm
+  #   pdf-tools
+  #   treesit-grammars.with-all-grammars
+  # ]);
 in
 {
   nixpkgs = {
@@ -42,7 +42,7 @@ in
     texliveFull
     dropbox
     vscode
-    cinnamon.nemo
+    nemo
     firefox
     hyprland
     slurp
@@ -59,7 +59,7 @@ in
     exfat
     fd
     ffmpeg
-    gnome.gnome-keyring
+    gnome-keyring
     gpg-tui
     highlight
     hyprpaper
@@ -75,7 +75,7 @@ in
     poppler
     pulseaudio
     pulsemixer
-    rofi-wayland
+    rofi
     rust-analyzer
     rustfmt
     rustc
@@ -104,16 +104,16 @@ in
     telegram-desktop
     slack
     fonts.sf-pro
-    scripts.common
-    scripts.hypr
+    siarch-scripts.common
+    siarch-scripts.hypr
     teams-for-linux
   ] ++
   common.packages;
 
-  programs.emacs = {
-    enable = true;
-    package = emacs-with-packages;
-  };
+  # programs.emacs = {
+  #   enable = true;
+  #   package = emacs-with-packages;
+  # };
 
   home.file = { };
   home.sessionVariables = { };
@@ -165,7 +165,7 @@ in
   xdg.configFile."rofi".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/rofi";
   # xdg.configFile."sxkhd".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/sxkhd";
   xdg.configFile."waybar".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/waybar";
-  xdg.configFile."emacs".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/emacs.d";
+  # xdg.configFile."emacs".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/emacs.d";
   home.file.".wezterm.lua".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/wezterm/wezterm.lua";
 
 }

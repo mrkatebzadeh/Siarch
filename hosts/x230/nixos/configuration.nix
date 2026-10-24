@@ -79,17 +79,18 @@
   };
   users.groups.siavash = { };
   programs.zsh.enable = true;
-  programs.light.enable = true;
+  services.udev.packages = [ pkgs.brightnessctl ];
   services.actkbd = {
     enable = true;
     bindings = [
-      { keys = [ 222 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -A 10"; }
-      { keys = [ 223 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -U 10"; }
+      { keys = [ 222 ]; events = [ "key" ]; command = "${pkgs.brightnessctl}/bin/brightnessctl --class=backlight set +10%"; }
+      { keys = [ 223 ]; events = [ "key" ]; command = "${pkgs.brightnessctl}/bin/brightnessctl --class=backlight set 10%-"; }
     ];
   };
 
 
   environment.systemPackages = with pkgs; [
+    brightnessctl
     vim
     git
   ];

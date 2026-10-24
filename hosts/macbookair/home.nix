@@ -3,53 +3,54 @@ let
   siarch = "${config.home.homeDirectory}/.siarch";
   dotfiles = "${siarch}/home/dotfiles";
   aspellWithDicts = pkgs.aspellWithDicts (d: [ d.en ]);
-  emacs = pkgs.emacs30.override {
-    withNativeCompilation = true;
-    withSQLite3 = true;
-    withTreeSitter = true;
-    withWebP = true;
-  };
+  # Emacs is retired; keep its configuration for reference.
+  # emacs = pkgs.emacs30.override {
+  #   withNativeCompilation = true;
+  #   withSQLite3 = true;
+  #   withTreeSitter = true;
+  #   withWebP = true;
+  # };
 
-  emacs-patched = emacs.overrideAttrs (old: {
-    patches =
-      (old.patches or [ ])
-      ++ [
-        # Fix OS window role (needed for window managers like yabai)
-        (pkgs.fetchpatch {
-          url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-28/fix-window-role.patch";
-          sha256 = "sha256-+z/KfsBm1lvZTZNiMbxzXQGRTjkCFO4QPlEK35upjsE=";
-        })
-        # Use poll instead of select to get file descriptors
-        /* (pkgs.fetchpatch {
-          url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-29/poll.patch";
-          sha256 = "sha256-jN9MlD8/ZrnLuP2/HUXXEVVd6A+aRZNYFdZF8ReJGfY=";
-        }) */
-        # Enable rounded window with no decoration
-        (pkgs.fetchpatch {
-          url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-29/round-undecorated-frame.patch";
-          sha256 = "sha256-uYIxNTyfbprx5mCqMNFVrBcLeo+8e21qmBE3lpcnd+4=";
-        })
-        # Make Emacs aware of OS-level light/dark mode
-        /* (pkgs.fetchpatch {
-          url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-28/system-appearance.patch";
-          sha256 = "sha256-oM6fXdXCWVcBnNrzXmF0ZMdp8j0pzkLE66WteeCutv8=";
-        }) */
-      ];
-  });
+  # emacs-patched = emacs.overrideAttrs (old: {
+  #   patches =
+  #     (old.patches or [ ])
+  #     ++ [
+  #       # Fix OS window role (needed for window managers like yabai)
+  #       (pkgs.fetchpatch {
+  #         url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-28/fix-window-role.patch";
+  #         sha256 = "sha256-+z/KfsBm1lvZTZNiMbxzXQGRTjkCFO4QPlEK35upjsE=";
+  #       })
+  #       # Use poll instead of select to get file descriptors
+  #       /* (pkgs.fetchpatch {
+  #         url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-29/poll.patch";
+  #         sha256 = "sha256-jN9MlD8/ZrnLuP2/HUXXEVVd6A+aRZNYFdZF8ReJGfY=";
+  #       }) */
+  #       # Enable rounded window with no decoration
+  #       (pkgs.fetchpatch {
+  #         url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-29/round-undecorated-frame.patch";
+  #         sha256 = "sha256-uYIxNTyfbprx5mCqMNFVrBcLeo+8e21qmBE3lpcnd+4=";
+  #       })
+  #       # Make Emacs aware of OS-level light/dark mode
+  #       /* (pkgs.fetchpatch {
+  #         url = "https://raw.githubusercontent.com/d12frosted/homebrew-emacs-plus/master/patches/emacs-28/system-appearance.patch";
+  #         sha256 = "sha256-oM6fXdXCWVcBnNrzXmF0ZMdp8j0pzkLE66WteeCutv8=";
+  #       }) */
+  #     ];
+  # });
 
-  emacs-macport = pkgs.emacs-macport;
+  # emacs-macport = pkgs.emacs-macport;
 
 
-  emacs-with-packages = (pkgs.emacsPackagesFor emacs-patched).emacsWithPackages (epkgs: with epkgs; [
-    epkgs.mu4e
-    pkgs.mu
-    vterm
-    multi-vterm
-    pdf-tools
-    treesit-grammars.with-all-grammars
-    jedi
-    flymake-grammarly
-  ]);
+  # emacs-with-packages = (pkgs.emacsPackagesFor emacs-patched).emacsWithPackages (epkgs: with epkgs; [
+  #   epkgs.mu4e
+  #   pkgs.mu
+  #   vterm
+  #   multi-vterm
+  #   pdf-tools
+  #   treesit-grammars.with-all-grammars
+  #   jedi
+  #   flymake-grammarly
+  # ]);
 
 
   isync-oauth2 = with pkgs; buildEnv {
@@ -98,8 +99,8 @@ in
     meson
     unstable.sketchybar-app-font
     fonts.sf-pro
-    scripts.common
-    scripts.macos
+    siarch-scripts.common
+    siarch-scripts.macos
     neovide
   ];
 
@@ -111,12 +112,12 @@ in
     };
   };
 
-  programs.emacs = {
-    enable = true;
-    package = emacs-with-packages;
-    # package = pkgs.emacs30;
-    extraConfig = ''(setq org-ditaa-jar-path "${pkgs.ditaa}/lib/ditaa.jar")'';
-  };
+  # programs.emacs = {
+  #   enable = true;
+  #   package = emacs-with-packages;
+  #   # package = pkgs.emacs30;
+  #   extraConfig = ''(setq org-ditaa-jar-path "${pkgs.ditaa}/lib/ditaa.jar")'';
+  # };
 
   programs.starship = import ../../home/nixfiles/starship.nix {
     inherit pkgs lib;
