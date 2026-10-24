@@ -1,4 +1,4 @@
-theme = "catppuccin_frappe"
+theme = "default/catppuccin_frappe"
 
 [editor]
 line-number = "relative"
@@ -7,7 +7,6 @@ color-modes = true
 auto-format = true
 cursorcolumn = false
 bufferline = "multiple"
-evil = true
 
 [editor.lsp] 
 display-messages = true
@@ -50,7 +49,7 @@ q = ":qa"
 [keys.normal.space.f]
 f = "file_picker"
 g = "global_search"
-e = ":sh zellij run -n Yazi -c -f -x 10% -y 10% --width 80% --height 80% -- bash ~/.config/helix/yazi-picker.sh open ."
+e = ":forest-toggle"
 
 [keys.normal.space.b]
 b = "buffer_picker"
@@ -77,4 +76,3 @@ s = "symbol_picker"
 v = "vsplit"
 s = "hsplit"
 d = "wclose"
-

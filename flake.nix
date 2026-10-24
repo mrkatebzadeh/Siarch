@@ -15,6 +15,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nhx = {
+      url = "github:Ra77a3l3-jar/nhx";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hardware.url = "github:nixos/nixos-hardware";
     nixgl.url = "github:nix-community/nixGL";
   };
@@ -141,7 +146,7 @@
                 backupFileExtension = "backup";
                 useGlobalPkgs = false;
                 useUserPackages = false;
-                extraSpecialArgs = { inherit outputs; };
+                extraSpecialArgs = { inherit inputs outputs; };
                 users.${username}.imports = [
                   ./home
                   ./hosts/macbookair/home.nix

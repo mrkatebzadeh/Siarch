@@ -1,10 +1,32 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 let
   siarch = "${config.home.homeDirectory}/.siarch";
   dotfiles = "${siarch}/home/dotfiles";
 in
 {
+  imports = [ inputs.nhx.homeManagerModules.default ];
+
   home.stateVersion = "22.11";
+
+  # Detach the old directory link before installing files inside it.
+  home.activation.migrateHelixDirectory = lib.hm.dag.entryBetween [ "linkGeneration" ] [ "writeBoundary" ] ''
+    helixDir=${lib.escapeShellArg "${config.xdg.configHome}/helix"}
+    legacyDir=${lib.escapeShellArg "${dotfiles}/helix"}
+    if [[ -L "$helixDir" ]]; then
+      resolved="$(${pkgs.coreutils}/bin/readlink -e -- "$helixDir")" || exit 1
+      expected="$(${pkgs.coreutils}/bin/readlink -e -- "$legacyDir")" || exit 1
+      if [[ ! -d "$legacyDir" || "$resolved" != "$expected" ]]; then
+        printf '%s\n' "Refusing migration of unexpected Helix symlink: $helixDir" >&2
+        exit 1
+      fi
+      backup="$helixDir.pre-nhx"
+      if [[ -e "$backup" || -L "$backup" ]]; then
+        printf '%s\n' "Refusing to overwrite Helix backup: $backup" >&2
+        exit 1
+      fi
+      run ${pkgs.coreutils}/bin/mv -T --update=none-fail -- "$helixDir" "$backup" || exit 1
+    fi
+  '';
 
   home.sessionVariables = import ./nixfiles/variables.nix { inherit pkgs; };
 
@@ -27,6 +49,37 @@ in
     home = "${config.home.homeDirectory}";
   };
   programs.bat = import ./nixfiles/bat.nix { inherit pkgs; };
+  programs.helix = {
+    enable = true;
+    package = pkgs.steelix;
+  };
+  programs.nhx = {
+    enable = true;
+    package = null;
+    steel = {
+      enable = true;
+      lsp.enable = false;
+    };
+    plugins.forest = {
+      enable = true;
+      config = {
+        style = "snacks";
+        position = "left";
+        circularKeybinds = true;
+      };
+      extra = ''
+        (define (forest-toggle)
+          (if (forest-snacks-active?) (forest-close) (forest-open)))
+        (provide forest-toggle)
+      '';
+    };
+    plugins.vim = {
+      enable = true;
+      package = config.programs.nhx.availablePlugins.vim;
+      requirePath = "vim-hx/init.scm";
+      extra = "(set-vim-keybindings!)";
+    };
+  };
   programs.kitty = import ./nixfiles/kitty.nix { inherit pkgs; };
 
   home.file.".profile".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/profile";

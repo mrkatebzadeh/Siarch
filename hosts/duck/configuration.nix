@@ -56,7 +56,6 @@ in
     flamegraph
     highlight
     killall
-    evil-helix
     unstable.neovim
     unzip
   ];
@@ -75,5 +74,8 @@ in
   programs.home-manager.enable = true;
 
   # xdg.configFile."emacs".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/emacs.d";
-  xdg.configFile."helix".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/helix";
+  xdg.configFile."helix/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/helix/config.toml";
+  xdg.configFile."helix/languages.toml".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/helix/languages.toml";
+  xdg.configFile."helix/themes".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/helix/themes";
+  xdg.configFile."helix/yazi-picker.sh".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/helix/yazi-picker.sh";
 }

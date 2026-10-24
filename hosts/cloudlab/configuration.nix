@@ -41,7 +41,6 @@
     flamegraph
     highlight
     killall
-    evil-helix
     unstable.neovim
     unzip
   ];
