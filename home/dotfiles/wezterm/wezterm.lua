@@ -6,6 +6,7 @@ config.default_prog = { 'nu' }
 
 config.color_scheme = "Catppuccin Frappe"
 
+-- config.font = wezterm.font("Lilex Nerd Font")
 config.font = wezterm.font("FiraCode Nerd Font")
 config.font_size = 14.0
 config.window_decorations = "RESIZE"
@@ -13,8 +14,8 @@ config.window_decorations = "RESIZE"
 config.send_composed_key_when_left_alt_is_pressed = true
 config.hide_tab_bar_if_only_one_tab = true
 
-config.window_background_opacity = 0.97
-config.macos_window_background_blur = 20
+config.window_background_opacity = 0.9
+config.macos_window_background_blur = 100
 
 config.enable_scroll_bar = false
 
