@@ -3,6 +3,7 @@
     drawio
     luarocks
     wezterm
+    evil-helix
     gnupg1
     emacs-lsp-booster
     #
