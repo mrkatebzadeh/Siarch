@@ -1,4 +1,4 @@
-theme = "default/catppuccin_frappe"
+theme = "gruvbox"
 
 [editor]
 line-number = "relative"
@@ -49,7 +49,7 @@ q = ":qa"
 [keys.normal.space.f]
 f = "file_picker"
 g = "global_search"
-e = ":forest-toggle"
+e = ":forest-open"
 
 [keys.normal.space.b]
 b = "buffer_picker"
