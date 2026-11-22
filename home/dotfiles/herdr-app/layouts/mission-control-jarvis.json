@@ -1,0 +1,279 @@
+{
+  "id": "root",
+  "type": "column",
+  "titlebar": "none",
+  "traffic_lights": [
+    12,
+    14
+  ],
+  "theme": "mission-control-jarvis-doom",
+  "background": {
+    "gradient": [
+      "#272d29",
+      "#202b24"
+    ],
+    "angle": 160
+  },
+  "terminal_padding": [
+    14,
+    12
+  ],
+  "preview": "layouts/mission-control-jarvis.svg",
+  "children": [
+    {
+      "id": "mc-topbar",
+      "type": "block",
+      "size": {
+        "px": 42
+      },
+      "window_drag": true,
+      "content": {
+        "mod": "mission-control-tabs",
+        "props": {
+          "view": "topbar",
+          "swapTo": "mission-control",
+          "panel": true
+        }
+      }
+    },
+    {
+      "id": "mc-body",
+      "type": "row",
+      "divider": {
+        "width": 1,
+        "color": "border"
+      },
+      "children": [
+        {
+          "id": "sidebar",
+          "type": "column",
+          "size": {
+            "px": 220
+          },
+          "min": 200,
+          "max": 480,
+          "background": "chrome",
+          "resizable": false,
+          "children": [
+            {
+              "id": "mc-rail-lists",
+              "type": "column",
+              "divider": {
+                "width": 1,
+                "color": "border"
+              },
+              "children": [
+                {
+                  "id": "mc-spaces",
+                  "type": "block",
+                  "size": {
+                    "weight": 1
+                  },
+                  "min": 32,
+                  "content": {
+                    "mod": "mission-control-spaces",
+                    "props": {
+                      "view": "list"
+                    }
+                  }
+                },
+                {
+                  "id": "mc-agents",
+                  "type": "block",
+                  "size": {
+                    "weight": 1
+                  },
+                  "min": 32,
+                  "content": {
+                    "mod": "mission-control-agents",
+                    "props": {
+                      "view": "list"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "mc-rail-footer",
+              "type": "block",
+              "size": {
+                "px": 69
+              },
+              "content": {
+                "mod": "mission-control-spaces",
+                "props": {
+                  "view": "footer"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "mc-main",
+          "type": "row",
+          "padding": 8,
+          "gap": 8,
+          "children": [
+            {
+              "id": "mc-terminals",
+              "type": "block",
+              "content": {
+                "tab": "active",
+                "pane": {
+                  "gap": 8,
+                  "radius": 10,
+                  "background": "background",
+                  "lone": true,
+                  "border": {
+                    "width": 1,
+                    "color": "#707872"
+                  },
+                  "focus": {
+                    "width": 1,
+                    "color": "#1c8362"
+                  },
+                  "header": {
+                    "content": {
+                      "mod": "pane"
+                    },
+                    "height": 30,
+                    "position": "top",
+                    "reveal": "always"
+                  }
+                }
+              }
+            },
+            {
+              "id": "jarvis-hud",
+              "type": "block",
+              "size": {
+                "px": 380
+              },
+              "min": 320,
+              "max": 900,
+              "radius": 10,
+              "border": {
+                "width": 1,
+                "color": "#707872"
+              },
+              "content": {
+                "mod": "mission-control-jarvis",
+                "props": {
+                  "view": "hud"
+                }
+              }
+            },
+            {
+              "id": "mc-work-panel",
+              "type": "column",
+              "hidden": true,
+              "size": {
+                "px": 360
+              },
+              "min": 280,
+              "max": 900,
+              "resizable": false,
+              "children": [
+                {
+                  "id": "mc-navigation",
+                  "type": "block",
+                  "size": {
+                    "px": 34
+                  },
+                  "content": {
+                    "mod": "mission-control-tabs",
+                    "props": {
+                      "view": "navigation"
+                    }
+                  }
+                },
+                {
+                  "id": "mc-work-stack",
+                  "type": "stack",
+                  "active": "jira",
+                  "children": [
+                    {
+                      "id": "jira",
+                      "type": "block",
+                      "content": {
+                        "mod": "mission-control-jira",
+                        "props": {
+                          "view": "panel",
+                          "hideHeader": true
+                        }
+                      }
+                    },
+                    {
+                      "id": "github",
+                      "type": "block",
+                      "content": {
+                        "mod": "mission-control-github",
+                        "props": {
+                          "view": "issues",
+                          "hideHeader": true
+                        }
+                      }
+                    },
+                    {
+                      "id": "pulls",
+                      "type": "block",
+                      "content": {
+                        "mod": "mission-control-github",
+                        "props": {
+                          "view": "pulls",
+                          "hideHeader": true
+                        }
+                      }
+                    },
+                    {
+                      "id": "gitlab",
+                      "type": "block",
+                      "content": {
+                        "mod": "mission-control-gitlab",
+                        "props": {
+                          "view": "issues",
+                          "hideHeader": true
+                        }
+                      }
+                    },
+                    {
+                      "id": "merges",
+                      "type": "block",
+                      "content": {
+                        "mod": "mission-control-gitlab",
+                        "props": {
+                          "view": "merges",
+                          "hideHeader": true
+                        }
+                      }
+                    },
+                    {
+                      "id": "sessions",
+                      "type": "block",
+                      "content": {
+                        "mod": "mission-control-sessions",
+                        "props": {
+                          "hideHeader": true
+                        }
+                      }
+                    },
+                    {
+                      "id": "control-panel",
+                      "type": "block",
+                      "content": {
+                        "mod": "mission-control-control-panel",
+                        "props": {
+                          "hideHeader": true
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

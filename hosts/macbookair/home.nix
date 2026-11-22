@@ -125,6 +125,8 @@ in
   programs.zsh = import ../../home/nixfiles/zsh.nix { inherit config pkgs; };
 
   # xdg.configFile."alacritty".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/alacritty";
+  home.file.".bashrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/bash/.bashrc";
+  home.file.".bash_profile".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/bash/.bash_profile";
   xdg.configFile."helix/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/helix/config.toml";
   xdg.configFile."helix/languages.toml".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/helix/languages.toml";
   xdg.configFile."helix/themes".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/helix/themes";
