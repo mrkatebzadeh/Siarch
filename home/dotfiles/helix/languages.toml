@@ -32,3 +32,17 @@ procMacro = {enable = true }
 [[language]]
 name = "yaml"
 formatter = { command = "prettier", args = ["--parser", "yaml"] }
+
+[[language]]
+name = "bibtex"
+auto-format = false
+
+[language-server.texlab.config.texlab.build]
+executable = "latexmk"
+args = ["-pdf", "-interaction=nonstopmode", "-synctex=1", "%f"]
+onSave = true
+forwardSearchAfter = false
+
+[language-server.texlab.config.texlab.forwardSearch]
+executable = "setsid"
+args = ["--fork", "zathura", "--synctex-forward", "%l:1:%f", "%p"]
