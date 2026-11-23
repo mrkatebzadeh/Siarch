@@ -29,10 +29,10 @@ const PALETTES = {
     gold: "#c9b37e", red: "#ff5c5c", green: "#8fe3b0", violet: "#b5a8ff",
     sel: "#22272c", well: "#08090a", core: "#2a2f35", ring: "#3a4047", coreAlert: "#3a1212", ringAlert: "#5a1d1d", doneBar: "#3d5a48" },
   doom: { label: "Doctor Doom", theme: "mission-control-jarvis-doom",
-    bg: "#272d29", panel: "#202b24", panel2: "#24332b", line: "#707872", line2: "#707872",
-    cyan: "#1c8362", cyanDim: "#a3be8c", text: "#d8dadd", muted: "#999999", dim: "#666b75",
+    bg: "#1c211e", panel: "#161f19", panel2: "#122619", line: "#303b32", line2: "#3a483c",
+    cyan: "#176b4f", cyanDim: "#779576", text: "#d8dadd", muted: "#999999", dim: "#666b75",
     gold: "#e69f00", red: "#d08770", green: "#ebcb8b", violet: "#212e27",
-    sel: "#24332b", well: "#272d29", core: "#202b24", ring: "#666b75", coreAlert: "#d08770", ringAlert: "#d08770", doneBar: "#ebcb8b" },
+    sel: "#18231c", well: "#1c211e", core: "#161f19", ring: "#666b75", coreAlert: "#d08770", ringAlert: "#d08770", doneBar: "#ebcb8b" },
 };
 const C = { ...PALETTES.doom };
 const PR_ACTIONS = {
@@ -68,17 +68,29 @@ const circlePath = (size, r, width) => {
     .cubic_bezier_to(c - r, c, c - k, c + r, c - r, c + k)
     .cubic_bezier_to(c, c - r, c - r, c - k, c - k, c - r);
 };
-const parseSystemUsage = (text) => {
-  const idle = /CPU usage:.*?([\d.]+)%\s*idle/i.exec(text)?.[1];
-  const mem = /PhysMem:\s*([\d.]+)\s*([KMGT]?)\s+used[\s\S]*?([\d.]+)\s*([KMGT]?)\s+unused/i.exec(text);
-  const amount = (value, unit) => Number(value) * ({ K: 1 / 1024, M: 1, G: 1024, T: 1048576 }[unit.toUpperCase()] || 1);
-  const used = mem && amount(mem[1], mem[2]);
-  const unused = mem && amount(mem[3], mem[4]);
-  const total = used + unused;
-  return {
-    cpu: idle === undefined ? null : Math.max(0, Math.min(100, Math.round(100 - Number(idle)))),
-    memory: total > 0 ? Math.round(used / total * 100) : null,
-  };
+const parseSystemUsage = (text, platform) => {
+  if (platform === "Darwin") {
+    const idle = /CPU usage:.*?([\d.]+)%\s*idle/i.exec(text)?.[1];
+    const mem = /PhysMem:\s*([\d.]+)\s*([KMGT]?)\s+used[\s\S]*?([\d.]+)\s*([KMGT]?)\s+unused/i.exec(text);
+    const amount = (value, unit) => Number(value) * ({ K: 1 / 1024, M: 1, G: 1024, T: 1048576 }[unit.toUpperCase()] || 1);
+    const used = mem && amount(mem[1], mem[2]);
+    const unused = mem && amount(mem[3], mem[4]);
+    const total = used + unused;
+    return {
+      cpu: idle === undefined ? null : Math.max(0, Math.min(100, Math.round(100 - Number(idle)))),
+      memory: total > 0 ? Math.round(used / total * 100) : null,
+    };
+  }
+  if (platform === "Linux") {
+    const cpu = /%Cpu\(s\):[^\n]*?([\d.]+)\s*us[^\n]*?([\d.]+)\s*sy/i.exec(text);
+    const mem = /MiB Mem\s*:\s*([\d.]+)\s+total,\s*([\d.]+)\s+free,\s*([\d.]+)\s+used/i.exec(text)
+      || /GiB Mem\s*:\s*([\d.]+)\s+total,\s*([\d.]+)\s+free,\s*([\d.]+)\s+used/i.exec(text);
+    return {
+      cpu: cpu ? Math.max(0, Math.min(100, Math.round(Number(cpu[1]) + Number(cpu[2])))) : null,
+      memory: mem && Number(mem[1]) > 0 ? Math.max(0, Math.min(100, Math.round(Number(mem[3]) / Number(mem[1]) * 100))) : null,
+    };
+  }
+  return { cpu: null, memory: null };
 };
 const ago = (iso) => {
   const s = (Date.now() - Date.parse(iso)) / 1000;
@@ -308,8 +320,11 @@ export default class Jarvis extends View {
     this.cpuSampling = true;
     cx.spawn(async (cx) => {
       try {
-        const r = await exec("top", ["-l", "1", "-n", "0", "-stats", "cpu"], { timeout: 5000 });
-        const usage = r.code === 0 ? parseSystemUsage(r.stdout) : { cpu: null, memory: null };
+        const platform = globalThis.process?.platform === "darwin" ? "Darwin" : globalThis.process?.platform === "linux" ? "Linux" : null;
+        if (!platform) throw new Error("Unsupported operating system");
+        const args = platform === "Darwin" ? ["-l", "1", "-n", "0", "-stats", "cpu"] : ["-b", "-n", "1"];
+        const r = await exec("top", args, { timeout: 5000 });
+        const usage = r.code === 0 ? parseSystemUsage(r.stdout, platform) : { cpu: null, memory: null };
         this.cpuUsage = usage.cpu;
         this.memoryUsage = usage.memory;
       } catch { this.cpuUsage = null; this.memoryUsage = null; }
@@ -512,8 +527,8 @@ export default class Jarvis extends View {
 
   cpuSection() {
     const cpu = this.cpuUsage, memory = this.memoryUsage;
-    const cpuColor = cpu === null ? C.muted : cpu < 10 ? "#4dffa6" : cpu <= 70 ? "#ffc857" : "#ff4d5e";
-    const cpuStatus = cpu === null ? (this.cpuSampling ? "SAMPLING" : "UNAVAILABLE") : cpu < 10 ? "NOMINAL" : cpu <= 70 ? "ELEVATED" : "HIGH LOAD";
+    const cpuColor = cpu === null ? C.muted : cpu > 80 ? C.red : cpu >= 20 ? C.gold : C.cyan;
+    const cpuStatus = cpu === null ? (this.cpuSampling ? "SAMPLING" : "UNAVAILABLE") : cpu < 20 ? "NOMINAL" : cpu <= 80 ? "ELEVATED" : "HIGH LOAD";
     const memoryStatus = memory === null ? (this.cpuSampling ? "SAMPLING" : "UNAVAILABLE") : "IN USE";
     return this.section("sec-cpu", "System Monitor", null,
       h_flex().w_full().items_center().justify_center().gap(28)
@@ -772,14 +787,13 @@ export default class Jarvis extends View {
     const pal = PALETTES[key];
     if (!pal) return;
     this.setPrefs({ palette: key });
-    run("app.theme", { name: pal.theme }); // terminals and the other panels follow the suit
   }
 
   swatches() {
     const current = this.prefs().palette in PALETTES ? this.prefs().palette : "doom";
     return h_flex().gap(4).items_center().children(Object.entries(PALETTES).map(([key, p]) =>
       div().id(`pal-${key}`).size(14).rounded_full().cursor_pointer().border(current === key ? 2 : 1)
-        .border_color(current === key ? C.text : C.line2).tooltip(p.label).on_mouse_down("left", stop)
+        .border_color(current === key ? C.text : C.line2).tooltip(`${p.label} · HUD only`).on_mouse_down("left", stop)
         .on_click((_e, cx) => { cx.stop_propagation(); this.setPalette(key); })
         .child(h_flex().size_full().rounded_full().overflow_hidden()
           .child(div().h_full().w("50%").bg(p.cyan)).child(div().h_full().w("50%").bg(key === "mark" ? "#c4122e" : p.gold)))));

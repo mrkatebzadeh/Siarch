@@ -27,6 +27,7 @@
         "px": 42
       },
       "window_drag": true,
+      "background": "#252C27",
       "content": {
         "mod": "mission-control-tabs",
         "props": {
@@ -52,7 +53,7 @@
           },
           "min": 200,
           "max": 480,
-          "background": "chrome",
+          "background": "#252C27",
           "resizable": false,
           "children": [
             {
@@ -71,10 +72,7 @@
                   },
                   "min": 32,
                   "content": {
-                    "mod": "mission-control-spaces",
-                    "props": {
-                      "view": "list"
-                    }
+                    "mod": "spaces"
                   }
                 },
                 {
@@ -85,10 +83,7 @@
                   },
                   "min": 32,
                   "content": {
-                    "mod": "mission-control-agents",
-                    "props": {
-                      "view": "list"
-                    }
+                    "mod": "agents"
                   }
                 }
               ]
@@ -100,9 +95,9 @@
                 "px": 69
               },
               "content": {
-                "mod": "mission-control-spaces",
+                "mod": "workspace-chrome",
                 "props": {
-                  "view": "footer"
+                  "footer": true
                 }
               }
             }
