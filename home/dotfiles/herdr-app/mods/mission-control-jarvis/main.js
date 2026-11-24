@@ -1,7 +1,7 @@
 // J.A.R.V.I.S. — a HUD over everything you're working on: agents, Jira, GitHub, Claude activity.
 // It reads Mission Control's config through backend.mjs and never writes it.
 import { View, div, svg, image, PathBuilder } from "gpui-kit";
-import { v_flex, h_flex } from "gpui-base";
+import { v_flex, h_flex, Textarea, TextareaState } from "gpui-base";
 import { exec, agents, spaces, focused, knownAgents, notify, appHome, shared, setShared, run, props, nextCommand, openOverlay, closeOverlay } from "herdr";
 
 const MOD = "mission-control-jarvis";
@@ -10,6 +10,11 @@ const ICONS = "mission-control-spaces-icons-v1";
 const VOICE = "bm_ultron";
 const REFRESH_MS = 3 * 60 * 1000;
 const CPU_REFRESH_MS = 15 * 1000;
+const PLANNER_NAME = "jarvis-planner";
+const PLANNER_TOOLS = "read,grep,find,delegate_execution";
+const PLANNER_PROMPT = "You answer questions and plan requested work. Return only a concise, human-readable result or status in 1–2 sentences; never include tool logs or internal progress. Delegate all requested execution and editing to delegate_execution; do not perform edits yourself.";
+const plannerStatusFrom = (state) => ["starting", "working", "error"].includes(state.status) ? state.status : state.running === true ? "working" : "idle";
+const plannerOutputFrom = (state, previous) => (state.output || state.text || "").trim().slice(-4000) || previous;
 
 // Suit colours. `cyan` is each palette's primary HUD colour, `gold` its secondary.
 const PALETTES = {
@@ -117,6 +122,15 @@ export default class Jarvis extends View {
     this.picker = null;     // { key, root } of the ticket whose agent picker is open
     this.launching = null;
     this.launchError = null;
+    this.plannerAddress = this.prefs().plannerAddress || null;
+    this.plannerStatus = "starting";
+    this.plannerOutput = "";
+    this.plannerWorker = null;
+    this.plannerRefreshing = false;
+    this.plannerStarting = null;
+    this.plannerInput = TextareaState.new({ rows: 2 });
+    this.plannerInput.set_auto_grow(2, 5);
+    this.plannerInput.on("submit", (_event, cx) => this.sendPlanner(cx, this.plannerInput.value()));
     this.refresh(cx);
     this.resolveSpace(cx);
     cx.spawn(async (cx) => {
@@ -137,7 +151,123 @@ export default class Jarvis extends View {
     this.refreshCpu(cx);
     cx.timer.every(CPU_REFRESH_MS, (cx) => this.refreshCpu(cx));
     cx.timer.every(60000, (cx) => cx.notify()); // the clock
-    cx.timer.every(1500, (cx) => { this.resolveSpace(cx); if (this.voice) this.watchAgents(cx); });
+    cx.timer.every(1500, (cx) => { this.resolveSpace(cx); this.refreshPlanner(cx); if (this.voice) this.watchAgents(cx); });
+  }
+
+  async listTerminals() {
+    const result = await exec("hc", ["ls", "--json"]);
+    if (result.code !== 0) throw new Error(result.stderr || "hc ls failed");
+    const parsed = JSON.parse(result.stdout);
+    return Array.isArray(parsed) ? parsed : parsed.terminals || parsed.sessions || [];
+  }
+
+  async ensurePlanner() {
+    if (this.plannerStarting) return this.plannerStarting;
+    this.plannerStarting = (async () => {
+      let terminals = await this.listTerminals();
+      let found = terminals.find((t) => t.name === PLANNER_NAME && !["exited", "stopped", "dead", "failed"].includes(String(t.status || t.state || "").toLowerCase()));
+      if (!found) {
+        const space = this.activeSpace();
+        if (!space || space.machine || !space.folder) throw new Error("No active local space to start JARVIS");
+        const home = appHome();
+        const args = ["run", "--bg", "--outlive-parent", "--json", "--name", PLANNER_NAME, "--cwd", space.folder,
+          "--", "pi", "--tools", PLANNER_TOOLS, "--extension", `${home}/mods/${MOD}/planner-extension.ts`, "--append-system-prompt", PLANNER_PROMPT];
+        const launched = await exec("hc", args, { cwd: space.folder, timeout: 30000 });
+        if (launched.code !== 0) {
+          terminals = await this.listTerminals();
+          found = terminals.find((t) => t.name === PLANNER_NAME && !["exited", "stopped", "dead", "failed"].includes(String(t.status || t.state || "").toLowerCase()));
+          if (!found) throw new Error(launched.stderr || "Could not start JARVIS planner");
+        } else {
+          const data = JSON.parse(launched.stdout.trim());
+          found = data.terminal || data;
+        }
+      }
+      const address = found.address ?? found.id;
+      if (!address) throw new Error("JARVIS terminal has no address");
+      this.plannerAddress = String(address);
+      this.setPrefs({ plannerAddress: this.plannerAddress });
+      return this.plannerAddress;
+    })().finally(() => { this.plannerStarting = null; });
+    return this.plannerStarting;
+  }
+
+  async sendPlanner(cx, text) {
+    const prompt = typeof text === "string" ? text.trim() : "";
+    if (!prompt) { this.plannerStatus = "error"; this.plannerError = "Enter a prompt first"; cx.notify(); return; }
+    this.plannerStatus = "starting";
+    this.plannerError = null;
+    cx.notify();
+    try {
+      const address = await this.ensurePlanner();
+      const sent = await exec("hc", ["send", address, prompt]);
+      if (sent.code !== 0) throw new Error(sent.stderr || "hc send failed");
+      this.plannerInput.set_value("");
+      this.plannerStatus = "working";
+    } catch (error) {
+      this.plannerStatus = "error";
+      this.plannerError = String(error?.message || error).slice(0, 180);
+    }
+    cx.notify();
+  }
+
+  refreshPlanner(cx) {
+    if (this.plannerRefreshing) return;
+    this.plannerRefreshing = true;
+    cx.spawn(async (cx) => {
+      try {
+        const terminals = await this.listTerminals();
+        const planner = terminals.find((t) => t.name === PLANNER_NAME && !["exited", "stopped", "dead", "failed"].includes(String(t.status || t.state || "").toLowerCase()));
+        if (!planner) {
+          this.plannerAddress = null;
+          this.plannerStatus = "starting";
+          await this.ensurePlanner();
+        } else {
+          this.plannerAddress = String(planner.address ?? planner.id);
+          this.setPrefs({ plannerAddress: this.plannerAddress });
+          const details = await exec("hc", ["get", this.plannerAddress, "--json"]);
+          if (details.code !== 0) throw new Error(details.stderr || "Could not read JARVIS status");
+          const state = JSON.parse(details.stdout || "{}");
+          this.plannerStatus = plannerStatusFrom(state);
+          this.plannerOutput = plannerOutputFrom(state, this.plannerOutput);
+          this.plannerError = null;
+        }
+        this.plannerWorker = terminals.filter((t) => /^jarvis-worker-/.test(t.name || ""))
+          .sort((a, b) => Number(b.createdAt || b.created_at || b.seq || 0) - Number(a.createdAt || a.created_at || a.seq || 0))[0] || null;
+        if (this.plannerWorker) {
+          const address = this.plannerWorker.address ?? this.plannerWorker.id;
+          const details = await exec("hc", ["get", String(address), "--json"]);
+          if (details.code === 0) {
+            const state = JSON.parse(details.stdout || "{}");
+            this.plannerWorker.status = state.status || (state.running ? "working" : "idle");
+          }
+        }
+      } catch (error) {
+        this.plannerStatus = "error";
+        this.plannerError = String(error?.message || error).slice(0, 180);
+      }
+      this.plannerRefreshing = false;
+      cx.notify();
+    });
+  }
+
+  plannerSection() {
+    const statusColor = this.plannerStatus === "working" ? C.cyan : this.plannerStatus === "error" ? C.red : C.muted;
+    const output = this.plannerOutput || this.plannerError || (this.plannerStatus === "starting" ? "Starting persistent planner…" : "No planner output yet");
+    const openTerminal = (id, address, tip) => div().id(id).px(7).py(3).rounded(4).border(1).border_color(C.line2)
+      .text_size(9).font_family(MONO).text_color(C.cyan).cursor_pointer().tooltip(tip)
+      .on_click(() => address && run("terminal.peek", { terminal: address })).child("OPEN");
+    return this.section("sec-planner", "JARVIS Planner", this.plannerStatus,
+      v_flex().gap(7)
+        .child(Textarea.new(this.plannerInput).h(60).rounded(5).border(1).border_color(C.line2).bg(C.well))
+        .child(h_flex().items_center().gap(6)
+          .child(div().flex_1().text_size(9).font_family(MONO).text_color(statusColor).child((this.plannerError && this.plannerStatus === "error" ? this.plannerError : this.plannerStatus).toUpperCase()))
+          .child(openTerminal("planner-open", this.plannerAddress, "Open JARVIS planner terminal"))
+          .when(!!this.plannerWorker, (el) => el.child(openTerminal("worker-open", this.plannerWorker.address ?? this.plannerWorker.id, "Open latest JARVIS worker terminal")))
+          .child(div().id("planner-send").px(9).py(4).rounded(4).bg(C.sel).text_size(9).font_family(HEAD).text_color(C.cyan).cursor_pointer()
+            .on_click((_e, cx) => this.sendPlanner(cx, this.plannerInput.value())).child("SEND")))
+        .child(div().max_h(100).overflow_y_scrollbar().text_size(9).font_family(MONO).text_color(C.text).child(output))
+        .when(!!this.plannerWorker, (el) => el.child(v_flex().gap(4)
+          .child(div().text_size(9).font_family(MONO).text_color(C.gold).child(`LATEST WORKER · ${(this.plannerWorker.status || "unknown").toUpperCase()}`)))));
   }
 
   // ---------- which session am I in ----------
@@ -463,8 +593,17 @@ export default class Jarvis extends View {
       .when(!!a.program?.icon, (el) => el.child(a.program.tint ? svg(a.program.icon).size(13).text_color(C.text) : image(a.program.icon).size(13)))
       .child(div().flex_1().min_w(0).truncate().text_size(11).text_color(C.text).child(a.tab_name))
       .child(div().text_size(10).font_family(MONO).text_color(C.dim).truncate().max_w(110).child(a.space_name)));
+    const collapsed = Boolean(this.prefs().agentsCollapsed);
+    const toggle = div().id("agents-toggle").px(7).py(3).rounded(4).border(1).border_color(C.line2)
+      .text_size(9).font_family(MONO).text_color(C.cyan).cursor_pointer()
+      .on_click((_e, cx) => {
+        this.setPrefs({ agentsCollapsed: !collapsed });
+        cx.notify();
+      })
+      .child(collapsed ? "SHOW AGENTS" : "HIDE AGENTS");
     return this.section("sec-agents", "Agents", `${s.agentsTotal} online`,
-      v_flex().gap(8).child(bar).child(legend).children(rows.length ? rows : [this.empty("No agents online")]));
+      v_flex().gap(8).child(bar).child(legend).child(toggle)
+        .when(!collapsed, (el) => el.children(rows.length ? rows : [this.empty("No agents online")])));
   }
 
   quotaGauge(rate, name) {
@@ -805,12 +944,12 @@ export default class Jarvis extends View {
     const wide = this.width >= 900, full = this.view === "full";
     const panels = wide
       ? h_flex().gap(10).items_start()
-        .child(v_flex().flex_1().gap(10).min_w(0).child(this.core(s, true)).child(this.agentsSection(s)))
+        .child(v_flex().flex_1().gap(10).min_w(0).child(this.core(s, true)).child(this.plannerSection()).child(this.agentsSection(s)))
         .child(v_flex().flex_1().gap(10).min_w(0).child(this.activitySection(true))
           .when(full, (el) => el.child(this.reposSection()).child(this.jiraSection(true))))
         .when(full, (el) => el.child(v_flex().flex_1().gap(10).min_w(0).child(this.prsSection(true))))
       : v_flex().gap(10)
-        .child(this.core(s, false)).child(this.agentsSection(s)).child(this.activitySection(false))
+        .child(this.core(s, false)).child(this.plannerSection()).child(this.agentsSection(s)).child(this.activitySection(false))
         .when(full, (el) => el.child(this.reposSection()).child(this.jiraSection(false)).child(this.prsSection(false)));
     const body = v_flex().gap(10).px(wide ? 12 : 10).pb(12)
       .child(panels).child(this.cpuSection());
